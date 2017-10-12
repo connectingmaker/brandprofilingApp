@@ -12,9 +12,11 @@ export default class Login extends Component {
                         브랜드 프로파일링 서베이 패널
                     </Text>
                 </View>
-                <View style={{flex:2}}>
+                <View style={{flex:1, alignItems:'center', justifyContent:'center', alignSelf: 'stretch', paddingBottom: 20}}>
+                    <Image source={require('../../assets/img/login_emailBtn.png')} resizeMode={'contain'} style={LoginStyle.btn} />
+                    <Image source={require('../../assets/img/login_facebookBtn.png')} resizeMode={'contain'} style={LoginStyle.btn} />
                 </View>
-                <View style={{backgroundColor:"#000", flex:1, width:"100%", height:44}}>
+                <View style={{backgroundColor:"#000", width:"100%", height:50}}>
                     <Text>
                         as;kdjflasjdflj
                     </Text>
@@ -30,14 +32,19 @@ export default class Login extends Component {
 const LoginStyle = StyleSheet.create({
 
     wrapper: {
-        backgroundColor: '#fff'
+        backgroundColor: '#f1f1f1'
         ,flex: 1
         ,justifyContent: 'center'
         ,alignItems: 'center'
+        ,paddingTop: 100
     }
     ,logo: {
-        width:"80%"
+        width:"50%"
 
+    }
+    ,btn: {
+        width:"85%"
+        ,height:55
     }
     ,logoTitle: {
         fontSize: 13
