@@ -5,6 +5,7 @@ import { StyleSheet, Platform } from 'react-native';
 import Login from './src/components/login';
 import LoginForm from './src/components/loginForm';
 import JoinForm from './src/components/joinForm';
+import Account from './src/components/account';
 
 import config from './src/config';
 
@@ -28,9 +29,9 @@ export default class App extends Component<{}> {
             <Scene key="root" navigationBarStyle={navStyle.navBar} titleStyle={navStyle.navTitle} barButtonTextStyle={navStyle.barButtonTextStyle}>
                 <Scene key="Login" component={Login} initial={true} hideNavBar={true} />
                 <Scene key="LoginForm" component={LoginForm} title="이메일로 로그인" hideNavBar={true} />
-
             </Scene>
-            <Scene key="JoinForm" component={JoinForm} title="이메일로 로그인" hideNavBar={true} direction="vertical" schema="modal" wrapRouter={true} />
+            <Scene key="JoinForm" component={JoinForm} title="회원가입" hideNavBar={true} direction="vertical" schema="modal" wrapRouter={true} />
+            <Scene key="Account" component={Account} title="계정/비번찾기" hideNavBar={true} direction="vertical" schema="modal" wrapRouter={true}/>
             </Modal>
         </Router>
     }
