@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { View, Text, Image, StyleSheet, TextInput, Button } from 'react-native';
+import { Actions } from 'react-native-router-flux';
 import { Container, Header, Body, Content, Footer,  Item, Icon, Input } from 'native-base';
 
 import layout from '../../assets/style/layout';
@@ -10,36 +11,32 @@ export default class JoinForm extends Component {
     constructor(){
         super();
         this.state ={
-            step1View:true
-            ,step2View:false
-            ,step3View:false
-            ,step4View:false
-            ,step5View:false
+            stepView:1
 
         }
     }
 
-    stepBtn1(){
+    stepBtn(value){
+        switch(value) {
+            case 1:
+                this.setState({
+                    step1View:false
+                    ,step2View:true
+                });
+                break;
+        }
+        /*
         this.setState({
             step1View:false
             ,step2View:true
         });
+        */
     }
 
-    stepBtn2(){
-        this.setState({
-            step1View:false
-            ,step2View:false
-            ,step3View:true
-        });
-    }
-    stepBtn3(){
-    }
 
-    stepBtn4(){
 
-    }
-    stepBtn5(){
+    emailCheck()
+    {
 
     }
 
@@ -53,7 +50,7 @@ export default class JoinForm extends Component {
             <Container>
                 <Header style={JoinFormStyle.headerLayoyt}>
                     <View style={{flex:.1, justifyContent: 'center', alignItems: 'center'}}>
-                        <Text style={{fontSize:12}}>나가기</Text>
+                        <Text style={{fontSize:12}} onPress={Actions.pop}>나가기</Text>
                     </View>
                     <View style={{flex:.8, justifyContent: 'center', alignItems: 'center'}}>
                         <Text style={{fontSize:16}}>회원가입</Text>
@@ -96,12 +93,22 @@ export default class JoinForm extends Component {
                     )}
 
                     {renderIf(this.state.step2View)(
-                        <View style={JoinFormStyle.contentsLayout}>
-                            <View>
-                                <Text style={JoinFormStyle.contentsSize}><Text style={JoinFormStyle.boldFont}>계정</Text>으로 사용될 이메일 주소를 입력해주세요.</Text>
+                        <View>
+                            <View style={JoinFormStyle.contentsLayout}>
+                                <View>
+                                    <Text style={JoinFormStyle.contentsSize}><Text style={JoinFormStyle.boldFont}>계정</Text>으로 사용될 이메일 주소를 입력해주세요.</Text>
+                                </View>
+
+
+
+
                             </View>
-
-
+                            <View style={{padding:20}}>
+                                <Item regular style={{backgroundColor:"#ffffff"}}>
+                                    <Image source={require('../../assets/img/join_icon_email.png')} resizeMode={'contain'} style={{width:16, height:13, marginTop:5, marginLeft:10}} />
+                                    <Input placeholder='이메일' style={JoinFormStyle.input} keyboardType="email-address"/>
+                                </Item>
+                            </View>
                         </View>
                     )}
 
@@ -117,16 +124,16 @@ export default class JoinForm extends Component {
 
                 </Content>
                 <Footer style={{backgroundColor:"#222222", width:"100%", height:44, justifyContent: 'center', alignItems: 'center'}}>
-                    {renderIf(this.state.step1View)(
-                    <Text style={{color:"#ffffff"}} onPress={()=>this.stepBtn1()}>다음</Text>
+                    {renderIf(this.state.stepView == 1)(
+                    <Text style={{color:"#ffffff"}} onPress={()=>this.stepBtn(1)}>다음</Text>
                     )}
 
-                    {renderIf(this.state.step2View)(
-                        <Text style={{color:"#ffffff"}} onPress={()=>this.stepBtn2()}>다음</Text>
+                    {renderIf(this.state.stepView == 2)(
+                        <Text style={{color:"#ffffff"}} onPress={()=>this.stepBtn(2)}>다음</Text>
                     )}
 
-                    {renderIf(this.state.step3View)(
-                        <Text style={{color:"#ffffff"}} onPress={()=>this.stepBtn3()}>다음</Text>
+                    {renderIf(this.state.stepView == 3)(
+                        <Text style={{color:"#ffffff"}} onPress={()=>this.stepBtn(3)}>다음</Text>
                     )}
                 </Footer>
             </Container>
@@ -172,5 +179,13 @@ const JoinFormStyle = StyleSheet.create({
         fontSize:15
         ,borderWidth:1
         ,borderColor:"#979797"
+    }
+    ,input: {
+        fontSize:12
+        ,paddingTop:13
+        ,paddingLeft:11
+        ,paddingBottom:12
+        ,height:38
+        ,backgroundColor: "#ffffff"
     }
 })
