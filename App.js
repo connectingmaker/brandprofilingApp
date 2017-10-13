@@ -6,7 +6,11 @@ import Login from './src/components/login';
 import LoginForm from './src/components/loginForm';
 import JoinForm from './src/components/joinForm';
 
+import config from './src/config';
+
 import animations from './src/module/animations';
+
+
 
 
 export default class App extends Component<{}> {

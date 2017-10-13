@@ -12,7 +12,7 @@ export default class LoginForm extends Component {
             <Container>
                 <Header style={LoginFormStyle.headerLayoyt}>
                     <View style={{flex:.1, alignItems: 'center'}}>
-                        <Text style={{color:"#ffffff"}}>뒤로</Text>
+                        <Text style={{color:"#ffffff"}} onPress={Actions.pop}>뒤로</Text>
                     </View>
                     <View style={{flex:.8, alignItems: 'center'}}>
                         <Text style={{color:"#ffffff"}}>이메일로 로그인</Text>
