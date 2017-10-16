@@ -8,7 +8,7 @@ import JoinForm from './src/components/joinForm';
 import Account from './src/components/account';
 
 import Main from './src/components/main';
-import preSurvey from './src/components/preSurvey';
+import PreSurvey from './src/components/preSurvey';
 
 
 import config from './src/config';
@@ -88,7 +88,7 @@ export default class App extends Component<{}> {
                            schema="modal" wrapRouter={true}/>
                     <Scene key="Account" component={Account} title="계정/비번찾기" hideNavBar={true} direction="vertical"
                            schema="modal" wrapRouter={true}/>
-                    <Scene key="preSurvey" component={preSurvey} title="사전조사" hideNavBar={true} direction="vertical" schema="modal" wrapRouter={true}/>
+                    <Scene key="PreSurvey" component={PreSurvey} title="사전조사" hideNavBar={true} direction="vertical" schema="modal" wrapRouter={true}/>
                 </Modal>
             </Router>
         } else {

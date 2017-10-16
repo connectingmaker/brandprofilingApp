@@ -45,8 +45,11 @@ export default class Main extends Component {
                         <Image source={require('../../assets/img/header_icon_set.png')} resizeMode={'contain'} style={{width:15, height:15, marginTop:5, marginLeft:10}}/>
                     </View>
                 </Header>
-                <Content>
+                <Content style={{padding:10}}>
                     <AppComponent />
+
+
+
                 </Content>
                 <Footer>
                     <FooterTab>

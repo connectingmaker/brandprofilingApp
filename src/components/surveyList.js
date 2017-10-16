@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { StyleSheet, Image, View, TouchableOpacity, Text } from 'react-native';
 import { Actions } from 'react-native-router-flux';
+import { Container, Header, Content, Footer, Item, Icon, Input, Button ,ActionSheet} from 'native-base';
 
 
 
@@ -9,69 +10,104 @@ export default class surveyList extends Component {
     render() {
         return (
             <View>
-                <Text>1111</Text>
+                <View style={preSurveyFormStyle.contentsLayout}>
+                    <View style={{flex:1, flexDirection: 'row', paddingTop:5, paddingBottom:5}}>
+                        <View style={{flex:0.25}}>
+                            <Image source={require('../../assets/img/main_icon_logo_on.png')} resizeMode={'contain'} style={{width:30,height:30, marginTop:5}}/><Text style={preSurveyFormStyle.boldFont}>200P</Text>
+                        </View>
+                        <View style={{flex:0.65}}>
+                            <Text style={preSurveyFormStyle.title}>설문 참여를 위한 사전 조사</Text>
+                        </View>
+                        <View style={{flex:0.1}}>
+                            <Text>기본</Text>
+                        </View>
+                    </View>
+                    <View style={preSurveyFormStyle.lingBg}>
+                    </View>
+
+                    <View>
+                        <Text style={preSurveyFormStyle.contentsSize}>사전조사를 통해 입력하는 추가정보에 따라 참여할 수 있는 설문이 달라지며 잘못된 정보 입력으로 인해 설문보상 패널티를 받지 않게 주의하여 입력해주세요. 완료 이후 추가정보는 <Text style={preSurveyFormStyle.boldFont}>수정 불가능</Text>하며, 통계를 분석하는 용도로 활용됩니다.</Text>
+                    </View>
+                    <View style={{flexDirection: 'row', paddingLeft: 20,paddingTop:10}}>
+
+                        <View style={{backgroundColor: '#f6f6f6', flex: 0.3,padding:10,borderWidth:1,borderColor:"#d0d0d0",borderBottomColor:"#f6f6f6",borderRightColor:"#f6f6f6"}} >
+                            <Text style={{color:'#919191',fontSize:13}}>포인트적립</Text>
+                        </View>
+                        <View style={{borderColor: '#d0d0d0', flex: 0.5,padding:10,borderWidth:1,borderColor:"#d0d0d0",borderBottomColor:"#f6f6f6"}}>
+                            <Text style={preSurveyFormStyle.boldFont}>200P</Text>
+                        </View>
+                    </View>
+                    <View style={{flexDirection: 'row',paddingLeft:20,paddingBottom:10}}>
+                        <View style={{backgroundColor: '#f6f6f6', flex: 0.3,padding:10,borderWidth:1,borderColor:"#d0d0d0",borderRightColor:"#f6f6f6"}} >
+                            <Text style={{color:'#919191',fontSize:13}}>응답시간</Text>
+                        </View>
+                        <View style={{borderColor: '#d0d0d0', flex: 0.5,padding:10,borderWidth:1,borderColor:"#d0d0d0"}}>
+                            <Text style={{color:'#919191',fontSize:13}}>2분</Text>
+                        </View>
+                    </View>
+
+                    <View style={preSurveyFormStyle.lingBg}></View>
+                    <Button bordered full style={{borderColor:"#979797", backgroundColor:"#DA4211", justifyContent: 'center', paddingLeft:10}}>
+                        <Text style={{marginLeft:10, color:"#ffffff"}} onPress={Actions.PreSurvey}>참여하기</Text>
+                    </Button>
+
+
+
+                </View>
+
             </View>
         );
     };
 }
 
-const LoginStyle = StyleSheet.create({
-    wrapper: {
-        backgroundColor: '#f1f1f1'
-        ,flex: 1
-        ,justifyContent: 'center'
-        ,alignItems: 'center'
+const preSurveyFormStyle = StyleSheet.create({
+    headerLayout: {
+        justifyContent: 'center', alignItems: 'center', backgroundColor: "#ffffff"
     }
-    ,logo: {
-        width:"50%"
-
+    ,bodyLayout : {
+        width: "100%"
     }
-    ,btn: {
-        width:"85%"
-        ,height:50
+    ,contentsLayout: {
+        width: "100%"
+        ,paddingTop:10
+        ,paddingBottom:10
+        ,paddingLeft:20
+        ,paddingRight:20
+        ,backgroundColor:"#fff"
+        ,shadowColor: "rgba(0,0,0,23)"
+        ,shadowOffset: { width: 0, height: 1 }
+        ,shadowOpacity: 0.3
     }
-    ,logoTitle: {
-        fontSize: 13
-        ,marginTop: -10
-        ,color:"#4F4F4F"
+    ,contentsSize: {
+        fontSize:13
+        ,lineHeight:25
     }
-    ,footerView: {
-        flex:.1
-        , flexDirection:'row'
-        , alignItems:'center'
-        , justifyContent:'center'
-        , alignSelf: 'stretch'
-        , width:"100%"
-        , backgroundColor:"rgba(34,34,34,0.5)"
-    }
-    ,footerViewLeft: {
-        flex: 4.5
-        , alignItems:'center'
-        , justifyContent:'center'
-    }
-    ,footerViewLeftFont: {
-        color:"#ffffff"
-        ,fontSize:15
-        ,paddingLeft: 20
-    }
-    ,footerViewCenter: {
-        flex: 1
-        , alignItems:'center'
-        , justifyContent:'center'
+    ,title: {
+        fontSize:15
+        ,fontWeight: 'bold'
+        ,paddingTop:5
+        ,paddingBottom:5
     }
 
-    ,footerViewCenterFont: {
-        color: "rgba(255,255,255,0.5)"
+    ,boldFont: {
+        color:"#DA4211"
+        ,fontWeight: 'bold'
     }
 
-    ,footerViewRight: {
-        flex: 4.5
-        , alignItems:'center'
-        , justifyContent:'center'
+    ,input: {
+        fontSize:12
+        ,paddingTop:13
+        ,paddingLeft:11
+        ,paddingBottom:12
+        ,height:38
+        ,backgroundColor: "#ffffff"
     }
-    ,footerViewRightFont: {
-        color:"#ffffff"
-        ,fontSize:15
-        ,paddingRight: 20
+    ,lingBg: {
+        backgroundColor:"rgba(127,127,127,0.3)"
+        ,height:1
+        ,marginTop:10
+        ,marginBottom:10
+
     }
-});
+
+})

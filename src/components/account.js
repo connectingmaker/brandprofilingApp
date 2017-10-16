@@ -230,7 +230,7 @@ export default class Account extends Component {
                         </TouchableOpacity>
                     )}
                     {renderIf(this.state.stepView == 4 || this.state.stepView == 7)(
-                        <TouchableOpacity style={{width:"100%", height:"100%", justifyContent: 'center', alignItems: 'center'}} onPress={Actions.PreSurveyList} >
+                        <TouchableOpacity style={{width:"100%", height:"100%", justifyContent: 'center', alignItems: 'center'}} onPress={Actions.Main} >
                             <View>
                                 <Text style={{color:"#ffffff" }}>이메일 로그인</Text>
                             </View>
