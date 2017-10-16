@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import {Scene, Router, Modal} from 'react-native-router-flux';
+import {Scene, Router, Modal, Actions} from 'react-native-router-flux';
 import { StyleSheet, Platform, AsyncStorage, View } from 'react-native';
+
 
 import Login from './src/components/login';
 import LoginForm from './src/components/loginForm';
@@ -27,8 +28,8 @@ export default class App extends Component<{}> {
      }
      */
 
-    constructor(props){
-        super(props);
+    constructor(){
+        super();
         this.state = {
             logged:false
             ,logout:true
@@ -36,7 +37,11 @@ export default class App extends Component<{}> {
         };
 
 
+        AsyncStorage.clear();
+
     }
+
+
 
     componentWillMount()
     {
@@ -65,6 +70,25 @@ export default class App extends Component<{}> {
 
 
         });
+    }
+
+    componentDidMount()
+    {
+        console.log("componentDidMount");
+    }
+
+    componentWillReceiveProps(nextProps)
+    {
+        console.log("componentWillReceiveProps: " + JSON.stringify(nextProps));
+    }
+
+    shouldComponentUpdate(nextProps, nextState){
+        console.log("shouldComponentUpdate: " + JSON.stringify(nextProps) + " " + JSON.stringify(nextState));
+        return true;
+    }
+
+    componentWillUpdate(nextProps, nextState){
+        console.log("componentWillUpdate: " + JSON.stringify(nextProps) + " " + JSON.stringify(nextState));
     }
 
 
