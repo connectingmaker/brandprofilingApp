@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Actions } from 'react-native-router-flux';
 import { View, Text, Image, StyleSheet, TextInput } from 'react-native';
-import { Container, Header, Content, Footer, Item, Icon, Input, Button } from 'native-base';
+import { Container, Header, Content, Footer, Item, Icon, Input, Button ,ActionSheet} from 'native-base';
 
 
 
@@ -63,7 +63,7 @@ export default class PreSurveyList extends Component {
 
                             <View style={preSurveyFormStyle.lingBg}></View>
                             <Button bordered full style={{borderColor:"#979797", backgroundColor:"#DA4211", justifyContent: 'center', paddingLeft:10}}>
-                                <Text style={{marginLeft:10, color:"#ffffff"}}>참여하기</Text>
+                                <Text style={{marginLeft:10, color:"#ffffff"}} onPress={Actions.PreSurvey}>참여하기</Text>
                             </Button>
 
 
