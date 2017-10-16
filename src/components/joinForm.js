@@ -16,6 +16,10 @@ export default class JoinForm extends Component {
             ,agreeBool:false
             ,privateBool: false
             ,emailText:""
+            ,phoneText:""
+            ,authCode:""
+            ,authCodeText:""
+            ,passPw:""
         }
     }
 
@@ -29,7 +33,6 @@ export default class JoinForm extends Component {
             this.setState({agreeBool : false});
         }
 
-        console.log(this.state.agreeBool);
     }
 
 
@@ -46,18 +49,41 @@ export default class JoinForm extends Component {
     /**** 이메일 인증 *******/
     emailCheck() {
         const reg = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+        var jsonData = {
+            emailString: this.state.emailText
+        };
 
 
         if (reg.test(this.state.emailText) === true){
-            fetch(config.SERVER_URL+'/api/userEmailCheck', {
-                    body: JSON.stringify({
-                        emailString: this.state.emailText
-                    })
+            var object = {
+                method: 'POST',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                },
+                body:JSON.stringify( {
+                    'emailString': this.state.emailText
                 })
-                .then((response) => response.json())
+            };
+
+            fetch(config.SERVER_URL+'/api/userCheck', object)
+                .then((response) => response.text())
                 .then((responseJson) => {
-                    console.log(responseJson);
-                    //return responseJson.movies;
+                    //console.log(responseJson);
+                    var data = eval("("+responseJson+")");
+                    if(data.length != 0) {
+                        this.setState({emailText:""})
+                        Alert.alert(
+                            'Error',
+                            '등록된 이메일이 존재합니다.',
+                            [
+                                {text: '확인'},
+                            ],
+                            { cancelable: false }
+                        )
+                    } else {
+                        this.stepNext(3);
+                    }
                 })
                 .catch((error) => {
                     console.error(error);
@@ -74,7 +100,154 @@ export default class JoinForm extends Component {
                 { cancelable: false }
             )
         }
+    }
 
+    phoneAuth()
+    {
+        if(this.state.phoneText == "") {
+            Alert.alert(
+                'Error',
+                '핸드폰번호를 입력해주세요.',
+                [
+                    {text: '확인', onPress: () => console.log('OK Pressed')},
+                ],
+                { cancelable: false }
+            )
+            return;
+        } else {
+            var object = {
+                method: 'POST',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                },
+                body:JSON.stringify( {
+                    'phoneNumber': this.state.phoneText
+                })
+            };
+
+            fetch(config.SERVER_URL+'/api/phoenNumberAuth', object)
+                .then((response) => response.text())
+                .then((responseJson) => {
+                    //console.log(responseJson);
+                    var data = eval("("+responseJson+")");
+                    var err_code = data[0].ERR_CODE;
+                    var err_msg = data[0].ERR_MSG;
+                    var authCode = data[0].AUTH_CODE;
+
+                    switch(err_code)
+                    {
+                        case "000":
+                            this.setState({authCode : authCode});
+                            this.stepNext(4);
+                            break;
+                        case "101":
+                            Alert.alert(
+                                'Error',
+                                '하루발송량이 초과되었습니다.',
+                                [
+                                    {text: '확인', onPress: () => console.log('OK Pressed')},
+                                ],
+                                { cancelable: false }
+                            );
+                            break;
+                        case "102":
+                            Alert.alert(
+                                'Error',
+                                '등록된 회원입니다.',
+                                [
+                                    {text: '확인', onPress: () => console.log('OK Pressed')},
+                                ],
+                                { cancelable: false }
+                            );
+                            break;
+                    }
+
+                    console.log(authCode);
+                })
+                .catch((error) => {
+                    console.error(error);
+                });
+        }
+    }
+
+    phoneAuthCheck()
+    {
+        if(this.state.authCode == this.state.authCodeText) {
+            this.stepNext(5);
+        } else {
+            Alert.alert(
+                'Error',
+                '인증번호가 일치하지 않습니다.',
+                [
+                    {text: '확인', onPress: () => console.log('OK Pressed')},
+                ],
+                { cancelable: false }
+            )
+        }
+    }
+
+    passWdCheck()
+    {
+        var passwordRules = /^(?=.*[a-zA-Z])(?=.*[!@#$%^*])(?=.*[0-9]).{6,16}$/;
+
+        if(!/^[a-zA-Z0-9]{6,16}$/.test(this.state.passPw)){
+            Alert.alert(
+                'Error',
+                '숫자와 영문자 조합으로 6~16자리를 사용해야 합니다.',
+                [
+                    {text: '확인', onPress: () => console.log('OK Pressed')},
+                ],
+                { cancelable: false }
+            );
+            return;
+        } else {
+            var object = {
+                method: 'POST',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                },
+                body:JSON.stringify( {
+                    'useremail': this.state.emailText
+                    ,'userphone': this.state.phoneText
+                    ,'userpasswd':this.state.passPw
+
+                })
+            };
+
+            fetch(config.SERVER_URL+'/api/memberInsert', object)
+                .then((response) => response.text())
+                .then((responseJson) => {
+                    //console.log(responseJson);
+                    var data = eval("("+responseJson+")");
+                    if(data.length == 0) {
+                        Alert.alert(
+                            'Error',
+                            '오류가 발생되었습니다.',
+                            [
+                                {text: '확인', onPress: () => console.log('OK Pressed')},
+                            ],
+                            { cancelable: false }
+                        );
+                    } else {
+                        this.stepNext(6);
+                    }
+
+                })
+                .catch((error) => {
+                    console.error(error);
+                });
+
+
+            //this.stepNext(6);
+        }
+
+    }
+
+    emailLogin()
+    {
+        Actions.LoginForm;
     }
 
 
@@ -110,17 +283,6 @@ export default class JoinForm extends Component {
     }
 
     stepNext(value){
-        switch(value) {
-            case 1:
-                this.setState({
-                    step1View:false
-                    ,step2View:true
-                    ,
-                });
-                break;
-        }
-
-        console.log(value);
 
         this.setState({stepView: value});
     }
@@ -136,7 +298,9 @@ export default class JoinForm extends Component {
             <Container>
                 <Header style={JoinFormStyle.headerLayoyt}>
                     <View style={{flex:.1, justifyContent: 'center', alignItems: 'center'}}>
-                        <Text style={{fontSize:12}} onPress={Actions.pop}>나가기</Text>
+                        <Text style={{fontSize:12}}
+                              /*onPress={()=>Actions.emailLogin}*/
+                              onPress={Actions.pop}>나가기</Text>
                     </View>
                     <View style={{flex:.8, justifyContent: 'center', alignItems: 'center'}}>
                         <Text style={{fontSize:16}}>회원가입</Text>
@@ -247,9 +411,72 @@ export default class JoinForm extends Component {
                     )}
 
                     {renderIf(this.state.stepView == 3)(
-                        <View style={JoinFormStyle.contentsLayout}>
-                            <View>
-                                <Text style={JoinFormStyle.contentsSize}><Text style={JoinFormStyle.boldFont}>khjung@c-maker.co.kr</Text>으로 인증번호가 포함된 이메일이 발송되었습니다. 아래 입력한에 인증번호를 입력해주세요.</Text>
+                        <View>
+                            <View style={JoinFormStyle.contentsLayout}>
+                                <View>
+                                    <Text style={JoinFormStyle.contentsSize}>계정을 찾거나 포인트를 환급 받을 떄 사용될 <Text style={JoinFormStyle.boldFont}>본인 핸드폰 번호를</Text>를 입력해주세요.</Text>
+                                </View>
+
+                            </View>
+
+                            <View style={{padding:20}}>
+                                <Item regular style={{backgroundColor:"#ffffff"}}>
+                                    <Image source={require('../../assets/img/join_icon_email.png')} resizeMode={'contain'} style={{width:16, height:13, marginTop:5, marginLeft:10}} />
+                                    <Input placeholder='핸드폰번호 입력' style={JoinFormStyle.input} value={this.state.phoneText} onChangeText={(text) => this.setState({phoneText: text})} keyboardType="phone-pad"/>
+                                </Item>
+                            </View>
+                        </View>
+                    )}
+
+                    {renderIf(this.state.stepView == 4)(
+                        <View>
+                            <View style={JoinFormStyle.contentsLayout}>
+                                <View>
+                                    <Text style={JoinFormStyle.contentsSize}><Text style={JoinFormStyle.boldFont}>{this.state.phoneText}</Text>으로 인증번호가 전송되었습니다. 아래 입력 칸에 인증번호를 입력해주세요.</Text>
+                                </View>
+
+                            </View>
+
+                            <View style={{padding:20}}>
+                                <Item regular style={{backgroundColor:"#ffffff"}}>
+                                    <Image source={require('../../assets/img/icon_key_off.png')} resizeMode={'contain'} style={{width:16, height:13, marginTop:5, marginLeft:10}} />
+                                    <Input placeholder='인증번호 입력' style={JoinFormStyle.input} onChangeText={(text) => this.setState({authCodeText: text})} keyboardType="phone-pad"/>
+                                </Item>
+                            </View>
+                        </View>
+                    )}
+
+
+
+                    {renderIf(this.state.stepView == 5)(
+                        <View>
+                            <View style={JoinFormStyle.contentsLayout}>
+                                <View>
+                                    <Text style={JoinFormStyle.contentsSize}><Text style={JoinFormStyle.boldFont}>사용하실 비밀번호</Text>를 입력해주세요. <Text style={JoinFormStyle.boldFont}>영문</Text>과 <Text style={JoinFormStyle.boldFont}>숫자</Text>
+                                    를 사용하여 <Text style={JoinFormStyle.boldFont}>6-16자리</Text>의 조합을 사용하실 수 있습니다. 사용가능한 특수문자는 <Text style={JoinFormStyle.boldFont}>!@#$%^&*</Text>입니다. 비밀번호 설정을 완료하면 회원가입이 완료가 됩니다.
+                                    </Text>
+                                </View>
+
+                            </View>
+
+                            <View style={{padding:20}}>
+                                <Item regular style={{backgroundColor:"#ffffff"}}>
+                                    <Image source={require('../../assets/img/icon_key_off.png')} resizeMode={'contain'} style={{width:16, height:13, marginTop:5, marginLeft:10}} />
+                                    <Input placeholder='패스워드 입력' style={JoinFormStyle.input} onChangeText={(text) => this.setState({passPw: text})} keyboardType="default" secureTextEntry={true}/>
+                                </Item>
+                            </View>
+                        </View>
+                    )}
+
+                    {renderIf(this.state.stepView == 6)(
+                        <View>
+                            <View style={JoinFormStyle.contentsLayout}>
+                                <View>
+                                    <Text style={JoinFormStyle.contentsSize}>
+                                        가입이 완료되었습니다. 감사합니다.
+                                    </Text>
+                                </View>
+
                             </View>
 
                         </View>
@@ -267,11 +494,44 @@ export default class JoinForm extends Component {
                     )}
 
                     {renderIf(this.state.stepView == 2)(
-                        <Text style={{color:"#ffffff", width:"100%"}} onPress={()=>this.emailCheck()}>다음</Text>
+                        <TouchableOpacity style={{width:"100%", height:"100%", justifyContent: 'center', alignItems: 'center'}} onPress={()=>this.emailCheck()}>
+                            <View>
+                               <Text style={{color:"#ffffff", width:"100%"}}>다음</Text>
+                            </View>
+                        </TouchableOpacity>
                     )}
 
                     {renderIf(this.state.stepView == 3)(
-                        <Text style={{color:"#ffffff", width:"100%"}} onPress={()=>this.stepBtn(4)}>다음</Text>
+                        <TouchableOpacity style={{width:"100%", height:"100%", justifyContent: 'center', alignItems: 'center'}} onPress={()=>this.phoneAuth()}>
+                            <View>
+                                <Text style={{color:"#ffffff", width:"100%"}}>다음</Text>
+                            </View>
+                        </TouchableOpacity>
+                    )}
+
+                    {renderIf(this.state.stepView == 4)(
+                        <TouchableOpacity style={{width:"100%", height:"100%", justifyContent: 'center', alignItems: 'center'}} onPress={()=>this.phoneAuthCheck()}>
+                            <View>
+                                <Text style={{color:"#ffffff", width:"100%"}}>다음</Text>
+                            </View>
+                        </TouchableOpacity>
+                    )}
+
+
+                    {renderIf(this.state.stepView == 5)(
+                        <TouchableOpacity style={{width:"100%", height:"100%", justifyContent: 'center', alignItems: 'center'}} onPress={()=>this.passWdCheck()}>
+                            <View>
+                                <Text style={{color:"#ffffff", width:"100%"}}>다음</Text>
+                            </View>
+                        </TouchableOpacity>
+                    )}
+
+                    {renderIf(this.state.stepView == 6)(
+                        <TouchableOpacity style={{width:"100%", height:"100%", justifyContent: 'center', alignItems: 'center'}} onPress={()=>Actions.emailLogin}>
+                            <View>
+                                <Text style={{color:"#ffffff", width:"100%"}}>다음</Text>
+                            </View>
+                        </TouchableOpacity>
                     )}
                 </Footer>
             </Container>
