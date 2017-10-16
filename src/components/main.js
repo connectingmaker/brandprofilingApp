@@ -5,6 +5,7 @@ import { Container, Header, Content, Footer, FooterTab, Item, Icon, Input, Butto
 import surveyList from '../components/surveyList';
 import mySurvey from '../components/mySurvey'
 import pointHistory from '../components/pointHistory'
+import myPage from '../components/myPage'
 
 
 
@@ -28,6 +29,8 @@ export default class Main extends Component {
             AppComponent = mySurvey;
         } else if(this.state.index == 3) {
             AppComponent = pointHistory;
+        } else if(this.state.index == 4) {
+            AppComponent = myPage;
         }
         return (
             <Container>
@@ -52,9 +55,6 @@ export default class Main extends Component {
                         </Button>
                         <Button onPress={() => this.switchScreen(1) }>
                             <Text>나의설문</Text>
-                        </Button>
-                        <Button onPress={() => this.switchScreen(2) }>
-                            <Text>소개</Text>
                         </Button>
                         <Button onPress={() => this.switchScreen(3) }>
                             <Text>포인트</Text>
