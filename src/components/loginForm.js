@@ -12,9 +12,33 @@ export default class LoginForm extends Component {
         this.state = {
             emailText: ""
             ,passPw: ""
+            ,loginBool:false
         }
 
-        AsyncStorage.clear();
+
+        //AsyncStorage.clear();
+    }
+
+    componentWillUpdate()
+    {
+        console.log("componentWillUpdate");
+    }
+    componentDidUpdate() {
+        if (this.state.loginBool == true) {
+            console.log("로그인 성공");
+            Actions.Main();
+        }
+    }
+
+    _loadInitalState = async() => {
+        try {
+            var value = await AsyncStorage.getItem(config.STORE_KEY)
+            if (value != null) {
+                this.setState({products: value.SESS_UID});
+            }
+        } catch (error) {
+            console.log("error setting product list");
+        }
     }
 
     loginCheck()
@@ -74,7 +98,11 @@ export default class LoginForm extends Component {
                                 ,"SESS_USEREMAIL" : data[0].USEREMAIL
                             };
 
-                            AsyncStorage.setItem(config.STORE_KEY, JSON.stringify(dataObject));
+                            this.setState({loginBool:true}, () => {
+                                AsyncStorage.setItem(config.STORE_KEY, JSON.stringify(dataObject));
+
+                            });
+
 
                         } catch (err) {
                             console.log(err);

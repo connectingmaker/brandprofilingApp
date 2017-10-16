@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {Scene, Router, Modal} from 'react-native-router-flux';
+import {Scene, Router, Modal, Actions} from 'react-native-router-flux';
 import { StyleSheet, Platform, AsyncStorage, View } from 'react-native';
 
 import Login from './src/components/login';
@@ -7,8 +7,8 @@ import LoginForm from './src/components/loginForm';
 import JoinForm from './src/components/joinForm';
 import Account from './src/components/account';
 
-import PreSurveyList from './src/components/preSurveyList';
-import PreSurvey from './src/components/preSurvey';
+import Main from './src/components/main';
+import preSurvey from './src/components/preSurvey';
 
 
 import config from './src/config';
@@ -27,8 +27,8 @@ export default class App extends Component<{}> {
      }
      */
 
-    constructor(props){
-        super(props);
+    constructor(){
+        super();
         this.state = {
             logged:false
             ,logout:true
@@ -37,6 +37,8 @@ export default class App extends Component<{}> {
 
 
     }
+
+
 
     componentWillMount()
     {
@@ -80,11 +82,13 @@ export default class App extends Component<{}> {
 
                         <Scene key="Login" component={Login} initial={this.state.logout} hideNavBar={true}/>
                         <Scene key="LoginForm" component={LoginForm} title="이메일로 로그인" hideNavBar={true}/>
-                        <Scene key="PreSurveyList" component={PreSurveyList} initial={this.state.logged} title="사전조사" hideNavBar={true} />
+                        <Scene key="Main" component={Main} initial={this.state.logged} title="사전조사" hideNavBar={true} />
                     </Scene>
-                    <Scene key="JoinForm" component={JoinForm} title="회원가입" hideNavBar={true} direction="vertical" schema="modal" wrapRouter={true}/>
-                    <Scene key="Account" component={Account} title="계정/비번찾기" hideNavBar={true} direction="vertical" schema="modal" wrapRouter={true}/>
-                    <Scene key="PreSurvey" component={PreSurvey} title="사전조사" hideNavBar={true} direction="vertical" schema="modal" wrapRouter={true}/>
+                    <Scene key="JoinForm" component={JoinForm} title="회원가입" hideNavBar={true} direction="vertical"
+                           schema="modal" wrapRouter={true}/>
+                    <Scene key="Account" component={Account} title="계정/비번찾기" hideNavBar={true} direction="vertical"
+                           schema="modal" wrapRouter={true}/>
+                    <Scene key="preSurvey" component={preSurvey} title="사전조사" hideNavBar={true} direction="vertical" schema="modal" wrapRouter={true}/>
                 </Modal>
             </Router>
         } else {
