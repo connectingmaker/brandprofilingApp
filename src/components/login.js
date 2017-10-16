@@ -7,53 +7,7 @@ import WelcomeText from "react-native/local-cli/templates/HelloNavigation/views/
 
 
 export default class Login extends Component {
-    /*
-    render() {
-        return (
-            <View style={LoginStyle.wrapper}>
-                <View style={{flex:.6, alignItems:'center', justifyContent:'center', alignSelf: 'stretch'}}>
-                    <Image source={require('../../assets/img/login_logo.png')} resizeMode={'contain'} style={LoginStyle.logo}>
-                    </Image>
-                    <Text style={LoginStyle.logoTitle}>
-                        브랜드 프로파일링 서베이 패널
-                    </Text>
-                </View>
-                <View style={{flex:.3, alignItems:'center', justifyContent:'center', alignSelf: 'stretch', paddingBottom: 20}}>
-                    <TouchableHighlight onPress={Actions.LoginForm} style={{alignSelf: 'stretch', justifyContent:'center', alignItems:'center'}} underlayColor="rgba(255,255,255,0)">
-                        <Image source={require('../../assets/img/login_emailBtn.png')} resizeMode={'contain'} style={LoginStyle.btn} />
-                    </TouchableHighlight>
-                    <Image source={require('../../assets/img/login_facebookBtn.png')} resizeMode={'contain'} style={LoginStyle.btn} />
-                </View>
 
-                <View style={LoginStyle.footerView}>
-                    <View style={LoginStyle.footerViewLeft}>
-                        <Text style={LoginStyle.footerViewLeftFont}>
-                            계정/비번 찾기
-                        </Text>
-                    </View>
-
-                    <View style={LoginStyle.footerViewCenter}>
-                        <Text style={{color:"#B2B2B2"}}>
-                            |
-                        </Text>
-                    </View>
-
-                    <View style={LoginStyle.footerViewRight}>
-                        <Text style={LoginStyle.footerViewRightFont}>
-                            회원 가입
-                        </Text>
-                    </View>
-
-                </View>
-
-
-
-            </View>
-
-        );
-
-    }
-    */
     render() {
         return (
             <Container style={LoginStyle.wrapper}>
@@ -75,11 +29,11 @@ export default class Login extends Component {
                 </Body>
                 <Footer style={{backgroundColor:"#222222", width:"100%", justifyContent: 'center', alignItems: 'center', flexDirection:'row'}}>
                     <View style={LoginStyle.footerViewLeft}>
-                        <Text style={LoginStyle.footerViewLeftFont}>계정/비번 찾기</Text>
+                        <Text style={LoginStyle.footerViewLeftFont} onPress={Actions.Account}>계정/비번 찾기</Text>
                     </View>
 
                     <View style={LoginStyle.footerViewCenter}>
-                        <Text style={LoginStyle.footerViewConterFont}>|</Text>
+                        <Text style={LoginStyle.footerViewCenterFont}>|</Text>
                     </View>
 
                     <View style={LoginStyle.footerViewRight}>
@@ -137,7 +91,7 @@ const LoginStyle = StyleSheet.create({
         , justifyContent:'center'
     }
 
-    ,footerViewConterFont: {
+    ,footerViewCenterFont: {
         color: "rgba(255,255,255,0.5)"
     }
 
