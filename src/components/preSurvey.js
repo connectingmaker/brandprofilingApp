@@ -2,6 +2,9 @@ import React, { Component } from 'react';
 import { Actions } from 'react-native-router-flux';
 import { View, Text, Image, StyleSheet, TouchableOpacity } from 'react-native';
 import { Container, Header, Body, Content, Footer,Item, Icon, Input,Button } from 'native-base';
+import Drawer from 'react-native-drawer'
+
+
 import renderIf from 'render-if'
 
 
