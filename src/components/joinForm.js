@@ -23,8 +23,7 @@ export default class JoinForm extends Component {
         }
     }
 
-
-
+    
     agreeBtn()
     {
         if(this.state.agreeBool == false) {
@@ -292,8 +291,6 @@ export default class JoinForm extends Component {
 
 
         return (
-
-
 
             <Container>
                 <Header style={JoinFormStyle.headerLayoyt}>

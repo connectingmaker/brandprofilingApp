@@ -6,52 +6,16 @@ import renderIf from 'render-if'
 
 
 
-export default class Account extends Component {
+export default class PreSurvey extends Component {
 
     constructor(){
         super();
         this.state ={
             stepView:1
-            ,emailBool:false
-            ,pwBool: false
-            ,phoneNumber:""
-            ,emailText:""
-            ,checkNumber:""
-            ,newPw:""
-            ,re_newPw:""
         }
     }
-/*
-    emailBtn()
-    {
-        this.stepNext(2);
-    }
 
-    pwBtn()
-    {
-        this.stepNext(3);
-    }
-    */
 
-    /**** 핸드폰번호 확인 *******/
-    phoneCheck() {
-        this.stepNext(4);
-
-    }
-    /**** 이메일 계정과 핸드폰번호 확인 *******/
-    pwCheck() {
-        this.stepNext(5);
-
-    }
-    /**** 인증 번호 체크 *****/
-    numberCheck(){
-        this.stepNext(6);
-    }
-
-    /**** 새로운 비밀 번호 체크 *****/
-    newPwCheck(){
-        this.stepNext(7);
-    }
 
 
     stepNext(value){
@@ -65,32 +29,19 @@ export default class Account extends Component {
     render() {
         return (
             <Container>
-                <Header style={AccountFormStyle.headerLayout}>
+                {renderIf(this.state.stepView == 1)(
+                <Header style={AccountFormStyle.headerLayout2}>
                     <View style={{flex:.1, justifyContent: 'center', alignItems: 'center'}}>
-                        <Text style={{fontSize:12}} onPress={Actions.pop}>나가기</Text>
+                        <Text style={{fontSize:12,color:'#fff'}} onPress={Actions.pop}>나가기</Text>
                     </View>
                     <View style={{flex:.8, justifyContent: 'center', alignItems: 'center'}}>
-                        {renderIf(this.state.stepView == 1)(
-                        <Text style={{fontSize:16}}>계정 / 비번 찾기</Text>
-                        )}
-                        {renderIf(this.state.stepView == 2 || this.state.stepView == 4)(
-                            <Text style={{fontSize:16}}>이메일 계정 찾기</Text>
-                        )}
-                        {renderIf(this.state.stepView == 3 || this.state.stepView == 5)(
-                            <Text style={{fontSize:16}}>비밀번호 찾기</Text>
-                        )}
-                        {renderIf(this.state.stepView == 6)(
-                            <Text style={{fontSize:16}}>새로운 비밀번호</Text>
-                        )}
-                        {renderIf(this.state.stepView == 7)(
-                            <Text style={{fontSize:16}}>비밀번호 변경 완료</Text>
-                        )}
-
+                        <Text style={{fontSize:16,color:'#fff'}}>사전조사</Text>
                     </View>
                     <View style={{flex:.1, justifyContent: 'center', alignItems: 'center'}}>
 
                     </View>
                 </Header>
+                )}
                 <Content style={{padding:10}}>
                     {renderIf(this.state.stepView == 1)(
                         <View style={{paddingTop:30, paddingLeft:20, paddingRight:20}}>
@@ -244,12 +195,12 @@ export default class Account extends Component {
                         </TouchableOpacity>
                     )}
                     {renderIf(this.state.stepView == 6)(
-                    <TouchableOpacity style={{width:"100%", height:"100%", justifyContent: 'center', alignItems: 'center'}} onPress={()=>this.newPwCheck()}>
-                        <View>
-                            <Text style={{color:"#ffffff" }}>비밀번호 변경</Text>
-                        </View>
-                    </TouchableOpacity>
-                )}
+                        <TouchableOpacity style={{width:"100%", height:"100%", justifyContent: 'center', alignItems: 'center'}} onPress={()=>this.newPwCheck()}>
+                            <View>
+                                <Text style={{color:"#ffffff" }}>비밀번호 변경</Text>
+                            </View>
+                        </TouchableOpacity>
+                    )}
                 </Footer>
             </Container>
         );
@@ -261,6 +212,10 @@ export default class Account extends Component {
 const AccountFormStyle = StyleSheet.create({
     headerLayout: {
         justifyContent: 'center', alignItems: 'center', backgroundColor: "#ffffff"
+
+    }
+    ,headerLayout2: {
+        justifyContent: 'center', alignItems: 'center', backgroundColor: "#DA4211"
 
     }
     ,bodyLayout : {

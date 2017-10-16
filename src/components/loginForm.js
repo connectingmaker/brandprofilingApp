@@ -10,7 +10,7 @@ export default class LoginForm extends Component {
     render() {
         return (
             <Container>
-                <Header style={LoginFormStyle.headerLayoyt}>
+                <Header style={LoginFormStyle.headerLayout}>
                     <View style={{flex:.1, alignItems: 'center'}}>
                         <Text style={{color:"#ffffff"}} onPress={Actions.pop}>뒤로</Text>
                     </View>
@@ -33,7 +33,7 @@ export default class LoginForm extends Component {
                 </Body>
 
                 <Footer style={LoginFormStyle.loginBg}>
-                    <Text style={{color:"#ffffff"}}>로그인</Text>
+                    <Text style={{color:"#ffffff"}} onPress={Actions.PreSurvey}>로그인</Text>
                 </Footer>
 
             </Container>
@@ -43,7 +43,7 @@ export default class LoginForm extends Component {
 }
 
 const LoginFormStyle = StyleSheet.create({
-    headerLayoyt: {
+    headerLayout: {
         justifyContent: 'center', alignItems: 'center', backgroundColor: "#222222"
     }
     ,viewLayout: {
