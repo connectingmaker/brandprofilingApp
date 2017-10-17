@@ -9,6 +9,7 @@
   "dependencies": {
     "@expo/vector-icons": "^5.2.0",
     "native-base": "^2.3.2",
+    "prop-types": "^15.6.0",
     "react": "16.0.0-beta.5",
     "react-base": "^0.2.0",
     "react-bootstrap-table": "^4.0.6",

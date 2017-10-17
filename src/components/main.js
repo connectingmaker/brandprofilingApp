@@ -1,12 +1,15 @@
 import React, { Component } from 'react';
 import { Actions } from 'react-native-router-flux';
-import { View, Text, Image, StyleSheet } from 'react-native';
+import { View, Text, Image, StyleSheet, TouchableOpacity,Easing } from 'react-native';
 import { Container, Header, Content, Footer, FooterTab, Item, Icon, Input, Button, Tab, Tabs, TabHeading } from 'native-base';
+import Drawer from 'react-native-drawer'
+
+
 import surveyList from '../components/surveyList';
 import mySurvey from '../components/mySurvey'
 import pointHistory from '../components/pointHistory'
 import myPage from '../components/myPage'
-
+import SideBar from '../components/SideBar';
 
 
 
@@ -20,8 +23,21 @@ export default class Main extends Component {
         this.setState({index: index})
     }
 
+    componentDidMount() {
+        Actions.refresh({key: 'drawer', ref: this.refs.navigationDrawer});
+    }
+
+    closeControlPanel = () => {
+        this._drawer.close()
+    };
+    openControlPanel = () => {
+        //this._drawer.root.open()
+        this._drawer.open()
+    };
+
 
     render() {
+
         var AppComponent = null;
         if (this.state.index == 0) {
             AppComponent = surveyList;
@@ -32,40 +48,75 @@ export default class Main extends Component {
         } else if(this.state.index == 4) {
             AppComponent = myPage;
         }
-        return (
-            <Container>
-                <Header style={preSurveyFormStyle.headerLayout}>
-                    <View style={{flex:.1, alignItems: 'center'}}>
-                        <Image source={require('../../assets/img/header_icon_alarm.png')} resizeMode={'contain'} style={{width:15, height:15, marginTop:5, marginLeft:10}}/>
-                    </View>
-                    <View style={{flex:.8, alignItems: 'center'}}>
-                        <Image source={require('../../assets/img/header_icon_logo.png')} resizeMode={'contain'} style={{width:140, height:30, marginTop:5, marginLeft:10}}/>
-                    </View>
-                    <View style={{flex:.1, alignItems: 'center'}}>
-                        <Image source={require('../../assets/img/header_icon_set.png')} resizeMode={'contain'} style={{width:15, height:15, marginTop:5, marginLeft:10}}/>
-                    </View>
-                </Header>
-                <Content>
-                    <AppComponent />
-                </Content>
-                <Footer>
-                    <FooterTab>
-                        <Button onPress={() => this.switchScreen(0) }>
-                            <Text>설문목록</Text>
-                        </Button>
-                        <Button onPress={() => this.switchScreen(1) }>
-                            <Text>나의설문</Text>
-                        </Button>
-                        <Button onPress={() => this.switchScreen(3) }>
-                            <Text>포인트</Text>
-                        </Button>
-                        <Button onPress={() => this.switchScreen(4) }>
-                            <Text>마이페이지</Text>
-                        </Button>
-                    </FooterTab>
-                </Footer>
 
-            </Container>
+
+        closeDrawer = () => {
+            this._drawer.close()
+        };
+        openDrawer = () => {
+            this._drawer.open()
+        };
+
+
+
+
+
+        return (
+
+
+            <Drawer
+                type={'overlay'}
+                ref={(ref) => { this._drawer = ref; }}
+                content={<SideBar navigator={this._navigator} />}
+                onClose={() => this.closeControlPanel()}
+                tapToClose={true}
+                openDrawerOffset={0.3} // 20% gap on the right side of drawer
+                panCloseMask={0.2}
+                styles={drawerStyles}
+                closedDrawerOffset={-3}
+                tweenHandler={(ratio) => ({
+                    main: { opacity:(2-ratio)/2 }
+                })}
+                side="right"
+            >
+            <Container>
+                    <Header style={preSurveyFormStyle.headerLayout}>
+                        <View style={{flex:.1, alignItems: 'center'}}>
+                            <Image source={require('../../assets/img/header_icon_alarm.png')} resizeMode={'contain'} style={{width:15, height:15, marginTop:5, marginLeft:10}}/>
+                        </View>
+                        <View style={{flex:.8, alignItems: 'center'}}>
+                            <Image source={require('../../assets/img/header_icon_logo.png')} resizeMode={'contain'} style={{width:140, height:30, marginTop:5, marginLeft:10}}/>
+                        </View>
+
+                        <View style={{flex:.1, alignItems: 'center'}}>
+                            <TouchableOpacity style={{width:"100%", height:"100%", justifyContent: 'center', alignItems: 'center'}} onPress={() => { this.openControlPanel()}}>
+                                <Image source={require('../../assets/img/header_icon_set.png')} resizeMode={'contain'} style={{width:15, height:15, marginTop:5, marginLeft:10}}/>
+                            </TouchableOpacity>
+                        </View>
+                    </Header>
+                    <Content>
+                        <AppComponent />
+
+                    </Content>
+                    <Footer>
+                        <FooterTab>
+                            <Button onPress={() => this.switchScreen(0) }>
+                                <Text>설문목록</Text>
+                            </Button>
+                            <Button onPress={() => this.switchScreen(1) }>
+                                <Text>나의설문</Text>
+                            </Button>
+                            <Button onPress={() => this.switchScreen(3) }>
+                                <Text>포인트</Text>
+                            </Button>
+                            <Button onPress={() => this.switchScreen(4) }>
+                                <Text>마이페이지</Text>
+                            </Button>
+                        </FooterTab>
+                    </Footer>
+
+                </Container>
+            </Drawer>
         );
         /*
         return (
@@ -138,6 +189,10 @@ export default class Main extends Component {
     }
 }
 
+const drawerStyles = {
+    drawer: { shadowColor: '#000000', shadowOpacity: 0.8, shadowRadius: 3},
+    main: {paddingLeft: 3},
+}
 const preSurveyFormStyle = StyleSheet.create({
     headerLayout: {
         justifyContent: 'center', alignItems: 'center', backgroundColor: "#ffffff"
