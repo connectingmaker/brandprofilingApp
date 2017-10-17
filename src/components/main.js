@@ -81,9 +81,26 @@ export default class Main extends Component {
                         </TouchableOpacity>
                     </Left>
                     <Body>
+                    {renderIf(this.state.index == 0)(
                         <View style={{alignItems: 'center'}}>
                             <Image source={require('../../assets/img/header_icon_logo.png')} resizeMode={'contain'} style={{width:140, height:30, marginTop:5, marginLeft:10}}/>
                         </View>
+                    )}
+                    {renderIf(this.state.index == 1)(
+                        <View style={{alignItems: 'center'}}>
+                            <Text style={{marginTop:10, marginLeft:10}}>나의 설문</Text>
+                        </View>
+                    )}
+                    {renderIf(this.state.index == 3)(
+                        <View style={{alignItems: 'center'}}>
+                            <Text style={{marginTop:10, marginLeft:10}}>포인트</Text>
+                        </View>
+                    )}
+                    {renderIf(this.state.index == 4)(
+                        <View style={{alignItems: 'center'}}>
+                            <Text style={{marginTop:10, marginLeft:10}}>마이페이지</Text>
+                        </View>
+                    )}
                     </Body>
                     <Right>
                         <TouchableOpacity onPress={() => this.openControlPanel()}>
