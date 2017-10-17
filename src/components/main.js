@@ -55,7 +55,6 @@ export default class Main extends Component {
 
         return (
 
-
             <Drawer
                 type={'overlay'}
                 ref={(ref) => { this._drawer = ref; }}
@@ -71,41 +70,44 @@ export default class Main extends Component {
                 })}
                 side="right"
             >
+
             <Container>
                 <Header style={MainFormStyle.headerLayout}>
-                    <View style={{flex:.1, alignItems: 'center'}}>
-                        <Image source={require('../../assets/img/header_icon_alarm.png')} resizeMode={'contain'} style={{width:15, height:15, marginTop:5, marginLeft:10}}/>
+                    <View  style={{flex:1, flexDirection: 'row', paddingTop:5, paddingBottom:5}}>
+                        <TouchableOpacity onPress={() => this.openControlPanel()} style={{alignItems:'flex-start', justifyContent:'center'}}>
+                            <View style={{flex:0.1, alignItems: 'flex-start'}}>
+                                <Image source={require('../../assets/img/header_icon_alarm.png')} resizeMode={'contain'} style={{width:15, height:15}}/>
+                            </View>
+                        </TouchableOpacity>
+                        {renderIf(this.state.index == 0)(
+                        <View style={{flex:0.8, alignItems: 'center'}}>
+                            <Image source={require('../../assets/img/header_icon_logo.png')} resizeMode={'contain'} style={{width:140, height:30, marginTop:5, marginLeft:10}}/>
+                        </View>
+                        )}
+                        {renderIf(this.state.index == 1)(
+                            <View style={{flex:0.8, alignItems: 'center'}}>
+                                <Text style={{fontSize:16}}>나의설문</Text>
+                            </View>
+                        )}
+                        {renderIf(this.state.index == 3)(
+                            <View style={{flex:0.8, alignItems: 'center'}}>
+                                <Text style={{fontSize:16}}>포인트</Text>
+                            </View>
+                        )}
+                        {renderIf(this.state.index == 4)(
+                            <View style={{flex:0.8, alignItems: 'center'}}>
+                                <Text style={{fontSize:16}}>마이페이지</Text>
+                            </View>
+                        )}
+                        <TouchableOpacity onPress={() => this.openControlPanel()} style={{alignItems:'flex-end', justifyContent:'center'}}>
+                            <View style={{flex:0.1, alignItems:'flex-end'}}>
+                                <Image source={require('../../assets/img/header_icon_set.png')} resizeMode={'contain'} style={{width:15, height:15}}/>
+                            </View>
+                        </TouchableOpacity>
                     </View>
-                    {renderIf(this.state.index == 0)(
-                    <View style={{flex:.8, alignItems: 'center'}}>
-                        <Image source={require('../../assets/img/header_icon_logo.png')} resizeMode={'contain'} style={{width:140, height:30, marginTop:5, marginLeft:10}}/>
-                    </View>
-                    )}
-                    {renderIf(this.state.index == 1)(
-                        <View style={{flex:.8, alignItems: 'center'}}>
-                            <Text style={{fontSize:16}}>나의설문</Text>
-                        </View>
-                    )}
-                    {renderIf(this.state.index == 3)(
-                        <View style={{flex:.8, alignItems: 'center'}}>
-                            <Text style={{fontSize:16}}>포인트</Text>
-                        </View>
-                    )}
-                    {renderIf(this.state.index == 4)(
-                        <View style={{flex:.8, alignItems: 'center'}}>
-                            <Text style={{fontSize:16}}>마이페이지</Text>
-                        </View>
-                    )}
-                    <TouchableOpacity onPress={() => this.openControlPanel()} style={{alignSelf: 'stretch', alignItems:'center', justifyContent:'center'}}>
-                        <View style={{flex:.1, alignItems: 'center'}}>
-                            <Image source={require('../../assets/img/header_icon_set.png')} resizeMode={'contain'} style={{width:15, height:15, marginTop:5, marginLeft:10}}/>
-                        </View>
-                    </TouchableOpacity>
                 </Header>
                 <Content style={{padding:10}}>
                     <AppComponent />
-
-
 
                 </Content>
                 <Footer>
