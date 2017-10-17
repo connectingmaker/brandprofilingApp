@@ -11,6 +11,7 @@ import Main from './src/components/main';
 import PreSurvey from './src/components/preSurvey';
 
 
+
 import config from './src/config';
 
 import animations from './src/module/animations';

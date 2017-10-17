@@ -332,7 +332,7 @@ export default class PreSurvey extends Component {
 
                                     <View style={{flex:0.45}}>
                                         <Button bordered full style={{borderColor:"#979797",backgroundColor:"#DA4211"}}>
-                                            <Text style={{color:"#fff"}} onPress={Actions.SurveyList}>참여가능  설문</Text>
+                                            <Text style={{color:"#fff"}} onPress={Actions.Main}>참여가능  설문</Text>
                                         </Button>
                                     </View>
                                 </View>
