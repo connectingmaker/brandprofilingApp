@@ -1,11 +1,15 @@
 import React, { Component } from 'react';
 import { Actions } from 'react-native-router-flux';
-import { View, Text, Image, StyleSheet } from 'react-native';
+import { View, Text, Image, StyleSheet, TouchableOpacity,Easing } from 'react-native';
 import { Container, Header, Content, Footer, FooterTab, Item, Icon, Input, Button, Tab, Tabs, TabHeading } from 'native-base';
+import Drawer from 'react-native-drawer'
+
+
 import surveyList from '../components/surveyList';
 import mySurvey from '../components/mySurvey'
 import pointHistory from '../components/pointHistory'
 import myPage from '../components/myPage'
+import SideBar from '../components/SideBar';
 import renderIf from 'render-if'
 
 
@@ -20,8 +24,21 @@ export default class Main extends Component {
         this.setState({index: index})
     }
 
+    componentDidMount() {
+        Actions.refresh({key: 'drawer', ref: this.refs.navigationDrawer});
+    }
+
+    closeControlPanel = () => {
+        this._drawer.close()
+    };
+    openControlPanel = () => {
+        //this._drawer.root.open()
+        this._drawer.open()
+    };
+
 
     render() {
+
         var AppComponent = null;
         if (this.state.index == 0) {
             AppComponent = surveyList;
@@ -32,7 +49,37 @@ export default class Main extends Component {
         } else if(this.state.index == 4) {
             AppComponent = myPage;
         }
+
+
+        closeDrawer = () => {
+            this._drawer.close()
+        };
+        openDrawer = () => {
+            this._drawer.open()
+        };
+
+
+
+
+
         return (
+
+
+            <Drawer
+                type={'overlay'}
+                ref={(ref) => { this._drawer = ref; }}
+                content={<SideBar navigator={this._navigator} />}
+                onClose={() => this.closeControlPanel()}
+                tapToClose={true}
+                openDrawerOffset={0.3} // 20% gap on the right side of drawer
+                panCloseMask={0.2}
+                styles={drawerStyles}
+                closedDrawerOffset={-3}
+                tweenHandler={(ratio) => ({
+                    main: { opacity:(2-ratio)/2 }
+                })}
+                side="right"
+            >
             <Container>
                 <Header style={MainFormStyle.headerLayout}>
                     <View style={{flex:.1, alignItems: 'center'}}>
@@ -139,11 +186,16 @@ export default class Main extends Component {
                     )}
                 </Footer>
 
-            </Container>
+                </Container>
+            </Drawer>
         );
     }
 }
 
+const drawerStyles = {
+    drawer: { shadowColor: '#000000', shadowOpacity: 0.8, shadowRadius: 3},
+    main: {paddingLeft: 3},
+}
 const MainFormStyle = StyleSheet.create({
     headerLayout: {
         justifyContent: 'center', alignItems: 'center', backgroundColor: "#ffffff"
