@@ -28,17 +28,21 @@ export default class Login extends Component {
                     </View>
                 </Body>
                 <Footer style={{backgroundColor:"#222222", width:"100%", justifyContent: 'center', alignItems: 'center', flexDirection:'row'}}>
+                    <TouchableOpacity onPress={Actions.Account} style={{alignSelf: 'stretch', alignItems:'center', justifyContent:'center'}}>
                     <View style={LoginStyle.footerViewLeft}>
-                        <Text style={LoginStyle.footerViewLeftFont} onPress={Actions.Account}>계정/비번 찾기</Text>
+                        <Text style={LoginStyle.footerViewLeftFont}>계정/비번 찾기</Text>
                     </View>
+                    </TouchableOpacity>
 
                     <View style={LoginStyle.footerViewCenter}>
                         <Text style={LoginStyle.footerViewCenterFont}>|</Text>
                     </View>
 
-                    <View style={LoginStyle.footerViewRight}>
-                        <Text style={LoginStyle.footerViewRightFont} onPress={Actions.JoinForm}>회원가입</Text>
-                    </View>
+                    <TouchableOpacity onPress={Actions.JoinForm} style={{alignSelf: 'stretch', alignItems:'center', justifyContent:'center'}}>
+                        <View style={LoginStyle.footerViewRight}>
+                            <Text style={LoginStyle.footerViewRightFont}>회원가입</Text>
+                        </View>
+                    </TouchableOpacity>
 
                 </Footer>
             </Container>

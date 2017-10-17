@@ -51,15 +51,6 @@ export default class Main extends Component {
         }
 
 
-        closeDrawer = () => {
-            this._drawer.close()
-        };
-        openDrawer = () => {
-            this._drawer.open()
-        };
-
-
-
 
 
         return (
@@ -105,9 +96,11 @@ export default class Main extends Component {
                             <Text style={{fontSize:16}}>마이페이지</Text>
                         </View>
                     )}
-                    <View style={{flex:.1, alignItems: 'center'}}>
-                        <Image source={require('../../assets/img/header_icon_set.png')} resizeMode={'contain'} style={{width:15, height:15, marginTop:5, marginLeft:10}}/>
-                    </View>
+                    <TouchableOpacity onPress={() => this.openControlPanel()} style={{alignSelf: 'stretch', alignItems:'center', justifyContent:'center'}}>
+                        <View style={{flex:.1, alignItems: 'center'}}>
+                            <Image source={require('../../assets/img/header_icon_set.png')} resizeMode={'contain'} style={{width:15, height:15, marginTop:5, marginLeft:10}}/>
+                        </View>
+                    </TouchableOpacity>
                 </Header>
                 <Content style={{padding:10}}>
                     <AppComponent />
