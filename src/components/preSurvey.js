@@ -95,7 +95,7 @@ export default class PreSurvey extends Component {
             '답변 제출시 수정이 불가능 합니다. 불량 답변시 패널활동 및 포인트 사용이 제한될 수 있음을 알려드립니다.',
             [
                 {text: '취소', onPress: () => console.log('Cancel Pressed'), style: 'cancel'},
-                {text: '확인', onPress: () => console.log('OK Pressed')},
+                {text: '확인', onPress: () =>this.stepNext(7)},
             ],
             {cancelable: false}
         )
@@ -125,13 +125,25 @@ export default class PreSurvey extends Component {
                     </View>
                 </Header>
                 )}
-                {renderIf(this.state.stepView > 1 )(
+                {renderIf(this.state.stepView > 1 && this.state.stepView < 7)(
                     <Header style={preSurveyFormStyle.headerLayout}>
                         <View style={{flex:.1, justifyContent: 'center', alignItems: 'center'}}>
                             <Text style={{fontSize:12,color:'#fff'}} onPress={Actions.pop}>나가기</Text>
                         </View>
                         <View style={{flex:.8, justifyContent: 'center', alignItems: 'center'}}>
                             <Text style={{fontSize:16,color:'#fff'}}>사전조사</Text>
+                        </View>
+                        <View style={{flex:.1, justifyContent: 'center', alignItems: 'center'}}>
+                        </View>
+                    </Header>
+                )}
+                {renderIf(this.state.stepView == 7 )(
+                    <Header style={preSurveyFormStyle.headerLayout}>
+                        <View style={{flex:.1, justifyContent: 'center', alignItems: 'center'}}>
+                            <Text style={{fontSize:12,color:'#fff'}} onPress={Actions.pop}>닫기</Text>
+                        </View>
+                        <View style={{flex:.8, justifyContent: 'center', alignItems: 'center'}}>
+                            <Text style={{fontSize:16,color:'#fff'}}>제출완료</Text>
                         </View>
                         <View style={{flex:.1, justifyContent: 'center', alignItems: 'center'}}>
                         </View>
@@ -285,6 +297,50 @@ export default class PreSurvey extends Component {
                                 </View>
 
                             </View>
+                        </View>
+                    )}
+                    {renderIf(this.state.stepView == 7)(
+                        <View>
+                            <View style={preSurveyFormStyle.contentsLayout}>
+                                <View>
+                                    <View style={{padding:10,alignItems:'center'}}>
+                                        <Image source={require('../../assets/img/presurvey_icon_list.png')} resizeMode={'contain'} style={{width:30,height:30}}/>
+                                    </View>
+                                    <View style={{padding:10,alignItems:'center'}}>
+                                        <Text style={{fontSize:12}}>추가정보가 성공적으로 제출되었습니다.</Text>
+                                    </View>
+                                </View>
+                                <View style={preSurveyFormStyle.lingBg}></View>
+                                <View>
+                                    <Text style={preSurveyFormStyle.contentsSize}>저희의 감사한 마음을 담아, <Text style={preSurveyFormStyle.boldFont}>200P</Text>를 회원님의 적립함에 넣어드렸어요! 소중한 참여 다시한번 감사합니다.</Text>
+                                </View>
+                                <View style={preSurveyFormStyle.lingBg}></View>
+                                <View>
+                                    <Text style={preSurveyFormStyle.contentsSize}>이제 새로운 설문에 참여해보세요!</Text>
+                                </View>
+                                <View style={{flex:1, flexDirection: 'row', paddingTop:5, paddingBottom:5}}>
+                                    <View style={{flex:0.45}}>
+
+                                        <Button bordered full style={{borderColor:"#979797"}}>
+                                            <Text>공유하기</Text>
+                                        </Button>
+                                    </View>
+
+                                    <View style={{flex:0.1}}>
+
+                                    </View>
+
+                                    <View style={{flex:0.45}}>
+                                        <Button bordered full style={{borderColor:"#979797",backgroundColor:"#DA4211"}}>
+                                            <Text style={{color:"#fff"}} onPress={Actions.SurveyList}>참여가능  설문</Text>
+                                        </Button>
+                                    </View>
+                                </View>
+
+
+
+                            </View>
+
                         </View>
                     )}
                 </Content>
