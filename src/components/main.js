@@ -10,6 +10,7 @@ import mySurvey from '../components/mySurvey'
 import pointHistory from '../components/pointHistory'
 import myPage from '../components/myPage'
 import SideBar from '../components/SideBar';
+import renderIf from 'render-if'
 
 
 
@@ -80,112 +81,114 @@ export default class Main extends Component {
                 side="right"
             >
             <Container>
-                    <Header style={preSurveyFormStyle.headerLayout}>
-                        <View style={{flex:.1, alignItems: 'center'}}>
-                            <Image source={require('../../assets/img/header_icon_alarm.png')} resizeMode={'contain'} style={{width:15, height:15, marginTop:5, marginLeft:10}}/>
-                        </View>
-                        <View style={{flex:.8, alignItems: 'center'}}>
-                            <Image source={require('../../assets/img/header_icon_logo.png')} resizeMode={'contain'} style={{width:140, height:30, marginTop:5, marginLeft:10}}/>
-                        </View>
-
-                        <View style={{flex:.1, alignItems: 'center'}}>
-                            <TouchableOpacity style={{width:"100%", height:"100%", justifyContent: 'center', alignItems: 'center'}} onPress={() => { this.openControlPanel()}}>
-                                <Image source={require('../../assets/img/header_icon_set.png')} resizeMode={'contain'} style={{width:15, height:15, marginTop:5, marginLeft:10}}/>
-                            </TouchableOpacity>
-                        </View>
-                    </Header>
-                    <Content>
-                        <AppComponent />
-
-                    </Content>
-                    <Footer>
-                        <FooterTab>
-                            <Button onPress={() => this.switchScreen(0) }>
-                                <Text>설문목록</Text>
-                            </Button>
-                            <Button onPress={() => this.switchScreen(1) }>
-                                <Text>나의설문</Text>
-                            </Button>
-                            <Button onPress={() => this.switchScreen(3) }>
-                                <Text>포인트</Text>
-                            </Button>
-                            <Button onPress={() => this.switchScreen(4) }>
-                                <Text>마이페이지</Text>
-                            </Button>
-                        </FooterTab>
-                    </Footer>
-
-                </Container>
-            </Drawer>
-        );
-        /*
-        return (
-            <Container>
-                <Header style={preSurveyFormStyle.headerLayout}>
+                <Header style={MainFormStyle.headerLayout}>
                     <View style={{flex:.1, alignItems: 'center'}}>
                         <Image source={require('../../assets/img/header_icon_alarm.png')} resizeMode={'contain'} style={{width:15, height:15, marginTop:5, marginLeft:10}}/>
                     </View>
+                    {renderIf(this.state.index == 0)(
                     <View style={{flex:.8, alignItems: 'center'}}>
                         <Image source={require('../../assets/img/header_icon_logo.png')} resizeMode={'contain'} style={{width:140, height:30, marginTop:5, marginLeft:10}}/>
                     </View>
+                    )}
+                    {renderIf(this.state.index == 1)(
+                        <View style={{flex:.8, alignItems: 'center'}}>
+                            <Text style={{fontSize:16}}>나의설문</Text>
+                        </View>
+                    )}
+                    {renderIf(this.state.index == 3)(
+                        <View style={{flex:.8, alignItems: 'center'}}>
+                            <Text style={{fontSize:16}}>포인트</Text>
+                        </View>
+                    )}
+                    {renderIf(this.state.index == 4)(
+                        <View style={{flex:.8, alignItems: 'center'}}>
+                            <Text style={{fontSize:16}}>마이페이지</Text>
+                        </View>
+                    )}
                     <View style={{flex:.1, alignItems: 'center'}}>
                         <Image source={require('../../assets/img/header_icon_set.png')} resizeMode={'contain'} style={{width:15, height:15, marginTop:5, marginLeft:10}}/>
                     </View>
                 </Header>
                 <Content style={{padding:10}}>
-                    <View>
-                        <View style={preSurveyFormStyle.contentsLayout}>
-                            <View style={{flex:1, flexDirection: 'row', paddingTop:5, paddingBottom:5}}>
-                                <View style={{flex:0.25}}>
-                                    <Image source={require('../../assets/img/main_icon_logo_on.png')} resizeMode={'contain'} style={{width:30,height:30, marginTop:5}}/><Text style={preSurveyFormStyle.boldFont}>200P</Text>
-                                </View>
-                                <View style={{flex:0.65}}>
-                                    <Text style={preSurveyFormStyle.title}>설문 참여를 위한 사전 조사</Text>
-                                </View>
-                                <View style={{flex:0.1}}>
-                                    <Text>기본</Text>
-                                </View>
-                            </View>
-                            <View style={preSurveyFormStyle.lingBg}>
-                            </View>
+                    <AppComponent />
 
-                            <View>
-                                <Text style={preSurveyFormStyle.contentsSize}>사전조사를 통해 입력하는 추가정보에 따라 참여할 수 있는 설문이 달라지며 잘못된 정보 입력으로 인해 설문보상 패널티를 받지 않게 주의하여 입력해주세요. 완료 이후 추가정보는 <Text style={preSurveyFormStyle.boldFont}>수정 불가능</Text>하며, 통계를 분석하는 용도로 활용됩니다.</Text>
-                            </View>
-                            <View style={{flexDirection: 'row', paddingLeft: 20,paddingTop:10}}>
 
-                                <View style={{backgroundColor: '#f6f6f6', flex: 0.3,padding:10,borderWidth:1,borderColor:"#d0d0d0",borderBottomColor:"#f6f6f6",borderRightColor:"#f6f6f6"}} >
-                                    <Text style={{color:'#919191',fontSize:13}}>포인트적립</Text>
-                                </View>
-                                <View style={{borderColor: '#d0d0d0', flex: 0.5,padding:10,borderWidth:1,borderColor:"#d0d0d0",borderBottomColor:"#f6f6f6"}}>
-                                    <Text style={preSurveyFormStyle.boldFont}>200P</Text>
-                                </View>
-                            </View>
-                            <View style={{flexDirection: 'row',paddingLeft:20,paddingBottom:10}}>
-                                <View style={{backgroundColor: '#f6f6f6', flex: 0.3,padding:10,borderWidth:1,borderColor:"#d0d0d0",borderRightColor:"#f6f6f6"}} >
-                                    <Text style={{color:'#919191',fontSize:13}}>응답시간</Text>
-                                </View>
-                                <View style={{borderColor: '#d0d0d0', flex: 0.5,padding:10,borderWidth:1,borderColor:"#d0d0d0"}}>
-                                    <Text style={{color:'#919191',fontSize:13}}>2분</Text>
-                                </View>
-                            </View>
 
-                            <View style={preSurveyFormStyle.lingBg}></View>
-                            <Button bordered full style={{borderColor:"#979797", backgroundColor:"#DA4211", justifyContent: 'center', paddingLeft:10}}>
-                                <Text style={{marginLeft:10, color:"#ffffff"}}>참여하기</Text>
+                </Content>
+                <Footer>
+                    {renderIf(this.state.index == 0)(
+                    <FooterTab>
+                        <Button onPress={() => this.switchScreen(0) }>
+                            <Image source={require('../../assets/img/surveyList_icon_on.png')} resizeMode={'contain'} style={{width:30,height:30, marginTop:5}}/><Text style={{color:"#DA4211"}}>설문목록</Text>
+                        </Button>
+                        <Button onPress={() => this.switchScreen(1) }>
+                            <Image source={require('../../assets/img/mySurvey_icon_off.png')} resizeMode={'contain'} style={{width:30,height:30, marginTop:5}}/><Text>나의설문</Text>
+                        </Button>
+                        <Button onPress={() => this.switchScreen(3) }>
+                            <Image source={require('../../assets/img/point_icon_off.png')} resizeMode={'contain'} style={{width:30,height:30, marginTop:5}}/><Text>포인트</Text>
+                        </Button>
+                        <Button onPress={() => this.switchScreen(4) }>
+                            <Image source={require('../../assets/img/myPage_icon_off.png')} resizeMode={'contain'} style={{width:30,height:30, marginTop:5}}/><Text>마이페이지</Text>
+                        </Button>
+
+                    </FooterTab>
+                    )}
+                    {renderIf(this.state.index == 1)(
+                        <FooterTab>
+                            <Button onPress={() => this.switchScreen(0) }>
+                                <Image source={require('../../assets/img/surveyList_icon_off.png')} resizeMode={'contain'} style={{width:30,height:30, marginTop:5}}/><Text>설문목록</Text>
+                            </Button>
+                            <Button onPress={() => this.switchScreen(1) }>
+                                <Image source={require('../../assets/img/mySurvey_icon_on.png')} resizeMode={'contain'} style={{width:30,height:30, marginTop:5}}/><Text style={{color:"#DA4211"}}>나의설문</Text>
+                            </Button>
+                            <Button onPress={() => this.switchScreen(3) }>
+                                <Image source={require('../../assets/img/point_icon_off.png')} resizeMode={'contain'} style={{width:30,height:30, marginTop:5}}/><Text>포인트</Text>
+                            </Button>
+                            <Button onPress={() => this.switchScreen(4) }>
+                                <Image source={require('../../assets/img/myPage_icon_off.png')} resizeMode={'contain'} style={{width:30,height:30, marginTop:5}}/><Text>마이페이지</Text>
                             </Button>
 
+                        </FooterTab>
+                    )}
+                    {renderIf(this.state.index == 3)(
+                        <FooterTab>
+                            <Button onPress={() => this.switchScreen(0) }>
+                                <Image source={require('../../assets/img/surveyList_icon_off.png')} resizeMode={'contain'} style={{width:30,height:30, marginTop:5}}/><Text>설문목록</Text>
+                            </Button>
+                            <Button onPress={() => this.switchScreen(1) }>
+                                <Image source={require('../../assets/img/mySurvey_icon_off.png')} resizeMode={'contain'} style={{width:30,height:30, marginTop:5}}/><Text>나의설문</Text>
+                            </Button>
+                            <Button onPress={() => this.switchScreen(3) }>
+                                <Image source={require('../../assets/img/point_icon_on.png')} resizeMode={'contain'} style={{width:30,height:30, marginTop:5}}/><Text style={{color:"#DA4211"}}>포인트</Text>
+                            </Button>
+                            <Button onPress={() => this.switchScreen(4) }>
+                                <Image source={require('../../assets/img/myPage_icon_off.png')} resizeMode={'contain'} style={{width:30,height:30, marginTop:5}}/><Text>마이페이지</Text>
+                            </Button>
 
+                        </FooterTab>
+                    )}
+                    {renderIf(this.state.index == 4)(
+                        <FooterTab>
+                            <Button onPress={() => this.switchScreen(0) }>
+                                <Image source={require('../../assets/img/surveyList_icon_off.png')} resizeMode={'contain'} style={{width:30,height:30, marginTop:5}}/><Text>설문목록</Text>
+                            </Button>
+                            <Button onPress={() => this.switchScreen(1) }>
+                                <Image source={require('../../assets/img/mySurvey_icon_off.png')} resizeMode={'contain'} style={{width:30,height:30, marginTop:5}}/><Text>나의설문</Text>
+                            </Button>
+                            <Button onPress={() => this.switchScreen(3) }>
+                                <Image source={require('../../assets/img/point_icon_off.png')} resizeMode={'contain'} style={{width:30,height:30, marginTop:5}}/><Text>포인트</Text>
+                            </Button>
+                            <Button onPress={() => this.switchScreen(4) }>
+                                <Image source={require('../../assets/img/myPage_icon_on.png')} resizeMode={'contain'} style={{width:30,height:30, marginTop:5}}/><Text  style={{color:"#DA4211"}}>마이페이지</Text>
+                            </Button>
 
-                        </View>
+                        </FooterTab>
+                    )}
+                </Footer>
 
-                    </View>
-                </Content>
-
-            </Container>
-
+                </Container>
+            </Drawer>
         );
-        */
     }
 }
 
@@ -193,7 +196,7 @@ const drawerStyles = {
     drawer: { shadowColor: '#000000', shadowOpacity: 0.8, shadowRadius: 3},
     main: {paddingLeft: 3},
 }
-const preSurveyFormStyle = StyleSheet.create({
+const MainFormStyle = StyleSheet.create({
     headerLayout: {
         justifyContent: 'center', alignItems: 'center', backgroundColor: "#ffffff"
     }
