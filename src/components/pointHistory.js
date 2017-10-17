@@ -3,13 +3,13 @@ import { StyleSheet, Image, View, TouchableOpacity, Text ,ScrollView} from 'reac
 import { Actions } from 'react-native-router-flux';
 import { Container, Header, Content, Footer, Item, Icon, Input, Button ,ActionSheet} from 'native-base';
 
-
-
 export default class pointHistory extends Component {
 
     render() {
         return (
             <ScrollView>
+                
+
                 <View style={SurveyFormStyle.contentsLayout}>
                     <View style={{flex:1, flexDirection: 'row', paddingTop:10, paddingBottom:5}}>
                         <View style={{flex:0.4,alignItems:'flex-start',justifyContent:'center'}}>
