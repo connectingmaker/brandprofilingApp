@@ -13,15 +13,19 @@ export default class surveyList extends Component {
 
                 <View style={SurveyFormStyle.contentsLayout}>
                     <View style={{flex:1, flexDirection: 'row', paddingTop:5, paddingBottom:5}}>
-                        <View style={{flex:0.25}}>
-                            <Image source={require('../../assets/img/main_icon_logo_on.png')} resizeMode={'contain'} style={{width:30,height:30, marginTop:5}}/><Text style={SurveyFormStyle.boldFont}>200P</Text>
+                        <View style={{flex:0.1}}>
+                            <Image source={require('../../assets/img/main_icon_logo_on.png')} resizeMode={'contain'} style={{width:30,height:30}}/>
                         </View>
-                        <View style={{flex:0.65}}>
-                            <Text style={SurveyFormStyle.title}>설문 참여를 위한 사전 조사</Text>
+                        <View style={{flex:0.4,alignItems:'flex-start',justifyContent:'center'}}>
+                            <Text style={SurveyFormStyle.boldFont}>200P</Text>
                         </View>
+                        <View style={{flex:0.4}}></View>
                         <View style={{flex:0.1}}>
                             <Text>기본</Text>
                         </View>
+                    </View>
+                    <View>
+                        <Text style={SurveyFormStyle.title}>설문 참여를 위한 사전 조사</Text>
                     </View>
                     <View style={SurveyFormStyle.lingBg}>
                     </View>
@@ -55,15 +59,19 @@ export default class surveyList extends Component {
 
                 <View style={SurveyFormStyle.contentsLayout}>
                     <View style={{flex:1, flexDirection: 'row', paddingTop:10, paddingBottom:5}}>
-                        <View style={{flex:0.25}}>
-                            <Image source={require('../../assets/img/main_icon_logo_on.png')} resizeMode={'contain'} style={{width:30,height:30, marginTop:5}}/><Text style={SurveyFormStyle.boldFont}>800P</Text>
+                        <View style={{flex:0.1}}>
+                            <Image source={require('../../assets/img/main_icon_logo_on.png')} resizeMode={'contain'} style={{width:30,height:30}}/>
                         </View>
-                        <View style={{flex:0.65}}>
-                            <Text style={SurveyFormStyle.title}>2017 맥주 브랜드에 대한 이미지 조사</Text>
+                        <View style={{flex:0.4,alignItems:'flex-start',justifyContent:'center'}}>
+                            <Text style={SurveyFormStyle.boldFont}>500P 추가 획득 가능</Text>
                         </View>
+                        <View style={{flex:0.4}}></View>
                         <View style={{flex:0.1}}>
                             <Text>맥주</Text>
                         </View>
+                    </View>
+                    <View>
+                        <Text style={SurveyFormStyle.title}>2017 맥주 브랜드에 대한 이미지 조사</Text>
                     </View>
                     <View style={SurveyFormStyle.lingBg}>
                     </View>
