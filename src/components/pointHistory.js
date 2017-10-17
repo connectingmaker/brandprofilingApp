@@ -121,7 +121,7 @@ export default class pointHistory extends Component {
 
                     <View style={{flex:1, flexDirection: 'row', paddingTop:5, paddingBottom:5}}>
                         <View style={{flex:0.6,alignItems:'flex-start',justifyContent:'center'}}>
-                            <Text style={SurveyFormStyle.contentsSize}><Text style={SurveyFormStyle.boldFont}>New</Text><Text style={{color:'#979797',fontSize:13}}>2017 맥주 브랜드에.. </Text></Text>
+                            <Text style={SurveyFormStyle.contentsSize}><Text style={SurveyFormStyle.boldFont}>New</Text><Text style={{color:'#979797',fontSize:13}}>2017 맥주 브랜드에 관한 ... </Text></Text>
                         </View>
                         <View style={{flex:0.4,alignItems:'flex-end'}}>
                             <Text style={SurveyFormStyle.boldFont}>500P</Text>
@@ -139,7 +139,7 @@ export default class pointHistory extends Component {
 
                     <View style={{flex:1, flexDirection: 'row', paddingTop:5, paddingBottom:5}}>
                         <View style={{flex:0.6,alignItems:'flex-start',justifyContent:'center'}}>
-                            <Text style={SurveyFormStyle.contentsSize}><Text style={{color:'#979797',fontSize:13}}>2017 맥주 브랜드에.. </Text></Text>
+                            <Text style={SurveyFormStyle.contentsSize}><Text style={{color:'#979797',fontSize:13}}>2017 맥주 브랜드에 관한 이미지 조사 </Text></Text>
                         </View>
                         <View style={{flex:0.4,alignItems:'flex-end'}}>
                             <Text style={SurveyFormStyle.boldFont}>300P</Text>
@@ -156,7 +156,7 @@ export default class pointHistory extends Component {
                     <View style={SurveyFormStyle.lingBg}></View>
                     <View style={{flex:1, flexDirection: 'row', paddingTop:5, paddingBottom:5}}>
                         <View style={{flex:0.6,alignItems:'flex-start',justifyContent:'center'}}>
-                            <Text style={SurveyFormStyle.contentsSize}><Text style={{color:'#979797',fontSize:13}}>2017 맥주 브랜드에.. </Text></Text>
+                            <Text style={SurveyFormStyle.contentsSize}><Text style={{color:'#979797',fontSize:13}}>2017 맥주 브랜드에 관한 조사 </Text></Text>
                         </View>
                         <View style={{flex:0.4,alignItems:'flex-end'}}>
                             <Text style={SurveyFormStyle.boldFont}>200P</Text>
