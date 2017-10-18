@@ -84,6 +84,7 @@ export default class App extends Component<{}> {
                         <Scene key="Login" component={Login} initial={this.state.logout} hideNavBar={true}/>
                         <Scene key="LoginForm" component={LoginForm} title="이메일로 로그인" hideNavBar={true}/>
                         <Scene key="Main" component={Main} initial={this.state.logged} title="사전조사" hideNavBar={true} />
+
                     </Scene>
                     <Scene key="JoinForm" component={JoinForm} title="회원가입" hideNavBar={true} direction="vertical" schema="modal" wrapRouter={true}/>
                     <Scene key="Account" component={Account} title="계정/비번찾기" hideNavBar={true} direction="vertical" schema="modal" wrapRouter={true}/>
