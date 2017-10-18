@@ -118,16 +118,16 @@ export default class Main extends Component {
                     {renderIf(this.state.index == 0)(
                     <FooterTab style={{backgroundColor:"#fff"}}>
                         <Button onPress={() => this.switchScreen(0) }>
-                            <Image source={require('../../assets/img/surveyList_icon_on.png')} resizeMode={'contain'} style={{width:30,height:30, marginTop:5}}/><Text style={{color:"#DA4211"}}>설문목록</Text>
+                            <Image source={require('../../assets/img/surveyList_icon_on.png')} resizeMode={'contain'} style={{width:25,height:25}}/><Text style={{color:"#DA4211", fontSize:12, paddingTop:5}}>설문목록</Text>
                         </Button>
                         <Button onPress={() => this.switchScreen(1) }>
-                            <Image source={require('../../assets/img/mySurvey_icon_off.png')} resizeMode={'contain'} style={{width:30,height:30, marginTop:5}}/><Text>나의설문</Text>
+                            <Image source={require('../../assets/img/mySurvey_icon_off.png')} resizeMode={'contain'} style={{width:25,height:25}}/><Text style={{fontSize:12, paddingTop:5}}>나의설문</Text>
                         </Button>
                         <Button onPress={() => this.switchScreen(3) }>
-                            <Image source={require('../../assets/img/point_icon_off.png')} resizeMode={'contain'} style={{width:30,height:30, marginTop:5}}/><Text>포인트</Text>
+                            <Image source={require('../../assets/img/point_icon_off.png')} resizeMode={'contain'} style={{width:25,height:25}}/><Text style={{fontSize:12, paddingTop:5}}>포인트</Text>
                         </Button>
                         <Button onPress={() => this.switchScreen(4) }>
-                            <Image source={require('../../assets/img/myPage_icon_off.png')} resizeMode={'contain'} style={{width:30,height:30, marginTop:5}}/><Text>마이페이지</Text>
+                            <Image source={require('../../assets/img/myPage_icon_off.png')} resizeMode={'contain'} style={{width:25,height:25}}/><Text style={{fontSize:12, paddingTop:5}}>마이페이지</Text>
                         </Button>
 
                     </FooterTab>
@@ -135,16 +135,16 @@ export default class Main extends Component {
                     {renderIf(this.state.index == 1)(
                         <FooterTab style={{backgroundColor:"#fff"}}>
                             <Button onPress={() => this.switchScreen(0) }>
-                                <Image source={require('../../assets/img/surveyList_icon_off.png')} resizeMode={'contain'} style={{width:30,height:30, marginTop:5}}/><Text>설문목록</Text>
+                                <Image source={require('../../assets/img/surveyList_icon_off.png')} resizeMode={'contain'} style={{width:25,height:25}}/><Text style={{fontSize:12, paddingTop:5}}>설문목록</Text>
                             </Button>
                             <Button onPress={() => this.switchScreen(1) }>
-                                <Image source={require('../../assets/img/mySurvey_icon_on.png')} resizeMode={'contain'} style={{width:30,height:30, marginTop:5}}/><Text style={{color:"#DA4211"}}>나의설문</Text>
+                                <Image source={require('../../assets/img/mySurvey_icon_on.png')} resizeMode={'contain'} style={{width:25,height:25}}/><Text style={{color:"#DA4211", fontSize:12, paddingTop:5}}>나의설문</Text>
                             </Button>
                             <Button onPress={() => this.switchScreen(3) }>
-                                <Image source={require('../../assets/img/point_icon_off.png')} resizeMode={'contain'} style={{width:30,height:30, marginTop:5}}/><Text>포인트</Text>
+                                <Image source={require('../../assets/img/point_icon_off.png')} resizeMode={'contain'} style={{width:25,height:25}}/><Text style={{fontSize:12, paddingTop:5}}>포인트</Text>
                             </Button>
                             <Button onPress={() => this.switchScreen(4) }>
-                                <Image source={require('../../assets/img/myPage_icon_off.png')} resizeMode={'contain'} style={{width:30,height:30, marginTop:5}}/><Text>마이페이지</Text>
+                                <Image source={require('../../assets/img/myPage_icon_off.png')} resizeMode={'contain'} style={{width:25,height:25}}/><Text style={{fontSize:12, paddingTop:5}}>마이페이지</Text>
                             </Button>
 
                         </FooterTab>
@@ -152,16 +152,16 @@ export default class Main extends Component {
                     {renderIf(this.state.index == 3)(
                         <FooterTab style={{backgroundColor:"#fff"}}>
                             <Button onPress={() => this.switchScreen(0) }>
-                                <Image source={require('../../assets/img/surveyList_icon_off.png')} resizeMode={'contain'} style={{width:30,height:30, marginTop:5}}/><Text>설문목록</Text>
+                                <Image source={require('../../assets/img/surveyList_icon_off.png')} resizeMode={'contain'} style={{width:25,height:25}}/><Text style={{fontSize:12, paddingTop:5}}>설문목록</Text>
                             </Button>
                             <Button onPress={() => this.switchScreen(1) }>
-                                <Image source={require('../../assets/img/mySurvey_icon_off.png')} resizeMode={'contain'} style={{width:30,height:30, marginTop:5}}/><Text>나의설문</Text>
+                                <Image source={require('../../assets/img/mySurvey_icon_off.png')} resizeMode={'contain'} style={{width:25,height:25}}/><Text style={{fontSize:12, paddingTop:5}}>나의설문</Text>
                             </Button>
                             <Button onPress={() => this.switchScreen(3) }>
-                                <Image source={require('../../assets/img/point_icon_on.png')} resizeMode={'contain'} style={{width:30,height:30, marginTop:5}}/><Text style={{color:"#DA4211"}}>포인트</Text>
+                                <Image source={require('../../assets/img/point_icon_on.png')} resizeMode={'contain'} style={{width:25,height:25}}/><Text style={{color:"#DA4211", fontSize:12, paddingTop:5}}>포인트</Text>
                             </Button>
                             <Button onPress={() => this.switchScreen(4) }>
-                                <Image source={require('../../assets/img/myPage_icon_off.png')} resizeMode={'contain'} style={{width:30,height:30, marginTop:5}}/><Text>마이페이지</Text>
+                                <Image source={require('../../assets/img/myPage_icon_off.png')} resizeMode={'contain'} style={{width:25,height:25}}/><Text style={{fontSize:12, paddingTop:5}}>마이페이지</Text>
                             </Button>
 
                         </FooterTab>
@@ -169,16 +169,16 @@ export default class Main extends Component {
                     {renderIf(this.state.index == 4)(
                         <FooterTab style={{backgroundColor:"#fff"}}>
                             <Button onPress={() => this.switchScreen(0) }>
-                                <Image source={require('../../assets/img/surveyList_icon_off.png')} resizeMode={'contain'} style={{width:30,height:30, marginTop:5}}/><Text>설문목록</Text>
+                                <Image source={require('../../assets/img/surveyList_icon_off.png')} resizeMode={'contain'} style={{width:25,height:25}}/><Text style={{fontSize:12, paddingTop:5}}>설문목록</Text>
                             </Button>
                             <Button onPress={() => this.switchScreen(1) }>
-                                <Image source={require('../../assets/img/mySurvey_icon_off.png')} resizeMode={'contain'} style={{width:30,height:30, marginTop:5}}/><Text>나의설문</Text>
+                                <Image source={require('../../assets/img/mySurvey_icon_off.png')} resizeMode={'contain'} style={{width:25,height:25}}/><Text style={{fontSize:12, paddingTop:5}}>나의설문</Text>
                             </Button>
                             <Button onPress={() => this.switchScreen(3) }>
-                                <Image source={require('../../assets/img/point_icon_off.png')} resizeMode={'contain'} style={{width:30,height:30, marginTop:5}}/><Text>포인트</Text>
+                                <Image source={require('../../assets/img/point_icon_off.png')} resizeMode={'contain'} style={{width:25,height:25}}/><Text style={{fontSize:12, paddingTop:5}}>포인트</Text>
                             </Button>
                             <Button onPress={() => this.switchScreen(4) }>
-                                <Image source={require('../../assets/img/myPage_icon_on.png')} resizeMode={'contain'} style={{width:30,height:30, marginTop:5}}/><Text  style={{color:"#DA4211"}}>마이페이지</Text>
+                                <Image source={require('../../assets/img/myPage_icon_on.png')} resizeMode={'contain'} style={{width:25,height:25}}/><Text  style={{color:"#DA4211", fontSize:12, paddingTop:5}}>마이페이지</Text>
                             </Button>
 
                         </FooterTab>

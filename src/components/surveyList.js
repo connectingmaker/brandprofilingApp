@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { StyleSheet, Image, View, TouchableOpacity, Text ,ScrollView, ListView} from 'react-native';
 import { Actions } from 'react-native-router-flux';
-import { Container, Header, Content, Footer, Item, Icon, Input, Button ,ActionSheet} from 'native-base';
+import { Container, Header, Content, Footer, Item, Icon, Input, Button ,ActionSheet, Spinner} from 'native-base';
 import config from '../../src/config';
 
 
@@ -118,10 +118,19 @@ export default class surveyList extends Component {
                 </View>
 
 
+
+
                 <View style={SurveyFormStyle.lingBg}></View>
-                <Button bordered full style={{borderColor:"#979797", backgroundColor:"#DA4211", justifyContent: 'center', paddingLeft:10}}>
-                    <Text style={{color:"#ffffff"}} onPress={Actions.PreSurvey}>참여하기</Text>
-                </Button>
+                <View style={{flex:1, flexDirection: 'row', paddingTop:5, paddingBottom:5}}>
+                    <View style={{flex:0.80, justifyContent:'center'}}>
+                        <Text style={{fontSize:12}}>2017.10.21 ~ 완료시까지</Text>
+                    </View>
+                    <View style={{flex:0.20}}>
+                        <Button bordered full style={{borderColor:"#979797", backgroundColor:"#DA4211", justifyContent: 'center', height:40}} onPress={Actions.Survey}>
+                            <Text style={{color:"#ffffff"}}>참여하기</Text>
+                        </Button>
+                    </View>
+                </View>
             </View>
         );
     }
@@ -138,7 +147,7 @@ export default class surveyList extends Component {
             );
         } else {
             return (
-                <View><Text>222222</Text></View>
+                <View><Spinner size="small" color="red" /></View>
             );
         }
         /*
