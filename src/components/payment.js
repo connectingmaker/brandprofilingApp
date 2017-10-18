@@ -238,6 +238,9 @@ export default class Payment extends Component {
                             <Button bordered full style={{borderColor:"#979797", backgroundColor:"#DA4211", justifyContent: 'center', paddingLeft:10}}>
                                 <Text style={{marginLeft:10, color:"#ffffff"}} onPress={()=>this.Endcheck()}>신청하기</Text>
                             </Button>
+                            <View style={{alignItems:'center',justifyContent:'flex-end',paddingTop:100}}>
+                                <Image source={require('../../assets/img/point_bg.png')} resizeMode={'contain'} style={{width:200,height:200}}/>
+                            </View>
                         </View>
 
 
@@ -267,6 +270,9 @@ export default class Payment extends Component {
                             </Button>
 
                         </View>
+                        <View style={{alignItems:'center',justifyContent:'flex-end',paddingTop:230}}>
+                            <Image source={require('../../assets/img/point_bg.png')} resizeMode={'contain'} style={{width:200,height:200}}/>
+                        </View>
 
                     </View>
                 )}
@@ -275,6 +281,7 @@ export default class Payment extends Component {
                 <Footer style={{backgroundColor:"#222222", width:"100%", height:44, justifyContent: 'flex-end', alignItems: 'flex-end'}}>
 
                 </Footer>
+
             </Container>
         );
     }
