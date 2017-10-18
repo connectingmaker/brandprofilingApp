@@ -2,8 +2,7 @@ import React, { Component } from 'react';
 import { Actions } from 'react-native-router-flux';
 import { View, Text, Image, StyleSheet, TouchableOpacity,AlertIOS,Alert,Platform } from 'react-native';
 import { Container, Header, Body, Content, Footer,Item, Icon, Input,Button } from 'native-base';
-import prompt from 'react-native-prompt-android';
-import Prompt from 'react-native-prompt';
+
 
 import renderIf from 'render-if'
 
@@ -77,19 +76,7 @@ export default class Payment extends Component {
         return (
 
             <Container>
-                <Prompt
-                    title="Say something"
-                    placeholder="Start typing"
-                    defaultValue="Hello"
-                    visible={ this.state.promptVisible }
-                    onCancel={ () => this.setState({
-                        promptVisible: false,
-                        message: "You cancelled"
-                    }) }
-                    onSubmit={ (value) => this.setState({
-                        promptVisible: false,
-                        message: `You said "${value}"`
-                    }) }/>
+
                 {renderIf(this.state.stepView == 1)(
                     <Header style={paymentFormStyle.headerLayout2}>
                         <View style={{flex:.1, justifyContent: 'center', alignItems: 'center'}}>
