@@ -62,47 +62,61 @@ export default class surveyList extends Component {
 
     renderSurveyView(obj)
     {
-        console.log(obj);
         return (
             <View style={SurveyFormStyle.contentsLayout}>
-                <View style={{flex:1, flexDirection: 'row', paddingTop:5, paddingBottom:5}}>
-                    <View style={{flex:0.1}}>
-                        <Image source={require('../../assets/img/main_icon_logo_on.png')} resizeMode={'contain'} style={{width:30,height:30}}/>
-                    </View>
-                    <View style={{flex:0.4,alignItems:'flex-start',justifyContent:'center'}}>
-                        <Text style={SurveyFormStyle.boldFont}>200P</Text>
-                    </View>
-                    <View style={{flex:0.4}}></View>
-                    <View style={{flex:0.1}}>
-                        <Text>기본</Text>
-                    </View>
-                </View>
                 <View>
-                    <Text style={SurveyFormStyle.title}>{obj.CAMPAIGN_TITLE}</Text>
-                </View>
-                <View style={SurveyFormStyle.lingBg}>
+                    <View style={{flex:1, flexDirection: 'row', paddingTop:5, paddingBottom:5}}>
+                        <View style={{flex:0.1}}>
+                            <Image source={require('../../assets/img/main_icon_logo_on.png')} resizeMode={'contain'} style={{width:20,height:20}}/>
+                        </View>
+                        <View style={{flex:0.8,alignItems:'flex-start',justifyContent:'center'}}>
+                            <Text style={SurveyFormStyle.boldFont}>200P</Text>
+                        </View>
+                        <View style={{flex:0.1, alignItems:'flex-end'}}>
+                            <Text style={{fontSize:11, alignItems:'flex-end'}}>기본</Text>
+                        </View>
+                    </View>
+                    <View>
+                        <Text style={SurveyFormStyle.title}>{obj.CAMPAIGN_TITLE}</Text>
+                    </View>
+                    <View style={SurveyFormStyle.lingBg}>
+                    </View>
+
+                    <View>
+                        <Text style={SurveyFormStyle.contentsSize}>{obj.CAMPAIGN_DESC}</Text>
+                    </View>
                 </View>
 
-                <View>
-                    <Text style={SurveyFormStyle.contentsSize}>{obj.CAMPAIGN_DESC}</Text>
-                </View>
-                <View style={{flexDirection: 'row', paddingLeft: 20,paddingTop:10}}>
 
-                    <View style={{backgroundColor: '#f6f6f6', flex: 0.3,padding:10,borderWidth:1,borderColor:"#d0d0d0",borderBottomColor:"#f6f6f6",borderRightColor:"#f6f6f6"}} >
-                        <Text style={{color:'#919191',fontSize:13}}>포인트적립</Text>
+                <View style={{flexDirection: 'row', width:"100%", paddingTop:10}}>
+                    <View style={{backgroundColor: '#f6f6f6', flex: 0.3,padding:5,borderWidth:1,justifyContent:'center',borderColor:"#d0d0d0",borderBottomColor:"#f6f6f6",borderRightColor:"#f6f6f6"}} >
+                        <Text style={{color:'#919191',fontSize:12}}>포인트적립</Text>
                     </View>
-                    <View style={{borderColor: '#d0d0d0', flex: 0.5,padding:10,borderWidth:1,borderColor:"#d0d0d0",borderBottomColor:"#f6f6f6"}}>
+                    <View style={{borderColor: '#d0d0d0', flex: 0.7,justifyContent:'center',padding:5,borderWidth:1,borderColor:"#d0d0d0",borderBottomColor:"#f6f6f6"}}>
                         <Text style={SurveyFormStyle.boldFont}>200P</Text>
                     </View>
+
                 </View>
-                <View style={{flexDirection: 'row',paddingLeft:20,paddingBottom:10}}>
-                    <View style={{backgroundColor: '#f6f6f6', flex: 0.3,padding:10,borderWidth:1,borderColor:"#d0d0d0",borderRightColor:"#f6f6f6"}} >
-                        <Text style={{color:'#919191',fontSize:13}}>응답시간</Text>
+
+                <View style={{flexDirection: 'row', width:"100%"}}>
+                    <View style={{backgroundColor: '#f6f6f6', flex: 0.3,padding:5,borderWidth:1,justifyContent:'center',borderColor:"#d0d0d0",borderBottomColor:"#f6f6f6",borderRightColor:"#f6f6f6"}} >
+                        <Text style={{color:'#919191',fontSize:12}}>응답시간</Text>
                     </View>
-                    <View style={{borderColor: '#d0d0d0', flex: 0.5,padding:10,borderWidth:1,borderColor:"#d0d0d0"}}>
+                    <View style={{borderColor: '#d0d0d0', flex: 0.7,padding:5,borderWidth:1,borderColor:"#d0d0d0",borderBottomColor:"#f6f6f6"}}>
                         <Text style={{color:'#919191',fontSize:13}}>2분</Text>
                     </View>
+
                 </View>
+                <View style={{flexDirection: 'row', width:"100%"}}>
+                    <View style={{backgroundColor: '#f6f6f6', flex: 0.3,padding:5,borderWidth:1,justifyContent:'center',borderColor:"#d0d0d0",borderBottomColor:"#d0d0d0",borderRightColor:"#f6f6f6"}} >
+                        <Text style={{color:'#919191',fontSize:12}}>모집인원</Text>
+                    </View>
+                    <View style={{borderColor: '#d0d0d0', flex: 0.7,padding:5,borderWidth:1,borderColor:"#d0d0d0",borderBottomColor:"#d0d0d0"}}>
+                        <Text style={{color:'#919191',fontSize:12}}>5000명 (1238명 참여)</Text>
+                    </View>
+
+                </View>
+
 
                 <View style={SurveyFormStyle.lingBg}></View>
                 <Button bordered full style={{borderColor:"#979797", backgroundColor:"#DA4211", justifyContent: 'center', paddingLeft:10}}>
@@ -117,7 +131,10 @@ export default class surveyList extends Component {
     render() {
         if(this.state.loaded == true) {
             return (
-                <View><Text>1123123</Text></View>
+                <ListView
+                    dataSource={this.state.dataSource}
+                    renderRow={(rowData) => this.renderSurveyView(rowData) }
+                />
             );
         } else {
             return (
@@ -257,6 +274,7 @@ const SurveyFormStyle = StyleSheet.create({
         ,shadowColor: "rgba(0,0,0,23)"
         ,shadowOffset: { width: 0, height: 1 }
         ,shadowOpacity: 0.3
+        ,marginBottom:10
     }
     ,contentsSize: {
         fontSize:13
