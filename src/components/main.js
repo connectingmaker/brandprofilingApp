@@ -71,7 +71,7 @@ export default class Main extends Component {
                 side="right"
             >
 
-            <Container>
+            <Container style={{marginLeft:-5}}>
                 <Header style={MainFormStyle.headerLayout}>
                     <Left style={{flex:1}}>
                         <TouchableOpacity onPress={() => this.openControlPanel()}>
