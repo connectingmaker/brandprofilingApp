@@ -177,7 +177,6 @@ export default class Payment extends Component {
                             </View>
                             <Button bordered full style={{borderColor:"#979797", backgroundColor:"#DA4211", justifyContent: 'center', paddingLeft:10}} onPress={()=>this.check()}>
                                 <Text style={{marginLeft:10, color:"#ffffff"}}>네, 확인했습니다.</Text>
-
                             </Button>
 
                         </View>
@@ -224,7 +223,7 @@ export default class Payment extends Component {
                                 </Item>
                             </View>
 
-                            <View style={{flex:1,flexDirection: 'row',paddingLeft:20,paddingRight:20,paddingBottom:5}}>
+                            <View style={{paddingLeft:20,paddingRight:20,paddingBottom:5}}>
                                 <Item regular style={{backgroundColor:"#ffffff"}}>
                                     <Input placeholder='은행 선택' style={paymentFormStyle.input} value={this.state.bank} onChangeText={(text) => this.setState({bank: text})} keyboardType="default"/>
                                 </Item>
