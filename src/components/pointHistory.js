@@ -20,8 +20,8 @@ export default class pointHistory extends Component {
                         </View>
                     </View>
                     <View style={SurveyFormStyle.lingBg}></View>
-                    <Button bordered full style={{borderColor:"#979797", backgroundColor:"#DA4211", justifyContent: 'center', paddingLeft:10}}>
-                        <Text style={{marginLeft:10, color:"#ffffff"}} onPress={Actions.Payment}>환급신청</Text>
+                    <Button bordered full style={{borderColor:"#979797", backgroundColor:"#DA4211", justifyContent: 'center', paddingLeft:10}} onPress={Actions.Payment}>
+                        <Text style={{marginLeft:10, color:"#ffffff"}} >환급신청</Text>
                     </Button>
                 </View>
 

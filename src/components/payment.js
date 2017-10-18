@@ -175,8 +175,8 @@ export default class Payment extends Component {
                             <View style={{paddingBottom:5}}>
                                 <Text style={paymentFormStyle.contentsSize}>포인트 환급 신청 후에는 신청 내역을 변경하거나 취소할 수 없습니다. <Text style={paymentFormStyle.boldFont}>잘못된 계좌 번호</Text> 또는 <Text style={paymentFormStyle.boldFont}>타인의 계좌번호</Text>를 입력할 경우, 포인트 <Text style={paymentFormStyle.boldFont}>환급 신청이 취소</Text>가 되고, 환급 신청이 취소된 포인트는 <Text style={paymentFormStyle.boldFont}>다시 적립</Text>됩니다.</Text>
                             </View>
-                            <Button bordered full style={{borderColor:"#979797", backgroundColor:"#DA4211", justifyContent: 'center', paddingLeft:10}}>
-                                <Text style={{marginLeft:10, color:"#ffffff"}} onPress={()=>this.check()}>네, 확인했습니다.</Text>
+                            <Button bordered full style={{borderColor:"#979797", backgroundColor:"#DA4211", justifyContent: 'center', paddingLeft:10}} onPress={()=>this.check()}>
+                                <Text style={{marginLeft:10, color:"#ffffff"}}>네, 확인했습니다.</Text>
 
                             </Button>
 
@@ -224,7 +224,7 @@ export default class Payment extends Component {
                                 </Item>
                             </View>
 
-                            <View style={{paddingLeft:20,paddingRight:20,paddingBottom:5}}>
+                            <View style={{flex:1,flexDirection: 'row',paddingLeft:20,paddingRight:20,paddingBottom:5}}>
                                 <Item regular style={{backgroundColor:"#ffffff"}}>
                                     <Input placeholder='은행 선택' style={paymentFormStyle.input} value={this.state.bank} onChangeText={(text) => this.setState({bank: text})} keyboardType="default"/>
                                 </Item>
