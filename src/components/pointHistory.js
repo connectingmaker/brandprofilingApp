@@ -1,11 +1,170 @@
 import React, { Component } from 'react';
-import { StyleSheet, Image, View, TouchableOpacity, Text ,ScrollView} from 'react-native';
+import { StyleSheet, Image, View, TouchableOpacity, Text ,ScrollView, ListView} from 'react-native';
 import { Actions } from 'react-native-router-flux';
-import { Container, Header, Content, Footer, Item, Icon, Input, Button ,ActionSheet} from 'native-base';
+import { Container, Header, Content, Footer, Item, Icon, Input, Button ,ActionSheet, Spinner} from 'native-base';
+import config from '../../src/config';
 
 export default class pointHistory extends Component {
 
+    constructor(props){
+        super(props);
+        this.state = {
+            loaded: false
+            ,myPoint:0
+            ,dataSource: new ListView.DataSource({
+                rowHasChanged: (row1, row2) => row1 !== row2,
+            })
+        };
+
+
+    }
+
+    componentWillMount()
+    {
+    }
+
+    componentDidMount(){
+        this.mounted = true;
+        this.loadJSONData();
+    }
+
+    componentWillUnmount() {
+        this.mounted = false;
+    }
+
+
+
+
+
+    loadJSONData() {
+
+        var object = {
+            method: 'GET',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'text/html'
+            }
+        }
+        fetch(config.SERVER_URL+"/api/pointHistory", object)
+            .then((response) => response.json())
+            .then((responseData) =>
+            {
+                if(this.mounted) {
+                    var data = eval("(" + responseData.inPointList + ")");
+                    this.setState({loaded:true, myPoint:responseData.userPoint, dataSource:this.state.dataSource.cloneWithRows(data)});
+                }
+            })
+            .catch((err) => {
+                console.log(err);
+            });
+    }
+
+
+
+    myPointRender()
+    {
+        return (
+            <View style={SurveyFormStyle.contentsLayout}>
+                <View style={{flex:1, flexDirection: 'row', paddingTop:10, paddingBottom:5}}>
+                    <View style={{flex:0.4,alignItems:'flex-start',justifyContent:'center'}}>
+                        <Text style={{color:'#4D4D4D',fontSize:15,fontWeight: 'bold'}}>나의 포인트</Text>
+                    </View>
+                    <View style={{flex:0.6,alignItems:'flex-end'}}>
+                        <Text style={SurveyFormStyle.boldFont}>52,300P</Text>
+                    </View>
+                </View>
+                <View style={SurveyFormStyle.lingBg}></View>
+                <Button bordered full style={{borderColor:"#979797", backgroundColor:"#DA4211", justifyContent: 'center', paddingLeft:10}} onPress={Actions.Payment}>
+                    <Text style={{marginLeft:10, color:"#ffffff"}} >환급신청</Text>
+                </Button>
+            </View>
+        );
+    }
+
+    pointHistory_IN(obj)
+    {
+        return (
+            <View>
+                <View style={{flex:1, flexDirection: 'row', paddingTop:5, paddingBottom:5}}>
+                    <View style={{flex:0.6,alignItems:'flex-start',justifyContent:'center'}}>
+                        <Text style={SurveyFormStyle.contentsSize}><Text style={{color:'#979797',fontSize:13}}>2017 맥주 브랜드에 관한 조사 </Text></Text>
+                    </View>
+                    <View style={{flex:0.4,alignItems:'flex-end'}}>
+                        <Text style={SurveyFormStyle.boldFont}>200P</Text>
+                    </View>
+                </View>
+                <View style={{flex:1, flexDirection: 'row'}}>
+                    <View style={{flex:0.6,alignItems:'flex-start',justifyContent:'center'}}>
+                        <Text style={{color:'#979797',fontSize:10}}>적립일 2017-08-19 13:30:21</Text>
+                    </View>
+                    <View style={{flex:0.4,alignItems:'flex-end'}}>
+                        <Text style={{color:'#979797',fontSize:10}}>1차</Text>
+                    </View>
+                </View>
+                <View style={SurveyFormStyle.lingBg}></View>
+            </View>
+        );
+    }
+
+
+
     render() {
+        if(this.state.loaded == true) {
+            return (
+                <View>
+                    <View style={SurveyFormStyle.contentsLayout}>
+                        <View style={{flex:1, flexDirection: 'row', paddingTop:10, paddingBottom:5}}>
+                            <View style={{flex:0.4,alignItems:'flex-start',justifyContent:'center'}}>
+                                <Text style={{color:'#4D4D4D',fontSize:15,fontWeight: 'bold'}}>나의 포인트</Text>
+                            </View>
+                            <View style={{flex:0.6,alignItems:'flex-end'}}>
+                                <Text style={SurveyFormStyle.boldFont}>{this.state.myPoint}P</Text>
+                            </View>
+                        </View>
+                        <View style={SurveyFormStyle.lingBg}></View>
+                        <Button bordered full style={{borderColor:"#979797", backgroundColor:"#DA4211", justifyContent: 'center', paddingLeft:10}} onPress={Actions.Payment}>
+                            <Text style={{marginLeft:10, color:"#ffffff"}} >환급신청</Text>
+                        </Button>
+                    </View>
+
+                    <View style={SurveyFormStyle.contentsLayout2}>
+                        <View style={{flex:1, flexDirection: 'row', paddingTop:10, paddingBottom:5}}>
+                            <View style={{flex:0.4,alignItems:'flex-start',justifyContent:'center'}}>
+                                <Text style={{color:'#4D4D4D',fontSize:15,fontWeight: 'bold'}}>포인트 환급 내역</Text>
+                            </View>
+                            <View style={{flex:0.6,alignItems:'flex-end'}}>
+                                <Image source={require("../../assets/img/up_arrow_img.png")} resizeMode={'contain'} style={{width:18, height:18}} />
+                            </View>
+                        </View>
+                    </View>
+
+
+                    <View style={SurveyFormStyle.contentsLayout2}>
+                        <View style={{flex:1, flexDirection: 'row', paddingTop:10, paddingBottom:5}}>
+                            <View style={{flex:0.4,alignItems:'flex-start',justifyContent:'center'}}>
+                                <Text style={{color:'#4D4D4D',fontSize:15,fontWeight: 'bold'}}>포인트 적립 내역</Text>
+                            </View>
+                            <View style={{flex:0.6,alignItems:'flex-end'}}>
+                                <Image source={require("../../assets/img/up_arrow_img.png")} resizeMode={'contain'} style={{width:18, height:18}} />
+                            </View>
+                        </View>
+                        <View style={SurveyFormStyle.lingBg}></View>
+                    </View>
+
+                    <View>
+                        <ListView style={SurveyFormStyle.inPointLayout} dataSource={this.state.dataSource}
+                                  renderRow={(rowData) => this.pointHistory_IN(rowData) }>
+                        </ListView>
+                    </View>
+
+                </View>
+            );
+        } else {
+            return (
+                <View><Spinner size="small" color="red" /></View>
+            );
+        }
+        /*
         return (
             <ScrollView>
 
@@ -176,6 +335,7 @@ export default class pointHistory extends Component {
 
             </ScrollView>
         );
+        */
     };
 }
 
@@ -201,6 +361,13 @@ const SurveyFormStyle = StyleSheet.create({
         width: "100%"
         ,marginTop:30
         ,paddingTop:10
+        ,paddingBottom:10
+        ,paddingLeft:20
+        ,paddingRight:20
+        ,backgroundColor:"#fff"
+    }
+    ,inPointLayout: {
+        width: "100%"
         ,paddingBottom:10
         ,paddingLeft:20
         ,paddingRight:20
@@ -249,7 +416,6 @@ const SurveyFormStyle = StyleSheet.create({
         backgroundColor:"rgba(127,127,127,0.3)"
         ,height:1
         ,marginTop:10
-        ,marginBottom:10
 
     }
 
