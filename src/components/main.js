@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Actions } from 'react-native-router-flux';
-import { View, Text, Image, StyleSheet, TouchableOpacity,Easing } from 'react-native';
-import { Container, Header, Content, Footer, FooterTab, Item, Icon, Input, Button, Tab, Tabs, TabHeading,Left,Body,Right } from 'native-base';
+import { View, Text, Image, StyleSheet, TouchableOpacity,Easing} from 'react-native';
+import { Container, Header, Content, Footer, FooterTab, Item, Icon, Input, Button, Tab, Tabs, TabHeading,Left,Body,Right,Title} from 'native-base';
 import Drawer from 'react-native-drawer'
 
 
@@ -73,36 +73,36 @@ export default class Main extends Component {
 
             <Container>
                 <Header style={MainFormStyle.headerLayout}>
-                    <Left>
+                    <Left style={{flex:1}}>
                         <TouchableOpacity onPress={() => this.openControlPanel()}>
                             <View>
                                 <Image source={require('../../assets/img/header_icon_alarm.png')} resizeMode={'contain'} style={{width:15, height:15}}/>
                             </View>
                         </TouchableOpacity>
                     </Left>
-                    <Body>
+                    <Body style={{flex:1}}>
                     {renderIf(this.state.index == 0)(
-                        <View style={{alignItems: 'center'}}>
-                            <Image source={require('../../assets/img/header_icon_logo.png')} resizeMode={'contain'} style={{width:140, height:30, marginTop:5, marginLeft:10}}/>
+                        <View style={{alignItems: 'center',justifyContent:'center'}}>
+                            <Image source={require('../../assets/img/header_icon_logo.png')} resizeMode={'contain'} style={{width:140, height:30}}/>
                         </View>
                     )}
                     {renderIf(this.state.index == 1)(
-                        <View style={{alignItems: 'center'}}>
-                            <Text style={{marginTop:10, marginLeft:10}}>나의 설문</Text>
+                        <View style={{alignItems: 'center',justifyContent:'center'}}>
+                            <Image source={require('../../assets/img/header_img_mysurvey.png')} resizeMode={'contain'} style={{width:140, height:30}}/>
                         </View>
                     )}
                     {renderIf(this.state.index == 3)(
-                        <View style={{alignItems: 'center'}}>
-                            <Text style={{marginTop:10, marginLeft:10}}>포인트</Text>
+                        <View style={{alignItems: 'center',justifyContent:'center'}}>
+                            <Image source={require('../../assets/img/header_img_point.png')} resizeMode={'contain'} style={{width:140, height:30}}/>
                         </View>
                     )}
                     {renderIf(this.state.index == 4)(
-                        <View style={{alignItems: 'center'}}>
-                            <Text style={{marginTop:10, marginLeft:10}}>마이페이지</Text>
+                        <View style={{alignItems: 'center',justifyContent:'center'}}>
+                            <Image source={require('../../assets/img/header_img_mypage.png')} resizeMode={'contain'} style={{width:140, height:30}}/>
                         </View>
                     )}
                     </Body>
-                    <Right>
+                    <Right style={{flex:1}}>
                         <TouchableOpacity onPress={() => this.openControlPanel()}>
                             <View>
                                 <Image source={require('../../assets/img/header_icon_set.png')} resizeMode={'contain'} style={{width:15, height:15}}/>
@@ -116,7 +116,7 @@ export default class Main extends Component {
                 </Content>
                 <Footer>
                     {renderIf(this.state.index == 0)(
-                    <FooterTab>
+                    <FooterTab style={{backgroundColor:"#fff"}}>
                         <Button onPress={() => this.switchScreen(0) }>
                             <Image source={require('../../assets/img/surveyList_icon_on.png')} resizeMode={'contain'} style={{width:30,height:30, marginTop:5}}/><Text style={{color:"#DA4211"}}>설문목록</Text>
                         </Button>
@@ -133,7 +133,7 @@ export default class Main extends Component {
                     </FooterTab>
                     )}
                     {renderIf(this.state.index == 1)(
-                        <FooterTab>
+                        <FooterTab style={{backgroundColor:"#fff"}}>
                             <Button onPress={() => this.switchScreen(0) }>
                                 <Image source={require('../../assets/img/surveyList_icon_off.png')} resizeMode={'contain'} style={{width:30,height:30, marginTop:5}}/><Text>설문목록</Text>
                             </Button>
@@ -150,7 +150,7 @@ export default class Main extends Component {
                         </FooterTab>
                     )}
                     {renderIf(this.state.index == 3)(
-                        <FooterTab>
+                        <FooterTab style={{backgroundColor:"#fff"}}>
                             <Button onPress={() => this.switchScreen(0) }>
                                 <Image source={require('../../assets/img/surveyList_icon_off.png')} resizeMode={'contain'} style={{width:30,height:30, marginTop:5}}/><Text>설문목록</Text>
                             </Button>
@@ -167,7 +167,7 @@ export default class Main extends Component {
                         </FooterTab>
                     )}
                     {renderIf(this.state.index == 4)(
-                        <FooterTab>
+                        <FooterTab style={{backgroundColor:"#fff"}}>
                             <Button onPress={() => this.switchScreen(0) }>
                                 <Image source={require('../../assets/img/surveyList_icon_off.png')} resizeMode={'contain'} style={{width:30,height:30, marginTop:5}}/><Text>설문목록</Text>
                             </Button>

@@ -198,7 +198,7 @@ export default class Payment extends Component {
                     {renderIf(this.state.stepView == 2)(
                         <TouchableOpacity style={{width:"100%", height:"100%", justifyContent: 'flex-end', alignItems: 'flex-end'}} onPress={()=>this.cashBackPointCheck()}>
                             <View>
-                                <Text style={{color:"#ffffff", paddingRight:20,paddingBottom:20}}>신청하기</Text>
+                                <Text style={{color:"#ffffff", paddingRight:20,paddingBottom:20}}>신청하기 ></Text>
                             </View>
                         </TouchableOpacity>
                     )}
