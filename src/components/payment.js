@@ -1,11 +1,15 @@
 import React, { Component } from 'react';
 import { Actions } from 'react-native-router-flux';
-import { View, Text, Image, StyleSheet, TouchableOpacity,Alert } from 'react-native';
+import { View, Text, Image, StyleSheet, TouchableOpacity,AlertIOS,Alert,Platform } from 'react-native';
 import { Container, Header, Body, Content, Footer,Item, Icon, Input,Button } from 'native-base';
+import prompt from 'react-native-prompt-android';
+import Prompt from 'react-native-prompt';
+
 import renderIf from 'render-if'
 
 
 export default class Payment extends Component {
+
 
 
     constructor(){
@@ -15,18 +19,48 @@ export default class Payment extends Component {
             ,cashBackPoint:""
             ,cashBackAccount:""
             ,bank:""
-
+            ,message:""
+            ,promptVisible:false
         }
     }
 
     check(){
+        if (Platform.OS === 'ios') {
+            AlertIOS.prompt(
+                '비밀번호 입력',
+                '계정 보호를 위해 비밀번호를 입력해주세요.',
+                [
+
+                    {text: '최소', onPress: () => console.log('Cancel Pressed'), style: 'cancel'},
+                    {text: '확인', onPress: password => this.stepNext(2)},
+                ],
+                'secure-text'
+            );
+        } else {
+            Alert.alert(
+                '비밀번호 입력',
+                '계정 보호를 위해 비밀번호를 입력해주세요.',
+                [
+
+                    {text: '최소', onPress: () => console.log('Cancel Pressed'), style: 'cancel'},
+                    {text: '확인', onPress: password => this.stepNext(2)},
+                ],
+                'secure-text'
+            );
+        }
+
+
+
+    }
+
+    Endcheck(){
         Alert.alert(
-            '비밀번호 입력',
-            '계정 보호를 위해 비밀번호를 입력해주세요.',
+            '환급 신청을 제출하시겠습니까?',
+            '제출 시 수정이 불가능합니다. 본인 통장으로만 신청이 가능하며, 잘못 신청시 환급 신청이 취소되며 포인트는 다시 적립됩니다.',
             [
 
                 {text: '최소', onPress: () => console.log('Cancel Pressed'), style: 'cancel'},
-                {text: '확인', onPress: () => this.stepNext(2)},
+                {text: '확인', onPress: () => this.stepNext(3)},
             ],
             { cancelable: false }
         )
@@ -43,6 +77,19 @@ export default class Payment extends Component {
         return (
 
             <Container>
+                <Prompt
+                    title="Say something"
+                    placeholder="Start typing"
+                    defaultValue="Hello"
+                    visible={ this.state.promptVisible }
+                    onCancel={ () => this.setState({
+                        promptVisible: false,
+                        message: "You cancelled"
+                    }) }
+                    onSubmit={ (value) => this.setState({
+                        promptVisible: false,
+                        message: `You said "${value}"`
+                    }) }/>
                 {renderIf(this.state.stepView == 1)(
                     <Header style={paymentFormStyle.headerLayout2}>
                         <View style={{flex:.1, justifyContent: 'center', alignItems: 'center'}}>
@@ -62,6 +109,18 @@ export default class Payment extends Component {
                         </View>
                         <View style={{flex:.8, justifyContent: 'center', alignItems: 'center'}}>
                             <Text style={{fontSize:16,color:'#fff'}}>환급신청</Text>
+                        </View>
+                        <View style={{flex:.1, justifyContent: 'center', alignItems: 'center'}}>
+                        </View>
+                    </Header>
+                )}
+                {renderIf(this.state.stepView == 3 )(
+                    <Header style={paymentFormStyle.headerLayout}>
+                        <View style={{flex:.1, justifyContent: 'center', alignItems: 'center'}}>
+                            <Text style={{fontSize:12,color:'#fff'}} onPress={Actions.pop}>닫기</Text>
+                        </View>
+                        <View style={{flex:.8, justifyContent: 'center', alignItems: 'center'}}>
+                            <Text style={{fontSize:16,color:'#fff'}}>환급 신청 완료</Text>
                         </View>
                         <View style={{flex:.1, justifyContent: 'center', alignItems: 'center'}}>
                         </View>
@@ -131,6 +190,7 @@ export default class Payment extends Component {
                             </View>
                             <Button bordered full style={{borderColor:"#979797", backgroundColor:"#DA4211", justifyContent: 'center', paddingLeft:10}}>
                                 <Text style={{marginLeft:10, color:"#ffffff"}} onPress={()=>this.check()}>네, 확인했습니다.</Text>
+
                             </Button>
 
                         </View>
@@ -183,11 +243,42 @@ export default class Payment extends Component {
                                 </Item>
                             </View>
 
-                            <View style={{paddingLeft:20,paddingRight:20}}>
+                            <View style={{paddingLeft:20,paddingRight:20,paddingBottom:20}}>
                                 <Item regular style={{backgroundColor:"#ffffff"}}>
                                     <Input placeholder='계좌번호 입력' style={paymentFormStyle.input} value={this.state.cashBackAccount} onChangeText={(text) => this.setState({cashBackAccount: text})} keyboardType="numeric"/>
                                 </Item>
                             </View>
+                            <Button bordered full style={{borderColor:"#979797", backgroundColor:"#DA4211", justifyContent: 'center', paddingLeft:10}}>
+                                <Text style={{marginLeft:10, color:"#ffffff"}} onPress={()=>this.Endcheck()}>신청하기</Text>
+                            </Button>
+                        </View>
+
+
+                    </View>
+                )}
+                {renderIf(this.state.stepView == 3)(
+                    <View>
+                        <View style={paymentFormStyle.contentsLayout}>
+                            <View>
+                                <View style={{padding:10,alignItems:'center'}}>
+                                    <Image source={require('../../assets/img/presurvey_icon_list.png')} resizeMode={'contain'} style={{width:30,height:30}}/>
+                                </View>
+                                <View style={{alignItems:'center'}}>
+                                    <Text style={{fontSize:12}}>환급 신청이 성공적으로 제출 되었습니다.</Text>
+                                </View>
+                            </View>
+                            <View style={paymentFormStyle.lingBg}></View>
+                            <View style={{paddingBottom:5}}>
+                                <Text style={paymentFormStyle.contentsSize}><Text style={paymentFormStyle.boldFont}>32,910P</Text>가 류성재님의 <Text style={paymentFormStyle.boldFont}>농협 30123456789</Text> 계좌로 환급 신청되었습니다.</Text>
+                            </View>
+                            <View style={paymentFormStyle.lingBg}></View>
+                            <View style={{paddingBottom:5}}>
+                                <Text style={paymentFormStyle.contentsSize}>입금까지 접수완료 시점으로부터 5~10일이 소요됩니다.</Text>
+                            </View>
+                            <Button bordered full style={{borderColor:"#979797", backgroundColor:"#DA4211", justifyContent: 'center', paddingLeft:10}}>
+                                <Text style={{marginLeft:10, color:"#ffffff"}} onPress={Actions.pop}>포인트 내역으로 이동</Text>
+                            </Button>
+
                         </View>
 
                     </View>
@@ -195,13 +286,6 @@ export default class Payment extends Component {
 
                 </Content>
                 <Footer style={{backgroundColor:"#222222", width:"100%", height:44, justifyContent: 'flex-end', alignItems: 'flex-end'}}>
-                    {renderIf(this.state.stepView == 2)(
-                        <TouchableOpacity style={{width:"100%", height:"100%", justifyContent: 'flex-end', alignItems: 'flex-end'}} onPress={()=>this.cashBackPointCheck()}>
-                            <View>
-                                <Text style={{color:"#ffffff", paddingRight:20,paddingBottom:20}}>신청하기 ></Text>
-                            </View>
-                        </TouchableOpacity>
-                    )}
 
                 </Footer>
             </Container>
