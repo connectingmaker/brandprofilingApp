@@ -19,6 +19,8 @@ export default class pointHistory extends Component {
             ,BankdataSource: new ListView.DataSource({
                 rowHasChanged: (row1, row2) => row1 !== row2,
             })
+            ,bankstats:false
+            ,historystats:false
 
         };
 
@@ -152,6 +154,23 @@ export default class pointHistory extends Component {
         );
     }
 
+    bankStats()
+    {
+        if(this.state.bankstats == true) {
+            this.setState({bankstats:false});
+        } else {
+            this.setState({bankstats:true});
+        }
+    }
+    historyStats()
+    {
+        if(this.state.historystats == true) {
+            this.setState({historystats:false});
+        } else {
+            this.setState({historystats:true});
+        }
+    }
+
 
 
     render() {
@@ -174,41 +193,66 @@ export default class pointHistory extends Component {
                     </View>
 
                     <View style={SurveyFormStyle.contentsLayout2}>
+
                         <View style={{flex:1, flexDirection: 'row', paddingTop:10, paddingBottom:5}}>
+                            <TouchableOpacity style={{flexDirection: 'row', width:"100%", height:"100%"}} onPress={()=>this.bankStats()}>
                             <View style={{flex:0.4,alignItems:'flex-start',justifyContent:'center'}}>
                                 <Text style={{color:'#4D4D4D',fontSize:15,fontWeight: 'bold'}}>포인트 환급 내역</Text>
                             </View>
+
+
                             <View style={{flex:0.6,alignItems:'flex-end'}}>
-                                <Image source={require("../../assets/img/up_arrow_img.png")} resizeMode={'contain'} style={{width:18, height:18}} />
+                                {renderIf(this.state.bankstats == false)(
+                                <Image source={require("../../assets/img/down_arrow_img.png")} resizeMode={'contain'} style={{width:18, height:18}} />
+                                )}
+
+                                {renderIf(this.state.bankstats == true)(
+                                    <Image source={require("../../assets/img/up_arrow_img.png")} resizeMode={'contain'} style={{width:18, height:18}} />
+                                )}
                             </View>
+                            </TouchableOpacity>
+
+
+
                         </View>
+
                         <View style={SurveyFormStyle.lingBg}></View>
                     </View>
-
+                    {renderIf(this.state.bankstats == true)(
                     <View>
                         <ListView style={SurveyFormStyle.inPointLayout} dataSource={this.state.BankdataSource}
                                   renderRow={(rowData) => this.pointHistory_Bank(rowData) }>
                         </ListView>
                     </View>
+                    )}
 
 
                     <View style={SurveyFormStyle.contentsLayout2}>
                         <View style={{flex:1, flexDirection: 'row', paddingTop:10, paddingBottom:5}}>
-                            <View style={{flex:0.4,alignItems:'flex-start',justifyContent:'center'}}>
-                                <Text style={{color:'#4D4D4D',fontSize:15,fontWeight: 'bold'}}>포인트 적립 내역</Text>
-                            </View>
-                            <View style={{flex:0.6,alignItems:'flex-end'}}>
-                                <Image source={require("../../assets/img/up_arrow_img.png")} resizeMode={'contain'} style={{width:18, height:18}} />
-                            </View>
+                            <TouchableOpacity style={{flexDirection: 'row', width:"100%", height:"100%"}} onPress={()=>this.historyStats()}>
+                                <View style={{flex:0.4,alignItems:'flex-start',justifyContent:'center'}}>
+                                    <Text style={{color:'#4D4D4D',fontSize:15,fontWeight: 'bold'}}>포인트 적립 내역</Text>
+                                </View>
+                                <View style={{flex:0.6,alignItems:'flex-end'}}>
+                                    {renderIf(this.state.historystats == false)(
+                                        <Image source={require("../../assets/img/down_arrow_img.png")} resizeMode={'contain'} style={{width:18, height:18}} />
+                                    )}
+
+                                    {renderIf(this.state.historystats == true)(
+                                        <Image source={require("../../assets/img/up_arrow_img.png")} resizeMode={'contain'} style={{width:18, height:18}} />
+                                    )}
+                                </View>
+                            </TouchableOpacity>
                         </View>
                         <View style={SurveyFormStyle.lingBg}></View>
                     </View>
-
+                    {renderIf(this.state.historystats == true)(
                     <View>
                         <ListView style={SurveyFormStyle.inPointLayout} dataSource={this.state.dataSource}
                                   renderRow={(rowData) => this.pointHistory_IN(rowData) }>
                         </ListView>
                     </View>
+                    )}
 
                 </View>
             );
