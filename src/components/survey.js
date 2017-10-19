@@ -65,11 +65,10 @@ export default class Survey extends Component {
                                 </View>
                                 <View style={SurveyFormStyle.lingBg}></View>
 
-                                <Button bordered full style={{borderColor:"#979797", backgroundColor:"#DA4211", justifyContent: 'center', paddingLeft:10}}>
-                                    <Text style={{marginLeft:10, color:"#ffffff"}} onPress={()=>this.stepNext(2)}>네, 확인했습니다.</Text>
+
+                                <Button bordered full style={{borderColor:"#979797", backgroundColor:"#DA4211", justifyContent: 'center', paddingLeft:10}} onPress={()=>this.stepNext(2)}>
+                                    <Text style={{marginLeft:10, color:"#ffffff"}}>네, 확인했습니다.</Text>
                                 </Button>
-
-
 
                             </View>
 
