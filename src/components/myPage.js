@@ -59,7 +59,7 @@ export default class myPage extends Component {
                                     <Text style={myPageFormStyle.contentsSize}>회원탈퇴 시 계정 정보가 삭제 되고 포인트가 소멸됩니다. 회원탈퇴로 소멸된 포인트와 삭제된 계정정보는 <Text style={myPageFormStyle.boldFont}>다시 복구할 수 없으니 신중하게 결정</Text>해주시길 바랍니다.</Text>
                                 </View>
                                 <Button bordered full style={{borderColor:"#979797"}}>
-                                    <Text>회원탈</Text>
+                                    <Text>회원탈퇴</Text>
                                 </Button>
                                 <View style={myPageFormStyle.lingBg}></View>
                                 <View style={{flex:1, flexDirection: 'row', paddingTop:5, paddingBottom:5}}>
