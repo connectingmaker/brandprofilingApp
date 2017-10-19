@@ -96,43 +96,43 @@ export default class Main extends Component {
 
             <Container style={{marginLeft:-5}}>
                 <Header style={MainFormStyle.headerLayout}>
-                    <Left style={{flex:1}}>
-                        <TouchableOpacity onPress={() => this.openControlPanel()}>
-                            <View>
-                                <Image source={require('../../assets/img/header_icon_alarm.png')} resizeMode={'contain'} style={{width:15, height:15}}/>
-                            </View>
-                        </TouchableOpacity>
-                    </Left>
-                    <Body style={{flex:1}}>
-                    {renderIf(this.state.index == 0)(
-                        <View style={{alignItems: 'center',justifyContent:'center'}}>
-                            <Image source={require('../../assets/img/header_icon_logo.png')} resizeMode={'contain'} style={{width:140, height:30}}/>
+                <Left style={{flex:1}}>
+                    <TouchableOpacity onPress={() => this.openControlPanel()}>
+                        <View>
+                            <Image source={require('../../assets/img/header_icon_alarm.png')} resizeMode={'contain'} style={{width:15, height:15}}/>
                         </View>
-                    )}
-                    {renderIf(this.state.index == 1)(
-                        <View style={{alignItems: 'center',justifyContent:'center'}}>
-                            <Image source={require('../../assets/img/header_img_mysurvey.png')} resizeMode={'contain'} style={{width:140, height:30}}/>
+                    </TouchableOpacity>
+                </Left>
+                <Body style={{flex:1}}>
+                {renderIf(this.state.index == 0)(
+                    <View style={{alignItems: 'center',justifyContent:'center'}}>
+                        <Image source={require('../../assets/img/header_icon_logo.png')} resizeMode={'contain'} style={{width:140, height:30}}/>
+                    </View>
+                )}
+                {renderIf(this.state.index == 1)(
+                    <View style={{alignItems: 'center',justifyContent:'center'}}>
+                        <Image source={require('../../assets/img/header_img_mysurvey.png')} resizeMode={'contain'} style={{width:140, height:30}}/>
+                    </View>
+                )}
+                {renderIf(this.state.index == 3)(
+                    <View style={{alignItems: 'center',justifyContent:'center'}}>
+                        <Image source={require('../../assets/img/header_img_point.png')} resizeMode={'contain'} style={{width:140, height:30}}/>
+                    </View>
+                )}
+                {renderIf(this.state.index == 4)(
+                    <View style={{alignItems: 'center',justifyContent:'center'}}>
+                        <Image source={require('../../assets/img/header_img_mypage.png')} resizeMode={'contain'} style={{width:140, height:30}}/>
+                    </View>
+                )}
+                </Body>
+                <Right style={{flex:1}}>
+                    <TouchableOpacity onPress={() => this.openControlPanel()}>
+                        <View>
+                            <Image source={require('../../assets/img/header_icon_set.png')} resizeMode={'contain'} style={{width:15, height:15}}/>
                         </View>
-                    )}
-                    {renderIf(this.state.index == 3)(
-                        <View style={{alignItems: 'center',justifyContent:'center'}}>
-                            <Image source={require('../../assets/img/header_img_point.png')} resizeMode={'contain'} style={{width:140, height:30}}/>
-                        </View>
-                    )}
-                    {renderIf(this.state.index == 4)(
-                        <View style={{alignItems: 'center',justifyContent:'center'}}>
-                            <Image source={require('../../assets/img/header_img_mypage.png')} resizeMode={'contain'} style={{width:140, height:30}}/>
-                        </View>
-                    )}
-                    </Body>
-                    <Right style={{flex:1}}>
-                        <TouchableOpacity onPress={() => this.openControlPanel()}>
-                            <View>
-                                <Image source={require('../../assets/img/header_icon_set.png')} resizeMode={'contain'} style={{width:15, height:15}}/>
-                            </View>
-                        </TouchableOpacity>
-                    </Right>
-                </Header>
+                    </TouchableOpacity>
+                </Right>
+            </Header>
                 <Content style={{padding:10}}>
                     <AppComponent />
 
