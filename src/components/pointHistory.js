@@ -20,7 +20,7 @@ export default class pointHistory extends Component {
                 rowHasChanged: (row1, row2) => row1 !== row2,
             })
             ,bankstats:false
-            ,historystats:false
+            ,historystats:true
 
         };
 
@@ -158,16 +158,20 @@ export default class pointHistory extends Component {
     {
         if(this.state.bankstats == true) {
             this.setState({bankstats:false});
+            this.setState({historystats:true});
         } else {
             this.setState({bankstats:true});
+            this.setState({historystats:false});
         }
     }
     historyStats()
     {
         if(this.state.historystats == true) {
             this.setState({historystats:false});
+            this.setState({bankstats:true});
         } else {
             this.setState({historystats:true});
+            this.setState({bankstats:false});
         }
     }
 
@@ -200,7 +204,6 @@ export default class pointHistory extends Component {
                                 <Text style={{color:'#4D4D4D',fontSize:15,fontWeight: 'bold'}}>포인트 환급 내역</Text>
                             </View>
 
-
                             <View style={{flex:0.6,alignItems:'flex-end'}}>
                                 {renderIf(this.state.bankstats == false)(
                                 <Image source={require("../../assets/img/down_arrow_img.png")} resizeMode={'contain'} style={{width:18, height:18}} />
@@ -211,8 +214,6 @@ export default class pointHistory extends Component {
                                 )}
                             </View>
                             </TouchableOpacity>
-
-
 
                         </View>
 

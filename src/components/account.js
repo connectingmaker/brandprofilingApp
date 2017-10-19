@@ -291,7 +291,6 @@ const AccountFormStyle = StyleSheet.create({
         ,paddingLeft:11
         ,paddingBottom:12
         ,height:38
-        ,backgroundColor: "#ffffff"
     }
     ,buttonStyle: {
         fontSize:15
