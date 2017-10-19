@@ -13,6 +13,8 @@ import Survey from './src/components/survey';
 import Payment from './src/components/payment';
 import BP from './src/components/BP'
 import Notice from './src/components/notice';
+import Terms from './src/components/terms';
+import Privacy from './src/components/privacy';
 
 import config from './src/config';
 
@@ -95,6 +97,8 @@ export default class App extends Component<{}> {
                     <Scene key="Payment" component={Payment} title="환급신청" hideNavBar={true} direction="vertical" schema="modal" wrapRouter={true}/>
                     <Scene key="BP" component={BP} title="소개" hideNavBar={true} direction="vertical" schema="modal" wrapRouter={true}/>
                     <Scene key="Notice" component={Notice} title="공지사항" hideNavBar={true} direction="vertical" schema="modal" wrapRouter={true}/>
+                    <Scene key="Terms" component={Terms} title="이용약관" hideNavBar={true} direction="overlay" schema="modal" wrapRouter={true}/>
+                    <Scene key="Privacy" component={Privacy} title="개인정보취급방침" hideNavBar={true} direction="vertical" schema="modal" wrapRouter={true}/>
                 </Modal>
             </Router>
         } else {

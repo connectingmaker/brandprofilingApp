@@ -64,7 +64,7 @@ export default class myPage extends Component {
                                 <View style={myPageFormStyle.lingBg}></View>
                                 <View style={{flex:1, flexDirection: 'row', paddingTop:5, paddingBottom:5}}>
                                     <View style={{flex:0.45}}>
-                                        <Button bordered full style={{borderColor:"#979797"}}>
+                                        <Button bordered full style={{borderColor:"#979797"}} onPress={Actions.Terms}>
                                             <Text>이용약관</Text>
                                         </Button>
                                     </View>
@@ -74,7 +74,7 @@ export default class myPage extends Component {
                                     </View>
 
                                     <View style={{flex:0.45}}>
-                                        <Button bordered full style={{borderColor:"#979797"}}>
+                                        <Button bordered full style={{borderColor:"#979797"}} onPress={Actions.Privacy}>
                                             <Text>개인정보취급방침</Text>
                                         </Button>
                                     </View>
