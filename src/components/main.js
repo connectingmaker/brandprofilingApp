@@ -59,7 +59,7 @@ export default class Main extends Component {
                 type={'overlay'}
                 ref={(ref) => { this._drawer = ref; }}
                 content={<SideBar navigator={this._navigator} />}
-                onClose={() => this.closeControlPanel()}
+                close={() => this.closeControlPanel()}
                 tapToClose={true}
                 openDrawerOffset={0.3} // 20% gap on the right side of drawer
                 panCloseMask={0.2}
