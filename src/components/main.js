@@ -97,7 +97,7 @@ export default class Main extends Component {
             <Container style={{marginLeft:-5}}>
                 <Header style={MainFormStyle.headerLayout}>
                 <Left style={{flex:1}}>
-                    <TouchableOpacity onPress={() => this.openControlPanel()}>
+                    <TouchableOpacity onPress={Actions.Notice}>
                         <View>
                             <Image source={require('../../assets/img/header_icon_alarm.png')} resizeMode={'contain'} style={{width:15, height:15}}/>
                         </View>
