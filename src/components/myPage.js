@@ -79,6 +79,19 @@ export default class myPage extends Component {
                                         </Button>
                                     </View>
                                 </View>
+                                <View style={myPageFormStyle.lingBg}></View>
+                                <TouchableOpacity onPress={Actions.BP}>
+                                    <View style={{flex:1, flexDirection: 'row',paddingTop:5, paddingBottom:5}}>
+                                        <View style={{flex:0.7,alignItems:'flex-start',justifyContent:'center'}}>
+                                            <Text style={myPageFormStyle.contentsSize}>어플리케이션 소개</Text>
+                                        </View>
+
+                                        <View style={{flex:0.3,alignItems:'flex-end'}}>
+                                            <Image source={require('../../assets/img/down_arrow_img.png')} resizeMode={'contain'} style={{width:15,height:15}}/>
+                                        </View>
+                                    </View>
+                                </TouchableOpacity>
+
                             </View>
 
                         </View>

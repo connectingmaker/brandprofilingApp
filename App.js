@@ -11,6 +11,7 @@ import Main from './src/components/main';
 import PreSurvey from './src/components/preSurvey';
 import Survey from './src/components/survey';
 import Payment from './src/components/payment';
+import BP from './src/components/BP'
 
 import config from './src/config';
 
@@ -91,6 +92,7 @@ export default class App extends Component<{}> {
                     <Scene key="PreSurvey" component={PreSurvey} title="사전조사" hideNavBar={true} direction="vertical" schema="modal" wrapRouter={true}/>
                     <Scene key="Survey" component={Survey} title="일반조사" hideNavBar={true} direction="vertical" schema="modal" wrapRouter={true}/>
                     <Scene key="Payment" component={Payment} title="환급신청" hideNavBar={true} direction="vertical" schema="modal" wrapRouter={true}/>
+                    <Scene key="BP" component={BP} title="소개" hideNavBar={true} direction="vertical" schema="modal" wrapRouter={true}/>
                 </Modal>
             </Router>
         } else {
