@@ -20,6 +20,7 @@ import config from './src/config';
 
 import animations from './src/module/animations';
 
+import PushNotification from 'react-native-push-notification';
 
 
 
@@ -32,21 +33,25 @@ export default class App extends Component<{}> {
      }
      */
 
+
+
     constructor(){
         super();
         this.state = {
             logged:false
             ,logout:true
             ,loading:false
+            ,registerCalledTimes:0
         };
-
-
     }
+
+
 
 
 
     componentWillMount()
     {
+
         AsyncStorage.getItem(config.STORE_KEY)
             .then((response) => {
                 return response;
@@ -89,6 +94,8 @@ export default class App extends Component<{}> {
                         <Scene key="LoginForm" component={LoginForm} title="이메일로 로그인" hideNavBar={true}/>
                         <Scene key="Main" component={Main} initial={this.state.logged} title="사전조사" hideNavBar={true} />
 
+
+
                     </Scene>
                     <Scene key="JoinForm" component={JoinForm} title="회원가입" hideNavBar={true} direction="vertical" schema="modal" wrapRouter={true}/>
                     <Scene key="Account" component={Account} title="계정/비번찾기" hideNavBar={true} direction="vertical" schema="modal" wrapRouter={true}/>
@@ -99,7 +106,9 @@ export default class App extends Component<{}> {
                     <Scene key="Notice" component={Notice} title="공지사항" hideNavBar={true} direction="vertical" schema="modal" wrapRouter={true}/>
                     <Scene key="Terms" component={Terms} title="이용약관" hideNavBar={true} direction="overlay" schema="modal" wrapRouter={true}/>
                     <Scene key="Privacy" component={Privacy} title="개인정보취급방침" hideNavBar={true} direction="vertical" schema="modal" wrapRouter={true}/>
+
                 </Modal>
+
             </Router>
         } else {
             return <View>

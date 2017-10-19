@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Actions } from 'react-native-router-flux';
-import { View, Text, Image, StyleSheet, TouchableOpacity,Easing, BackAndroid, BackHandler, Platform, ToastAndroid} from 'react-native';
+import { View, Text, Image, StyleSheet, TouchableOpacity,Easing, BackAndroid, BackHandler, Platform, ToastAndroid, AppState} from 'react-native';
 import { Container, Header, Content, Footer, FooterTab, Item, Icon, Input, Button, Tab, Tabs, TabHeading,Left,Body,Right,Title} from 'native-base';
 import Drawer from 'react-native-drawer'
 
@@ -14,6 +14,8 @@ import renderIf from 'render-if'
 
 
 
+
+
 export default class Main extends Component {
     constructor(props) {
         super(props)
@@ -21,6 +23,7 @@ export default class Main extends Component {
         this.lastBackButtonPress = null;
 
     }
+
 
     switchScreen(index) {
         this.setState({index: index})
@@ -43,8 +46,7 @@ export default class Main extends Component {
         }
     }
 
-    componentWillUnmount() {
-    }
+
 
     closeControlPanel = () => {
         this._drawer.close()
@@ -58,6 +60,8 @@ export default class Main extends Component {
 
         return true;
     }
+
+
 
 
     render() {
@@ -93,6 +97,7 @@ export default class Main extends Component {
                 })}
                 side="right"
             >
+
 
             <Container style={{marginLeft:-5}}>
                 <Header style={MainFormStyle.headerLayout}>
