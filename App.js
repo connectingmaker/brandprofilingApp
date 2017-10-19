@@ -44,6 +44,8 @@ export default class App extends Component<{}> {
             ,loading:false
         };
 
+        console.log("OK");
+
 
     }
 
