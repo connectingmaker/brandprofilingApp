@@ -3,6 +3,8 @@ import { StyleSheet, Image, View, TouchableOpacity, Text ,ScrollView, ListView} 
 import { Actions } from 'react-native-router-flux';
 import { Container, Header, Content, Footer, Item, Icon, Input, Button ,ActionSheet, Spinner} from 'native-base';
 import config from '../../src/config';
+import renderIf from 'render-if'
+
 
 export default class pointHistory extends Component {
 
@@ -14,6 +16,10 @@ export default class pointHistory extends Component {
             ,dataSource: new ListView.DataSource({
                 rowHasChanged: (row1, row2) => row1 !== row2,
             })
+            ,BankdataSource: new ListView.DataSource({
+                rowHasChanged: (row1, row2) => row1 !== row2,
+            })
+
         };
 
 
@@ -51,7 +57,8 @@ export default class pointHistory extends Component {
             {
                 if(this.mounted) {
                     var data = eval("(" + responseData.inPointList + ")");
-                    this.setState({loaded:true, myPoint:responseData.userPoint, dataSource:this.state.dataSource.cloneWithRows(data)});
+                    var Bankdata = eval("(" + responseData.bankPointList + ")");
+                    this.setState({loaded:true, myPoint:responseData.userPoint, dataSource:this.state.dataSource.cloneWithRows(data), BankdataSource:this.state.BankdataSource.cloneWithRows(Bankdata)});
                 }
             })
             .catch((err) => {
@@ -81,6 +88,45 @@ export default class pointHistory extends Component {
         );
     }
 
+    pointHistory_Bank(obj)
+    {
+        return (
+            <View>
+                <View style={{flex:1, flexDirection: 'row', paddingBottom:5}}>
+                    <View style={{flex:0.6,alignItems:'flex-start',justifyContent:'center'}}>
+                        <Text style={SurveyFormStyle.contentsSize}><Text style={{color:'#979797',fontSize:13}}>{obj.CODE_NAME}</Text></Text>
+                    </View>
+                    <View style={{flex:0.4,alignItems:'flex-end'}}>
+                        <Text style={SurveyFormStyle.boldFont}>200P</Text>
+                    </View>
+                </View>
+                <View style={{flex:1, flexDirection: 'row'}}>
+                    {renderIf(obj.CODE_POINT == 5)(
+                    <View style={{flex:0.6,alignItems:'flex-start',justifyContent:'center'}}>
+                        <Text style={{color:'#979797',fontSize:11}}>신청일 2017-08-19 13:30:21</Text>
+                    </View>
+                    )}
+
+                    {renderIf(obj.CODE_POINT == 6)(
+                        <View style={{flex:0.6,alignItems:'flex-start',justifyContent:'center'}}>
+                            <Text style={{color:'#979797',fontSize:11}}>환급완료 2017-08-19 13:30:21</Text>
+                        </View>
+                    )}
+
+                    {renderIf(obj.CODE_POINT == 7)(
+                        <View style={{flex:0.6,alignItems:'flex-start',justifyContent:'center'}}>
+                            <Text style={{color:'#979797',fontSize:11}}>신청일 2017-08-19 13:30:21</Text>
+                        </View>
+                    )}
+                    <View style={{flex:0.4,alignItems:'flex-end'}}>
+                        <Text style={{color:'#979797',fontSize:11}}>{obj.USERNAME} {obj.BANK_NAME} {obj.BANK_NUM}</Text>
+                    </View>
+                </View>
+                <View style={SurveyFormStyle.lingBg}></View>
+            </View>
+        );
+    }
+
     pointHistory_IN(obj)
     {
         return (
@@ -95,10 +141,10 @@ export default class pointHistory extends Component {
                 </View>
                 <View style={{flex:1, flexDirection: 'row'}}>
                     <View style={{flex:0.6,alignItems:'flex-start',justifyContent:'center'}}>
-                        <Text style={{color:'#979797',fontSize:10}}>적립일 2017-08-19 13:30:21</Text>
+                        <Text style={{color:'#979797',fontSize:11}}>적립일 2017-08-19 13:30:21</Text>
                     </View>
                     <View style={{flex:0.4,alignItems:'flex-end'}}>
-                        <Text style={{color:'#979797',fontSize:10}}>1차</Text>
+                        <Text style={{color:'#979797',fontSize:11}}>1차</Text>
                     </View>
                 </View>
                 <View style={SurveyFormStyle.lingBg}></View>
@@ -136,6 +182,13 @@ export default class pointHistory extends Component {
                                 <Image source={require("../../assets/img/up_arrow_img.png")} resizeMode={'contain'} style={{width:18, height:18}} />
                             </View>
                         </View>
+                        <View style={SurveyFormStyle.lingBg}></View>
+                    </View>
+
+                    <View>
+                        <ListView style={SurveyFormStyle.inPointLayout} dataSource={this.state.BankdataSource}
+                                  renderRow={(rowData) => this.pointHistory_Bank(rowData) }>
+                        </ListView>
                     </View>
 
 
@@ -415,7 +468,7 @@ const SurveyFormStyle = StyleSheet.create({
     ,lingBg: {
         backgroundColor:"rgba(127,127,127,0.3)"
         ,height:1
-        ,marginTop:10
+        ,marginTop:15
 
     }
 
