@@ -23,6 +23,8 @@
     "react-native-radio-button": "^2.0.1",
     "react-native-router-flux": "^4.0.0-beta.22",
     "react-native-simple-radio-button": "^2.7.0",
+    "react-native-simple-toast": "0.0.7",
+    "react-native-webview": "^1.0.8",
     "render-if": "^0.1.1"
   },
   "devDependencies": {

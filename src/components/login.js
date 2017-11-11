@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { StyleSheet, Image, View, TouchableOpacity } from 'react-native';
 import { Actions } from 'react-native-router-flux';
 import { Container, Header, Title, Content, Footer, FooterTab, Button, Left, Right, Body, Icon, Text, ActionSheet } from 'native-base';
-import WelcomeText from "react-native/local-cli/templates/HelloNavigation/views/welcome/WelcomeText.android";
 
 
 

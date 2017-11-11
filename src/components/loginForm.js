@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Actions } from 'react-native-router-flux';
 import { View, Text, Image, StyleSheet, TextInput, TouchableOpacity, Alert, AsyncStorage } from 'react-native';
-import { Container, Header, Body, Footer, Item, Icon, Input } from 'native-base';
+import { Container, Header, Body, Footer, Item, Icon, Input, Toast } from 'native-base';
 import config from '../../src/config';
 
 
@@ -13,6 +13,8 @@ export default class LoginForm extends Component {
             emailText: ""
             ,passPw: ""
             ,loginBool:false
+            ,networkState:true
+            ,showToast:false
         }
 
 
@@ -21,7 +23,7 @@ export default class LoginForm extends Component {
 
     componentWillUpdate()
     {
-        console.log("componentWillUpdate");
+        console.log(this.state.networkState);
     }
     componentDidUpdate() {
         if (this.state.loginBool == true) {
@@ -134,7 +136,15 @@ export default class LoginForm extends Component {
 
             })
             .catch((error) => {
-                console.error(error);
+                Alert.alert(
+                    'Error',
+                    'Network Error',
+                    [
+                        {text: '확인', onPress: () => console.log('OK Pressed')},
+                    ],
+                    { cancelable: false }
+                )
+                return;
             });
     }
 

@@ -8,17 +8,18 @@ import renderIf from 'render-if'
 export default class Survey extends Component {
 
 
-    constructor(){
-        super();
+    constructor(props){
+        super(props);
         this.state ={
             stepView:1
         }
+
+
     }
 
     stepNext(value){
 
         this.setState({stepView: value});
-        console.log(value);
     }
 
     render() {
@@ -57,7 +58,7 @@ export default class Survey extends Component {
                                     <Text style={SurveyFormStyle.contentsSize}>이 설문조사는 응답하신 문항에 따라 포인트가 달라집니다.</Text>
                                 </View>
                                 <View>
-                                    <Text style={SurveyFormStyle.contentsSize}>설문을 끝까지 완료하신 경우에는 <Text style={SurveyFormStyle.boldFont}>800P</Text>를 설문대상자가 아니거나 초과된 경우에는 <Text style={SurveyFormStyle.boldFont}>최소 10P</Text>를 받으실 수 있습니다.</Text>
+                                    <Text style={SurveyFormStyle.contentsSize}>설문을 끝까지 완료하신 경우에는 <Text style={SurveyFormStyle.boldFont}>{this.props.point}P</Text>를 설문대상자가 아니거나 초과된 경우에는 <Text style={SurveyFormStyle.boldFont}>최소 10P</Text>를 받으실 수 있습니다.</Text>
                                 </View>
                                 <View style={SurveyFormStyle.lingBg}></View>
                                 <View>
@@ -66,7 +67,7 @@ export default class Survey extends Component {
                                 <View style={SurveyFormStyle.lingBg}></View>
 
 
-                                <Button bordered full style={{borderColor:"#979797", backgroundColor:"#DA4211", justifyContent: 'center', paddingLeft:10}} onPress={()=>this.stepNext(2)}>
+                                <Button bordered full style={{borderColor:"#979797", backgroundColor:"#DA4211", justifyContent: 'center', paddingLeft:10}} onPress={()=>Actions.SurveyJoin({campaign_code:this.props.campaign_code, quest_num:this.props.quest_num})}>
                                     <Text style={{marginLeft:10, color:"#ffffff"}}>네, 확인했습니다.</Text>
                                 </Button>
 
@@ -76,16 +77,7 @@ export default class Survey extends Component {
                     )}
                     
                 </Content>
-                <Footer style={{backgroundColor:"#222222", width:"100%", height:44, justifyContent: 'flex-end', alignItems: 'flex-end'}}>
-                    {renderIf(this.state.stepView == 2)(
-                        <TouchableOpacity style={{width:"100%", height:"100%", justifyContent: 'flex-end', alignItems: 'flex-end'}} onPress={()=>this.preQ1_Check()}>
-                            <View>
-                                <Text style={{color:"#ffffff", paddingRight:20,paddingBottom:20}}>다음단계</Text>
-                            </View>
-                        </TouchableOpacity>
-                    )}
 
-                </Footer>
             </Container>
         );
     }

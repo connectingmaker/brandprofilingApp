@@ -22,6 +22,8 @@ export default class Main extends Component {
         this.state = {index: 0} // default screen index
         this.lastBackButtonPress = null;
 
+
+
     }
 
 
@@ -139,7 +141,7 @@ export default class Main extends Component {
                 </Right>
             </Header>
                 <Content style={{padding:10}}>
-                    <AppComponent />
+                    <AppComponent uid={this.props.uid} />
 
                 </Content>
                 <Footer>

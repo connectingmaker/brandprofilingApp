@@ -3,13 +3,14 @@ import { Actions } from 'react-native-router-flux';
 import { View, Text, Image, StyleSheet, TouchableOpacity } from 'react-native';
 import { Container, Header, Body, Content, Footer,Item, Icon, Input,Button } from 'native-base';
 import renderIf from 'render-if'
+import config from '../config';
 
 
 
 export default class Pwchange extends Component {
 
-    constructor(){
-        super();
+    constructor(props){
+        super(props);
         this.state ={
             stepView:1
             ,emailBool:false
@@ -20,11 +21,69 @@ export default class Pwchange extends Component {
             ,newPw:""
             ,re_newPw:""
         }
+
+
     }
 
     /**** 이메일 계정과 핸드폰번호 확인 *******/
     pwCheck() {
-        this.stepNext(2);
+        //this.stepNext(2);
+
+        const reg = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+        var jsonData = {
+            emailString: this.state.emailText
+            ,phoneNumber : this.state.phoneNumber
+            ,uid:this.props.uid
+        };
+
+
+
+        if (reg.test(this.state.emailText) === true){
+            var object = {
+                method: 'POST'
+                ,headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                }
+                ,body:JSON.stringify(jsonData)
+            };
+
+            fetch(config.SERVER_URL+'/api/pwdUserCheck', object)
+                .then((response) => response.json())
+                .then((responseJson) => {
+                console.log(responseJson.ERR_CODE);
+                    switch(responseJson.ERR_CODE) {
+                        case "000":
+                            this.stepNext(3);
+                            break;
+                        default:
+                            this.setState({emailText:"", phoneNumber:""})
+                            Alert.alert(
+                                'Error',
+                                '정보가 일치하지 않습니다.',
+                                [
+                                    {text: '확인'},
+                                ],
+                                { cancelable: false }
+                            )
+                            break;
+                    }
+                })
+                .catch((error) => {
+                    console.error(error);
+                });
+        }
+        else{
+            this.setState({emailText:""})
+            Alert.alert(
+                'Error',
+                '이메일형식이 올바르지 않습니다.',
+                [
+                    {text: '확인'},
+                ],
+                { cancelable: false }
+            )
+        }
 
     }
     /**** 인증 번호 체크 *****/
@@ -34,7 +93,72 @@ export default class Pwchange extends Component {
 
     /**** 새로운 비밀 번호 체크 *****/
     newPwCheck(){
-        this.stepNext(4);
+        //this.stepNext(4);
+
+        var passwordRules = /^(?=.*[a-zA-Z])(?=.*[!@#$%^*])(?=.*[0-9]).{6,16}$/;
+
+        if(!/^[a-zA-Z0-9]{6,16}$/.test(this.state.newPw)){
+            Alert.alert(
+                'Error',
+                '숫자와 영문자 조합으로 6~16자리를 사용해야 합니다.',
+                [
+                    {text: '확인', onPress: () => console.log('OK Pressed')},
+                ],
+                { cancelable: false }
+            );
+            return;
+        } else {
+            if(this.state.newPw != this.state.re_newPw) {
+                Alert.alert(
+                    'Error',
+                    '숫자와 영문자 조합으로 6~16자리를 사용해야 합니다.',
+                    [
+                        {text: '확인', onPress: () => console.log('OK Pressed')},
+                    ],
+                    { cancelable: false }
+                );
+                return;
+            }
+            var object = {
+                method: 'POST',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                },
+                body:JSON.stringify( {
+                    'uid': this.props.uid
+                    ,'newPw': this.state.newPw
+
+                })
+            };
+
+            fetch(config.SERVER_URL+'/api/pwdChange', object)
+                .then((response) => response.json())
+                .then((responseJson) => {
+                    switch(responseJson.ERR_CODE) {
+                        case "000":
+                            this.stepNext(4);
+                            break;
+                        default:
+                            Alert.alert(
+                                'Error',
+                                '오류가 발생되었습니다.',
+                                [
+                                    {text: '확인', onPress: () => console.log('OK Pressed')},
+                                ],
+                                { cancelable: false }
+                            );
+                            return;
+                            break;
+                    }
+                })
+                .catch((error) => {
+                    console.error(error);
+                });
+
+
+            //this.stepNext(6);
+        }
     }
 
 
