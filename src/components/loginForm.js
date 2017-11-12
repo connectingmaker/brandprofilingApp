@@ -174,9 +174,11 @@ export default class LoginForm extends Component {
                 </Item>
                 </Body>
 
-                <Footer style={LoginFormStyle.loginBg}>
-                    <Text style={{color:"#ffffff"}} onPress={() => this.loginCheck()}>로그인</Text>
-                </Footer>
+                <TouchableOpacity onPress={() => this.loginCheck()} style={{alignSelf: 'stretch', alignItems:'center', justifyContent:'center'}}>
+                    <Footer style={LoginFormStyle.loginBg}>
+                        <Text style={{color:"#ffffff"}} >로그인</Text>
+                    </Footer>
+                </TouchableOpacity>
 
             </Container>
 

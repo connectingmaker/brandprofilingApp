@@ -40,9 +40,8 @@ export default class myPage extends Component {
 
     logout()
     {
-        AsyncStorage.clear(); // to clear the token
+        AsyncStorage.clear(() => Actions.rootLogin({type:"reset"})); // to clear the token
 
-        Actions.rootLogin({type:"reset"});
     }
 
     loadJSONData() {
