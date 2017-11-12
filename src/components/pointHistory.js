@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { StyleSheet, Image, View, TouchableOpacity, Text ,ScrollView, ListView} from 'react-native';
+import { StyleSheet, Image, View, TouchableOpacity, Text ,ScrollView, ListView, AsyncStorage} from 'react-native';
 import { Actions } from 'react-native-router-flux';
 import { Container, Header, Content, Footer, Item, Icon, Input, Button ,ActionSheet, Spinner} from 'native-base';
 import config from '../../src/config';
@@ -53,19 +53,32 @@ export default class pointHistory extends Component {
                 'Content-Type': 'text/html'
             }
         }
-        fetch(config.SERVER_URL+"/api/pointHistory", object)
-            .then((response) => response.json())
-            .then((responseData) =>
-            {
-                if(this.mounted) {
-                    var data = eval("(" + responseData.inPointList + ")");
-                    var Bankdata = eval("(" + responseData.bankPointList + ")");
-                    this.setState({loaded:true, myPoint:responseData.userPoint, dataSource:this.state.dataSource.cloneWithRows(data), BankdataSource:this.state.BankdataSource.cloneWithRows(Bankdata)});
-                }
-            })
-            .catch((err) => {
-                console.log(err);
-            });
+        AsyncStorage.getItem(config.STORE_KEY).then((value) => {
+            var json = eval("(" + value + ")");
+            var uid = json.SESS_UID;
+
+            fetch(config.SERVER_URL+"/api/pointHistory/"+uid, object)
+                .then((response) => response.json())
+                .then((responseData) =>
+                {
+                    if(this.mounted) {
+                        var data = eval("(" + responseData.inPointList + ")");
+                        var Bankdata = eval("(" + responseData.bankPointList + ")");
+                        this.setState({loaded:true, myPoint:responseData.userPoint, dataSource:this.state.dataSource.cloneWithRows(data), BankdataSource:this.state.BankdataSource.cloneWithRows(Bankdata)});
+                    }
+                })
+                .catch((err) => {
+                    console.log(err);
+                });
+
+        }).then(res => {
+
+            this.setState({loaded:true})
+        });
+
+
+
+
     }
 
 

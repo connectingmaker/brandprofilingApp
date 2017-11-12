@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 import { Actions } from 'react-native-router-flux';
-import { View, Text, Image, StyleSheet, TouchableOpacity,AlertIOS,Alert,Platform } from 'react-native';
-import { Container, Header, Body, Content, Footer,Item, Icon, Input,Button } from 'native-base';
+import { View, Text, Image, StyleSheet, TouchableOpacity,AlertIOS,Alert,Platform, AsyncStorage } from 'react-native';
+import { Container, Header, Body, Content, Footer,Item as FormItem, Icon, Input,Button,Picker, Form } from 'native-base';
+import config from '../config';
 
 
 import renderIf from 'render-if'
-
-
+const Item = Picker.Item;
 export default class Payment extends Component {
 
 
@@ -19,7 +19,10 @@ export default class Payment extends Component {
             ,cashBackAccount:""
             ,bank:""
             ,message:""
+            ,username:""
+            ,point: ""
             ,promptVisible:false
+            ,banklist:[{code : "", bank_name:""}]
         }
     }
 
@@ -31,7 +34,7 @@ export default class Payment extends Component {
                 [
 
                     {text: '최소', onPress: () => console.log('Cancel Pressed'), style: 'cancel'},
-                    {text: '확인', onPress: password => this.stepNext(2)},
+                    {text: '확인', onPress: password => this.stepNext(2, password)},
                 ],
                 'secure-text'
             );
@@ -42,7 +45,7 @@ export default class Payment extends Component {
                 [
 
                     {text: '최소', onPress: () => console.log('Cancel Pressed'), style: 'cancel'},
-                    {text: '확인', onPress: password => this.stepNext(2)},
+                    {text: '확인', onPress: password => this.stepNext(2, password)},
                 ],
                 'secure-text'
             );
@@ -64,10 +67,99 @@ export default class Payment extends Component {
             { cancelable: false }
         )
     }
-    stepNext(value){
+    stepNext(value,passwd){
+        //console.log(passwd);
+        switch(value) {
+            case 2:
 
-        this.setState({stepView: value});
-        console.log(value);
+                AsyncStorage.getItem(config.STORE_KEY).then((value) => {
+                    var json = eval("(" + value + ")");
+                    var email = json.SESS_USEREMAIL;
+                    console.log(json);
+
+                    var object = {
+                        method: 'POST',
+                        headers: {
+                            'Accept': 'application/json',
+                            'Content-Type': 'application/json'
+                        },
+                        body:JSON.stringify( {
+                            'useremail': email
+                            ,'userpasswd':passwd
+
+                        })
+                    };
+
+
+                    fetch(config.SERVER_URL+"/api/memberSelectBank", object)
+                        .then((response) => response.json())
+                        .then((responseData) =>
+                        {
+                            var ERR_CODE = responseData.user[0].ERR_CODE;
+                            var BANK_LIST = responseData.bank;
+
+                            for(var i = 0; i<BANK_LIST.length; i++) {
+
+                            }
+
+
+
+                            console.log(BANK_LIST);
+
+
+                            switch(ERR_CODE) {
+                                case "000":
+                                    var POINT = responseData.user[0].POINT;
+                                    //var POINT = 3000;
+                                    var USERNAME = responseData.user[0].USERNAME;
+
+                                    if(POINT < 5000) {
+                                        Alert.alert(
+                                            'Error',
+                                            '포인트가 부족합니다.',
+                                            [
+                                                {text: '확인', onPress: () => Actions.pop({})},
+                                            ],
+                                            { cancelable: false }
+                                        )
+                                        return;
+                                    }
+
+
+                                    this.setState({stepView: 2});
+                                    this.setState({point:POINT, username: USERNAME});
+                                    break;
+                                default:
+                                    Alert.alert(
+                                        'Error',
+                                        '패스워드가 일치하지 않습니다',
+                                        [
+                                            {text: '확인', onPress: () => ""},
+                                        ],
+                                        { cancelable: false }
+                                    )
+                                    return;
+                                    break;
+                            }
+
+                        })
+                        .catch((err) => {
+                            console.log(err);
+                        });
+
+
+                }).then(res => {
+                    console.log("ERR");
+                });
+
+
+                break;
+        }
+
+
+
+        //this.setState({stepView: value});
+        //console.log(value);
     }
 
     render() {
@@ -192,7 +284,7 @@ export default class Payment extends Component {
                                     <Text style={{color:'#4D4D4D',fontSize:15,fontWeight: 'bold'}}>예금주(받으시는 분)</Text>
                                 </View>
                                 <View style={{flex:0.6,alignItems:'flex-end'}}>
-                                    <Text style={{color:'#4D4D4D',fontSize:15,fontWeight: 'bold'}}>류성재</Text>
+                                    <Text style={{color:'#4D4D4D',fontSize:15,fontWeight: 'bold'}}>{this.state.username}</Text>
                                 </View>
                             </View>
                             <View style={paymentFormStyle.lingBg}></View>
@@ -202,7 +294,7 @@ export default class Payment extends Component {
                                     <Text style={{color:'#4D4D4D',fontSize:15,fontWeight: 'bold'}}>나의 포인트</Text>
                                 </View>
                                 <View style={{flex:0.6,alignItems:'flex-end'}}>
-                                    <Text style={paymentFormStyle.boldFont}>32,900P</Text>
+                                    <Text style={paymentFormStyle.boldFont}>{this.state.point}P</Text>
                                 </View>
                             </View>
                             <View style={paymentFormStyle.lingBg}></View>
@@ -218,21 +310,33 @@ export default class Payment extends Component {
                         </View>
                         <View>
                             <View style={{paddingTop:20,paddingLeft:20,paddingRight:20,paddingBottom:5}}>
-                                <Item regular style={{backgroundColor:"#ffffff"}}>
                                     <Input placeholder='환급 받으실 금액 입력' style={paymentFormStyle.input} value={this.state.cashBackPoint} onChangeText={(text) => this.setState({cashBackPoint: text})} keyboardType="numeric"/>
-                                </Item>
+
                             </View>
 
                             <View style={{paddingLeft:20,paddingRight:20,paddingBottom:5}}>
-                                <Item regular style={{backgroundColor:"#ffffff"}}>
-                                    <Input placeholder='은행 선택' style={paymentFormStyle.input} value={this.state.bank} onChangeText={(text) => this.setState({bank: text})} keyboardType="default"/>
-                                </Item>
+
+                                    <Picker
+                                        mode="dropdown"
+                                        headerStyle={{ backgroundColor: "#b95dd3" }}
+                                        headerBackButtonTextStyle={{ color: "#fff" }}
+                                        headerTitleStyle={{ color: "#fff" }}
+                                        style={{paddingTop:13
+                                            ,paddingLeft:11
+                                            ,paddingBottom:12
+                                            ,backgroundColor: "#ffffff"
+                                            ,width:"100%"}}
+                                        >
+                                        <Item label="Wallet" value="key0" />
+                                        <Item label="ATM Card" value="key1" />
+                                        <Item label="Debit Card" value="key2" />
+                                        <Item label="Credit Card" value="key3" />
+                                        <Item label="Net Banking" value="key4" />
+                                    </Picker>
                             </View>
 
                             <View style={{paddingLeft:20,paddingRight:20,paddingBottom:20}}>
-                                <Item regular style={{backgroundColor:"#ffffff"}}>
                                     <Input placeholder='계좌번호 입력' style={paymentFormStyle.input} value={this.state.cashBackAccount} onChangeText={(text) => this.setState({cashBackAccount: text})} keyboardType="numeric"/>
-                                </Item>
                             </View>
                             <Button bordered full style={{borderColor:"#979797", backgroundColor:"#DA4211", justifyContent: 'center', paddingLeft:10}}>
                                 <Text style={{marginLeft:10, color:"#ffffff"}} onPress={()=>this.Endcheck()}>신청하기</Text>
@@ -277,9 +381,18 @@ export default class Payment extends Component {
                 )}
 
                 </Content>
-                <Footer style={{backgroundColor:"#222222", width:"100%", height:44, justifyContent: 'flex-end', alignItems: 'flex-end'}}>
 
-                </Footer>
+                {renderIf(this.state.stepView == 2)(
+                    <Footer style={{backgroundColor:"#222222", width:"100%", height:44, justifyContent: 'flex-end', alignItems: 'center'}}>
+                        <Text style={{color:"#b2b2b2",paddingLeft:20}}>신청하기 ></Text>
+                    </Footer>
+                )}
+
+                {renderIf(this.state.stepView == 1)(
+                    <Footer style={{backgroundColor:"#222222", width:"100%", height:44, justifyContent: 'flex-end', alignItems: 'flex-end'}}>
+
+                    </Footer>
+                )}
 
             </Container>
         );

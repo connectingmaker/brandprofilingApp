@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { StyleSheet, Image, View, TouchableOpacity, Text ,ScrollView, ListView} from 'react-native';
+import { StyleSheet, Image, View, TouchableOpacity, Text ,ScrollView, ListView, AsyncStorage} from 'react-native';
 import { Actions } from 'react-native-router-flux';
 import { Container, Header, Content, Footer, Item, Icon, Input, Button ,ActionSheet, Spinner} from 'native-base';
 import config from '../../src/config';
@@ -47,17 +47,33 @@ export default class mySurvey extends Component {
                 'Content-Type': 'text/html'
             }
         }
-        fetch(config.SERVER_URL+"/api/campaignList", object)
-            .then((response) => response.json())
-            .then((responseData) =>
-            {
-                if(this.mounted) {
-                    this.setState({loaded:true, dataSource:this.state.dataSource.cloneWithRows(responseData)});
-                }
-            })
-            .catch((err) => {
-                console.log(err);
-            });
+
+
+        AsyncStorage.getItem(config.STORE_KEY).then((value) => {
+            var json = eval("("+value+")");
+            var uid = json.SESS_UID;
+            fetch(config.SERVER_URL+"/api/campaignList/"+uid, object)
+                .then((response) => response.json())
+                .then((responseData) =>
+                {
+                    console.log(responseData.length);
+                    if(this.mounted) {
+                        if(responseData.length == 0) {
+                            this.setState({loaded:true});
+                        } else {
+                            this.setState({loaded:true, dataSource:this.state.dataSource.cloneWithRows(responseData)});
+                        }
+
+                    }
+                })
+                .catch((err) => {
+                    console.log(err);
+                });
+
+
+        }).then(res => {
+
+        });
     }
 
     renderSurveyView(obj)

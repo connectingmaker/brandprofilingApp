@@ -13,18 +13,38 @@ export default class SurveyJoin extends Component {
 
     respondToOnMessage = e =>{
         var data = eval("("+e.nativeEvent.data+")");
-        switch(data.ERR_CODE) {
-            case "999":
-                Alert.alert(
-                    'Error',
-                    '참여이력이 존재합니다.',
-                    [
-                        {text: '확인', onPress: () => console.log('OK Pressed')},
-                    ],
-                    { cancelable: false }
-                )
-                Actions.pop();
-                break;
+        if(data.SURVEY_TYPE == "END") {
+            switch (data.ERR_CODE) {
+                case "000":
+                    Alert.alert(
+                        'Error',
+                        '설문이 완료되었습니다.',
+                        [
+                            {text: '확인', onPress: () => console.log('OK Pressed')},
+                        ],
+                        {cancelable: false}
+                    )
+
+                    //Actions.Survey({type:"reset"});
+                    Actions.pop();
+                    break;
+            }
+        } else {
+            switch (data.ERR_CODE) {
+                case "999":
+                    Alert.alert(
+                        'Error',
+                        '참여이력이 존재합니다.',
+                        [
+                            {text: '확인', onPress: () => console.log('OK Pressed')},
+                        ],
+                        {cancelable: false}
+                    )
+
+                    //Actions.Survey({type:"reset"});
+                    Actions.pop();
+                    break;
+            }
         }
 
         //console.log(data.ERR_CODE);

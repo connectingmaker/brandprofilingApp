@@ -62,7 +62,7 @@ export default class surveyList extends Component {
                 .then((response) => response.json())
                 .then((responseData) =>
                 {
-                    console.log(responseData.length);
+                    console.log(responseData);
                     if(this.mounted) {
                         if(responseData.length == 0) {
                             this.setState({loaded:true});
@@ -95,7 +95,7 @@ export default class surveyList extends Component {
                             <Image source={require('../../assets/img/main_icon_logo_on.png')} resizeMode={'contain'} style={{width:20,height:20}}/>
                         </View>
                         <View style={{flex:0.8,alignItems:'flex-start',justifyContent:'center'}}>
-                            <Text style={SurveyFormStyle.boldFont}>200P</Text>
+                            <Text style={SurveyFormStyle.boldFont}>{obj.POINT}P</Text>
                         </View>
                         <View style={{flex:0.1, alignItems:'flex-end'}}>
                             <Text style={{fontSize:11, alignItems:'flex-end'}}>기본</Text>
@@ -128,7 +128,7 @@ export default class surveyList extends Component {
                         <Text style={{color:'#919191',fontSize:12}}>응답시간</Text>
                     </View>
                     <View style={{borderColor: '#d0d0d0', flex: 0.7,padding:5,borderWidth:1,borderColor:"#d0d0d0",borderBottomColor:"#f6f6f6"}}>
-                        <Text style={{color:'#919191',fontSize:13}}>{obj.SURVEY_TIME}</Text>
+                        <Text style={{color:'#919191',fontSize:13}}>{obj.SURVEY_TIME}분</Text>
                     </View>
 
                 </View>
@@ -137,7 +137,7 @@ export default class surveyList extends Component {
                         <Text style={{color:'#919191',fontSize:12}}>모집인원</Text>
                     </View>
                     <View style={{borderColor: '#d0d0d0', flex: 0.7,padding:5,borderWidth:1,borderColor:"#d0d0d0",borderBottomColor:"#d0d0d0"}}>
-                        <Text style={{color:'#919191',fontSize:12}}>5000명 (1238명 참여)</Text>
+                        <Text style={{color:'#919191',fontSize:12}}>{obj.JOIN_CNT} (1238명 참여)</Text>
                     </View>
 
                 </View>
@@ -148,7 +148,7 @@ export default class surveyList extends Component {
                 <View style={SurveyFormStyle.lingBg}></View>
                 <View style={{flex:1, flexDirection: 'row', paddingTop:5, paddingBottom:5}}>
                     <View style={{flex:0.80, justifyContent:'center'}}>
-                        <Text style={{fontSize:12}}>2017.10.21 ~ 완료시까지</Text>
+                        <Text style={{fontSize:12}}>{obj.CAMPAIGN_STARTDATE} ~ {obj.CAMPAIGN_ENDDATE}</Text>
                     </View>
                     <View style={{flex:0.20}}>
                         <Button bordered full style={{borderColor:"#979797", backgroundColor:"#DA4211", justifyContent: 'center', height:40}} onPress={() => Actions.Survey({campaign_code: obj.CAMPAIGN_CODE, point: obj.POINT, quest_num: obj.QUEST_NUM})}>
