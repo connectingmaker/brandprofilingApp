@@ -64,7 +64,6 @@ export default class myPage extends Component {
                 .then((response) => response.json())
                 .then((responseData) =>
                 {
-                    console.log(responseData);
                     this.setState({loaded:true, username: responseData.USERNAME, email: responseData.USEREMAIL, sex: responseData.SEX, age: responseData.AGE, brithday: responseData.BRITHDAY})
                 })
                 .catch((err) => {
@@ -72,7 +71,7 @@ export default class myPage extends Component {
                 });
 
         }).then(res => {
-            console.log(res);
+            this.setState({loaded:true, username: "", email: responseData.USEREMAIL, sex: "", age: "", brithday: ""})
         });
 
 

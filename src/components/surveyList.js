@@ -46,9 +46,6 @@ export default class surveyList extends Component {
 
 
     loadJSONData() {
-        /*
-
-        */
         var object = {
             method: 'GET',
             headers: {
@@ -56,23 +53,35 @@ export default class surveyList extends Component {
                 'Content-Type': 'text/html'
             }
         }
-        fetch(config.SERVER_URL+"/api/campaignList", object)
-            .then((response) => response.json())
-            .then((responseData) =>
-            {
-                console.log(responseData.length);
-                if(this.mounted) {
-                    if(responseData.length == 0) {
-                        this.setState({loaded:true});
-                    } else {
-                        this.setState({loaded:true, dataSource:this.state.dataSource.cloneWithRows(responseData)});
-                    }
 
-                }
-            })
-            .catch((err) => {
-                console.log(err);
-            });
+
+        AsyncStorage.getItem(config.STORE_KEY).then((value) => {
+            var json = eval("("+value+")");
+            var uid = json.SESS_UID;
+            fetch(config.SERVER_URL+"/api/campaignList/"+uid, object)
+                .then((response) => response.json())
+                .then((responseData) =>
+                {
+                    console.log(responseData.length);
+                    if(this.mounted) {
+                        if(responseData.length == 0) {
+                            this.setState({loaded:true});
+                        } else {
+                            this.setState({loaded:true, dataSource:this.state.dataSource.cloneWithRows(responseData)});
+                        }
+
+                    }
+                })
+                .catch((err) => {
+                    console.log(err);
+                });
+
+
+        }).then(res => {
+
+        });
+
+
     }
 
     renderSurveyView(obj)
