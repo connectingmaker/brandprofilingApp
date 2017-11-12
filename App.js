@@ -78,6 +78,23 @@ export default class App extends Component<{}> {
         });
     }
 
+    componentDidMount()
+    {
+        console.log("componentDidMount");
+    }
+
+
+    componentWillUpdate()
+    {
+        console.log("componentWillUpdate");
+    }
+
+
+    componentWillUnmount()
+    {
+        console.log("componentWillUnmount");
+    }
+
 
 
     render() {
@@ -92,6 +109,13 @@ export default class App extends Component<{}> {
                         <Scene key="Login" component={Login} initial={this.state.logout} hideNavBar={true}/>
                         <Scene key="LoginForm" component={LoginForm} title="이메일로 로그인" hideNavBar={true}/>
                         <Scene key="Main" component={Main} initial={this.state.logged} uid={this.state.uid} title="사전조사" hideNavBar={true} />
+
+                    </Scene>
+
+                    <Scene key="rootLogin" navigationBarStyle={navStyle.navBar} titleStyle={navStyle.navTitle}
+                    barButtonTextStyle={navStyle.barButtonTextStyle}>
+
+                        <Scene key="Login_logOut" component={Login} hideNavBar={true}/>
 
                     </Scene>
                     <Scene key="JoinForm" component={JoinForm} title="회원가입" hideNavBar={true} direction="vertical" uid={this.state.uid} schema="modal" wrapRouter={true}/>

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { StyleSheet, Image, View, TouchableOpacity, Text ,ScrollView} from 'react-native';
+import { StyleSheet, Image, View, TouchableOpacity, Text ,ScrollView, AsyncStorage} from 'react-native';
 import { Actions } from 'react-native-router-flux';
 import { Container, Header, Content, Footer, Item, Icon, Input, Button ,ActionSheet, Spinner} from 'native-base';
 import config from '../config'
@@ -38,7 +38,12 @@ export default class myPage extends Component {
     }
 
 
+    logout()
+    {
+        AsyncStorage.clear(); // to clear the token
 
+        Actions.rootLogin({type:"reset"});
+    }
 
     loadJSONData() {
         /*
@@ -104,7 +109,7 @@ export default class myPage extends Component {
                             </View>
 
                             <View style={{flex: 0.45}}>
-                                <Button bordered full style={{borderColor: "#979797"}}>
+                                <Button bordered full style={{borderColor: "#979797"}} onPress={() => this.logout()}>
                                     <Text>로그아웃</Text>
                                 </Button>
                             </View>

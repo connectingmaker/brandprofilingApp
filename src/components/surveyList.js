@@ -60,9 +60,14 @@ export default class surveyList extends Component {
             .then((response) => response.json())
             .then((responseData) =>
             {
+                console.log(responseData.length);
                 if(this.mounted) {
+                    if(responseData.length == 0) {
+                        this.setState({loaded:true});
+                    } else {
+                        this.setState({loaded:true, dataSource:this.state.dataSource.cloneWithRows(responseData)});
+                    }
 
-                    this.setState({loaded:true, dataSource:this.state.dataSource.cloneWithRows(responseData)});
                 }
             })
             .catch((err) => {
