@@ -48,24 +48,33 @@ export default class myPage extends Component {
         /*
 
          */
-        var object = {
-            method: 'GET',
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'text/html'
-            }
-        }
+        AsyncStorage.getItem(config.STORE_KEY).then((value) => {
+            var json = eval("(" + value + ")");
+            var uid = json.SESS_UID;
 
-        fetch(config.SERVER_URL+"/api/memberSelect/"+this.props.uid, object)
-            .then((response) => response.json())
-            .then((responseData) =>
-            {
-                console.log(responseData);
-                this.setState({loaded:true, username: responseData.USERNAME, email: responseData.USEREMAIL, sex: responseData.SEX, age: responseData.AGE, brithday: responseData.BRITHDAY})
-            })
-            .catch((err) => {
-                console.log(err);
-            });
+            var object = {
+                method: 'GET',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'text/html'
+                }
+            }
+
+            fetch(config.SERVER_URL+"/api/memberSelect/"+uid, object)
+                .then((response) => response.json())
+                .then((responseData) =>
+                {
+                    console.log(responseData);
+                    this.setState({loaded:true, username: responseData.USERNAME, email: responseData.USEREMAIL, sex: responseData.SEX, age: responseData.AGE, brithday: responseData.BRITHDAY})
+                })
+                .catch((err) => {
+                    console.log(err);
+                });
+
+        }).then(res => {
+            console.log(res);
+        });
+
 
     }
 

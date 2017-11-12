@@ -27,8 +27,9 @@ export default class LoginForm extends Component {
     }
     componentDidUpdate() {
         if (this.state.loginBool == true) {
-            console.log("로그인 성공");
+            //console.log("로그인 성공");
             Actions.Main();
+            //Actions.pop({ refresh: { someProp: 'new Value'}});
         }
     }
 
