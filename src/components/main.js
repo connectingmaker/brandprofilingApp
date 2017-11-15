@@ -151,7 +151,7 @@ export default class Main extends Component {
                             <Image source={require('../../assets/img/surveyList_icon_on.png')} resizeMode={'contain'} style={{width:25,height:25}}/><Text style={{color:"#DA4211", fontSize:12, paddingTop:5}}>설문목록</Text>
                         </Button>
                         <Button onPress={() => this.switchScreen(1) }>
-                            <Image source={require('../../assets/img/mySurvey_icon_off.png')} resizeMode={'contain'} style={{width:25,height:25}}/><Text style={{fontSize:12, paddingTop:5}}>나의설문</Text>
+                            <Image source={require('../../assets/img/mySurvey_icon_off.png')} resizeMode={'contain'} style={{width:25,height:25}}/><Text style={{fontSize:12, paddingTop:5}}>완료설문</Text>
                         </Button>
                         <Button onPress={() => this.switchScreen(3) }>
                             <Image source={require('../../assets/img/point_icon_off.png')} resizeMode={'contain'} style={{width:25,height:25}}/><Text style={{fontSize:12, paddingTop:5}}>포인트</Text>
@@ -168,7 +168,7 @@ export default class Main extends Component {
                                 <Image source={require('../../assets/img/surveyList_icon_off.png')} resizeMode={'contain'} style={{width:25,height:25}}/><Text style={{fontSize:12, paddingTop:5}}>설문목록</Text>
                             </Button>
                             <Button onPress={() => this.switchScreen(1) }>
-                                <Image source={require('../../assets/img/mySurvey_icon_on.png')} resizeMode={'contain'} style={{width:25,height:25}}/><Text style={{color:"#DA4211", fontSize:12, paddingTop:5}}>나의설문</Text>
+                                <Image source={require('../../assets/img/mySurvey_icon_on.png')} resizeMode={'contain'} style={{width:25,height:25}}/><Text style={{color:"#DA4211", fontSize:12, paddingTop:5}}>완료설문</Text>
                             </Button>
                             <Button onPress={() => this.switchScreen(3) }>
                                 <Image source={require('../../assets/img/point_icon_off.png')} resizeMode={'contain'} style={{width:25,height:25}}/><Text style={{fontSize:12, paddingTop:5}}>포인트</Text>
@@ -185,7 +185,7 @@ export default class Main extends Component {
                                 <Image source={require('../../assets/img/surveyList_icon_off.png')} resizeMode={'contain'} style={{width:25,height:25}}/><Text style={{fontSize:12, paddingTop:5}}>설문목록</Text>
                             </Button>
                             <Button onPress={() => this.switchScreen(1) }>
-                                <Image source={require('../../assets/img/mySurvey_icon_off.png')} resizeMode={'contain'} style={{width:25,height:25}}/><Text style={{fontSize:12, paddingTop:5}}>나의설문</Text>
+                                <Image source={require('../../assets/img/mySurvey_icon_off.png')} resizeMode={'contain'} style={{width:25,height:25}}/><Text style={{fontSize:12, paddingTop:5}}>완료설문</Text>
                             </Button>
                             <Button onPress={() => this.switchScreen(3) }>
                                 <Image source={require('../../assets/img/point_icon_on.png')} resizeMode={'contain'} style={{width:25,height:25}}/><Text style={{color:"#DA4211", fontSize:12, paddingTop:5}}>포인트</Text>
@@ -202,7 +202,7 @@ export default class Main extends Component {
                                 <Image source={require('../../assets/img/surveyList_icon_off.png')} resizeMode={'contain'} style={{width:25,height:25}}/><Text style={{fontSize:12, paddingTop:5}}>설문목록</Text>
                             </Button>
                             <Button onPress={() => this.switchScreen(1) }>
-                                <Image source={require('../../assets/img/mySurvey_icon_off.png')} resizeMode={'contain'} style={{width:25,height:25}}/><Text style={{fontSize:12, paddingTop:5}}>나의설문</Text>
+                                <Image source={require('../../assets/img/mySurvey_icon_off.png')} resizeMode={'contain'} style={{width:25,height:25}}/><Text style={{fontSize:12, paddingTop:5}}>완료설문</Text>
                             </Button>
                             <Button onPress={() => this.switchScreen(3) }>
                                 <Image source={require('../../assets/img/point_icon_off.png')} resizeMode={'contain'} style={{width:25,height:25}}/><Text style={{fontSize:12, paddingTop:5}}>포인트</Text>

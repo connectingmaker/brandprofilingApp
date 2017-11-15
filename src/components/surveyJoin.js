@@ -11,6 +11,12 @@ export default class SurveyJoin extends Component {
 
     }
 
+    complateSurvey()
+    {
+        Actions.pop({ refresh: {stepView: 2}})
+    }
+
+
     respondToOnMessage = e =>{
         var data = eval("("+e.nativeEvent.data+")");
         if(data.SURVEY_TYPE == "END") {
@@ -25,8 +31,7 @@ export default class SurveyJoin extends Component {
                         {cancelable: false}
                     )
 
-                    //Actions.Survey({type:"reset"});
-                    Actions.pop();
+                    Actions.pop({ refresh: {stepView: 2}})
                     break;
             }
         } else {
@@ -42,11 +47,12 @@ export default class SurveyJoin extends Component {
                     )
 
                     //Actions.Survey({type:"reset"});
-                    Actions.pop();
+                    Actions.pop({ refresh: {stepView: 2}})
                     break;
             }
         }
 
+        
         //console.log(data.ERR_CODE);
     };
 
@@ -58,7 +64,7 @@ export default class SurveyJoin extends Component {
 
                 <Header style={noticeFormStyle.headerLayout}>
                     <View style={{flex:.1, justifyContent: 'center', alignItems: 'center'}}>
-                        <Text style={{fontSize:12,color:'#fff'}} onPress={Actions.pop}>나가기</Text>
+                        <Text style={{fontSize:12,color:'#fff'}} onPress={() => Actions.pop() }>나가기</Text>
                     </View>
                     <View style={{flex:.8, justifyContent: 'center', alignItems: 'center'}}>
                         <Text style={{fontSize:16,color:'#fff'}}>설문참여</Text>

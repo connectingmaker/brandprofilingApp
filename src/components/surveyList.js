@@ -43,6 +43,13 @@ export default class surveyList extends Component {
     }
 
 
+    componentWillReceiveProps(nextProps)
+    {
+        this.setState({loaded:false})
+        this.loadJSONData();
+    }
+
+
 
 
     loadJSONData() {
@@ -62,7 +69,6 @@ export default class surveyList extends Component {
                 .then((response) => response.json())
                 .then((responseData) =>
                 {
-                    console.log(responseData);
                     if(this.mounted) {
                         if(responseData.length == 0) {
                             this.setState({loaded:true});

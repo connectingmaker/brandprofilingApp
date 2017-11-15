@@ -17,6 +17,11 @@ export default class Survey extends Component {
 
     }
 
+    componentWillReceiveProps(nextProps)
+    {
+        this.setState({stepView: nextProps.stepView});
+    }
+
     stepNext(value){
 
         this.setState({stepView: value});
@@ -28,10 +33,9 @@ export default class Survey extends Component {
         return (
 
             <Container>
-                {renderIf(this.state.stepView == 1)(
                     <Header style={SurveyFormStyle.headerLayout2}>
                         <View style={{flex:.1, justifyContent: 'center', alignItems: 'center'}}>
-                            <Text style={{fontSize:12,color:'#fff'}} onPress={Actions.pop}>나가기</Text>
+                            <Text style={{fontSize:12,color:'#fff'}} onPress={() => Actions.pop({ refresh: {data: false}})}>나가기</Text>
                         </View>
                         <View style={{flex:.8, justifyContent: 'center', alignItems: 'center'}}>
                             <Text style={{fontSize:16,color:'#fff'}}>설문하기</Text>
@@ -39,8 +43,7 @@ export default class Survey extends Component {
                         <View style={{flex:.1, justifyContent: 'center', alignItems: 'center'}}>
                         </View>
                     </Header>
-                )}
-                
+
                 <Content style={{padding:10}}>
                     {renderIf(this.state.stepView == 1)(
                         <View>
@@ -75,6 +78,40 @@ export default class Survey extends Component {
 
                         </View>
                     )}
+                    {renderIf(this.state.stepView == 2)(
+                    <View>
+                        <View style={preSurveyFormStyle.contentsLayout}>
+                            <View>
+                                <View style={{padding:10,alignItems:'center'}}>
+                                    <Image source={require('../../assets/img/presurvey_icon_list.png')} resizeMode={'contain'} style={{width:30,height:30}}/>
+                                </View>
+                                <View style={{padding:10,alignItems:'center'}}>
+                                    <Text style={{fontSize:12}}>추가정보가 성공적으로 제출되었습니다.</Text>
+                                </View>
+                            </View>
+                            <View style={preSurveyFormStyle.lingBg}></View>
+                            <View>
+                                <Text style={preSurveyFormStyle.contentsSize}>저희의 감사한 마음을 담아, <Text style={preSurveyFormStyle.boldFont}>{this.props.point}P</Text>를 회원님의 적립함에 넣어드렸어요! 소중한 참여 다시한번 감사합니다.</Text>
+                            </View>
+                            <View style={preSurveyFormStyle.lingBg}></View>
+                            <View>
+                                <Text style={preSurveyFormStyle.contentsSize}>이제 새로운 설문에 참여해보세요!</Text>
+                            </View>
+                            <View style={{flex:1, flexDirection: 'row', paddingTop:5, paddingBottom:5}}>
+
+
+                                <View style={{flex:1}}>
+                                    <Button bordered full style={{borderColor:"#979797",backgroundColor:"#DA4211"}}>
+                                        <Text style={{color:"#fff"}} onPress={() => Actions.pop({ refresh: {data: true}})}>참여가능  설문</Text>
+                                    </Button>
+                                </View>
+                            </View>
+
+
+
+                        </View>
+                    </View>
+                        )}
                     
                 </Content>
 
@@ -145,6 +182,69 @@ const SurveyFormStyle = StyleSheet.create({
 
 
 })
+
+
+const preSurveyFormStyle = StyleSheet.create({
+    headerLayout: {
+        justifyContent: 'center', alignItems: 'center', backgroundColor: "#222222"
+    }
+    ,headerLayout2: {
+        justifyContent: 'center', alignItems: 'center', backgroundColor: "#DA4211"
+
+    }
+    ,bodyLayout : {
+        width: "100%"
+    }
+    ,contentsLayout: {
+        width: "100%"
+        ,paddingTop:10
+        ,paddingBottom:10
+        ,paddingLeft:20
+        ,paddingRight:20
+        ,backgroundColor:"#fff"
+        ,shadowColor: "rgba(0,0,0,23)"
+        ,shadowOffset: { width: 0, height: 1 }
+        ,shadowOpacity: 0.3
+    }
+    ,contentsLayout2: {
+        width: "100%"
+        ,paddingTop:10
+        ,paddingBottom:10
+        ,paddingLeft:20
+        ,paddingRight:20
+        ,backgroundColor:"#f6f6f6"
+        ,shadowColor: "rgba(0,0,0,23)"
+        ,shadowOffset: { width: 0, height: 1 }
+        ,shadowOpacity: 0.3
+    }
+    ,contentsSize: {
+        fontSize:13
+        ,lineHeight:25
+    }
+    ,boldFont: {
+        color:"#DA4211"
+        ,fontWeight: 'bold'
+    }
+    ,input: {
+        fontSize:12
+        ,paddingTop:13
+        ,paddingLeft:11
+        ,paddingBottom:12
+        ,height:38
+        ,backgroundColor: "#ffffff"
+    }
+
+    ,lingBg: {
+        backgroundColor:"rgba(127,127,127,0.3)"
+        ,height:1
+        ,marginTop:10
+        ,marginBottom:10
+
+    }
+
+
+})
+
 
 const styles = StyleSheet.create({
     radio: {
