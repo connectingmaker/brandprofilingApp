@@ -40,7 +40,7 @@ export default class myPage extends Component {
 
     logout()
     {
-        AsyncStorage.clear(() => Actions.rootLogin({type:"reset"})); // to clear the token
+        AsyncStorage.clear(() => Actions.root({type:"reset", refresh: true})); // to clear the token
 
     }
 

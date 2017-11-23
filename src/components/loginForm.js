@@ -48,7 +48,7 @@ export default class LoginForm extends Component {
     {
         if(this.state.emailText == ""){
             Alert.alert(
-                'Error',
+                '',
                 '이메일정보를 입력해주세요.',
                 [
                     {text: '확인', onPress: () => console.log('OK Pressed')},
@@ -60,7 +60,7 @@ export default class LoginForm extends Component {
 
         if(this.state.passPw == ""){
             Alert.alert(
-                'Error',
+                '',
                 '패스워드를 입력해주세요.',
                 [
                     {text: '확인', onPress: () => console.log('OK Pressed')},

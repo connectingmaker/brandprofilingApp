@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import { Actions } from 'react-native-router-flux';
-import { View, Text, Image, StyleSheet, TouchableOpacity } from 'react-native';
+import { View, Text, Image, StyleSheet, TouchableOpacity, Clipboard, Alert } from 'react-native';
 import { Container, Header, Body, Content, Footer,Item, Icon, Input,Button } from 'native-base';
 import renderIf from 'render-if'
+import config from '../../src/config';
 
 
 
@@ -13,12 +14,14 @@ export default class Account extends Component {
         this.state ={
             stepView:1
             ,emailBool:false
+            ,returnEmail:""
             ,pwBool: false
             ,phoneNumber:""
             ,emailText:""
             ,checkNumber:""
             ,newPw:""
             ,re_newPw:""
+            ,authcode:""
         }
     }
 /*
@@ -35,22 +38,212 @@ export default class Account extends Component {
 
     /**** 핸드폰번호 확인 *******/
     phoneCheck() {
-        this.stepNext(4);
+        /*this.stepNext(4);*/
+        if(this.state.phoneNumber == "") {
+            Alert.alert(
+                'Error',
+                '전화번호를 입력해주세요.',
+                [
+                    {text: '확인', onPress: () => console.log('OK Pressed')},
+                ],
+                {cancelable: false}
+            )
+            return;
+        } else {
+
+            var object = {
+                method: 'POST',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                },
+                body:JSON.stringify( {
+                    'userphone': this.state.phoneNumber
+
+                })
+            };
+
+
+            fetch(config.SERVER_URL+"/api/memberEmailSearch", object)
+                .then((response) => response.json())
+                .then((responseData) =>
+                {
+                    var data = responseData;
+
+                    console.log(data);
+
+                    switch(data.ERR_CODE) {
+                        case "000":
+                            this.setState({returnEmail:data.USEREMAIL});
+                            this.stepNext(4);
+                            break;
+                        default:
+                            Alert.alert(
+                                'ERR_CODE='+data.ERR_CODE,
+                                data.ERR_MSG,
+                                [
+                                    {text: '확인', onPress: () => console.log('OK Pressed')},
+                                ],
+                                {cancelable: false}
+                            )
+                            break;
+                    }
+
+                })
+                .catch((err) => {
+                    console.log(err);
+                });
+        }
 
     }
     /**** 이메일 계정과 핸드폰번호 확인 *******/
     pwCheck() {
+        if(this.state.emailText == "") {
+            Alert.alert(
+                'Error',
+                '이메일 계정을 입력해주세요.',
+                [
+                    {text: '확인', onPress: () => console.log('OK Pressed')},
+                ],
+                {cancelable: false}
+            )
+            return;
+        }
+
+        if(this.state.phoneNumber == "") {
+            Alert.alert(
+                'Error',
+                '핸드폰 번호를 입력해주세요.',
+                [
+                    {text: '확인', onPress: () => console.log('OK Pressed')},
+                ],
+                {cancelable: false}
+            )
+            return;
+        }
+
+        var object = {
+            method: 'POST',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            body:JSON.stringify( {
+                'useremail': this.state.emailText
+                ,'userphone': this.state.phoneNumber
+            })
+        };
+
+
+        fetch(config.SERVER_URL+"/api/memberIdPhoneSearch", object)
+            .then((response) => response.json())
+            .then((responseData) =>
+            {
+                var data = responseData;
+
+
+                switch(data.ERR_CODE) {
+                    case "000":
+                        console.log(data.AUTHCODE);
+                        this.setState({authcode:data.AUTHCODE});
+
+                        break;
+                    default:
+                        Alert.alert(
+                            'ERR_CODE='+data.ERR_CODE,
+                            data.ERR_MSG,
+                            [
+                                {text: '확인', onPress: () => console.log('OK Pressed')},
+                            ],
+                            {cancelable: false}
+                        )
+                        break;
+                }
+
+            })
+            .catch((err) => {
+                console.log(err);
+            });
+
+
         this.stepNext(5);
 
     }
     /**** 인증 번호 체크 *****/
     numberCheck(){
-        this.stepNext(6);
+        if(this.state.checkNumber != this.state.authcode) {
+            Alert.alert(
+                "Error",
+                "인증번호가 일치하지 않습니다",
+                [
+                    {text: '확인', onPress: () => console.log('OK Pressed')},
+                ],
+                {cancelable: false}
+            )
+        } else {
+            this.stepNext(6);
+        }
+
     }
 
     /**** 새로운 비밀 번호 체크 *****/
     newPwCheck(){
-        this.stepNext(7);
+        if(this.state.newPw != this.state.re_newPw) {
+            Alert.alert(
+                "Error",
+                "패스워드가 일치하지 않습니다",
+                [
+                    {text: '확인', onPress: () => console.log('OK Pressed')},
+                ],
+                {cancelable: false}
+            )
+        } else {
+            var object = {
+                method: 'POST',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                },
+                body:JSON.stringify( {
+                    'useremail': this.state.emailText
+                    ,'userphone': this.state.phoneNumber
+                    ,'userpw': this.state.newPw
+                })
+            };
+
+
+            fetch(config.SERVER_URL+"/api/memberPwUpdate", object)
+                .then((response) => response.json())
+                .then((responseData) =>
+                {
+                    var data = responseData;
+
+                    console.log(data);
+
+
+                    switch(data.ERR_CODE) {
+                        case "000":
+                            this.stepNext(7);
+
+                            break;
+                        default:
+                            Alert.alert(
+                                'ERR_CODE='+data.ERR_CODE,
+                                data.ERR_MSG,
+                                [
+                                    {text: '확인', onPress: () => console.log('OK Pressed')},
+                                ],
+                                {cancelable: false}
+                            )
+                            break;
+                    }
+
+                })
+                .catch((err) => {
+                    console.log(err);
+                });
+        }
+
     }
 
 
@@ -60,6 +253,14 @@ export default class Account extends Component {
 
         console.log(value);
     }
+
+    writeToClipboard = async () => {
+        alert('TODO: Write to the Clipboard');
+    };
+
+    emailCopy = async () => {
+        await Clipboard.setString(this.state.returnEmail);
+    };
 
 
     render() {
@@ -98,7 +299,7 @@ export default class Account extends Component {
                                 <Image source={require("../../assets/img/join_icon_email.png")} resizeMode={'contain'} style={{width:18, height:18}} />
                                 <Text style={{marginLeft:10}}>이메일 계정 찾기</Text>
                             </Button>
-                            <Button bordered full style={{borderColor:"#979797", backgroundColor:"#ffffff", justifyContent:'flex-start', paddingLeft:10}} onPress={()=>this.stepNext(3)}>
+                            <Button bordered full style={{borderColor:"#979797", backgroundColor:"#ffffff", justifyContent:'flex-start', paddingLeft:10, marginTop:11 }} onPress={()=>this.stepNext(3)}>
                                 <Image source={require("../../assets/img/join_icon_pw.png")} resizeMode={'contain'} style={{width:18, height:18}} />
                                 <Text style={{marginLeft:10}}>비밀번호 찾기</Text>
                             </Button>
@@ -147,13 +348,13 @@ export default class Account extends Component {
                         <View>
                             <View style={AccountFormStyle.contentsLayout}>
                                 <View>
-                                    <Text style={AccountFormStyle.contentsSize}>가입하신 이메일 주소는 <Text style={AccountFormStyle.boldFont}>perception@perception.co.kr</Text>입니다.</Text>
+                                    <Text style={AccountFormStyle.contentsSize}>가입하신 이메일 주소는 <Text style={AccountFormStyle.boldFont}>{this.state.returnEmail}</Text>입니다.</Text>
                                 </View>
 
                             </View>
 
                             <View style={{padding:20}}>
-                                <Button bordered full style={{borderColor:"#979797", backgroundColor:"#DA4211", justifyContent: 'flex-start', paddingLeft:10}}>
+                                <Button bordered full style={{borderColor:"#979797", backgroundColor:"#DA4211", justifyContent: 'flex-start', paddingLeft:10}} onPress={() => this.emailCopy()}>
                                     <Image source={require("../../assets/img/join_icon_email_on2.png")} resizeMode={'contain'} style={{width:18, height:18}} />
                                     <Text style={{marginLeft:10, color:"#ffffff"}}>이메일 계정 주소 복사하기</Text>
                                 </Button>
@@ -164,7 +365,7 @@ export default class Account extends Component {
                         <View>
                             <View style={AccountFormStyle.contentsLayout}>
                                 <View>
-                                    <Text style={AccountFormStyle.contentsSize}>이메일이 발송되었습니다. 비밀번호를 변경하기 위해  <Text style={AccountFormStyle.boldFont}>인증번호</Text>를 입력하여 변경하거나 이메일 링크를 통해 비밀번호를 변경해주세요.</Text>
+                                    <Text style={AccountFormStyle.contentsSize}>SMS가 발송되었습니다. 비밀번호를 변경하기 위해  <Text style={AccountFormStyle.boldFont}>인증번호</Text>를 입력해주세요</Text>
                                 </View>
 
                             </View>
@@ -175,6 +376,9 @@ export default class Account extends Component {
                                     <Input placeholder='인증번호 입력' style={AccountFormStyle.input} value={this.state.checkNumber} onChangeText={(text) => this.setState({checkNumber: text})} keyboardType="numeric"/>
                                 </Item>
                             </View>
+                                <View style={{padding:20}}>
+                                    <Text>인증번호 : {this.state.authcode}</Text>
+                                </View>
                         </View>
                     )}
                     {renderIf(this.state.stepView == 6)(
@@ -213,44 +417,56 @@ export default class Account extends Component {
                         </View>
                     )}
                 </Content>
+                {renderIf(this.state.stepView == 2)(
                 <Footer style={{backgroundColor:"#222222", width:"100%", height:44, justifyContent: 'center', alignItems: 'center'}}>
 
-                    {renderIf(this.state.stepView == 2)(
+
                         <TouchableOpacity style={{width:"100%", height:"100%", justifyContent: 'center', alignItems: 'center'}} onPress={()=>this.phoneCheck()}>
                             <View>
                                 <Text style={{color:"#ffffff" }}>이메일 계정 주소 찾기</Text>
                             </View>
                         </TouchableOpacity>
-                    )}
-                    {renderIf(this.state.stepView == 3)(
-                        <TouchableOpacity style={{width:"100%", height:"100%", justifyContent: 'center', alignItems: 'center'}} onPress={()=>this.pwCheck()} >
-                            <View>
-                                <Text style={{color:"#ffffff" }}>비밀번호 찾기</Text>
-                            </View>
-                        </TouchableOpacity>
-                    )}
-                    {renderIf(this.state.stepView == 4 || this.state.stepView == 7)(
-                        <TouchableOpacity style={{width:"100%", height:"100%", justifyContent: 'center', alignItems: 'center'}} onPress={Actions.Main} >
+                </Footer>
+                )}
+
+                {renderIf(this.state.stepView == 3)(
+                <Footer style={{backgroundColor:"#222222", width:"100%", height:44, justifyContent: 'center', alignItems: 'center'}}>
+                    <TouchableOpacity style={{width:"100%", height:"100%", justifyContent: 'center', alignItems: 'center'}} onPress={()=>this.pwCheck()} >
+                        <View>
+                            <Text style={{color:"#ffffff" }}>비밀번호 찾기</Text>
+                        </View>
+                    </TouchableOpacity>
+                </Footer>
+                )}
+
+                {renderIf(this.state.stepView == 4 || this.state.stepView == 7)(
+                    <Footer style={{backgroundColor:"#222222", width:"100%", height:44, justifyContent: 'center', alignItems: 'center'}}>
+                        <TouchableOpacity style={{width:"100%", height:"100%", justifyContent: 'center', alignItems: 'center'}} onPress={Actions.root} >
                             <View>
                                 <Text style={{color:"#ffffff" }}>이메일 로그인</Text>
                             </View>
                         </TouchableOpacity>
-                    )}
-                    {renderIf(this.state.stepView == 5)(
+                    </Footer>
+                )}
+                {renderIf(this.state.stepView == 5)(
+                    <Footer style={{backgroundColor:"#222222", width:"100%", height:44, justifyContent: 'center', alignItems: 'center'}}>
                         <TouchableOpacity style={{width:"100%", height:"100%", justifyContent: 'center', alignItems: 'center'}} onPress={()=>this.numberCheck()}>
                             <View>
                                 <Text style={{color:"#ffffff" }}>인증번호 입력</Text>
                             </View>
                         </TouchableOpacity>
-                    )}
-                    {renderIf(this.state.stepView == 6)(
-                    <TouchableOpacity style={{width:"100%", height:"100%", justifyContent: 'center', alignItems: 'center'}} onPress={()=>this.newPwCheck()}>
-                        <View>
-                            <Text style={{color:"#ffffff" }}>비밀번호 변경</Text>
-                        </View>
-                    </TouchableOpacity>
+                    </Footer>
                 )}
-                </Footer>
+                {renderIf(this.state.stepView == 6)(
+                    <Footer style={{backgroundColor:"#222222", width:"100%", height:44, justifyContent: 'center', alignItems: 'center'}}>
+                        <TouchableOpacity style={{width:"100%", height:"100%", justifyContent: 'center', alignItems: 'center'}} onPress={()=>this.newPwCheck()}>
+                            <View>
+                                <Text style={{color:"#ffffff" }}>비밀번호 변경</Text>
+                            </View>
+                        </TouchableOpacity>
+                    </Footer>
+                )}
+
             </Container>
         );
     }

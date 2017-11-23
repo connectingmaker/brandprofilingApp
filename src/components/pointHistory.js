@@ -19,7 +19,7 @@ export default class pointHistory extends Component {
             ,BankdataSource: new ListView.DataSource({
                 rowHasChanged: (row1, row2) => row1 !== row2,
             })
-            ,bankstats:false
+            ,bankstats:true
             ,historystats:true
 
         };
@@ -41,6 +41,12 @@ export default class pointHistory extends Component {
     }
 
 
+    componentWillReceiveProps(nextProps)
+    {
+        this.mounted = true;
+        this.setState({loaded:false});
+        this.loadJSONData();
+    }
 
 
 
@@ -64,7 +70,17 @@ export default class pointHistory extends Component {
                     if(this.mounted) {
                         var data = eval("(" + responseData.inPointList + ")");
                         var Bankdata = eval("(" + responseData.bankPointList + ")");
-                        this.setState({loaded:true, myPoint:responseData.userPoint, dataSource:this.state.dataSource.cloneWithRows(data), BankdataSource:this.state.BankdataSource.cloneWithRows(Bankdata)});
+
+                        //this.setState({loaded:true, myPoint:responseData.userPoint, dataSource:this.state.dataSource.cloneWithRows(data), BankdataSource:this.state.BankdataSource.cloneWithRows(Bankdata)});
+                        if(data.length > 0) {
+                            this.setState({dataSource:this.state.dataSource.cloneWithRows(data)});
+                        }
+
+                        if(Bankdata.length > 0) {
+                            this.setState({BankdataSource:this.state.BankdataSource.cloneWithRows(Bankdata)});
+                        }
+
+                        this.setState({loaded:true, myPoint:responseData.userPoint});
                     }
                 })
                 .catch((err) => {
@@ -112,25 +128,25 @@ export default class pointHistory extends Component {
                         <Text style={SurveyFormStyle.contentsSize}><Text style={{color:'#979797',fontSize:13}}>{obj.CODE_NAME}</Text></Text>
                     </View>
                     <View style={{flex:0.4,alignItems:'flex-end'}}>
-                        <Text style={SurveyFormStyle.boldFont}>200P</Text>
+                        <Text style={SurveyFormStyle.boldFont}>{obj.POINT}P</Text>
                     </View>
                 </View>
                 <View style={{flex:1, flexDirection: 'row'}}>
                     {renderIf(obj.CODE_POINT == 5)(
                     <View style={{flex:0.6,alignItems:'flex-start',justifyContent:'center'}}>
-                        <Text style={{color:'#979797',fontSize:11}}>신청일 2017-08-19 13:30:21</Text>
+                        <Text style={{color:'#979797',fontSize:11}}>신청일 {obj.INSERT_DATETIME}</Text>
                     </View>
                     )}
 
                     {renderIf(obj.CODE_POINT == 6)(
                         <View style={{flex:0.6,alignItems:'flex-start',justifyContent:'center'}}>
-                            <Text style={{color:'#979797',fontSize:11}}>환급완료 2017-08-19 13:30:21</Text>
+                            <Text style={{color:'#979797',fontSize:11}}>환급완료 {obj.UPDATE_DATETIME}</Text>
                         </View>
                     )}
 
                     {renderIf(obj.CODE_POINT == 7)(
                         <View style={{flex:0.6,alignItems:'flex-start',justifyContent:'center'}}>
-                            <Text style={{color:'#979797',fontSize:11}}>신청일 2017-08-19 13:30:21</Text>
+                            <Text style={{color:'#979797',fontSize:11}}>신청일 {obj.INSERT_DATETIME}</Text>
                         </View>
                     )}
                     <View style={{flex:0.4,alignItems:'flex-end'}}>
@@ -156,10 +172,10 @@ export default class pointHistory extends Component {
                 </View>
                 <View style={{flex:1, flexDirection: 'row'}}>
                     <View style={{flex:0.6,alignItems:'flex-start',justifyContent:'center'}}>
-                        <Text style={{color:'#979797',fontSize:11}}>적립일 2017-08-19 13:30:21</Text>
+                        <Text style={{color:'#979797',fontSize:11}}>적립일 {obj.INSERT_DATETIME}</Text>
                     </View>
                     <View style={{flex:0.4,alignItems:'flex-end'}}>
-                        <Text style={{color:'#979797',fontSize:11}}>1차</Text>
+                        <Text style={{color:'#979797',fontSize:11}}>{obj.QUEST_NUM}차</Text>
                     </View>
                 </View>
                 <View style={SurveyFormStyle.lingBg}></View>
@@ -171,20 +187,16 @@ export default class pointHistory extends Component {
     {
         if(this.state.bankstats == true) {
             this.setState({bankstats:false});
-            this.setState({historystats:true});
         } else {
             this.setState({bankstats:true});
-            this.setState({historystats:false});
         }
     }
     historyStats()
     {
         if(this.state.historystats == true) {
             this.setState({historystats:false});
-            this.setState({bankstats:true});
         } else {
             this.setState({historystats:true});
-            this.setState({bankstats:false});
         }
     }
 

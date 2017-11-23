@@ -1,3 +1,5 @@
 <resources>
-    <string name="app_name">brandprofilingApp</string>
+    <string name="app_name">브랜드프로파일링</string>
+    <string name="facebook_app_id">1756148374679717</string>
+    <string name="fb_login_protocol_scheme">fb1756148374679717</string>
 </resources>

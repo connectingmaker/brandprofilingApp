@@ -1,0 +1,63 @@
+{
+  "project_info": {
+    "project_number": "252292799744",
+    "firebase_url": "https://brandprofilingbp2.firebaseio.com",
+    "project_id": "brandprofilingbp2",
+    "storage_bucket": "brandprofilingbp2.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:252292799744:android:11ac643865a738ed",
+        "android_client_info": {
+          "package_name": "com.brandprofilingapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "252292799744-pdq680jltqac1tlgug0n77g97r3afegd.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.brandprofilingapp",
+            "certificate_hash": "17161d460028fe6cb8355ab5a09dd5f630d02c64"
+          }
+        },
+        {
+          "client_id": "252292799744-enb3sk8h4gp2chc9fpnls77ssqtnh3i9.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCjpjVMZKE33pVGSdSSPmtU6V3rIl8HDw4"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "252292799744-ppnqff0tm5pjv8gjgbudkd1mmgmdd988.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.brandprofiling.app",
+                "app_store_id": "1315937637"
+              }
+            },
+            {
+              "client_id": "252292799744-enb3sk8h4gp2chc9fpnls77ssqtnh3i9.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -13,7 +13,7 @@ export default class surveyList extends Component {
         super(props);
         this.state = {
             loaded: false
-            ,uid : false
+            ,uid : ""
             ,dataSource: new ListView.DataSource({
                 rowHasChanged: (row1, row2) => row1 !== row2,
             })
@@ -45,14 +45,15 @@ export default class surveyList extends Component {
 
     componentWillReceiveProps(nextProps)
     {
-        this.setState({loaded:false})
-        this.loadJSONData();
+        //this.setState({loaded:false})
+        //this.loadJSONData();
     }
 
 
 
 
     loadJSONData() {
+
         var object = {
             method: 'GET',
             headers: {
@@ -75,7 +76,7 @@ export default class surveyList extends Component {
                         } else {
                             this.setState({loaded:true, dataSource:this.state.dataSource.cloneWithRows(responseData)});
                         }
-
+                        this.mounted = false;
                     }
                 })
                 .catch((err) => {
@@ -100,11 +101,11 @@ export default class surveyList extends Component {
                         <View style={{flex:0.1}}>
                             <Image source={require('../../assets/img/main_icon_logo_on.png')} resizeMode={'contain'} style={{width:20,height:20}}/>
                         </View>
-                        <View style={{flex:0.8,alignItems:'flex-start',justifyContent:'center'}}>
+                        <View style={{flex:0.7,alignItems:'flex-start',justifyContent:'center'}}>
                             <Text style={SurveyFormStyle.boldFont}>{obj.POINT}P</Text>
                         </View>
-                        <View style={{flex:0.1, alignItems:'flex-end'}}>
-                            <Text style={{fontSize:11, alignItems:'flex-end'}}>기본</Text>
+                        <View style={{flex:0.2, alignItems:'flex-end'}}>
+                            <Text style={{fontSize:11, alignItems:'flex-end'}}>{obj.CATEGORY_NAME_KO}</Text>
                         </View>
                     </View>
                     <View>
@@ -143,7 +144,7 @@ export default class surveyList extends Component {
                         <Text style={{color:'#919191',fontSize:12}}>모집인원</Text>
                     </View>
                     <View style={{borderColor: '#d0d0d0', flex: 0.7,padding:5,borderWidth:1,borderColor:"#d0d0d0",borderBottomColor:"#d0d0d0"}}>
-                        <Text style={{color:'#919191',fontSize:12}}>{obj.JOIN_CNT} (1238명 참여)</Text>
+                        <Text style={{color:'#919191',fontSize:12}}>{obj.JOIN_CNT}명 ({obj.TOTAL_CNT}명 참여)</Text>
                     </View>
 
                 </View>
@@ -157,7 +158,7 @@ export default class surveyList extends Component {
                         <Text style={{fontSize:12}}>{obj.CAMPAIGN_STARTDATE} ~ {obj.CAMPAIGN_ENDDATE}</Text>
                     </View>
                     <View style={{flex:0.20}}>
-                        <Button bordered full style={{borderColor:"#979797", backgroundColor:"#DA4211", justifyContent: 'center', height:40}} onPress={() => Actions.Survey({campaign_code: obj.CAMPAIGN_CODE, point: obj.POINT, quest_num: obj.QUEST_NUM})}>
+                        <Button bordered full style={{borderColor:"#979797", backgroundColor:"#DA4211", justifyContent: 'center', height:40}} onPress={() => Actions.Survey({campaign_code: obj.CAMPAIGN_CODE, point: obj.POINT, quest_num: obj.QUEST_NUM, uid: obj.UID})}>
                             <Text style={{color:"#ffffff"}}>참여하기</Text>
                         </Button>
                     </View>

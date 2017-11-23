@@ -73,7 +73,7 @@ export default class JoinForm extends Component {
                     if(data.length != 0) {
                         this.setState({emailText:""})
                         Alert.alert(
-                            'Error',
+                            '',
                             '등록된 이메일이 존재합니다.',
                             [
                                 {text: '확인'},
@@ -91,7 +91,7 @@ export default class JoinForm extends Component {
         else{
             this.setState({emailText:""})
             Alert.alert(
-                'Error',
+                '',
                 '이메일형식이 올바르지 않습니다.',
                 [
                     {text: '확인'},
@@ -105,7 +105,7 @@ export default class JoinForm extends Component {
     {
         if(this.state.phoneText == "") {
             Alert.alert(
-                'Error',
+                '',
                 '핸드폰번호를 입력해주세요.',
                 [
                     {text: '확인', onPress: () => console.log('OK Pressed')},
@@ -176,7 +176,7 @@ export default class JoinForm extends Component {
             this.stepNext(5);
         } else {
             Alert.alert(
-                'Error',
+                '',
                 '인증번호가 일치하지 않습니다.',
                 [
                     {text: '확인', onPress: () => console.log('OK Pressed')},
@@ -192,7 +192,7 @@ export default class JoinForm extends Component {
 
         if(!/^[a-zA-Z0-9]{6,16}$/.test(this.state.passPw)){
             Alert.alert(
-                'Error',
+                '',
                 '숫자와 영문자 조합으로 6~16자리를 사용해야 합니다.',
                 [
                     {text: '확인', onPress: () => console.log('OK Pressed')},
@@ -255,7 +255,7 @@ export default class JoinForm extends Component {
     {
         if(this.state.agreeBool == false) {
             Alert.alert(
-                'Error',
+                '',
                 '이용약관 동의는 필수입니다',
                 [
                     {text: '확인', onPress: () => console.log('OK Pressed')},
@@ -267,7 +267,7 @@ export default class JoinForm extends Component {
 
         if(this.state.privateBool == false) {
             Alert.alert(
-                'Error',
+                '',
                 '개인정보취급방침 동의(필수)',
                 [
                     {text: '확인', onPress: () => console.log('OK Pressed')},
@@ -401,7 +401,7 @@ export default class JoinForm extends Component {
                             <View style={{padding:20}}>
                                 <Item regular style={{backgroundColor:"#ffffff"}}>
                                     <Image source={require('../../assets/img/join_icon_email.png')} resizeMode={'contain'} style={{width:16, height:13, marginTop:5, marginLeft:10}} />
-                                    <Input placeholder='이메일' style={JoinFormStyle.input} value={this.state.emailText} onChangeText={(text) => this.setState({emailText: text})} keyboardType="email-address"/>
+                                    <Input placeholder='이메일' style={JoinFormStyle.input2} value={this.state.emailText} onChangeText={(text) => this.setState({emailText: text})} keyboardType="email-address"/>
                                 </Item>
                             </View>
                         </View>
@@ -439,6 +439,8 @@ export default class JoinForm extends Component {
                                     <Image source={require('../../assets/img/icon_key_off.png')} resizeMode={'contain'} style={{width:16, height:13, marginTop:5, marginLeft:10}} />
                                     <Input placeholder='인증번호 입력' style={JoinFormStyle.input} onChangeText={(text) => this.setState({authCodeText: text})} keyboardType="phone-pad"/>
                                 </Item>
+
+                                <Text>인증코드 : {this.state.authCode}</Text>
                             </View>
                         </View>
                     )}
@@ -450,7 +452,7 @@ export default class JoinForm extends Component {
                             <View style={JoinFormStyle.contentsLayout}>
                                 <View>
                                     <Text style={JoinFormStyle.contentsSize}><Text style={JoinFormStyle.boldFont}>사용하실 비밀번호</Text>를 입력해주세요. <Text style={JoinFormStyle.boldFont}>영문</Text>과 <Text style={JoinFormStyle.boldFont}>숫자</Text>
-                                    를 사용하여 <Text style={JoinFormStyle.boldFont}>6-16자리</Text>의 조합을 사용하실 수 있습니다. 사용가능한 특수문자는 <Text style={JoinFormStyle.boldFont}>!@#$%^&*</Text>입니다. 비밀번호 설정을 완료하면 회원가입이 완료가 됩니다.
+                                     그리고 <Text style={JoinFormStyle.boldFont}>특수문자</Text>를 사용하여 <Text style={JoinFormStyle.boldFont}>6-16자리</Text>의 조합을 사용하실 수 있습니다. 비밀번호 설정을 완료하면 회원가입이 완료가 됩니다.
                                     </Text>
                                 </View>
 
@@ -459,7 +461,7 @@ export default class JoinForm extends Component {
                             <View style={{padding:20}}>
                                 <Item regular style={{backgroundColor:"#ffffff"}}>
                                     <Image source={require('../../assets/img/icon_key_off.png')} resizeMode={'contain'} style={{width:16, height:13, marginTop:5, marginLeft:10}} />
-                                    <Input placeholder='패스워드 입력' style={JoinFormStyle.input} onChangeText={(text) => this.setState({passPw: text})} keyboardType="default" secureTextEntry={true}/>
+                                    <Input placeholder='패스워드 입력' style={JoinFormStyle.input2} onChangeText={(text) => this.setState({passPw: text})} keyboardType="default" secureTextEntry={true}/>
                                 </Item>
                             </View>
                         </View>
@@ -524,7 +526,7 @@ export default class JoinForm extends Component {
                     )}
 
                     {renderIf(this.state.stepView == 6)(
-                        <TouchableOpacity style={{width:"100%", height:"100%", justifyContent: 'center', alignItems: 'center'}} onPress={()=>Actions.emailLogin}>
+                        <TouchableOpacity style={{width:"100%", height:"100%", justifyContent: 'center', alignItems: 'center'}} onPress={()=>Actions.LoginForm()}>
                             <View>
                                 <Text style={{color:"#ffffff", width:"100%"}}>다음</Text>
                             </View>
@@ -582,6 +584,9 @@ const JoinFormStyle = StyleSheet.create({
         ,paddingBottom:12
         ,height:38
         ,backgroundColor: "#ffffff"
+    }
+    ,input2: {
+        fontSize:12
     }
     ,btnStyle: {
         borderWidth:1

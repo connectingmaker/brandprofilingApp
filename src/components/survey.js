@@ -11,7 +11,7 @@ export default class Survey extends Component {
     constructor(props){
         super(props);
         this.state ={
-            stepView:1
+            stepView:2
         }
 
 
@@ -35,7 +35,7 @@ export default class Survey extends Component {
             <Container>
                     <Header style={SurveyFormStyle.headerLayout2}>
                         <View style={{flex:.1, justifyContent: 'center', alignItems: 'center'}}>
-                            <Text style={{fontSize:12,color:'#fff'}} onPress={() => Actions.pop({ refresh: {data: false}})}>나가기</Text>
+                            <Text style={{fontSize:12,color:'#fff'}} onPress={() => Actions.Main({type:"reset", refresh: true})}>나가기</Text>
                         </View>
                         <View style={{flex:.8, justifyContent: 'center', alignItems: 'center'}}>
                             <Text style={{fontSize:16,color:'#fff'}}>설문하기</Text>
@@ -70,7 +70,7 @@ export default class Survey extends Component {
                                 <View style={SurveyFormStyle.lingBg}></View>
 
 
-                                <Button bordered full style={{borderColor:"#979797", backgroundColor:"#DA4211", justifyContent: 'center', paddingLeft:10}} onPress={()=>Actions.SurveyJoin({campaign_code:this.props.campaign_code, quest_num:this.props.quest_num})}>
+                                <Button bordered full style={{borderColor:"#979797", backgroundColor:"#DA4211", justifyContent: 'center', paddingLeft:10}} onPress={()=>Actions.SurveyJoin({campaign_code:this.props.campaign_code, quest_num:this.props.quest_num, uid:this.props.uid})}>
                                     <Text style={{marginLeft:10, color:"#ffffff"}}>네, 확인했습니다.</Text>
                                 </Button>
 
@@ -101,8 +101,8 @@ export default class Survey extends Component {
 
 
                                 <View style={{flex:1}}>
-                                    <Button bordered full style={{borderColor:"#979797",backgroundColor:"#DA4211"}}>
-                                        <Text style={{color:"#fff"}} onPress={() => Actions.pop({ refresh: {data: true}})}>참여가능  설문</Text>
+                                    <Button bordered full style={{borderColor:"#979797",backgroundColor:"#DA4211"}} onPress={() => Actions.Main({type:"reset", refresh: true})}>
+                                        <Text style={{color:"#fff"}}>참여가능  설문</Text>
                                     </Button>
                                 </View>
                             </View>

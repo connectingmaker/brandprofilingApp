@@ -45,6 +45,12 @@ export default class App extends Component<{}> {
 
     }
 
+    componentWillReceiveProps(nextProps)
+    {
+        console.log("로그아웃 componentWillReceiveProps");
+        console.log(nextProps);
+    }
+
 
 
     componentWillMount()
@@ -108,7 +114,7 @@ export default class App extends Component<{}> {
 
                         <Scene key="Login" component={Login} initial={this.state.logout} hideNavBar={true}/>
                         <Scene key="LoginForm" component={LoginForm} title="이메일로 로그인" hideNavBar={true}/>
-                        <Scene key="Main" component={Main} initial={this.state.logged} uid={this.state.uid} title="사전조사" hideNavBar={true} />
+
 
                     </Scene>
 
@@ -118,6 +124,8 @@ export default class App extends Component<{}> {
                         <Scene key="Login_logOut" component={Login} hideNavBar={true}/>
 
                     </Scene>
+
+                    <Scene key="Main" component={Main} initial={this.state.logged} uid={this.state.uid} title="사전조사" hideNavBar={true} />
                     <Scene key="JoinForm" component={JoinForm} title="회원가입" hideNavBar={true} direction="vertical" uid={this.state.uid} schema="modal" wrapRouter={true}/>
                     <Scene key="Account" component={Account} title="계정/비번찾기" hideNavBar={true} direction="vertical" uid={this.state.uid} schema="modal" wrapRouter={true}/>
                     <Scene key="PreSurvey" component={PreSurvey} title="사전조사" hideNavBar={true} direction="vertical" uid={this.state.uid} schema="modal" wrapRouter={true}/>

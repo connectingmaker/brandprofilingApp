@@ -1,11 +1,115 @@
 import React, { Component } from 'react';
-import { StyleSheet, Image, View, TouchableOpacity } from 'react-native';
+import { StyleSheet, Image, View, TouchableOpacity, AsyncStorage } from 'react-native';
 import { Actions } from 'react-native-router-flux';
 import { Container, Header, Title, Content, Footer, FooterTab, Button, Left, Right, Body, Icon, Text, ActionSheet } from 'native-base';
+import { AccessToken, GraphRequest, GraphRequestManager, LoginManager } from 'react-native-fbsdk';
+import config from '../config'
 
 
 
 export default class Login extends Component {
+
+    constructor(){
+        super();
+        this.state = {
+            loginBool:false
+        }
+
+
+        //AsyncStorage.clear();
+    }
+
+
+
+
+
+    _fbAuth() {
+        LoginManager.logInWithReadPermissions(['public_profile', 'email']).then(function(result) {
+            console.log(result);
+            if (result.isCancelled) {
+                console.log("Login Cancelled");
+            } else {
+                AccessToken.getCurrentAccessToken().then(
+                    (data) => {
+                        var accessToken = data.accessToken;
+
+                        const responseInfoCallback = (error, result) => {
+                            if (error) {
+                                console.log(error)
+                            } else {
+                                console.log(result)
+
+
+                                var object = {
+                                    method: 'POST',
+                                    headers: {
+                                        'Accept': 'application/json',
+                                        'Content-Type': 'application/json'
+                                    },
+                                    body:JSON.stringify( {
+                                        'useremail': result.email
+                                        ,'username': result.name
+                                        ,'facebook_id': result.id
+
+                                    })
+                                };
+
+                                fetch(config.SERVER_URL+'/api/memberFaceBook', object)
+                                    .then((response) => response.text())
+                                    .then((responseJson) => {
+
+                                        var data = eval("("+responseJson+")");
+
+                                        var dataObject = {
+                                            "SESS_UID" : data[0].UID
+                                            ,"SESS_USEREMAIL" : data[0].USEREMAIL
+                                        };
+
+                                        console.log(dataObject);
+
+                                        AsyncStorage.setItem(config.STORE_KEY, JSON.stringify(dataObject), () => {
+                                            Actions.Main();
+                                        });
+
+
+
+
+
+                                    })
+                                    .catch((error) => {
+                                        console.log("오류");
+                                    });
+                            }
+                        }
+
+
+
+                        const infoRequest = new GraphRequest(
+                            '/me',
+                            {
+                                accessToken: accessToken,
+                                parameters: {
+                                    fields: {
+                                        string: 'id,email,name'
+                                    }
+                                }
+                            },
+                            responseInfoCallback
+                        );
+
+                        // Start the graph request.
+                        new GraphRequestManager().addRequest(infoRequest).start();
+
+
+                    })
+
+            }
+        }, function(error) {
+            console.log("some error occurred!!");
+        })
+    }
+
+
 
     render() {
         return (
@@ -23,7 +127,10 @@ export default class Login extends Component {
                         <TouchableOpacity onPress={Actions.LoginForm} style={{alignSelf: 'stretch', alignItems:'center', justifyContent:'center'}}>
                             <Image source={require('../../assets/img/login_emailBtn.png')} resizeMode={'contain'} style={LoginStyle.btn} />
                         </TouchableOpacity>
-                        <Image source={require('../../assets/img/login_facebookBtn.png')} resizeMode={'contain'} style={LoginStyle.btn} />
+
+                        <TouchableOpacity onPress={() => this._fbAuth()} style={{alignSelf: 'stretch', alignItems:'center', justifyContent:'center'}}>
+                            <Image source={require('../../assets/img/login_facebookBtn.png')} resizeMode={'contain'} style={LoginStyle.btn} />
+                        </TouchableOpacity>
                     </View>
                 </Body>
                 <Footer style={{backgroundColor:"#222222", width:"100%", justifyContent: 'center', alignItems: 'center', flexDirection:'row'}}>

@@ -99,7 +99,7 @@ export default class Pwchange extends Component {
 
         if(!/^[a-zA-Z0-9]{6,16}$/.test(this.state.newPw)){
             Alert.alert(
-                'Error',
+                '',
                 '숫자와 영문자 조합으로 6~16자리를 사용해야 합니다.',
                 [
                     {text: '확인', onPress: () => console.log('OK Pressed')},
@@ -110,7 +110,7 @@ export default class Pwchange extends Component {
         } else {
             if(this.state.newPw != this.state.re_newPw) {
                 Alert.alert(
-                    'Error',
+                    '',
                     '숫자와 영문자 조합으로 6~16자리를 사용해야 합니다.',
                     [
                         {text: '확인', onPress: () => console.log('OK Pressed')},

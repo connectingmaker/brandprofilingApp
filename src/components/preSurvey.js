@@ -43,7 +43,7 @@ export default class PreSurvey extends Component {
     preQ1_Check(){
         if(this.state.userName == "") {
             Alert.alert(
-                'Error',
+                '',
                 '성명을 입력해주세요.',
                 [
                     {text: '확인', onPress: () => console.log('OK Pressed')},
@@ -58,7 +58,7 @@ export default class PreSurvey extends Component {
     preQ2_Check() {
         if(this.state.selectBool == false) {
             Alert.alert(
-                'Error',
+                '',
                 '성별을 선택해주세요.',
                 [
                     {text: '확인', onPress: () => console.log('OK Pressed')},
@@ -73,7 +73,7 @@ export default class PreSurvey extends Component {
     preQ3_Check() {
         if(this.state.userBirth == "") {
             Alert.alert(
-                'Error',
+                '',
                 '성명을 입력해주세요.',
                 [
                     {text: '확인', onPress: () => console.log('OK Pressed')},

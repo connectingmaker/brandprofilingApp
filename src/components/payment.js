@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import { Actions } from 'react-native-router-flux';
 import { View, Text, Image, StyleSheet, TouchableOpacity,AlertIOS,Alert,Platform, AsyncStorage } from 'react-native';
-import { Container, Header, Body, Content, Footer,Item as FormItem, Icon, Input,Button,Picker, Form } from 'native-base';
+import { Container, Header, Body, Content, Footer, Icon, Input,Button, Form, Picker, Item as FormItem } from 'native-base';
 import config from '../config';
 
-
 import renderIf from 'render-if'
+
 const Item = Picker.Item;
 export default class Payment extends Component {
 
@@ -23,8 +23,13 @@ export default class Payment extends Component {
             ,point: ""
             ,promptVisible:false
             ,banklist:[{code : "", bank_name:""}]
+            ,selected2: undefined
+            ,requestBankName : ""
+            ,requestBankAccount : ""
+            ,requestPoint : ""
         }
     }
+
 
     check(){
         if (Platform.OS === 'ios') {
@@ -113,7 +118,7 @@ export default class Payment extends Component {
                                     //var POINT = 3000;
                                     var USERNAME = responseData.user[0].USERNAME;
 
-                                    if(POINT < 5000) {
+                                    if(POINT < 1000) {
                                         Alert.alert(
                                             'Error',
                                             '포인트가 부족합니다.',
@@ -162,8 +167,109 @@ export default class Payment extends Component {
         //console.log(value);
     }
 
-    render() {
+    onValueChange2(value: string) {
+        this.setState({
+            selected2: value
+        });
+    }
 
+
+    bankSubmit()
+    {
+
+        if(this.state.cashBackPoint == ""){
+            Alert.alert(
+                '',
+                '환급받으실 포인트를 입력해주세요.',
+                [
+                    {text: '확인', onPress: () => console.log('OK Pressed')},
+                ],
+                { cancelable: false }
+            )
+            return;
+        }
+
+
+        if(this.state.selected2 == undefined){
+            Alert.alert(
+                '',
+                '환급받으실 은행을 선택해주세요.',
+                [
+                    {text: '확인', onPress: () => console.log('OK Pressed')},
+                ],
+                { cancelable: false }
+            )
+            return;
+        }
+
+        if(this.state.cashBackAccount == ""){
+            Alert.alert(
+                '',
+                '계좌번호를 입력해주세요.',
+                [
+                    {text: '확인', onPress: () => console.log('OK Pressed')},
+                ],
+                { cancelable: false }
+            )
+            return;
+        }
+
+
+        AsyncStorage.getItem(config.STORE_KEY).then((value) => {
+            var json = eval("("+value+")");
+            var uid = json.SESS_UID;
+            var object = {
+                method: 'POST',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                }
+                ,body: JSON.stringify({
+                    cashBankPoint : this.state.cashBackPoint
+                    , bankSelect : this.state.selected2
+                    , cashBankAccount: this.state.cashBackAccount
+                    , uid : uid})
+            }
+            fetch(config.SERVER_URL+"/api/pointSend", object)
+                .then((response) => response.text())
+                .then((responseData) =>
+                {
+
+                    var json = eval("(" + responseData + ")");
+                    switch(json.ERR_CODE) {
+                        case "000":
+                            this.setState({
+                                requestBankName : json.BANK_NAME
+                                ,requestBankAccount : json.BANK_ACCOUNT
+                                ,requestPoint : json.POINT
+                                ,stepView:3
+                            });
+                            break;
+                        default:
+                            Alert.alert(
+                                'Error',
+                                json.ERR_MSG,
+                                [
+                                    {text: '확인', onPress: () => Action.pop()},
+                                ],
+                                { cancelable: false }
+                            )
+                            break;
+                    }
+
+
+                })
+                .catch((err) => {
+                    console.log(err);
+                });
+        }).then(res => {
+
+        });
+    }
+
+
+
+    render() {
 
         return (
 
@@ -315,35 +421,49 @@ export default class Payment extends Component {
                             </View>
 
                             <View style={{paddingLeft:20,paddingRight:20,paddingBottom:5}}>
-
+                                <Form>
                                     <Picker
                                         mode="dropdown"
-                                        headerStyle={{ backgroundColor: "#b95dd3" }}
-                                        headerBackButtonTextStyle={{ color: "#fff" }}
-                                        headerTitleStyle={{ color: "#fff" }}
-                                        style={{paddingTop:13
-                                            ,paddingLeft:11
-                                            ,paddingBottom:12
-                                            ,backgroundColor: "#ffffff"
-                                            ,width:"100%"}}
-                                        >
-                                        <Item label="Wallet" value="key0" />
-                                        <Item label="ATM Card" value="key1" />
-                                        <Item label="Debit Card" value="key2" />
-                                        <Item label="Credit Card" value="key3" />
-                                        <Item label="Net Banking" value="key4" />
+                                        placeholder="은행을 선택해주세요."
+                                        iosHeader="은행을 선택해주세요."
+                                        selectedValue={this.state.selected2}
+                                        onValueChange={this.onValueChange2.bind(this)}
+                                        style={{backgroundColor:"#fff", width:"100%"}}
+                                    >
+                                        <Item label="산업은행" value="002" />
+                                        <Item label="기업은행" value="003" />
+                                        <Item label="외환은행" value="005" />
+                                        <Item label="수협은행" value="007" />
+                                        <Item label="농협은행" value="011" />
+                                        <Item label="우리은행" value="020" />
+                                        <Item label="SC제일은행" value="023" />
+                                        <Item label="씨티은행" value="027" />
+                                        <Item label="대구은행" value="031" />
+                                        <Item label="부산은행" value="032" />
+                                        <Item label="광주은행" value="034" />
+                                        <Item label="제주은행" value="035" />
+                                        <Item label="전북은행" value="037" />
+                                        <Item label="경남은행" value="039" />
+                                        <Item label="국민은행" value="044" />
+                                        <Item label="새마을금고" value="045" />
+                                        <Item label="신협" value="048" />
+                                        <Item label="상호저축은행" value="050" />
+                                        <Item label="HSBC" value="054" />
+                                        <Item label="도이치" value="055" />
+                                        <Item label="우체국" value="071" />
+                                        <Item label="하나은행" value="081" />
+                                        <Item label="신한은행" value="088" />
+
                                     </Picker>
+                                </Form>
                             </View>
 
                             <View style={{paddingLeft:20,paddingRight:20,paddingBottom:20}}>
                                     <Input placeholder='계좌번호 입력' style={paymentFormStyle.input} value={this.state.cashBackAccount} onChangeText={(text) => this.setState({cashBackAccount: text})} keyboardType="numeric"/>
                             </View>
-                            <Button bordered full style={{borderColor:"#979797", backgroundColor:"#DA4211", justifyContent: 'center', paddingLeft:10}}>
-                                <Text style={{marginLeft:10, color:"#ffffff"}} onPress={()=>this.Endcheck()}>신청하기</Text>
+                            <Button bordered full style={{borderColor:"#979797", backgroundColor:"#DA4211", justifyContent: 'center', paddingLeft:10}} onPress={() => this.bankSubmit()}>
+                                <Text style={{marginLeft:10, color:"#ffffff"}}>신청하기</Text>
                             </Button>
-                            <View style={{alignItems:'center',justifyContent:'flex-end',paddingTop:100}}>
-                                <Image source={require('../../assets/img/point_bg.png')} resizeMode={'contain'} style={{width:200,height:200}}/>
-                            </View>
                         </View>
 
 
@@ -362,30 +482,27 @@ export default class Payment extends Component {
                             </View>
                             <View style={paymentFormStyle.lingBg}></View>
                             <View style={{paddingBottom:5}}>
-                                <Text style={paymentFormStyle.contentsSize}><Text style={paymentFormStyle.boldFont}>32,910P</Text>가 류성재님의 <Text style={paymentFormStyle.boldFont}>농협 30123456789</Text> 계좌로 환급 신청되었습니다.</Text>
+                                <Text style={paymentFormStyle.contentsSize}><Text style={paymentFormStyle.boldFont}>{this.state.requestPoint}P</Text>가 <Text style={paymentFormStyle.boldFont}>{this.state.requestBankName} {this.state.requestBankAccount}</Text> 계좌로 환급 신청되었습니다.</Text>
                             </View>
                             <View style={paymentFormStyle.lingBg}></View>
                             <View style={{paddingBottom:5}}>
                                 <Text style={paymentFormStyle.contentsSize}>입금까지 접수완료 시점으로부터 5~10일이 소요됩니다.</Text>
                             </View>
                             <Button bordered full style={{borderColor:"#979797", backgroundColor:"#DA4211", justifyContent: 'center', paddingLeft:10}}>
-                                <Text style={{marginLeft:10, color:"#ffffff"}} onPress={Actions.pop}>포인트 내역으로 이동</Text>
+                                <Text style={{marginLeft:10, color:"#ffffff"}} onPress={() => Actions.pop({refresh:{data:true}})}>포인트 내역으로 이동</Text>
                             </Button>
 
                         </View>
                         <View style={{alignItems:'center',justifyContent:'flex-end',paddingTop:230}}>
                             <Image source={require('../../assets/img/point_bg.png')} resizeMode={'contain'} style={{width:200,height:200}}/>
                         </View>
-
                     </View>
                 )}
 
                 </Content>
 
                 {renderIf(this.state.stepView == 2)(
-                    <Footer style={{backgroundColor:"#222222", width:"100%", height:44, justifyContent: 'flex-end', alignItems: 'center'}}>
-                        <Text style={{color:"#b2b2b2",paddingLeft:20}}>신청하기 ></Text>
-                    </Footer>
+
                 )}
 
                 {renderIf(this.state.stepView == 1)(
@@ -445,7 +562,7 @@ const paymentFormStyle = StyleSheet.create({
         ,fontWeight: 'bold'
     }
     ,input: {
-        fontSize:12
+        fontSize:15
         ,paddingTop:13
         ,paddingLeft:11
         ,paddingBottom:12

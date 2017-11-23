@@ -1,13 +1,12 @@
 import React, { Component } from 'react';
 import { Actions } from 'react-native-router-flux';
-import { View, Text, Image, StyleSheet, TouchableOpacity,AlertIOS,Alert,Platform,WebView } from 'react-native';
+import { View, Text, Image, StyleSheet, TouchableOpacity,AlertIOS,Alert,Platform,WebView,AsyncStorage } from 'react-native';
 import { Container, Header, Body, Content, Footer,Item, Icon, Input,Button } from 'native-base';
 import config from '../../src/config';
 
 export default class SurveyJoin extends Component {
     constructor(props){
         super(props);
-
 
     }
 
@@ -23,32 +22,43 @@ export default class SurveyJoin extends Component {
             switch (data.ERR_CODE) {
                 case "000":
                     Alert.alert(
-                        'Error',
+                        '',
                         '설문이 완료되었습니다.',
                         [
-                            {text: '확인', onPress: () => console.log('OK Pressed')},
+                            {text: '확인', onPress: () => Actions.pop({ refresh: {stepView: 2}})},
                         ],
                         {cancelable: false}
                     )
 
-                    Actions.pop({ refresh: {stepView: 2}})
+
+                    break;
+                default:
+                    Alert.alert(
+                        '',
+                        '참여이력이 존재합니다.',
+                        [
+                            {text: '확인', onPress: () => Actions.pop({ refresh: {stepView: 2}})},
+                        ],
+                        {cancelable: false}
+                    )
                     break;
             }
         } else {
             switch (data.ERR_CODE) {
                 case "999":
                     Alert.alert(
-                        'Error',
+                        '',
                         '참여이력이 존재합니다.',
                         [
-                            {text: '확인', onPress: () => console.log('OK Pressed')},
+                            {text: '확인', onPress: () => Actions.pop({ refresh: {stepView: 2}})},
                         ],
                         {cancelable: false}
                     )
 
                     //Actions.Survey({type:"reset"});
-                    Actions.pop({ refresh: {stepView: 2}})
+
                     break;
+
             }
         }
 
