@@ -65,7 +65,7 @@ export default class myPage extends Component {
                 .then((responseData) =>
                 {
                     console.log(responseData);
-                    this.setState({loaded:true, username: responseData.USERNAME, email: responseData.USEREMAIL, sex: responseData.SEX, age: responseData.AGE, brithday: responseData.BRITHDAY})
+                    this.setState({loaded:true, username: responseData.USERNAME, email: responseData.USEREMAIL, sex: responseData.SEX, age: responseData.AGE +"세", brithday: responseData.BRITHDAY})
                 })
                 .catch((err) => {
                     console.log(err);
@@ -100,8 +100,9 @@ export default class myPage extends Component {
                                 <Text style={myPageFormStyle.title}>{this.state.username}</Text>
                             </View>
                             <View style={{flex: 0.8, alignItems: 'flex-end', justifyContent: 'center'}}>
-                                <Text style={myPageFormStyle.contentsSize}><Text style={myPageFormStyle.boldFont}>{this.state.sex}
-                                    {this.state.brithday}</Text></Text>
+                                <Text style={myPageFormStyle.contentsSize}>
+                                    <Text style={myPageFormStyle.boldFont}>{this.state.sex}
+                                    {this.state.age}</Text></Text>
                             </View>
                         </View>
                         <View style={myPageFormStyle.lingBg}></View>

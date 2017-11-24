@@ -41,7 +41,6 @@
 		41FEC4B6E9F34EDDBC8C7EB4 /* libLRDRCTSimpleToast.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4157E57061784BC396177A6C /* libLRDRCTSimpleToast.a */; };
 		53E688893E53434292734A81 /* libRCTFBSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C7BAF2FC766046C98CA51CA7 /* libRCTFBSDK.a */; };
 		5E9157361DD0AC6A00FF2AA8 /* libRCTAnimation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E9157331DD0AC6500FF2AA8 /* libRCTAnimation.a */; };
-		666249FE41E63D05D41B9FC4 /* libPods-brandprofilingApp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BE78EE3AAA57E8EF477151F8 /* libPods-brandprofilingApp.a */; };
 		70601E52A9C64E55ADF5FCA2 /* Roboto.ttf in Resources */ = {isa = PBXBuildFile; fileRef = BE4090DE164048C9A78312B2 /* Roboto.ttf */; };
 		7596E67F5B064110B0303BB0 /* libRNVectorIcons.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 447383A825684F8B9ECED31C /* libRNVectorIcons.a */; };
 		769EA2579A3B4078A1D30BE2 /* Ionicons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CCD65FB18FDB46D8BD896AB4 /* Ionicons.ttf */; };
@@ -59,7 +58,8 @@
 		BDD1177B1FC6C159000EB368 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = BDD1177A1FC6C159000EB368 /* GoogleService-Info.plist */; };
 		BDEE0AF31F988F050092701D /* libRCTPushNotification.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BDEE0AEF1F988ED90092701D /* libRCTPushNotification.a */; };
 		D6B3B5B6FAA340009EEE5782 /* EvilIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2CDB544A10084CAEA84C9E66 /* EvilIcons.ttf */; };
-		FCE03350EA560C92373EF881 /* libPods-brandprofilingAppTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8D401D1C79126782B2966093 /* libPods-brandprofilingAppTests.a */; };
+		E49E592883BACCEFC66E7564 /* libPods-brandprofilingApp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2E392F4B6FE95A8EF6107B03 /* libPods-brandprofilingApp.a */; };
+		FCB1B4622512030ED1397F4B /* libPods-brandprofilingAppTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B875F5F8B47FBF64AAB21658 /* libPods-brandprofilingAppTests.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -370,6 +370,7 @@
 		2CDB544A10084CAEA84C9E66 /* EvilIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = EvilIcons.ttf; path = "../node_modules/native-base/Fonts/EvilIcons.ttf"; sourceTree = "<group>"; };
 		2D02E47B1E0B4A5D006451C7 /* brandprofilingApp-tvOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "brandprofilingApp-tvOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2D02E4901E0B4A5D006451C7 /* brandprofilingApp-tvOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "brandprofilingApp-tvOSTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		2E392F4B6FE95A8EF6107B03 /* libPods-brandprofilingApp.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-brandprofilingApp.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		4157E57061784BC396177A6C /* libLRDRCTSimpleToast.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libLRDRCTSimpleToast.a; sourceTree = "<group>"; };
 		447383A825684F8B9ECED31C /* libRNVectorIcons.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRNVectorIcons.a; sourceTree = "<group>"; };
 		5B82C09AAF3C463D95B83A68 /* RNVectorIcons.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RNVectorIcons.xcodeproj; path = "../node_modules/@expo/vector-icons/vendor/react-native-vector-icons/RNVectorIcons.xcodeproj"; sourceTree = "<group>"; };
@@ -377,7 +378,6 @@
 		78C398B01ACF4ADC00677621 /* RCTLinking.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTLinking.xcodeproj; path = "../node_modules/react-native/Libraries/LinkingIOS/RCTLinking.xcodeproj"; sourceTree = "<group>"; };
 		832341B01AAA6A8300B99B32 /* RCTText.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTText.xcodeproj; path = "../node_modules/react-native/Libraries/Text/RCTText.xcodeproj"; sourceTree = "<group>"; };
 		8D0104D4BEFF4DEB8A4EFFBB /* rubicon-icon-font.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "rubicon-icon-font.ttf"; path = "../node_modules/native-base/Fonts/rubicon-icon-font.ttf"; sourceTree = "<group>"; };
-		8D401D1C79126782B2966093 /* libPods-brandprofilingAppTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-brandprofilingAppTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		901EB1D6A4E142E2969228BA /* FontAwesome.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = FontAwesome.ttf; path = "../node_modules/native-base/Fonts/FontAwesome.ttf"; sourceTree = "<group>"; };
 		90565DAF89DB4414B8E42685 /* RCTFBSDK.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RCTFBSDK.xcodeproj; path = "../node_modules/react-native-fbsdk/ios/RCTFBSDK.xcodeproj"; sourceTree = "<group>"; };
 		92A478ED99404904B59523E7 /* MaterialIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = MaterialIcons.ttf; path = "../node_modules/native-base/Fonts/MaterialIcons.ttf"; sourceTree = "<group>"; };
@@ -386,6 +386,7 @@
 		A8FB666734E656FC71625766 /* Pods-brandprofilingAppTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-brandprofilingAppTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-brandprofilingAppTests/Pods-brandprofilingAppTests.debug.xcconfig"; sourceTree = "<group>"; };
 		AC2D74DD5302B1FE86FDC338 /* Pods-brandprofilingAppTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-brandprofilingAppTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-brandprofilingAppTests/Pods-brandprofilingAppTests.release.xcconfig"; sourceTree = "<group>"; };
 		ADBDB91F1DFEBF0600ED6528 /* RCTBlob.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTBlob.xcodeproj; path = "../node_modules/react-native/Libraries/Blob/RCTBlob.xcodeproj"; sourceTree = "<group>"; };
+		B875F5F8B47FBF64AAB21658 /* libPods-brandprofilingAppTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-brandprofilingAppTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		BDBEF6B61FC74EC80034ABAF /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKLoginKit.framework; path = ../../../Documents/FacebookSDK/FBSDKLoginKit.framework; sourceTree = "<group>"; };
 		BDBEF6B71FC74EC80034ABAF /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKCoreKit.framework; path = ../../../Documents/FacebookSDK/FBSDKCoreKit.framework; sourceTree = "<group>"; };
 		BDBEF6B81FC74EC80034ABAF /* FBSDKShareKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKShareKit.framework; path = ../../../Documents/FacebookSDK/FBSDKShareKit.framework; sourceTree = "<group>"; };
@@ -393,7 +394,6 @@
 		BDD1177A1FC6C159000EB368 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		BDEE0AE91F988ED90092701D /* RCTPushNotification.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTPushNotification.xcodeproj; path = "../node_modules/react-native/Libraries/PushNotificationIOS/RCTPushNotification.xcodeproj"; sourceTree = "<group>"; };
 		BE4090DE164048C9A78312B2 /* Roboto.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Roboto.ttf; path = "../node_modules/native-base/Fonts/Roboto.ttf"; sourceTree = "<group>"; };
-		BE78EE3AAA57E8EF477151F8 /* libPods-brandprofilingApp.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-brandprofilingApp.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C6A1DE9100F14B47A885F59F /* Entypo.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Entypo.ttf; path = "../node_modules/native-base/Fonts/Entypo.ttf"; sourceTree = "<group>"; };
 		C7BAF2FC766046C98CA51CA7 /* libRCTFBSDK.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRCTFBSDK.a; sourceTree = "<group>"; };
 		C7C02E7FFAAB4981B22016D2 /* Roboto_medium.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Roboto_medium.ttf; path = "../node_modules/native-base/Fonts/Roboto_medium.ttf"; sourceTree = "<group>"; };
@@ -409,7 +409,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				140ED2AC1D01E1AD002B40FF /* libReact.a in Frameworks */,
-				FCE03350EA560C92373EF881 /* libPods-brandprofilingAppTests.a in Frameworks */,
+				FCB1B4622512030ED1397F4B /* libPods-brandprofilingAppTests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -438,7 +438,7 @@
 				41FEC4B6E9F34EDDBC8C7EB4 /* libLRDRCTSimpleToast.a in Frameworks */,
 				BDBEF6BD1FC74EC80034ABAF /* Bolts.framework in Frameworks */,
 				53E688893E53434292734A81 /* libRCTFBSDK.a in Frameworks */,
-				666249FE41E63D05D41B9FC4 /* libPods-brandprofilingApp.a in Frameworks */,
+				E49E592883BACCEFC66E7564 /* libPods-brandprofilingApp.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -728,8 +728,8 @@
 				BDBEF6B71FC74EC80034ABAF /* FBSDKCoreKit.framework */,
 				BDBEF6B61FC74EC80034ABAF /* FBSDKLoginKit.framework */,
 				BDBEF6B81FC74EC80034ABAF /* FBSDKShareKit.framework */,
-				BE78EE3AAA57E8EF477151F8 /* libPods-brandprofilingApp.a */,
-				8D401D1C79126782B2966093 /* libPods-brandprofilingAppTests.a */,
+				2E392F4B6FE95A8EF6107B03 /* libPods-brandprofilingApp.a */,
+				B875F5F8B47FBF64AAB21658 /* libPods-brandprofilingAppTests.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -1529,12 +1529,10 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEAD_CODE_STRIPPING = NO;
 				DEVELOPMENT_TEAM = 44ZDVFUHPT;
+				ENABLE_BITCODE = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"${PODS_ROOT}/FirebaseAnalytics/Frameworks\"",
-					"\"${PODS_ROOT}/FirebaseCore/Frameworks\"",
-					"\"${PODS_ROOT}/FirebaseInstanceID/Frameworks\"",
-					"~/Documents/FacebookSDK/**",
+					"\"~/Documents/FacebookSDK\"",
 				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1547,6 +1545,7 @@
 				INFOPLIST_FILE = brandprofilingApp/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
@@ -1572,12 +1571,10 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 44ZDVFUHPT;
+				ENABLE_BITCODE = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"${PODS_ROOT}/FirebaseAnalytics/Frameworks\"",
-					"\"${PODS_ROOT}/FirebaseCore/Frameworks\"",
-					"\"${PODS_ROOT}/FirebaseInstanceID/Frameworks\"",
-					"~/Documents/FacebookSDK/**",
+					"\"~/Documents/FacebookSDK\"",
 				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1590,6 +1587,7 @@
 				INFOPLIST_FILE = brandprofilingApp/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				ONLY_ACTIVE_ARCH = NO;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",

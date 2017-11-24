@@ -18,7 +18,7 @@ export default class Terms extends Component {
                         <Text style={{fontSize:12,color:'#fff'}} onPress={Actions.pop}>나가기</Text>
                     </View>
                     <View style={{flex:.8, justifyContent: 'center', alignItems: 'center'}}>
-                        <Text style={{fontSize:16,color:'#fff'}}>이용약</Text>
+                        <Text style={{fontSize:16,color:'#fff'}}>이용약관</Text>
                     </View>
                     <View style={{flex:.1, justifyContent: 'center', alignItems: 'center'}}>
                     </View>
