@@ -22,6 +22,10 @@ import config from './src/config';
 
 import animations from './src/module/animations';
 
+import FCM, {FCMEvent, RemoteNotificationResult, WillPresentNotificationResult, NotificationType} from "react-native-fcm";
+
+
+
 
 export default class App extends Component<{}> {
     /*
@@ -39,8 +43,11 @@ export default class App extends Component<{}> {
             ,logout:true
             ,loading:false
             ,uid:""
+            ,token:""
         };
 
+        console.log(Platform.OS);
+        console.log(Platform.Version);
 
 
     }
@@ -82,11 +89,112 @@ export default class App extends Component<{}> {
 
 
         });
+        /*
+        FCM.requestPermissions();
+
+        FCM.getFCMToken().then(token => {
+            console.log("TOKEN (getFCMToken)", token);
+            //this.props.onChangeToken(token);
+
+
+            AsyncStorage.getItem(config.STORE_KEY)
+                .then((response) => {
+                    return response;
+                }).then((responseJson) => {
+                try {
+                    var data = eval("(" + responseJson + ")");
+                    console.log(data);
+                    if(data == null) {
+                        this.setState({logged: false,  logout:true});
+                    } else {
+                        if (data.SESS_UID != null) {
+                            this.setState({logged: true, logout: false, uid:data.SESS_UID, token: token});
+                        } else {
+                            this.setState({logged: false, logout: true, token: token});
+                        }
+                    }
+                } catch(err) {
+                    console.log(err);
+                    this.setState({loading: true, logged: false,  logout:true, token: token});
+
+                }
+
+                this.setState({loading:true});
+
+
+            });
+        });
+
+
+
+
+
+
+        FCM.getInitialNotification().then(notif => {
+            console.log("INITIAL NOTIFICATION", notif)
+        });
+        */
+
+        /*
+        this.notificationUnsubscribe = FCM.on("notification", notif => {
+            console.log("Notification", notif);
+            if (notif && notif.local) {
+                return;
+            }
+            this.sendRemote(notif);
+        });
+
+        this.refreshUnsubscribe = FCM.on("refreshToken", token => {
+            console.log("TOKEN (refreshUnsubscribe)", token);
+            //this.props.onChangeToken(token);
+        });
+        */
     }
 
     componentDidMount()
     {
-        console.log("componentDidMount");
+        FCM.requestPermissions();
+
+        FCM.getFCMToken().then(token => {
+            console.log("TOKEN (getFCMToken)", token);
+            this.setState({token: token});
+        });
+        FCM.subscribeToTopic('mes-annonces');
+
+        FCM.getInitialNotification().then(notif => {
+            console.log("INITIAL NOTIFICATION", notif);
+        });
+
+        this.notificationListener = FCM.on(FCMEvent.Notification, async (notif) => {
+            console.log('event notification'+notif);
+
+            if(notif.opened_from_tray) {
+                console.log('got a opened_from notification');
+            }
+            if(notif.local_notification) {
+                console.log('got a local notification');
+            }
+
+            if (Platform.OS === 'ios') {
+                switch (notif._notificationType) {
+                    case NotificationType.Remote:
+                        //notif.finish(RemoteNotificationResult.NewData); //other types available: RemoteNotificationResult.NewData, RemoteNotificationResult.ResultFailed
+                        break;
+                    case NotificationType.NotificationResponse:
+                        //notif.finish();
+                        break;
+                    case NotificationType.WillPresent:
+                        console.log('in the method');
+                        //notif.finish(WillPresentNotificationResult.All); //other types available: WillPresentNotificationResult.None
+                        break;
+                }
+            }
+            //this.showLocalNotification(notif);
+        });
+
+        FCM.on(FCMEvent.RefreshToken, token => {
+            console.log(token);
+        })
     }
 
 
@@ -98,7 +206,8 @@ export default class App extends Component<{}> {
 
     componentWillUnmount()
     {
-        console.log("componentWillUnmount");
+        this.refreshUnsubscribe();
+        this.notificationUnsubscribe();
     }
 
 

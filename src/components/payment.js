@@ -118,7 +118,7 @@ export default class Payment extends Component {
                                     //var POINT = 3000;
                                     var USERNAME = responseData.user[0].USERNAME;
 
-                                    if(POINT < 1000) {
+                                    if(POINT < 5000) {
                                         Alert.alert(
                                             'Error',
                                             '포인트가 부족합니다.',
@@ -277,37 +277,37 @@ export default class Payment extends Component {
 
                 {renderIf(this.state.stepView == 1)(
                     <Header style={paymentFormStyle.headerLayout2}>
-                        <View style={{flex:.1, justifyContent: 'center', alignItems: 'center'}}>
+                        <View style={{flex:.2, justifyContent: 'center', alignItems: 'center'}}>
                             <Text style={{fontSize:12,color:'#fff'}} onPress={Actions.pop}>나가기</Text>
                         </View>
-                        <View style={{flex:.8, justifyContent: 'center', alignItems: 'center'}}>
+                        <View style={{flex:.6, justifyContent: 'center', alignItems: 'center'}}>
                             <Text style={{fontSize:16,color:'#fff'}}>환급신청</Text>
                         </View>
-                        <View style={{flex:.1, justifyContent: 'center', alignItems: 'center'}}>
+                        <View style={{flex:.2, justifyContent: 'center', alignItems: 'center'}}>
                         </View>
                     </Header>
                 )}
                 {renderIf(this.state.stepView == 2 )(
                     <Header style={paymentFormStyle.headerLayout}>
-                        <View style={{flex:.1, justifyContent: 'center', alignItems: 'center'}}>
+                        <View style={{flex:.2, justifyContent: 'center', alignItems: 'center'}}>
                             <Text style={{fontSize:12,color:'#fff'}} onPress={Actions.pop}>나가기</Text>
                         </View>
-                        <View style={{flex:.8, justifyContent: 'center', alignItems: 'center'}}>
+                        <View style={{flex:.6, justifyContent: 'center', alignItems: 'center'}}>
                             <Text style={{fontSize:16,color:'#fff'}}>환급신청</Text>
                         </View>
-                        <View style={{flex:.1, justifyContent: 'center', alignItems: 'center'}}>
+                        <View style={{flex:.2, justifyContent: 'center', alignItems: 'center'}}>
                         </View>
                     </Header>
                 )}
                 {renderIf(this.state.stepView == 3 )(
                     <Header style={paymentFormStyle.headerLayout}>
-                        <View style={{flex:.1, justifyContent: 'center', alignItems: 'center'}}>
+                        <View style={{flex:.2, justifyContent: 'center', alignItems: 'center'}}>
                             <Text style={{fontSize:12,color:'#fff'}} onPress={Actions.pop}>닫기</Text>
                         </View>
-                        <View style={{flex:.8, justifyContent: 'center', alignItems: 'center'}}>
+                        <View style={{flex:.6, justifyContent: 'center', alignItems: 'center'}}>
                             <Text style={{fontSize:16,color:'#fff'}}>환급 신청 완료</Text>
                         </View>
-                        <View style={{flex:.1, justifyContent: 'center', alignItems: 'center'}}>
+                        <View style={{flex:.2, justifyContent: 'center', alignItems: 'center'}}>
                         </View>
                     </Header>
                 )}

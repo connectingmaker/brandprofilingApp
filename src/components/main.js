@@ -106,7 +106,6 @@ export default class Main extends Component {
                 <Left style={{flex:1}}>
                     <TouchableOpacity onPress={Actions.Notice}>
                         <View>
-                            <Image source={require('../../assets/img/header_icon_alarm.png')} resizeMode={'contain'} style={{width:15, height:15}}/>
                         </View>
                     </TouchableOpacity>
                 </Left>

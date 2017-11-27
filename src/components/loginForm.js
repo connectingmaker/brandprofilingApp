@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { Actions } from 'react-native-router-flux';
-import { View, Text, Image, StyleSheet, TextInput, TouchableOpacity, Alert, AsyncStorage } from 'react-native';
+import { View, Text, Image, StyleSheet, TextInput, TouchableOpacity, Alert, AsyncStorage, Platform } from 'react-native';
 import { Container, Header, Body, Footer, Item, Icon, Input, Toast } from 'native-base';
+import FCM from "react-native-fcm";
 import config from '../../src/config';
 
 
@@ -15,6 +16,7 @@ export default class LoginForm extends Component {
             ,loginBool:false
             ,networkState:true
             ,showToast:false
+            ,token: ""
         }
 
 
@@ -70,83 +72,91 @@ export default class LoginForm extends Component {
             return;
         }
 
-        var object = {
-            method: 'POST',
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json'
-            },
-            body:JSON.stringify( {
-                'useremail': this.state.emailText
-                ,'userpasswd':this.state.passPw
+        FCM.requestPermissions();
 
-            })
-        };
+        FCM.getFCMToken().then(token => {
+            var userToken = token;
+            var object = {
+                method: 'POST',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    'useremail': this.state.emailText
+                    ,'userpasswd': this.state.passPw
+                    ,'userToken': userToken
+                    ,"os" : Platform.OS
+                    ,"version" : Platform.Version
 
-        fetch(config.SERVER_URL+'/api/memberSelect', object)
-            .then((response) => response.text())
-            .then((responseJson) => {
-                //console.log(responseJson);
-                var data = eval("("+responseJson+")");
-                switch(data[0].ERR_CODE) {
-                    case "000":
-                        try {
-                            /*
-                             AsyncStorage.setItem("SESS_EMAIL", data[0].USEREMAIL);
-                             AsyncStorage.setItem("SESS_UID", data[0].UID);
-                             */
+                })
+            };
 
-                            var dataObject = {
-                                "SESS_UID" : data[0].UID
-                                ,"SESS_USEREMAIL" : data[0].USEREMAIL
-                            };
+            fetch(config.SERVER_URL + '/api/memberSelect', object)
+                .then((response) => response.text())
+                .then((responseJson) => {
+                    //console.log(responseJson);
+                    var data = eval("(" + responseJson + ")");
+                    switch (data[0].ERR_CODE) {
+                        case "000":
+                            try {
+                                /*
+                                 AsyncStorage.setItem("SESS_EMAIL", data[0].USEREMAIL);
+                                 AsyncStorage.setItem("SESS_UID", data[0].UID);
+                                 */
 
-                            this.setState({loginBool:true}, () => {
-                                AsyncStorage.setItem(config.STORE_KEY, JSON.stringify(dataObject));
+                                var dataObject = {
+                                    "SESS_UID": data[0].UID
+                                    , "SESS_USEREMAIL": data[0].USEREMAIL
+                                };
 
-                            });
+                                this.setState({loginBool: true}, () => {
+                                    AsyncStorage.setItem(config.STORE_KEY, JSON.stringify(dataObject));
+
+                                });
 
 
-                        } catch (err) {
-                            console.log(err);
-                        }
-                        break;
-                    case "101":
-                        Alert.alert(
-                            'Error',
-                            '가입된 이력이 존재하지 않습니다.',
-                            [
-                                {text: '확인', onPress: () => console.log('OK Pressed')},
-                            ],
-                            { cancelable: false }
-                        )
-                        return;
-                        break;
-                    case "102":
-                        Alert.alert(
-                            'Error',
-                            '패스워드가 일치하지 않습니다.',
-                            [
-                                {text: '확인', onPress: () => console.log('OK Pressed')},
-                            ],
-                            { cancelable: false }
-                        )
-                        return;
-                        break;
-                }
+                            } catch (err) {
+                                console.log(err);
+                            }
+                            break;
+                        case "101":
+                            Alert.alert(
+                                'Error',
+                                '가입된 이력이 존재하지 않습니다.',
+                                [
+                                    {text: '확인', onPress: () => console.log('OK Pressed')},
+                                ],
+                                {cancelable: false}
+                            )
+                            return;
+                            break;
+                        case "102":
+                            Alert.alert(
+                                'Error',
+                                '패스워드가 일치하지 않습니다.',
+                                [
+                                    {text: '확인', onPress: () => console.log('OK Pressed')},
+                                ],
+                                {cancelable: false}
+                            )
+                            return;
+                            break;
+                    }
 
-            })
-            .catch((error) => {
-                Alert.alert(
-                    'Error',
-                    'Network Error',
-                    [
-                        {text: '확인', onPress: () => console.log('OK Pressed')},
-                    ],
-                    { cancelable: false }
-                )
-                return;
-            });
+                })
+                .catch((error) => {
+                    Alert.alert(
+                        'Error',
+                        'Network Error',
+                        [
+                            {text: '확인', onPress: () => console.log('OK Pressed')},
+                        ],
+                        {cancelable: false}
+                    )
+                    return;
+                });
+        });
     }
 
 

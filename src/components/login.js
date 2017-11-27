@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
-import { StyleSheet, Image, View, TouchableOpacity, AsyncStorage } from 'react-native';
+import { StyleSheet, Image, View, TouchableOpacity, AsyncStorage, Platform } from 'react-native';
 import { Actions } from 'react-native-router-flux';
 import { Container, Header, Title, Content, Footer, FooterTab, Button, Left, Right, Body, Icon, Text, ActionSheet } from 'native-base';
 import { AccessToken, GraphRequest, GraphRequestManager, LoginManager } from 'react-native-fbsdk';
+import FCM from "react-native-fcm";
+
 import config from '../config'
 
 
@@ -24,89 +26,101 @@ export default class Login extends Component {
 
 
     _fbAuth() {
-        LoginManager.logInWithReadPermissions(['public_profile', 'email']).then(function(result) {
-            console.log(result);
-            if (result.isCancelled) {
-                console.log("Login Cancelled");
-            } else {
-                AccessToken.getCurrentAccessToken().then(
-                    (data) => {
-                        var accessToken = data.accessToken;
-
-                        const responseInfoCallback = (error, result) => {
-                            if (error) {
-                                console.log(error)
-                            } else {
-                                console.log(result)
 
 
-                                var object = {
-                                    method: 'POST',
-                                    headers: {
-                                        'Accept': 'application/json',
-                                        'Content-Type': 'application/json'
-                                    },
-                                    body:JSON.stringify( {
-                                        'useremail': result.email
-                                        ,'username': result.name
-                                        ,'facebook_id': result.id
+        FCM.requestPermissions();
 
-                                    })
-                                };
+        FCM.getFCMToken().then(token => {
+            var userToken = token;
 
-                                fetch(config.SERVER_URL+'/api/memberFaceBook', object)
-                                    .then((response) => response.text())
-                                    .then((responseJson) => {
+            LoginManager.logInWithReadPermissions(['public_profile', 'email']).then(function(result) {
+                console.log(result);
+                if (result.isCancelled) {
+                    console.log("Login Cancelled");
+                } else {
+                    AccessToken.getCurrentAccessToken().then(
+                        (data) => {
+                            var accessToken = data.accessToken;
 
-                                        var data = eval("("+responseJson+")");
+                            const responseInfoCallback = (error, result) => {
+                                if (error) {
+                                    console.log(error)
+                                } else {
+                                    console.log(result)
 
-                                        var dataObject = {
-                                            "SESS_UID" : data[0].UID
-                                            ,"SESS_USEREMAIL" : data[0].USEREMAIL
-                                        };
 
-                                        console.log(dataObject);
+                                    var object = {
+                                        method: 'POST',
+                                        headers: {
+                                            'Accept': 'application/json',
+                                            'Content-Type': 'application/json'
+                                        },
+                                        body:JSON.stringify( {
+                                            'useremail': result.email
+                                            ,'username': result.name
+                                            ,'facebook_id': result.id
+                                            ,'userToken': userToken
+                                            ,"os" : Platform.OS
+                                            ,"version" : Platform.Version
 
-                                        AsyncStorage.setItem(config.STORE_KEY, JSON.stringify(dataObject), () => {
-                                            Actions.Main();
+                                        })
+                                    };
+
+                                    fetch(config.SERVER_URL+'/api/memberFaceBook', object)
+                                        .then((response) => response.text())
+                                        .then((responseJson) => {
+
+                                            var data = eval("("+responseJson+")");
+
+                                            var dataObject = {
+                                                "SESS_UID" : data[0].UID
+                                                ,"SESS_USEREMAIL" : data[0].USEREMAIL
+                                            };
+
+                                            console.log(dataObject);
+
+                                            AsyncStorage.setItem(config.STORE_KEY, JSON.stringify(dataObject), () => {
+                                                Actions.Main();
+                                            });
+
+
+
+
+
+                                        })
+                                        .catch((error) => {
+                                            console.log("오류");
                                         });
-
-
-
-
-
-                                    })
-                                    .catch((error) => {
-                                        console.log("오류");
-                                    });
-                            }
-                        }
-
-
-
-                        const infoRequest = new GraphRequest(
-                            '/me',
-                            {
-                                accessToken: accessToken,
-                                parameters: {
-                                    fields: {
-                                        string: 'id,email,name'
-                                    }
                                 }
-                            },
-                            responseInfoCallback
-                        );
-
-                        // Start the graph request.
-                        new GraphRequestManager().addRequest(infoRequest).start();
+                            }
 
 
-                    })
 
-            }
-        }, function(error) {
-            console.log("some error occurred!!");
-        })
+                            const infoRequest = new GraphRequest(
+                                '/me',
+                                {
+                                    accessToken: accessToken,
+                                    parameters: {
+                                        fields: {
+                                            string: 'id,email,name'
+                                        }
+                                    }
+                                },
+                                responseInfoCallback
+                            );
+
+                            // Start the graph request.
+                            new GraphRequestManager().addRequest(infoRequest).start();
+
+
+                        })
+
+                }
+            }, function(error) {
+                console.log("some error occurred!!");
+            })
+
+        });
     }
 
 

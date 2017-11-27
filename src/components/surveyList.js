@@ -155,10 +155,10 @@ export default class surveyList extends Component {
 
                 <View style={SurveyFormStyle.lingBg}></View>
                 <View style={{flex:1, flexDirection: 'row', paddingTop:5, paddingBottom:5}}>
-                    <View style={{flex:0.80, justifyContent:'center'}}>
+                    <View style={{flex:0.70, justifyContent:'center'}}>
                         <Text style={{fontSize:12}}>{obj.CAMPAIGN_STARTDATE} ~ {obj.CAMPAIGN_ENDDATE}</Text>
                     </View>
-                    <View style={{flex:0.20}}>
+                    <View style={{flex:0.30}}>
                         <Button bordered full style={{borderColor:"#979797", backgroundColor:"#DA4211", justifyContent: 'center', height:40}} onPress={() => Actions.Survey({campaign_code: obj.CAMPAIGN_CODE, point: obj.POINT, quest_num: obj.QUEST_NUM, uid: obj.UID})}>
                             <Text style={{color:"#ffffff"}}>참여하기</Text>
                         </Button>

@@ -11,7 +11,7 @@ export default class Survey extends Component {
     constructor(props){
         super(props);
         this.state ={
-            stepView:2
+            stepView:1
         }
 
 
@@ -34,13 +34,15 @@ export default class Survey extends Component {
 
             <Container>
                     <Header style={SurveyFormStyle.headerLayout2}>
-                        <View style={{flex:.1, justifyContent: 'center', alignItems: 'center'}}>
-                            <Text style={{fontSize:12,color:'#fff'}} onPress={() => Actions.Main({type:"reset", refresh: true})}>나가기</Text>
+                        <TouchableOpacity onPress={() => Actions.Main({type:"reset", refresh: true})} style={{flex:.2, justifyContent: 'flex-start', alignItems: 'center'}}>
+                        <View style={{flex:.2, justifyContent: 'center', alignItems: 'center'}}>
+                            <Text style={{fontSize:12,color:'#fff'}}>나가기</Text>
                         </View>
-                        <View style={{flex:.8, justifyContent: 'center', alignItems: 'center'}}>
+                        </TouchableOpacity>
+                        <View style={{flex:.6, justifyContent: 'center', alignItems: 'center'}}>
                             <Text style={{fontSize:16,color:'#fff'}}>설문하기</Text>
                         </View>
-                        <View style={{flex:.1, justifyContent: 'center', alignItems: 'center'}}>
+                        <View style={{flex:.2, justifyContent: 'center', alignItems: 'center'}}>
                         </View>
                     </Header>
 

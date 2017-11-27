@@ -21,13 +21,15 @@ export default class BP extends Component {
 
 
                     <Header style={BPFormStyle.headerLayout}>
-                        <View style={{flex:.1, justifyContent: 'center', alignItems: 'center'}}>
-                            <Text style={{fontSize:12,color:'#fff'}} onPress={Actions.pop}>나가기</Text>
+                        <TouchableOpacity onPress={Actions.pop} style={{flex:.2, alignItems: 'flex-start'}}>
+                        <View style={{flex:.2, justifyContent: 'center', alignItems: 'center'}}>
+                            <Text style={{fontSize:12,color:'#fff'}}>나가기</Text>
                         </View>
-                        <View style={{flex:.8, justifyContent: 'center', alignItems: 'center'}}>
+                        </TouchableOpacity>
+                        <View style={{flex:.6, justifyContent: 'center', alignItems: 'center'}}>
                             <Text style={{fontSize:16,color:'#fff'}}>Brand Profiling 소개</Text>
                         </View>
-                        <View style={{flex:.1, justifyContent: 'center', alignItems: 'center'}}>
+                        <View style={{flex:.2, justifyContent: 'center', alignItems: 'center'}}>
                         </View>
                     </Header>
 

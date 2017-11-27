@@ -17,6 +17,8 @@ import com.facebook.appevents.AppEventsLogger;
 import java.util.Arrays;
 import java.util.List;
 
+import com.evollu.react.fcm.FIRMessagingPackage;
+
 public class MainApplication extends Application implements ReactApplication {
 
   private static CallbackManager mCallbackManager = CallbackManager.Factory.create();
@@ -37,6 +39,7 @@ public class MainApplication extends Application implements ReactApplication {
     protected List<ReactPackage> getPackages() {
         return Arrays.<ReactPackage>asList(
                   new MainReactPackage(),
+                  new FIRMessagingPackage(),
                   new FBSDKPackage(mCallbackManager)
               );
     }

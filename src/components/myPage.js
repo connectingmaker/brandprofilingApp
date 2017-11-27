@@ -78,6 +78,52 @@ export default class myPage extends Component {
 
     }
 
+    memberDrop()
+    {
+
+        Alert.alert(
+            '회원탈퇴를 하시겠습니까?',
+            '회원탈퇴하시면 다시 복수할 수 없으니 신중하게 결정해주세요.',
+            [
+
+                {text: '최소', onPress: () => console.log('Cancel Pressed'), style: 'cancel'},
+                {text: '확인', onPress: () => this.memberDropSubmit()},
+            ],
+            { cancelable: false }
+        )
+
+
+    }
+
+    memberDropSubmit()
+    {
+        AsyncStorage.getItem(config.STORE_KEY).then((value) => {
+            var json = eval("(" + value + ")");
+            var uid = json.SESS_UID;
+
+            var object = {
+                method: 'GET',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'text/html'
+                }
+            }
+
+            fetch(config.SERVER_URL+"/api/memberDrop/"+uid, object)
+                .then((response) => response.json())
+                .then((responseData) =>
+                {
+                    AsyncStorage.clear(() => Actions.root({type:"reset", refresh: true})); // to clear the token
+                })
+                .catch((err) => {
+                    console.log(err);
+                });
+
+        }).then(res => {
+            this.setState({loaded:true, username: "", email: "", sex: "", age: "", brithday: ""})
+        });
+    }
+
 
 
     render() {
@@ -136,7 +182,7 @@ export default class myPage extends Component {
                                 삭제된 계정정보는 <Text style={myPageFormStyle.boldFont}>다시 복구할 수 없으니 신중하게 결정</Text>해주시길
                                 바랍니다.</Text>
                         </View>
-                        <Button bordered full style={{borderColor: "#979797"}}>
+                        <Button bordered full style={{borderColor: "#979797"}} onPress={() => this.memberDrop()}>
                             <Text>회원탈퇴</Text>
                         </Button>
                         <View style={myPageFormStyle.lingBg}></View>
@@ -157,7 +203,11 @@ export default class myPage extends Component {
                                 </Button>
                             </View>
                         </View>
-                        <View style={myPageFormStyle.lingBg}></View>
+
+
+                    </View>
+
+                    <View style={myPageFormStyle.contentsLayout2}>
                         <TouchableOpacity onPress={Actions.BP}>
                             <View style={{flex: 1, flexDirection: 'row', paddingTop: 5, paddingBottom: 5}}>
                                 <View style={{flex: 0.7, alignItems: 'flex-start', justifyContent: 'center'}}>
@@ -170,7 +220,6 @@ export default class myPage extends Component {
                                 </View>
                             </View>
                         </TouchableOpacity>
-
                     </View>
 
                 </View>

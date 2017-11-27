@@ -12,7 +12,7 @@ export default class SurveyJoin extends Component {
 
     complateSurvey()
     {
-        Actions.pop({ refresh: {stepView: 2}})
+        Actions.pop({ refresh: {stepView: 1}})
     }
 
 
@@ -73,13 +73,15 @@ export default class SurveyJoin extends Component {
             <Container>
 
                 <Header style={noticeFormStyle.headerLayout}>
-                    <View style={{flex:.1, justifyContent: 'center', alignItems: 'center'}}>
-                        <Text style={{fontSize:12,color:'#fff'}} onPress={() => Actions.pop() }>나가기</Text>
+                    <TouchableOpacity onPress={() => Actions.pop()} style={{flex:.2, alignItems: 'flex-start'}}>
+                    <View style={{flex:.2, justifyContent: 'center', alignItems: 'flex-start'}}>
+                        <Text style={{fontSize:12,color:'#fff'}}>나가기</Text>
                     </View>
-                    <View style={{flex:.8, justifyContent: 'center', alignItems: 'center'}}>
+                    </TouchableOpacity>
+                    <View style={{flex:.6, justifyContent: 'center', alignItems: 'center'}}>
                         <Text style={{fontSize:16,color:'#fff'}}>설문참여</Text>
                     </View>
-                    <View style={{flex:.1, justifyContent: 'center', alignItems: 'center'}}>
+                    <View style={{flex:.2, justifyContent: 'center', alignItems: 'flex-end'}}>
                     </View>
                 </Header>
 
