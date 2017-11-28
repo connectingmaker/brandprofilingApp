@@ -294,15 +294,17 @@ export default class JoinForm extends Component {
 
             <Container>
                 <Header style={JoinFormStyle.headerLayoyt}>
-                    <View style={{flex:.1, justifyContent: 'center', alignItems: 'center'}}>
+                    <View style={{flex:.15, justifyContent: 'center', alignItems: 'center'}}>
+                        <TouchableOpacity onPress={Actions.pop} style={{alignSelf: 'stretch', alignItems:'center', justifyContent:'center'}}>
                         <Text style={{fontSize:12}}
                               /*onPress={()=>Actions.emailLogin}*/
-                              onPress={Actions.pop}>나가기</Text>
+                              >나가기</Text>
+                        </TouchableOpacity>
                     </View>
-                    <View style={{flex:.8, justifyContent: 'center', alignItems: 'center'}}>
+                    <View style={{flex:.7, justifyContent: 'center', alignItems: 'center'}}>
                         <Text style={{fontSize:16}}>회원가입</Text>
                     </View>
-                    <View style={{flex:.1, justifyContent: 'center', alignItems: 'center'}}>
+                    <View style={{flex:.15, justifyContent: 'center', alignItems: 'center'}}>
 
                     </View>
                 </Header>

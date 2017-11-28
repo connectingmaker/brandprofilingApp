@@ -3,9 +3,7 @@ import { Actions } from 'react-native-router-flux';
 import { View, Text, Image, StyleSheet, TouchableOpacity,AlertIOS,Alert,Platform, AsyncStorage } from 'react-native';
 import { Container, Header, Body, Content, Footer, Icon, Input,Button, Form, Picker, Item as FormItem } from 'native-base';
 import config from '../config';
-
 import renderIf from 'render-if'
-
 const Item = Picker.Item;
 export default class Payment extends Component {
 
@@ -27,11 +25,13 @@ export default class Payment extends Component {
             ,requestBankName : ""
             ,requestBankAccount : ""
             ,requestPoint : ""
+            ,promptVisible:false
         }
     }
 
 
     check(){
+        /*
         if (Platform.OS === 'ios') {
             AlertIOS.prompt(
                 '비밀번호 입력',
@@ -44,17 +44,24 @@ export default class Payment extends Component {
                 'secure-text'
             );
         } else {
-            Alert.alert(
+            prompt_android(
                 '비밀번호 입력',
                 '계정 보호를 위해 비밀번호를 입력해주세요.',
                 [
-
-                    {text: '최소', onPress: () => console.log('Cancel Pressed'), style: 'cancel'},
-                    {text: '확인', onPress: password => this.stepNext(2, password)},
+                    {text: 'Cancel', onPress: () => console.log('Cancel Pressed'), style: 'cancel'},
+                    {text: 'OK', onPress: () => console.log("OK")},
                 ],
-                'secure-text'
+                {
+                    type: 'secure-text',
+                    cancelable: false,
+                    defaultValue: 'test',
+                    placeholder: 'placeholder'
+                }
             );
         }
+        */
+
+        this.stepNext(2)
 
 
 
@@ -72,7 +79,7 @@ export default class Payment extends Component {
             { cancelable: false }
         )
     }
-    stepNext(value,passwd){
+    stepNext(value){
         //console.log(passwd);
         switch(value) {
             case 2:
@@ -80,6 +87,7 @@ export default class Payment extends Component {
                 AsyncStorage.getItem(config.STORE_KEY).then((value) => {
                     var json = eval("(" + value + ")");
                     var email = json.SESS_USEREMAIL;
+                    var uid = json.SESS_UID;
                     console.log(json);
 
                     var object = {
@@ -89,8 +97,8 @@ export default class Payment extends Component {
                             'Content-Type': 'application/json'
                         },
                         body:JSON.stringify( {
-                            'useremail': email
-                            ,'userpasswd':passwd
+                            'uid': uid
+
 
                         })
                     };
@@ -108,10 +116,27 @@ export default class Payment extends Component {
                             }
 
 
+                            var POINT = responseData.user[0].POINT;
+                            //var POINT = 3000;
+                            var USERNAME = responseData.user[0].USERNAME;
 
-                            console.log(BANK_LIST);
+                            if(POINT < 5000) {
+                                Alert.alert(
+                                    'Error',
+                                    '포인트가 부족합니다.',
+                                    [
+                                        {text: '확인', onPress: () => Actions.pop({})},
+                                    ],
+                                    { cancelable: false }
+                                )
+                                return;
+                            }
 
 
+                            this.setState({stepView: 2});
+                            this.setState({point:POINT, username: USERNAME});
+
+                            /*
                             switch(ERR_CODE) {
                                 case "000":
                                     var POINT = responseData.user[0].POINT;
@@ -146,6 +171,7 @@ export default class Payment extends Component {
                                     return;
                                     break;
                             }
+                            */
 
                         })
                         .catch((err) => {

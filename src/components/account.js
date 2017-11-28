@@ -267,10 +267,12 @@ export default class Account extends Component {
         return (
             <Container>
                 <Header style={AccountFormStyle.headerLayout}>
-                    <View style={{flex:.1, justifyContent: 'center', alignItems: 'center'}}>
-                        <Text style={{fontSize:12}} onPress={Actions.pop}>나가기</Text>
+                    <View style={{flex:.15, justifyContent: 'center', alignItems: 'center'}}>
+                        <TouchableOpacity onPress={Actions.pop} style={{alignSelf: 'stretch', alignItems:'center', justifyContent:'center'}}>
+                        <Text style={{fontSize:12}}>나가기</Text>
+                        </TouchableOpacity>
                     </View>
-                    <View style={{flex:.8, justifyContent: 'center', alignItems: 'center'}}>
+                    <View style={{flex:.7, justifyContent: 'center', alignItems: 'center'}}>
                         {renderIf(this.state.stepView == 1)(
                         <Text style={{fontSize:16}}>계정 / 비번 찾기</Text>
                         )}
@@ -288,7 +290,7 @@ export default class Account extends Component {
                         )}
 
                     </View>
-                    <View style={{flex:.1, justifyContent: 'center', alignItems: 'center'}}>
+                    <View style={{flex:.15, justifyContent: 'center', alignItems: 'center'}}>
 
                     </View>
                 </Header>

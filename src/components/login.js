@@ -75,6 +75,8 @@ export default class Login extends Component {
                                             var dataObject = {
                                                 "SESS_UID" : data[0].UID
                                                 ,"SESS_USEREMAIL" : data[0].USEREMAIL
+                                                , "SESS_ALL_PUSH_YN": data[0].ALL_PUSH_YN
+                                                , "SESS_SURVEY_PUSH_YN": data[0].SURVEY_PUSH_YN
                                             };
 
                                             console.log(dataObject);
@@ -148,9 +150,13 @@ export default class Login extends Component {
                     </View>
                 </Body>
                 <Footer style={{backgroundColor:"#222222", width:"100%", justifyContent: 'center', alignItems: 'center', flexDirection:'row'}}>
+
                     <View style={LoginStyle.footerViewLeft}>
-                        <Text style={LoginStyle.footerViewLeftFont} onPress={Actions.Account}>계정/비번 찾기</Text>
+                        <TouchableOpacity onPress={Actions.Account} style={{alignSelf: 'stretch', alignItems:'center', justifyContent:'center'}}>
+                        <Text style={LoginStyle.footerViewLeftFont}>계정/비번 찾기</Text>
+                        </TouchableOpacity>
                     </View>
+
 
                     <View style={LoginStyle.footerViewCenter}>
                         <Text style={LoginStyle.footerViewCenterFont}>|</Text>
@@ -159,8 +165,11 @@ export default class Login extends Component {
 
 
                     <View style={LoginStyle.footerViewRight}>
-                        <Text style={LoginStyle.footerViewRightFont} onPress={Actions.JoinForm}>회원가입</Text>
+                        <TouchableOpacity onPress={Actions.JoinForm} style={{alignSelf: 'stretch', alignItems:'center', justifyContent:'center'}}>
+                        <Text style={LoginStyle.footerViewRightFont}>회원가입</Text>
+                        </TouchableOpacity>
                     </View>
+
 
                 </Footer>
             </Container>

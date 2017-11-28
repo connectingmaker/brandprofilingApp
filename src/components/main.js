@@ -33,6 +33,7 @@ export default class Main extends Component {
 
     componentDidMount() {
         Actions.refresh({key: 'drawer', ref: this.refs.navigationDrawer});
+        /*
         if (Platform.OS === 'android') {
             this.backButtonListener = BackHandler.addEventListener('hardwareBackPress', () => {
 
@@ -46,6 +47,7 @@ export default class Main extends Component {
                 return true;
             });
         }
+        */
     }
 
 

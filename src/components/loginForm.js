@@ -108,6 +108,8 @@ export default class LoginForm extends Component {
                                 var dataObject = {
                                     "SESS_UID": data[0].UID
                                     , "SESS_USEREMAIL": data[0].USEREMAIL
+                                    , "SESS_ALL_PUSH_YN": data[0].ALL_PUSH_YN
+                                    , "SESS_SURVEY_PUSH_YN": data[0].SURVEY_PUSH_YN
                                 };
 
                                 this.setState({loginBool: true}, () => {
@@ -159,19 +161,30 @@ export default class LoginForm extends Component {
         });
     }
 
+    /*
+     <TouchableOpacity onPress={() => this.loginCheck()} style={{alignSelf: 'stretch', alignItems:'center', justifyContent:'center'}}>
+     <Footer style={LoginFormStyle.loginBg}>
+     <Text style={{color:"#ffffff"}} >로그인</Text>
+     </Footer>
+     </TouchableOpacity>
+     */
 
     render() {
         return (
             <Container>
                 <Header style={LoginFormStyle.headerLayoyt}>
-                    <View style={{flex:.1, alignItems: 'center'}}>
-                        <Text style={{color:"#ffffff"}} onPress={Actions.pop}>뒤로</Text>
+                    <View style={{flex:.15, alignItems: 'center',justifyContent:'flex-start'}}>
+                        <TouchableOpacity onPress={Actions.pop} style={{alignSelf: 'stretch', alignItems:'center', justifyContent:'center'}}>
+                        <Text style={{color:"#ffffff"}}>뒤로</Text>
+                        </TouchableOpacity>
                     </View>
-                    <View style={{flex:.8, alignItems: 'center'}}>
+                    <View style={{flex:.7, alignItems: 'center'}}>
                         <Text style={{color:"#ffffff"}}>이메일로 로그인</Text>
                     </View>
-                    <View style={{flex:.1, alignItems: 'center'}}>
-                        <Text style={{color:"#ffffff"}} onPress={Actions.JoinForm}>찾기</Text>
+                    <View style={{flex:.15, alignItems: 'center',justifyContent:'flex-end'}}>
+                        <TouchableOpacity onPress={() => this.loginCheck()} style={{alignSelf: 'stretch', alignItems:'center', justifyContent:'center'}}>
+                        <Text style={{color:"#ffffff"}}>로그인</Text>
+                        </TouchableOpacity>
                     </View>
                 </Header>
                 <Body style={LoginFormStyle.viewLayout}>
@@ -185,11 +198,6 @@ export default class LoginForm extends Component {
                 </Item>
                 </Body>
 
-                <TouchableOpacity onPress={() => this.loginCheck()} style={{alignSelf: 'stretch', alignItems:'center', justifyContent:'center'}}>
-                    <Footer style={LoginFormStyle.loginBg}>
-                        <Text style={{color:"#ffffff"}} >로그인</Text>
-                    </Footer>
-                </TouchableOpacity>
 
             </Container>
 
