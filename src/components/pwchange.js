@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Actions } from 'react-native-router-flux';
-import { View, Text, Image, StyleSheet, TouchableOpacity } from 'react-native';
+import { View, Text, Image, StyleSheet, TouchableOpacity,Alert } from 'react-native';
 import { Container, Header, Body, Content, Footer,Item, Icon, Input,Button } from 'native-base';
 import renderIf from 'render-if'
 import config from '../config';
@@ -100,7 +100,7 @@ export default class Pwchange extends Component {
         if(!/^[a-zA-Z0-9]{6,16}$/.test(this.state.newPw)){
             Alert.alert(
                 '',
-                '숫자와 영문자 조합으로 6~16자리를 사용해야 합니다.',
+                '숫자와 영문자 조합으로 6~16자리 그리고 특수문자를 사용해야 합니다.',
                 [
                     {text: '확인', onPress: () => console.log('OK Pressed')},
                 ],
@@ -111,7 +111,7 @@ export default class Pwchange extends Component {
             if(this.state.newPw != this.state.re_newPw) {
                 Alert.alert(
                     '',
-                    '숫자와 영문자 조합으로 6~16자리를 사용해야 합니다.',
+                    '패스워드를 확인해주세요.',
                     [
                         {text: '확인', onPress: () => console.log('OK Pressed')},
                     ],
@@ -230,20 +230,20 @@ export default class Pwchange extends Component {
                         <View>
                             <View style={PwFormStyle.contentsLayout}>
                                 <View>
-                                    <Text style={PwFormStyle.contentsSize}><Text style={PwFormStyle.boldFont}>영문</Text>이나 <Text style={PwFormStyle.boldFont}>숫자</Text>를 사용하여 <Text style={PwFormStyle.boldFont}>6~16자리</Text>의 <Text style={PwFormStyle.boldFont}>새로운 비밀번호</Text>를 입력해주세요. 사용 가능한 특수 문자는 <Text style={PwFormStyle.boldFont}>!@#$%^&*</Text>입니다.</Text>
+                                    <Text style={PwFormStyle.contentsSize}><Text style={PwFormStyle.boldFont}>영문</Text>이나 <Text style={PwFormStyle.boldFont}>숫자</Text> 그리고 <Text style={PwFormStyle.boldFont}>특수문자</Text>를 사용하여 <Text style={PwFormStyle.boldFont}>6~16자리</Text>의 <Text style={PwFormStyle.boldFont}>새로운 비밀번호</Text>를 입력해주세요. </Text>
                                 </View>
 
                             </View>
                             <View style={{paddingLeft:20,paddingRight:20,paddingTop:20,paddingBottom:10}}>
                                 <Item regular style={{backgroundColor:"#ffffff"}}>
                                     <Image source={require('../../assets/img/join_icon_pw.png')} resizeMode={'contain'} style={{width:16, height:13, marginTop:5, marginLeft:10}} />
-                                    <Input placeholder='새로운 비밀번호 입력' style={PwFormStyle.input} value={this.state.newPw} onChangeText={(text) => this.setState({newPw: text})} keyboardType="default"/>
+                                    <Input placeholder='새로운 비밀번호 입력' style={PwFormStyle.input} value={this.state.newPw} onChangeText={(text) => this.setState({newPw: text})} keyboardType="default" secureTextEntry={true}/>
                                 </Item>
                             </View>
                             <View style={{paddingLeft:20,paddingRight:20}}>
                                 <Item regular style={{backgroundColor:"#ffffff"}}>
                                     <Image source={require('../../assets/img/join_icon_pw.png')} resizeMode={'contain'} style={{width:16, height:13, marginTop:5, marginLeft:10}} />
-                                    <Input placeholder='다시 입력' style={PwFormStyle.input} value={this.state.re_newPw} onChangeText={(text) => this.setState({re_newPw: text})} keyboardType="default"/>
+                                    <Input placeholder='다시 입력' style={PwFormStyle.input} value={this.state.re_newPw} onChangeText={(text) => this.setState({re_newPw: text})} keyboardType="default" secureTextEntry={true}/>
                                 </Item>
                             </View>
 

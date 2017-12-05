@@ -22,6 +22,7 @@ export default class SideBar extends React.Component {
 
     componentWillMount()
     {
+        /*
         AsyncStorage.getItem(config.STORE_KEY).then((value) => {
             var json = eval("("+value+")");
             var all_push_yn = json.SESS_ALL_PUSH_YN;
@@ -36,16 +37,24 @@ export default class SideBar extends React.Component {
                 , "SESS_SURVEY_PUSH_YN": this.state.surveypush
             };
 
-            AsyncStorage.setItem(config.STORE_KEY, JSON.stringify(dataObject));
+            this.setState({allpush:true}, () => {
+                AsyncStorage.setItem(config.STORE_KEY, JSON.stringify(dataObject), () => {});
+            });
+
+
+
+
 
 
         }).then(res => {
 
         });
+        */
     }
 
     _allPush()
     {
+        /*
         if(this.state.allpush == true) {
             this.setState({allpush:false});
 
@@ -76,10 +85,12 @@ export default class SideBar extends React.Component {
         }).then(res => {
 
         });
+        */
     }
 
     _surveyPush()
     {
+        /*
         if(this.state.surveypush == true) {
             this.setState({surveypush:false});
         } else {
@@ -109,6 +120,7 @@ export default class SideBar extends React.Component {
         }).then(res => {
 
         });
+        */
     }
 
     render() {

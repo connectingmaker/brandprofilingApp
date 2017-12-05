@@ -442,7 +442,6 @@ export default class JoinForm extends Component {
                                     <Input placeholder='인증번호 입력' style={JoinFormStyle.input} onChangeText={(text) => this.setState({authCodeText: text})} keyboardType="phone-pad"/>
                                 </Item>
 
-                                <Text>인증코드 : {this.state.authCode}</Text>
                             </View>
                         </View>
                     )}

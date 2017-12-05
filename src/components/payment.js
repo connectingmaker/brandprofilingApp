@@ -12,7 +12,7 @@ export default class Payment extends Component {
     constructor(){
         super();
         this.state ={
-            stepView:1
+            stepView:3
             ,cashBackPoint:""
             ,cashBackAccount:""
             ,bank:""
@@ -276,7 +276,7 @@ export default class Payment extends Component {
                                 'Error',
                                 json.ERR_MSG,
                                 [
-                                    {text: '확인', onPress: () => Action.pop()},
+                                    {text: '확인', onPress: () => Actions.pop({ refresh: {stepView: 2}})},
                                 ],
                                 { cancelable: false }
                             )
@@ -514,8 +514,8 @@ export default class Payment extends Component {
                             <View style={{paddingBottom:5}}>
                                 <Text style={paymentFormStyle.contentsSize}>입금까지 접수완료 시점으로부터 5~10일이 소요됩니다.</Text>
                             </View>
-                            <Button bordered full style={{borderColor:"#979797", backgroundColor:"#DA4211", justifyContent: 'center', paddingLeft:10}}>
-                                <Text style={{marginLeft:10, color:"#ffffff"}} onPress={() => Actions.pop({refresh:{data:true}})}>포인트 내역으로 이동</Text>
+                            <Button bordered full style={{borderColor:"#979797", backgroundColor:"#DA4211", justifyContent: 'center', paddingLeft:10}} onPress={() => Actions.pop({refresh:{data:true}})}>
+                                <Text style={{marginLeft:10, color:"#ffffff"}}>포인트 내역으로 이동</Text>
                             </Button>
 
                         </View>

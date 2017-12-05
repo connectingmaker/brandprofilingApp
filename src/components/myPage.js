@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { StyleSheet, Image, View, TouchableOpacity, Text ,ScrollView, AsyncStorage} from 'react-native';
+import { StyleSheet, Image, View, TouchableOpacity, Text ,ScrollView, AsyncStorage,Alert} from 'react-native';
 import { Actions } from 'react-native-router-flux';
 import { Container, Header, Content, Footer, Item, Icon, Input, Button ,ActionSheet, Spinner} from 'native-base';
 import config from '../config'

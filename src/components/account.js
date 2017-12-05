@@ -146,7 +146,7 @@ export default class Account extends Component {
                     case "000":
                         console.log(data.AUTHCODE);
                         this.setState({authcode:data.AUTHCODE});
-
+                        this.stepNext(5);
                         break;
                     default:
                         Alert.alert(
@@ -166,7 +166,7 @@ export default class Account extends Component {
             });
 
 
-        this.stepNext(5);
+
 
     }
     /**** 인증 번호 체크 *****/
@@ -378,9 +378,6 @@ export default class Account extends Component {
                                     <Input placeholder='인증번호 입력' style={AccountFormStyle.input} value={this.state.checkNumber} onChangeText={(text) => this.setState({checkNumber: text})} keyboardType="numeric"/>
                                 </Item>
                             </View>
-                                <View style={{padding:20}}>
-                                    <Text>인증번호 : {this.state.authcode}</Text>
-                                </View>
                         </View>
                     )}
                     {renderIf(this.state.stepView == 6)(
@@ -394,13 +391,13 @@ export default class Account extends Component {
                             <View style={{paddingLeft:20,paddingRight:20,paddingTop:20,paddingBottom:10}}>
                                 <Item regular style={{backgroundColor:"#ffffff"}}>
                                     <Image source={require('../../assets/img/join_icon_pw.png')} resizeMode={'contain'} style={{width:16, height:13, marginTop:5, marginLeft:10}} />
-                                    <Input placeholder='새로운 비밀번호 입력' style={AccountFormStyle.input} value={this.state.newPw} onChangeText={(text) => this.setState({newPw: text})} keyboardType="default"/>
+                                    <Input placeholder='새로운 비밀번호 입력' style={AccountFormStyle.input} value={this.state.newPw} onChangeText={(text) => this.setState({newPw: text})} keyboardType="default" secureTextEntry={true}/>
                                 </Item>
                             </View>
                             <View style={{paddingLeft:20,paddingRight:20}}>
                                 <Item regular style={{backgroundColor:"#ffffff"}}>
                                     <Image source={require('../../assets/img/join_icon_pw.png')} resizeMode={'contain'} style={{width:16, height:13, marginTop:5, marginLeft:10}} />
-                                    <Input placeholder='다시 입력' style={AccountFormStyle.input} value={this.state.re_newPw} onChangeText={(text) => this.setState({re_newPw: text})} keyboardType="default"/>
+                                    <Input placeholder='다시 입력' style={AccountFormStyle.input} value={this.state.re_newPw} onChangeText={(text) => this.setState({re_newPw: text})} keyboardType="default" secureTextEntry={true}/>
                                 </Item>
                             </View>
 

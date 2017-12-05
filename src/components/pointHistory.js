@@ -43,10 +43,13 @@ export default class pointHistory extends Component {
 
     componentWillReceiveProps(nextProps)
     {
+        console.log("데이터 로드");
         this.mounted = true;
-        this.setState({loaded:false});
+        this.setState({loaded:false,bankstats:true, historystats:true});
         this.loadJSONData();
     }
+
+
 
 
 
@@ -67,9 +70,12 @@ export default class pointHistory extends Component {
                 .then((response) => response.json())
                 .then((responseData) =>
                 {
+
+
                     if(this.mounted) {
                         var data = eval("(" + responseData.inPointList + ")");
                         var Bankdata = eval("(" + responseData.bankPointList + ")");
+
 
                         //this.setState({loaded:true, myPoint:responseData.userPoint, dataSource:this.state.dataSource.cloneWithRows(data), BankdataSource:this.state.BankdataSource.cloneWithRows(Bankdata)});
                         if(data.length > 0) {

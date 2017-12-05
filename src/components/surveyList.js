@@ -44,6 +44,12 @@ export default class surveyList extends Component {
     }
 
 
+
+
+
+
+
+
     componentWillReceiveProps(nextProps)
     {
         //this.setState({loaded:false})
