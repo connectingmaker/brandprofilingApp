@@ -294,8 +294,8 @@ export default class JoinForm extends Component {
 
             <Container>
                 <Header style={JoinFormStyle.headerLayoyt}>
-                    <View style={{flex:.15, justifyContent: 'center', alignItems: 'center'}}>
-                        <TouchableOpacity onPress={Actions.pop} style={{alignSelf: 'stretch', alignItems:'center', justifyContent:'center'}}>
+                    <View style={{flex:.15, justifyContent: 'center', alignItems: 'flex-start'}}>
+                        <TouchableOpacity onPress={Actions.pop}>
                         <Text style={{fontSize:12}}
                               /*onPress={()=>Actions.emailLogin}*/
                               >나가기</Text>

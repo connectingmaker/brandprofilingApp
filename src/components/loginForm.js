@@ -173,17 +173,17 @@ export default class LoginForm extends Component {
         return (
             <Container>
                 <Header style={LoginFormStyle.headerLayoyt}>
-                    <View style={{flex:.15, alignItems: 'center',justifyContent:'flex-start'}}>
-                        <TouchableOpacity onPress={Actions.pop} style={{alignSelf: 'stretch', alignItems:'center', justifyContent:'center'}}>
-                        <Text style={{color:"#ffffff"}}>뒤로</Text>
+                    <View style={{flex:.15, alignItems: 'flex-start',justifyContent:'center'}}>
+                        <TouchableOpacity onPress={Actions.pop}>
+                        <Text style={{color:"#ffffff", fontSize:12}}>뒤로</Text>
                         </TouchableOpacity>
                     </View>
                     <View style={{flex:.7, alignItems: 'center'}}>
-                        <Text style={{color:"#ffffff"}}>이메일로 로그인</Text>
+                        <Text style={{color:"#ffffff", fontSize:16}}>이메일로 로그인</Text>
                     </View>
                     <View style={{flex:.15, alignItems: 'center',justifyContent:'flex-end'}}>
-                        <TouchableOpacity onPress={() => this.loginCheck()} style={{alignSelf: 'stretch', alignItems:'center', justifyContent:'center'}}>
-                        <Text style={{color:"#ffffff"}}>로그인</Text>
+                        <TouchableOpacity onPress={() => this.loginCheck()}>
+                        <Text style={{color:"#ffffff", fontSize:12}}>로그인</Text>
                         </TouchableOpacity>
                     </View>
                 </Header>

@@ -54,7 +54,7 @@ export default class SideBar extends React.Component {
 
     _allPush()
     {
-        /*
+
         if(this.state.allpush == true) {
             this.setState({allpush:false});
 
@@ -85,12 +85,12 @@ export default class SideBar extends React.Component {
         }).then(res => {
 
         });
-        */
+
     }
 
     _surveyPush()
     {
-        /*
+
         if(this.state.surveypush == true) {
             this.setState({surveypush:false});
         } else {
@@ -120,7 +120,7 @@ export default class SideBar extends React.Component {
         }).then(res => {
 
         });
-        */
+
     }
 
     render() {
