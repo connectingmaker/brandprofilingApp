@@ -8,7 +8,12 @@ import renderIf from 'render-if'
 
 const routes = ["home", "business", "tech", "profile"];
 
+
 export default class SideBar extends React.Component {
+
+    static allpush_yn = false;
+    static survey_push_yn = false;
+
     constructor(){
         super();
         this.state ={
@@ -18,38 +23,33 @@ export default class SideBar extends React.Component {
 
 
 
+        var object = {
+            method: 'GET',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'text/html'
+            }
+        }
+
+
+
+
     }
 
     componentWillMount()
     {
-        /*
-        AsyncStorage.getItem(config.STORE_KEY).then((value) => {
-            var json = eval("("+value+")");
-            var all_push_yn = json.SESS_ALL_PUSH_YN;
 
-            var survey_push_yn = json.SESS_SURVEY_PUSH_YN;
+        this.loadJSONData();
+    }
 
+    componentDidMount()
+    {
+    }
 
-            var dataObject = {
-                "SESS_UID" : json.SESS_UID
-                ,"SESS_USEREMAIL" : json.SESS_USEREMAIL
-                , "SESS_ALL_PUSH_YN": this.state.allpush
-                , "SESS_SURVEY_PUSH_YN": this.state.surveypush
-            };
-
-            this.setState({allpush:true}, () => {
-                AsyncStorage.setItem(config.STORE_KEY, JSON.stringify(dataObject), () => {});
-            });
+    loadJSONData() {
 
 
 
-
-
-
-        }).then(res => {
-
-        });
-        */
     }
 
     _allPush()
@@ -64,11 +64,6 @@ export default class SideBar extends React.Component {
 
         AsyncStorage.getItem(config.STORE_KEY).then((value) => {
             var json = eval("("+value+")");
-            var all_push_yn = json.SESS_ALL_PUSH_YN;
-
-            var survey_push_yn = json.SESS_SURVEY_PUSH_YN;
-
-
 
 
 
@@ -123,6 +118,8 @@ export default class SideBar extends React.Component {
 
     }
 
+
+
     render() {
 
         return (
@@ -130,7 +127,7 @@ export default class SideBar extends React.Component {
             <Container>
                 <Header style={sideBarFormStyle.headerLayout2}>
                     <View style={{flex:.8, justifyContent: 'center', alignItems: 'flex-start'}}>
-                        <Text style={{fontSize:16,color:'#fff'}}>어플리케이션 설정 및 소개</Text>
+                        <Text style={{fontSize:15,color:'#fff'}}>어플리케이션 설정 및 소개</Text>
                     </View>
                     <View style={{flex:.1, justifyContent: 'center', alignItems: 'flex-end'}}>
                         <Text style={{fontSize:12,color:'#fff'}} onPress={Actions.pop}></Text>

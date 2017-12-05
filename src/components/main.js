@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import { Actions } from 'react-native-router-flux';
-import { View, Text, Image, StyleSheet, TouchableOpacity,Easing, BackAndroid, BackHandler, Platform, ToastAndroid, AppState} from 'react-native';
+import { View, Text, Image, StyleSheet, TouchableOpacity,Easing, BackAndroid, BackHandler, Platform, ToastAndroid, AppState,AsyncStorage} from 'react-native';
 import { Container, Header, Content, Footer, FooterTab, Item, Icon, Input, Button, Tab, Tabs, TabHeading,Left,Body,Right,Title} from 'native-base';
 import Drawer from 'react-native-drawer'
-
+import config from '../config';
 
 import surveyList from '../components/surveyList';
 import mySurvey from '../components/mySurvey'
@@ -19,10 +19,8 @@ import renderIf from 'render-if'
 export default class Main extends Component {
     constructor(props) {
         super(props)
-        this.state = {index: 0} // default screen index
+        this.state = {index: 0, allpush_yn: false, surveypush_yn: false} // default screen index
         this.lastBackButtonPress = null;
-
-
 
     }
 
@@ -31,23 +29,14 @@ export default class Main extends Component {
         this.setState({index: index})
     }
 
+    componentWillMount()
+    {
+
+    }
+
     componentDidMount() {
         Actions.refresh({key: 'drawer', ref: this.refs.navigationDrawer});
-        /*
-        if (Platform.OS === 'android') {
-            this.backButtonListener = BackHandler.addEventListener('hardwareBackPress', () => {
 
-                if (this.lastBackButtonPress + 2000 >= new Date().getTime()) {
-                    BackHandler.exitApp();
-                    return true;
-                }
-                ToastAndroid.show('한번더 클릭하면 종료됩니다.', ToastAndroid.SHORT);
-                this.lastBackButtonPress = new Date().getTime();
-
-                return true;
-            });
-        }
-        */
     }
 
 
@@ -64,6 +53,8 @@ export default class Main extends Component {
 
         return true;
     }
+
+
 
 
 
