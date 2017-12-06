@@ -62,12 +62,9 @@ export default class BP extends Component {
                         </View>
                         <View style={BPFormStyle.lingBg}></View>
                         <View style={{paddingTop:5, paddingBottom:5}}>
-                            <Text style={BPFormStyle.contentsSize}>전화 : (+82) 02-541-7871</Text>
+                            <Text style={BPFormStyle.contentsSize}><Text style={BPFormStyle.boldFont}>전화</Text> : (+82) 02-541-7871<br/><Text style={BPFormStyle.boldFont}>이메일</Text> : contact@perception.co.kr</Text>
                         </View>
-                        <View style={BPFormStyle.lingBg}></View>
-                        <View style={{paddingTop:5, paddingBottom:5}}>
-                            <Text style={BPFormStyle.contentsSize}>이메일 : contact@perception.co.kr</Text>
-                        </View>
+
                     </View>
 
                 </Content>
