@@ -56,6 +56,19 @@ export default class BP extends Component {
                             <Text style={BPFormStyle.contentsSize}>메인의 <Text style={BPFormStyle.boldFont}>포인트</Text> 메뉴 > <Text style={BPFormStyle.boldFont}>환급신청</Text></Text>
                         </View>
                     </View>
+                    <View style={BPFormStyle.contentsLayout2}>
+                        <View style={{paddingTop:5, paddingBottom:5}}>
+                            <Text style={BPFormStyle.title}>Brand Profiling 관련된 교육, 워크샵, 컨설팅 등의 문의</Text>
+                        </View>
+                        <View style={BPFormStyle.lingBg}></View>
+                        <View style={{paddingTop:5, paddingBottom:5}}>
+                            <Text style={BPFormStyle.contentsSize}>전화 : (+82) 02-541-7871</Text>
+                        </View>
+                        <View style={BPFormStyle.lingBg}></View>
+                        <View style={{paddingTop:5, paddingBottom:5}}>
+                            <Text style={BPFormStyle.contentsSize}>이메일 : contact@perception.co.kr</Text>
+                        </View>
+                    </View>
 
                 </Content>
 
