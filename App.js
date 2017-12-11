@@ -17,7 +17,7 @@ import Terms from './src/components/terms';
 import Privacy from './src/components/privacy';
 import Pwchange from './src/components/pwchange';
 import SurveyJoin from './src/components/surveyJoin';
-import Panel from './src/components/paenl'
+import Panel from './src/components/panel'
 
 
 import config from './src/config';

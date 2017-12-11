@@ -222,7 +222,7 @@ export default class myPage extends Component {
                         </TouchableOpacity>
                     </View>
 
-                    <View style={myPageFormStyle.contentsLayout2}>
+                    <View style={myPageFormStyle.contentsLayout3}>
                         <TouchableOpacity onPress={Actions.Panel}>
                             <View style={{flex: 1, flexDirection: 'row', paddingTop: 5, paddingBottom: 5}}>
                                 <View style={{flex: 0.7, alignItems: 'flex-start', justifyContent: 'center'}}>
@@ -236,6 +236,8 @@ export default class myPage extends Component {
                             </View>
                         </TouchableOpacity>
                     </View>
+
+
 
                 </View>
 
@@ -270,6 +272,19 @@ const myPageFormStyle = StyleSheet.create({
     ,contentsLayout2: {
         width: "100%"
         ,marginTop:10
+        ,paddingTop:10
+        ,paddingBottom:10
+        ,paddingLeft:20
+        ,paddingRight:20
+        ,backgroundColor:"#fff"
+        ,shadowColor: "rgba(0,0,0,23)"
+        ,shadowOffset: { width: 0, height: 1 }
+        ,shadowOpacity: 0.3
+    }
+    ,contentsLayout3: {
+        width: "100%"
+        ,marginTop:10
+        ,marginBottom: 30
         ,paddingTop:10
         ,paddingBottom:10
         ,paddingLeft:20

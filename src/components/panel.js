@@ -43,7 +43,7 @@ export default class BP extends Component {
                         </View>
                         <View style={PanelFormStyle.lingBg}></View>
                         <View style={{paddingTop:5, paddingBottom:5}}>
-                            <Textare style={PanelFormStyle.contentsSize}></Textare>
+                            <Text style={PanelFormStyle.contentsSize}></Text>
                         </View>
                     </View>
 
@@ -53,7 +53,7 @@ export default class BP extends Component {
                         </View>
                         <View style={PanelFormStyle.lingBg}></View>
                         <View style={{paddingTop:5, paddingBottom:5}}>
-                            <Textare style={PanelFormStyle.contentsSize}></Textare>
+                            <Text style={PanelFormStyle.contentsSize}></Text>
                         </View>
                     </View>
 
@@ -63,7 +63,7 @@ export default class BP extends Component {
                         </View>
                         <View style={PanelFormStyle.lingBg}></View>
                         <View style={{paddingTop:5, paddingBottom:5}}>
-                            <Textare style={PanelFormStyle.contentsSize}></Textare>
+                            <Text style={PanelFormStyle.contentsSize}></Text>
                         </View>
                     </View>
                     <View style={PanelFormStyle.contentsLayout2}>
@@ -72,11 +72,10 @@ export default class BP extends Component {
                         </View>
                         <View style={PanelFormStyle.lingBg}></View>
                         <View style={{paddingTop:5, paddingBottom:5}}>
-                            <Textare style={PanelFormStyle.contentsSize}></Textare>
+                            <Text style={PanelFormStyle.contentsSize}></Text>
                         </View>
                     </View>
 
-                    
 
                 </Content>
 
