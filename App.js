@@ -17,6 +17,7 @@ import Terms from './src/components/terms';
 import Privacy from './src/components/privacy';
 import Pwchange from './src/components/pwchange';
 import SurveyJoin from './src/components/surveyJoin';
+import Panel from './src/components/paenl'
 
 import config from './src/config';
 
@@ -246,6 +247,7 @@ export default class App extends Component<{}> {
                     <Scene key="Terms" component={Terms} title="이용약관" hideNavBar={true} uid={this.state.uid} direction="overlay" schema="modal" wrapRouter={true}/>
                     <Scene key="Privacy" component={Privacy} title="개인정보취급방침" hideNavBar={true} uid={this.state.uid} direction="vertical" schema="modal" wrapRouter={true}/>
                     <Scene key="Pwchange" component={Pwchange} title="비밀번호변경" hideNavBar={true} uid={this.state.uid} direction="vertical" schema="modal" wrapRouter={true}/>
+                    <Scene key="Panel" component={Panel} title="전문패널신청" hideNavBar={true} uid={this.state.uid} direction="vertical" schema="modal" wrapRouter={true}/>
                 </Modal>
             </Router>
         } else {
