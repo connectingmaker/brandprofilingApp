@@ -3,16 +3,110 @@
  */
 import React, { Component } from 'react';
 import { Actions } from 'react-native-router-flux';
-import { View, Text, Image, StyleSheet, TouchableOpacity,AlertIOS,Alert,Platform } from 'react-native';
+import { View, Text, Image, StyleSheet, TouchableOpacity,AlertIOS,Alert,Platform,TextInput} from 'react-native';
 import { Container, Header, Body, Content, Footer,Item, Icon, Input,Button } from 'native-base';
-
+import config from '../../src/config';
 
 import renderIf from 'render-if'
 
 
 export default class BP extends Component {
+    constructor(){
+        super();
+        this.state = {
+            q1: ""
+            ,q2: ""
+            ,q3: ""
+            ,q4: ""
+        }
 
 
+        //AsyncStorage.clear();
+    }
+
+    panelCheck()
+    {
+        if(this.state.q1 == ""){
+            Alert.alert(
+                '',
+                '자기소개 내용을 입력해주세요.',
+                [
+                    {text: '확인', onPress: () => console.log('OK Pressed')},
+                ],
+                { cancelable: false }
+            )
+            return;
+        }
+
+        if(this.state.q2 == ""){
+            Alert.alert(
+                '',
+                '흥미있는 브랜드 카테고리를 입력해주세요.',
+                [
+                    {text: '확인', onPress: () => console.log('OK Pressed')},
+                ],
+                { cancelable: false }
+            )
+            return;
+        }
+        if(this.state.q3 == ""){
+            Alert.alert(
+                '',
+                '브랜드 관련 전문을 입력해주세요.',
+                [
+                    {text: '확인', onPress: () => console.log('OK Pressed')},
+                ],
+                { cancelable: false }
+            )
+            return;
+        }
+        if(this.state.q4 == ""){
+            Alert.alert(
+                '',
+                '현재 운영 중인 블로그 또는 SNS를 소개해주세요.',
+                [
+                    {text: '확인', onPress: () => console.log('OK Pressed')},
+                ],
+                { cancelable: false }
+            )
+            return;
+        }
+
+
+        var object = {
+            method: 'POST',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                'q1': this.state.q1
+                ,'q2': this.state.q2
+                ,'q3': this.state.q3
+                ,'q4': this.state.q4
+
+            })
+        };
+
+        fetch(config.SERVER_URL + '/api/panelInsert', object)
+            .then((response) => response.text())
+            .then((responseJson) => {
+
+            })
+            .catch((error) => {
+                Alert.alert(
+                    'Error',
+                    'Network Error',
+                    [
+                        {text: '확인', onPress: () => console.log('OK Pressed')},
+                    ],
+                    {cancelable: false}
+                )
+                return;
+            });
+
+
+    }
 
     render() {
 
@@ -43,7 +137,7 @@ export default class BP extends Component {
                         </View>
                         <View style={PanelFormStyle.lingBg}></View>
                         <View style={{paddingTop:5, paddingBottom:5}}>
-                            <Textare style={PanelFormStyle.contentsSize}></Textare>
+                            <TextInput style={PanelFormStyle.textLayout} editable={true} maxLength={500} onChangeText={(text) => this.setState({q1: text})} keyboardType="default"></TextInput>
                         </View>
                     </View>
 
@@ -53,7 +147,7 @@ export default class BP extends Component {
                         </View>
                         <View style={PanelFormStyle.lingBg}></View>
                         <View style={{paddingTop:5, paddingBottom:5}}>
-                            <Textare style={PanelFormStyle.contentsSize}></Textare>
+                            <TextInput style={PanelFormStyle.textLayout} editable={true} maxLength={800} onChangeText={(text) => this.setState({q2: text})} keyboardType="default"></TextInput>
                         </View>
                     </View>
 
@@ -63,7 +157,7 @@ export default class BP extends Component {
                         </View>
                         <View style={PanelFormStyle.lingBg}></View>
                         <View style={{paddingTop:5, paddingBottom:5}}>
-                            <Textare style={PanelFormStyle.contentsSize}></Textare>
+                            <TextInput style={PanelFormStyle.textLayout} editable={true} maxLength={1500} onChangeText={(text) => this.setState({q3: text})} keyboardType="default"></TextInput>
                         </View>
                     </View>
                     <View style={PanelFormStyle.contentsLayout2}>
@@ -72,11 +166,17 @@ export default class BP extends Component {
                         </View>
                         <View style={PanelFormStyle.lingBg}></View>
                         <View style={{paddingTop:5, paddingBottom:5}}>
-                            <Textare style={PanelFormStyle.contentsSize}></Textare>
+                            <TextInput style={PanelFormStyle.textLayout} editable={true} maxLength={800} onChangeText={(text) => this.setState({q4: text})} keyboardType="default"></TextInput>
                         </View>
                     </View>
 
-                    
+                    <View style={PanelFormStyle.contentsLayout2}>
+                        <View style={{paddingTop:5, paddingBottom:5}}>
+                            <TouchableOpacity onPress={() => this.panelCheck()}>
+                                <Text style={{color:"#ffffff", fontSize:12}}>전문패널신청</Text>
+                            </TouchableOpacity>
+                        </View>
+                    </View>
 
                 </Content>
 
@@ -126,6 +226,15 @@ const PanelFormStyle = StyleSheet.create({
     ,contentsSize: {
         fontSize:13
         ,lineHeight:25
+    }
+    ,textLayout: {
+        fontSize:12
+        ,paddingTop:13
+        ,paddingLeft:11
+        ,paddingBottom:12
+        ,lineHeight:25
+        ,borderColor: '#4d4d4d'
+        ,borderWidth: 1
     }
     ,boldFont: {
         color:"#DA4211"
