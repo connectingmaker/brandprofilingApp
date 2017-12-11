@@ -270,20 +270,6 @@ const myPageFormStyle = StyleSheet.create({
     ,contentsLayout2: {
         width: "100%"
         ,marginTop:10
-        ,marginBottom: 10
-        ,paddingTop:10
-        ,paddingBottom:10
-        ,paddingLeft:20
-        ,paddingRight:20
-        ,backgroundColor:"#fff"
-        ,shadowColor: "rgba(0,0,0,23)"
-        ,shadowOffset: { width: 0, height: 1 }
-        ,shadowOpacity: 0.3
-    }
-    ,contentsLayout3: {
-        width: "100%"
-        ,marginTop:10
-        ,marginBottom:10
         ,paddingTop:10
         ,paddingBottom:10
         ,paddingLeft:20

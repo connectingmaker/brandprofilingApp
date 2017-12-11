@@ -19,6 +19,7 @@ import Pwchange from './src/components/pwchange';
 import SurveyJoin from './src/components/surveyJoin';
 import Panel from './src/components/paenl'
 
+
 import config from './src/config';
 
 import animations from './src/module/animations';
