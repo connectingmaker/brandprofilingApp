@@ -122,10 +122,10 @@ export default class LoginForm extends Component {
                                 console.log(err);
                             }
                             break;
-                        case "101":
+                        default:
                             Alert.alert(
                                 'Error',
-                                '가입된 이력이 존재하지 않습니다.',
+                                data[0].ERR_MSG,
                                 [
                                     {text: '확인', onPress: () => console.log('OK Pressed')},
                                 ],
@@ -133,17 +133,8 @@ export default class LoginForm extends Component {
                             )
                             return;
                             break;
-                        case "102":
-                            Alert.alert(
-                                'Error',
-                                '패스워드가 일치하지 않습니다.',
-                                [
-                                    {text: '확인', onPress: () => console.log('OK Pressed')},
-                                ],
-                                {cancelable: false}
-                            )
-                            return;
-                            break;
+
+
                     }
 
                 })

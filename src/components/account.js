@@ -188,62 +188,74 @@ export default class Account extends Component {
 
     /**** 새로운 비밀 번호 체크 *****/
     newPwCheck(){
-        if(this.state.newPw != this.state.re_newPw) {
+        var passwordRules = /^(?=.*[a-zA-Z])(?=.*[!@#$%^*])(?=.*[0-9]).{6,16}$/;
+
+        if(!/^[a-zA-Z0-9]{6,16}$/.test(this.state.newPw)){
             Alert.alert(
-                "Error",
-                "패스워드가 일치하지 않습니다",
+                '',
+                '숫자와 영문자 조합으로 6~16자리를 사용해야 합니다.',
                 [
                     {text: '확인', onPress: () => console.log('OK Pressed')},
                 ],
-                {cancelable: false}
-            )
+                { cancelable: false }
+            );
+            return;
         } else {
-            var object = {
-                method: 'POST',
-                headers: {
-                    'Accept': 'application/json',
-                    'Content-Type': 'application/json'
-                },
-                body:JSON.stringify( {
-                    'useremail': this.state.emailText
-                    ,'userphone': this.state.phoneNumber
-                    ,'userpw': this.state.newPw
-                })
-            };
+            if (this.state.newPw != this.state.re_newPw) {
+                Alert.alert(
+                    "Error",
+                    "패스워드가 일치하지 않습니다",
+                    [
+                        {text: '확인', onPress: () => console.log('OK Pressed')},
+                    ],
+                    {cancelable: false}
+                )
+            } else {
+                var object = {
+                    method: 'POST',
+                    headers: {
+                        'Accept': 'application/json',
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        'useremail': this.state.emailText
+                        , 'userphone': this.state.phoneNumber
+                        , 'userpw': this.state.newPw
+                    })
+                };
 
 
-            fetch(config.SERVER_URL+"/api/memberPwUpdate", object)
-                .then((response) => response.json())
-                .then((responseData) =>
-                {
-                    var data = responseData;
+                fetch(config.SERVER_URL + "/api/memberPwUpdate", object)
+                    .then((response) => response.json())
+                    .then((responseData) => {
+                        var data = responseData;
 
-                    console.log(data);
+                        console.log(data);
 
 
-                    switch(data.ERR_CODE) {
-                        case "000":
-                            this.stepNext(7);
+                        switch (data.ERR_CODE) {
+                            case "000":
+                                this.stepNext(7);
 
-                            break;
-                        default:
-                            Alert.alert(
-                                'ERR_CODE='+data.ERR_CODE,
-                                data.ERR_MSG,
-                                [
-                                    {text: '확인', onPress: () => console.log('OK Pressed')},
-                                ],
-                                {cancelable: false}
-                            )
-                            break;
-                    }
+                                break;
+                            default:
+                                Alert.alert(
+                                    'ERR_CODE=' + data.ERR_CODE,
+                                    data.ERR_MSG,
+                                    [
+                                        {text: '확인', onPress: () => console.log('OK Pressed')},
+                                    ],
+                                    {cancelable: false}
+                                )
+                                break;
+                        }
 
-                })
-                .catch((err) => {
-                    console.log(err);
-                });
+                    })
+                    .catch((err) => {
+                        console.log(err);
+                    });
+            }
         }
-
     }
 
 
@@ -384,7 +396,7 @@ export default class Account extends Component {
                         <View>
                             <View style={AccountFormStyle.contentsLayout}>
                                 <View>
-                                    <Text style={AccountFormStyle.contentsSize}><Text style={AccountFormStyle.boldFont}>영문</Text>이나 <Text style={AccountFormStyle.boldFont}>숫자</Text>를 사용하여 <Text style={AccountFormStyle.boldFont}>6~16자리</Text>의 <Text style={AccountFormStyle.boldFont}>새로운 비밀번호</Text>를 입력해주세요. 사용 가능한 특수 문자는 <Text style={AccountFormStyle.boldFont}>!@#$%^&*</Text>입니다.</Text>
+                                    <Text style={AccountFormStyle.contentsSize}><Text style={AccountFormStyle.boldFont}>영문</Text>이나 <Text style={AccountFormStyle.boldFont}>숫자</Text> 그리고 <Text style={AccountFormStyle.boldFont}>특수문자</Text>를 사용하여 <Text style={AccountFormStyle.boldFont}>6~16자리</Text>의 <Text style={AccountFormStyle.boldFont}>새로운 비밀번호</Text>를 입력해주세요. </Text>
                                 </View>
 
                             </View>
