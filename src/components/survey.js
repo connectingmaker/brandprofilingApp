@@ -88,12 +88,12 @@ export default class Survey extends Component {
                                     <Image source={require('../../assets/img/presurvey_icon_list.png')} resizeMode={'contain'} style={{width:30,height:30}}/>
                                 </View>
                                 <View style={{padding:10,alignItems:'center'}}>
-                                    <Text style={{fontSize:12}}>추가정보가 성공적으로 제출되었습니다.</Text>
+                                    <Text style={{fontSize:12}}>설문 응답이 성공적으로 제출되었습니다.</Text>
                                 </View>
                             </View>
                             <View style={preSurveyFormStyle.lingBg}></View>
                             <View>
-                                <Text style={preSurveyFormStyle.contentsSize}>저희의 감사한 마음을 담아, <Text style={preSurveyFormStyle.boldFont}>{this.props.point}P</Text>를 회원님의 적립함에 넣어드렸어요! 소중한 참여 다시한번 감사합니다.</Text>
+                                <Text style={preSurveyFormStyle.contentsSize}><Text style={preSurveyFormStyle.boldFont}>{this.props.point}P</Text>를 회원님의 적립함에 넣어드렸어요! 소중한 참여에 다시 한번 감사드립니다.</Text>
                             </View>
                             <View style={preSurveyFormStyle.lingBg}></View>
                             <View>
