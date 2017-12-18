@@ -60,14 +60,14 @@ export default class Survey extends Component {
                                 </View>
                                 <View style={SurveyFormStyle.lingBg}></View>
                                 <View>
-                                    <Text style={SurveyFormStyle.contentsSize}>이 설문조사는 응답하신 문항에 따라 포인트가 달라집니다.</Text>
+                                    <Text style={SurveyFormStyle.contentsSize}>이 설문조사는 응답하신 문항에 따라 포인트가 다르게 적립됩니다.</Text>
                                 </View>
                                 <View>
-                                    <Text style={SurveyFormStyle.contentsSize}>설문을 끝까지 완료하신 경우에는 <Text style={SurveyFormStyle.boldFont}>{this.props.point}P</Text>를 설문대상자가 아니거나 초과된 경우에는 <Text style={SurveyFormStyle.boldFont}>최소 10P</Text>를 받으실 수 있습니다.</Text>
+                                    <Text style={SurveyFormStyle.contentsSize}>완료하신 경우에는 <Text style={SurveyFormStyle.boldFont}>{this.props.point}P</Text>를,  설문대상자가 아니거나 <Text style={SurveyFormStyle.boldFont}>설문모집인원이 초과된 경우</Text>에는 최소 10P를 받으실 수 있습니다.</Text>
                                 </View>
                                 <View style={SurveyFormStyle.lingBg}></View>
                                 <View>
-                                    <Text style={SurveyFormStyle.contentsSize}>본 설문조사는 시작 시 지적 재산권/정보 기물 유지에 대한 동의를 필요로 하며, 동의하지 않으실 경우 설문이 종료되어 포인트가 지급되지 않을 수 있습니다.</Text>
+                                    <Text style={SurveyFormStyle.contentsSize}>본 설문조사는 설문참여 시 지적 재산권 보호 및 정보 비밀 유지에 동의한 것으로 간주됩니다. 동의하지 않을 경우 화면 상단의 '나가기'를 눌러주세요.</Text>
                                 </View>
                                 <View style={SurveyFormStyle.lingBg}></View>
 
