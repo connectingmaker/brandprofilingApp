@@ -133,7 +133,7 @@ export default class BP extends Component {
                 <Content style={{padding:10}}>
                     <View style={PanelFormStyle.contentsLayout2}>
                         <View style={{paddingTop:5, paddingBottom:5}}>
-                            <Text style={PanelFormStyle.title}>1. 간단한 자기소개서를 작성해주세요.(본인의 장점, 전문패널로서의 강점 등) (500자 이내)</Text>
+                            <Text style={PanelFormStyle.title}>1. 간단한 자기소개를 작성해주세요.(본인의 장점, 전문패널로서의 강점 등) (500자 이내)</Text>
                         </View>
                         <View style={PanelFormStyle.lingBg}></View>
                         <View style={{paddingTop:5, paddingBottom:5}}>
@@ -153,7 +153,7 @@ export default class BP extends Component {
 
                     <View style={PanelFormStyle.contentsLayout2}>
                         <View style={{paddingTop:5, paddingBottom:5}}>
-                            <Text style={PanelFormStyle.title}>3. 브랜드 관련 전문성(학위,업무 종사 경력 및 경험 등)에 대해 구체적으로 작성해주세요.(1500자 이내)</Text>
+                            <Text style={PanelFormStyle.title}>3. 브랜드 관련 전문성(학위,업무 종사 경력 및 경험 등)에 대해 말씀해주세요.(1500자 이내)</Text>
                         </View>
                         <View style={PanelFormStyle.lingBg}></View>
                         <View style={{paddingTop:5, paddingBottom:5}}>
