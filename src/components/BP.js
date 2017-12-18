@@ -49,7 +49,7 @@ export default class BP extends Component {
                         </View>
                         <View style={BPFormStyle.lingBg}></View>
                         <View style={{paddingTop:5, paddingBottom:5}}>
-                            <Text style={BPFormStyle.contentsSize}>포인트는 설문 참여나 활동을 통해서 얻을 수 있는 보상으로, 1포인트는 1원에 해당하며 <Text style={BPFormStyle.boldFont}>5,000포인트 이상</Text>부터 환급신청을 통해 본인 명의의 통장으로 입금받으실 수 있습니다.</Text>
+                            <Text style={BPFormStyle.contentsSize}>포인트는 설문 참여나 활동을 통해서 얻을 수 있는 보상으로, 1포인트는 1원에 해당하며 <Text style={BPFormStyle.boldFont}>5,000포인트 이상</Text>부터 환급신청을 통해 본인 명의의 통장으로 입금받으실 수 있습니다.(제세공과금 본인 부담)</Text>
                         </View>
                         <View style={BPFormStyle.lingBg}></View>
                         <View style={{paddingTop:5, paddingBottom:5}}>
