@@ -131,6 +131,35 @@ export default class myPage extends Component {
             return (
 
                 <View>
+                    <View style={myPageFormStyle.contentsLayout2}>
+                        <TouchableOpacity onPress={Actions.BP}>
+                            <View style={{flex: 1, flexDirection: 'row', paddingTop: 5, paddingBottom: 5}}>
+                                <View style={{flex: 0.7, alignItems: 'flex-start', justifyContent: 'center'}}>
+                                    <Text style={myPageFormStyle.contentsSize}>어플리케이션 소개</Text>
+                                </View>
+
+                                <View style={{flex: 0.3, alignItems: 'flex-end'}}>
+                                    {/*<Image source={require('../../assets/img/down_arrow_img.png')}*/}
+                                           {/*resizeMode={'contain'} style={{width: 15, height: 15}}/>*/}
+                                </View>
+                            </View>
+                        </TouchableOpacity>
+                    </View>
+
+                    <View style={myPageFormStyle.contentsLayout3}>
+                        <TouchableOpacity onPress={Actions.Panel}>
+                            <View style={{flex: 1, flexDirection: 'row', paddingTop: 5, paddingBottom: 5}}>
+                                <View style={{flex: 0.7, alignItems: 'flex-start', justifyContent: 'center'}}>
+                                    <Text style={myPageFormStyle.contentsSize}>전문패널 신청</Text>
+                                </View>
+
+                                <View style={{flex: 0.3, alignItems: 'flex-end'}}>
+                                    {/*<Image source={require('../../assets/img/down_arrow_img.png')}*/}
+                                           {/*resizeMode={'contain'} style={{width: 15, height: 15}}/>*/}
+                                </View>
+                            </View>
+                        </TouchableOpacity>
+                    </View>
                     <View style={myPageFormStyle.contentsLayout}>
                         <View style={{flex: 1, flexDirection: 'row', paddingTop: 5, paddingBottom: 5}}>
                             <View style={{flex: 0.2, alignItems: 'flex-start', justifyContent: 'center'}}>
@@ -172,7 +201,7 @@ export default class myPage extends Component {
 
 
                     </View>
-                    <View style={myPageFormStyle.contentsLayout2}>
+                    <View style={myPageFormStyle.contentsLayout3}>
                         <View style={{paddingTop: 5, paddingBottom: 5}}>
                             <Text style={myPageFormStyle.title}>회원탈퇴</Text>
                         </View>
@@ -207,35 +236,7 @@ export default class myPage extends Component {
 
                     </View>
 
-                    <View style={myPageFormStyle.contentsLayout2}>
-                        <TouchableOpacity onPress={Actions.BP}>
-                            <View style={{flex: 1, flexDirection: 'row', paddingTop: 5, paddingBottom: 5}}>
-                                <View style={{flex: 0.7, alignItems: 'flex-start', justifyContent: 'center'}}>
-                                    <Text style={myPageFormStyle.contentsSize}>어플리케이션 소개</Text>
-                                </View>
 
-                                <View style={{flex: 0.3, alignItems: 'flex-end'}}>
-                                    <Image source={require('../../assets/img/down_arrow_img.png')}
-                                           resizeMode={'contain'} style={{width: 15, height: 15}}/>
-                                </View>
-                            </View>
-                        </TouchableOpacity>
-                    </View>
-
-                    <View style={myPageFormStyle.contentsLayout3}>
-                        <TouchableOpacity onPress={Actions.Panel}>
-                            <View style={{flex: 1, flexDirection: 'row', paddingTop: 5, paddingBottom: 5}}>
-                                <View style={{flex: 0.7, alignItems: 'flex-start', justifyContent: 'center'}}>
-                                    <Text style={myPageFormStyle.contentsSize}>전문패널 신청</Text>
-                                </View>
-
-                                <View style={{flex: 0.3, alignItems: 'flex-end'}}>
-                                    <Image source={require('../../assets/img/down_arrow_img.png')}
-                                           resizeMode={'contain'} style={{width: 15, height: 15}}/>
-                                </View>
-                            </View>
-                        </TouchableOpacity>
-                    </View>
 
 
 
@@ -284,7 +285,7 @@ const myPageFormStyle = StyleSheet.create({
     ,contentsLayout3: {
         width: "100%"
         ,marginTop:10
-        ,marginBottom: 30
+        ,marginBottom: 10
         ,paddingTop:10
         ,paddingBottom:10
         ,paddingLeft:20

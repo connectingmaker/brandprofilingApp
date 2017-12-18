@@ -190,10 +190,10 @@ export default class Account extends Component {
     newPwCheck(){
         var passwordRules = /^(?=.*[a-zA-Z])(?=.*[!@#$%^*])(?=.*[0-9]).{6,16}$/;
 
-        if(!/^[a-zA-Z0-9]{6,16}$/.test(this.state.newPw)){
+        if(!passwordRules.test(this.state.newPw)){
             Alert.alert(
                 '',
-                '숫자와 영문자 조합으로 6~16자리를 사용해야 합니다.',
+                '영문과 숫자 그리고 특수문자 !@#$%^& 조합으로 6~16자리를 사용해야 합니다.',
                 [
                     {text: '확인', onPress: () => console.log('OK Pressed')},
                 ],
@@ -396,7 +396,7 @@ export default class Account extends Component {
                         <View>
                             <View style={AccountFormStyle.contentsLayout}>
                                 <View>
-                                    <Text style={AccountFormStyle.contentsSize}><Text style={AccountFormStyle.boldFont}>영문</Text>이나 <Text style={AccountFormStyle.boldFont}>숫자</Text> 그리고 <Text style={AccountFormStyle.boldFont}>특수문자</Text>를 사용하여 <Text style={AccountFormStyle.boldFont}>6~16자리</Text>의 <Text style={AccountFormStyle.boldFont}>새로운 비밀번호</Text>를 입력해주세요. </Text>
+                                    <Text style={AccountFormStyle.contentsSize}><Text style={AccountFormStyle.boldFont}>영문</Text>이나 <Text style={AccountFormStyle.boldFont}>숫자</Text> 그리고 <Text style={AccountFormStyle.boldFont}>특수문자</Text>를 사용하여 <Text style={AccountFormStyle.boldFont}>6~16자리</Text>의 <Text style={AccountFormStyle.boldFont}>새로운 비밀번호</Text>를 입력해주세요. 사용가능한 특수문자는 <Text style={AccountFormStyle.boldFont}>!@#$%^&*</Text> 입니다.</Text>
                                 </View>
 
                             </View>
