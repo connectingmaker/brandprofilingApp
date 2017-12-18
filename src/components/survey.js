@@ -55,7 +55,7 @@ export default class Survey extends Component {
                                         <Image source={require('../../assets/img/presurvey_icon_list.png')} resizeMode={'contain'} style={{width:30,height:30}}/>
                                     </View>
                                     <View style={{padding:10,alignItems:'center'}}>
-                                        <Text style={{fontSize:12}}>설문 참여하기 전에 꼭 확인해주세요!</Text>
+                                        <Text style={{fontSize:12}}>설문에 참여하기 전에 꼭 확인해주세요!</Text>
                                     </View>
                                 </View>
                                 <View style={SurveyFormStyle.lingBg}></View>
