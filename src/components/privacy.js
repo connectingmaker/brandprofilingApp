@@ -149,15 +149,15 @@ export default class Privacy extends Component {
                                 <Text style={noticeFormStyle.contentsSize}>
                                 BrandProfiling는 개인정보보호를 위해서 항상 노력을 하고 있으며, 책임자와 담당부서를 지정하여 회원 여러분의 의견을 청취하고 민원 사항을 처리하고 있습니다.
 
-                                가. 개인정보 보호 책임자
-                                성명 : 임동원
-                                직책 : 경영지원실장
-                                연락처 : eastflowlim@gmail.com | 82-10-6338-8464
+                                    <Text> 가. 개인정보 보호 책임자</Text>.
+                                    <Text> 성명 : 임동원</Text>
+                                    <Text> 직책 : 경영지원실장</Text>
+                                    <Text>연락처 : eastflowlim@perception.co.kr | 82-10-6338-8464</Text>
 
-                                나. 개인정보 보호 담당부서
-                                부서명 : 경영지원팀
-                                담당자 : 임동원
-                                연락처 : eastflowlim@gmail.com | 82-10-6338-8464
+                                    <Text> 나. 개인정보 보호 담당부서</Text>
+                                    <Text>부서명 : 경영지원팀</Text>
+                                    <Text> 담당자 : 임동원</Text>
+                                    <Text>연락처 : eastflowlim@perception.co.kr | 82-10-6338-8464</Text>
                                 </Text>
 
 
