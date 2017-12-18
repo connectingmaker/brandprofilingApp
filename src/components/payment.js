@@ -273,7 +273,7 @@ export default class Payment extends Component {
                             break;
                         default:
                             Alert.alert(
-                                'Error',
+                                '',
                                 json.ERR_MSG,
                                 [
                                     {text: '확인', onPress: () => Actions.pop({ refresh: {stepView: 2}})},
