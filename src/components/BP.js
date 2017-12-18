@@ -40,7 +40,12 @@ export default class BP extends Component {
                         </View>
                         <View style={BPFormStyle.lingBg}></View>
                         <View style={{paddingTop:5, paddingBottom:5}}>
-                            <Text style={BPFormStyle.contentsSize}>Brand Profiling은 브랜드 포지셔닝에 특화된 툴로써, 리서치를 통해 <Text style={BPFormStyle.boldFont}>브랜드 이미지에 대하여 분석</Text>함을 목표로 하고 있습니다.</Text>
+                            <Text style={BPFormStyle.contentsSize}><Text style={BPFormStyle.boldFont}>Brand Profiling</Text>은 현재 브랜드의 포지셔닝을 진단하거나, 새로운
+                                포지셔닝 전략을 도출할 때 사용하는 <Text style={BPFormStyle.boldFont}>브랜딩 전문 리서치 툴</Text>입니다.
+                                브랜드의 상징가치, 개성, 정서적 혜택, 구매동기, 디자인스타일 등
+                                <Text style={BPFormStyle.boldFont}>브랜딩에 사용되는 모든 이론과 방법론이 총망라</Text>되어 있으며, 경쟁
+                                브랜드와 To-be브랜드의 포지셔닝 위치를 비교하는 방식으로 분석
+                                이 이루어집니다.</Text>
                         </View>
                     </View>
                     <View style={BPFormStyle.contentsLayout2}>
