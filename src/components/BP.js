@@ -56,7 +56,7 @@ export default class BP extends Component {
                             <Text style={BPFormStyle.contentsSize}>메인의 <Text style={BPFormStyle.boldFont}>포인트</Text> 메뉴 > <Text style={BPFormStyle.boldFont}>환급신청</Text></Text>
                         </View>
                     </View>
-                    <View style={BPFormStyle.contentsLayout2}>
+                    <View style={BPFormStyle.contentsLayout3}>
                         <View style={{paddingTop:5, paddingBottom:5}}>
                             <Text style={BPFormStyle.title}>Brand Profiling 관련된 교육, 워크샵, 컨설팅 등의 문의</Text>
                         </View>
@@ -112,6 +112,20 @@ const BPFormStyle = StyleSheet.create({
     ,contentsLayout2: {
         width: "100%"
         ,marginTop:10
+        ,paddingTop:10
+        ,paddingBottom:10
+        ,paddingLeft:20
+        ,paddingRight:20
+        ,backgroundColor:"#fff"
+        ,shadowColor: "rgba(0,0,0,23)"
+        ,shadowOffset: { width: 0, height: 1 }
+        ,shadowOpacity: 0.3
+    }
+
+    ,contentsLayout3: {
+        width: "100%"
+        ,marginTop:10
+        ,marginBottom:20
         ,paddingTop:10
         ,paddingBottom:10
         ,paddingLeft:20
