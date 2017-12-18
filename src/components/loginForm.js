@@ -124,7 +124,7 @@ export default class LoginForm extends Component {
                             break;
                         default:
                             Alert.alert(
-                                'Error',
+                                '',
                                 data[0].ERR_MSG,
                                 [
                                     {text: '확인', onPress: () => console.log('OK Pressed')},
@@ -140,7 +140,7 @@ export default class LoginForm extends Component {
                 })
                 .catch((error) => {
                     Alert.alert(
-                        'Error',
+                        '',
                         'Network Error',
                         [
                             {text: '확인', onPress: () => console.log('OK Pressed')},
