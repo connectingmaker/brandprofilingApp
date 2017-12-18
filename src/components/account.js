@@ -174,7 +174,7 @@ export default class Account extends Component {
         if(this.state.checkNumber != this.state.authcode) {
             Alert.alert(
                 "",
-                "인증번호가 일치하지 않습니다",
+                "인증번호가 입력해주세요.",
                 [
                     {text: '확인', onPress: () => console.log('OK Pressed')},
                 ],
