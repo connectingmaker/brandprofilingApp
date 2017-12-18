@@ -27,7 +27,7 @@ export default class BP extends Component {
                         </View>
                         </TouchableOpacity>
                         <View style={{flex:.6, justifyContent: 'center', alignItems: 'center'}}>
-                            <Text style={{fontSize:16,color:'#fff'}}>Brand Profiling 소개</Text>
+                            <Text style={{fontSize:16,color:'#fff'}}>어플리케이션 소개</Text>
                         </View>
                         <View style={{flex:.2, justifyContent: 'center', alignItems: 'center'}}>
                         </View>
