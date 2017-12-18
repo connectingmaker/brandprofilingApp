@@ -35,7 +35,7 @@ export default class Terms extends Component {
                                 <Text>제1조 목적</Text>
                             </Text>
                             <Text style={TermsFormStyle.contentsSize}>
-                                <Text>본 약관은 <Text style={TermsFormStyle.boldFont}>Perception Inc. (이하, "회사"라 한다) 가 소유하고 온라인상에서 운영하는 어플리케이션 Brand Profiling </Text>"본 서비스" 이용과 관련하여 회사와 회원 간의 권리, 의무 및 책임사항을 규정함을 목적으로 합니다.</Text>
+                                <Text>본 약관은 <Text style={TermsFormStyle.boldFont}>Perception Inc. (이하, "회사"라 한다) 가 소유하고 온라인상에서 운영하는 어플리케이션 Brand Profiling(이하 "본 서비스"라 한다) </Text>의 이용과 관련하여 회사와 회원 간의 권리, 의무 및 책임사항을 규정함을 목적으로 합니다.</Text>
                             </Text>
                             <Text style={TermsFormStyle.contentsSize2}>
                                 <Text>제2조 효력의 발생 및 변경</Text>
