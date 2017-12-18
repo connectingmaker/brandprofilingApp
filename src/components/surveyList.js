@@ -139,7 +139,7 @@ export default class surveyList extends Component {
 
                 <View style={{flexDirection: 'row', width:"100%"}}>
                     <View style={{backgroundColor: '#f6f6f6', flex: 0.3,padding:5,borderWidth:1,justifyContent:'center',borderColor:"#d0d0d0",borderBottomColor:"#f6f6f6",borderRightColor:"#f6f6f6"}} >
-                        <Text style={{color:'#919191',fontSize:12, textAlign:"center"}}>응답시간</Text>
+                        <Text style={{color:'#919191',fontSize:12, textAlign:"center"}}>응답예상시간</Text>
                     </View>
                     <View style={{borderColor: '#d0d0d0', flex: 0.7,padding:5,borderWidth:1,borderColor:"#d0d0d0",borderBottomColor:"#f6f6f6"}}>
                         <Text style={{color:'#919191',fontSize:13}}>{obj.SURVEY_TIME}분</Text>
