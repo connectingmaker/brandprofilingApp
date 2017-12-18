@@ -83,7 +83,7 @@ export default class myPage extends Component {
 
         Alert.alert(
             '회원탈퇴를 하시겠습니까?',
-            '회원탈퇴하시면 다시 복수할 수 없으니 신중하게 결정해주세요.',
+            '회원탈퇴하시면 기존의 정보는 다시 복구할 수 없으니 신중하게 결정해주세요.',
             [
 
                 {text: '최소', onPress: () => console.log('Cancel Pressed'), style: 'cancel'},
