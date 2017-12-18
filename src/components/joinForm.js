@@ -103,6 +103,7 @@ export default class JoinForm extends Component {
 
     phoneAuth()
     {
+        var regExp = /^01([0|1|6|7|8|9]?)-?([0-9]{3,4})-?([0-9]{4})$/;
         if(this.state.phoneText == "") {
             Alert.alert(
                 '',
@@ -110,7 +111,17 @@ export default class JoinForm extends Component {
                 [
                     {text: '확인', onPress: () => console.log('OK Pressed')},
                 ],
-                { cancelable: false }
+                {cancelable: false}
+            )
+            return;
+        } else if(!regExp.test(this.state.phoneText)){
+            Alert.alert(
+                '',
+                '핸드폰번호를 정확히 입력해주세요.',
+                [
+                    {text: '확인', onPress: () => console.log('OK Pressed')},
+                ],
+                {cancelable: false}
             )
             return;
         } else {
@@ -190,10 +201,10 @@ export default class JoinForm extends Component {
     {
         var passwordRules = /^(?=.*[a-zA-Z])(?=.*[!@#$%^*])(?=.*[0-9]).{6,16}$/;
 
-        if(!/^[a-zA-Z0-9]{6,16}$/.test(this.state.passPw)){
+        if(!passwordRules.test(this.state.passPw)){
             Alert.alert(
                 '',
-                '숫자와 영문자 조합으로 6~16자리를 사용해야 합니다.',
+                '영문과 숫자 그리고 특수문자 !@#$%^& 조합으로 6~16자리를 사용해야 합니다.',
                 [
                     {text: '확인', onPress: () => console.log('OK Pressed')},
                 ],
@@ -413,7 +424,7 @@ export default class JoinForm extends Component {
                         <View>
                             <View style={JoinFormStyle.contentsLayout}>
                                 <View>
-                                    <Text style={JoinFormStyle.contentsSize}>계정을 찾거나 포인트를 환급 받을 떄 사용될 <Text style={JoinFormStyle.boldFont}>본인 핸드폰 번호</Text>를 입력해주세요.</Text>
+                                    <Text style={JoinFormStyle.contentsSize}>계정을 찾거나 포인트를 환급 받을 떄 사용될 <Text style={JoinFormStyle.boldFont}>본인 핸드폰 번호를</Text>를 입력해주세요.</Text>
                                 </View>
 
                             </View>
@@ -421,7 +432,7 @@ export default class JoinForm extends Component {
                             <View style={{padding:20}}>
                                 <Item regular style={{backgroundColor:"#ffffff"}}>
                                     <Image source={require('../../assets/img/join_icon_email.png')} resizeMode={'contain'} style={{width:16, height:13, marginTop:5, marginLeft:10}} />
-                                    <Input placeholder='핸드폰번호 입력' style={JoinFormStyle.input} value={this.state.phoneText} onChangeText={(text) => this.setState({phoneText: text})} keyboardType="phone-pad"/>
+                                    <Input placeholder='핸드폰번호 입력' style={JoinFormStyle.input2} value={this.state.phoneText} onChangeText={(text) => this.setState({phoneText: text})} keyboardType="phone-pad"/>
                                 </Item>
                             </View>
                         </View>

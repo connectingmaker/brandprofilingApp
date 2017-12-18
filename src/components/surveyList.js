@@ -4,6 +4,7 @@ import { Actions } from 'react-native-router-flux';
 import { Container, Header, Content, Footer, Item, Icon, Input, Button ,ActionSheet, Spinner} from 'native-base';
 
 import config from '../../src/config';
+import renderIf from "render-if";
 
 
 
@@ -151,7 +152,13 @@ export default class surveyList extends Component {
                         <Text style={{color:'#919191',fontSize:12, textAlign:"center"}}>모집인원</Text>
                     </View>
                     <View style={{borderColor: '#d0d0d0', flex: 0.7,padding:5,borderWidth:1,borderColor:"#d0d0d0",borderBottomColor:"#d0d0d0"}}>
-                        <Text style={{color:'#919191',fontSize:12}}>{obj.JOIN_CNT}명 ({obj.TOTAL_CNT}명 참여)</Text>
+                        {renderIf(obj.JOIN_CNT == 0)(
+                        <Text style={{color:'#919191',fontSize:12}}>무제한 ({obj.TOTAL_CNT}명 참여)</Text>
+                        )}
+
+                        {renderIf(obj.JOIN_CNT != 0)(
+                            <Text style={{color:'#919191',fontSize:12}}>{obj.JOIN_CNT}명 ({obj.TOTAL_CNT}명 참여)</Text>
+                        )}
                     </View>
 
                 </View>

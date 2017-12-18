@@ -68,7 +68,7 @@ export default class BP extends Component {
                         <View style={BPFormStyle.lingBg}></View>
                         <View style={{paddingTop:5, paddingBottom:5}}>
                             <Text style={BPFormStyle.contentsSize}>
-                                <Text><Text style={BPFormStyle.boldFont}>전화</Text> : (+82) 02-541-7871\n</Text>
+                                <Text><Text style={BPFormStyle.boldFont}>전화</Text> : (+82) 02-541-7871</Text>
 
                             </Text>
                         </View>
