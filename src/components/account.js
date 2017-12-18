@@ -41,8 +41,8 @@ export default class Account extends Component {
         /*this.stepNext(4);*/
         if(this.state.phoneNumber == "") {
             Alert.alert(
-                'Error',
-                '전화번호를 입력해주세요.',
+                '',
+                '핸드폰번호를 입력해주세요.',
                 [
                     {text: '확인', onPress: () => console.log('OK Pressed')},
                 ],
@@ -100,7 +100,7 @@ export default class Account extends Component {
     pwCheck() {
         if(this.state.emailText == "") {
             Alert.alert(
-                'Error',
+                '',
                 '이메일 계정을 입력해주세요.',
                 [
                     {text: '확인', onPress: () => console.log('OK Pressed')},
@@ -112,7 +112,7 @@ export default class Account extends Component {
 
         if(this.state.phoneNumber == "") {
             Alert.alert(
-                'Error',
+                '',
                 '핸드폰 번호를 입력해주세요.',
                 [
                     {text: '확인', onPress: () => console.log('OK Pressed')},
@@ -173,7 +173,7 @@ export default class Account extends Component {
     numberCheck(){
         if(this.state.checkNumber != this.state.authcode) {
             Alert.alert(
-                "Error",
+                "",
                 "인증번호가 일치하지 않습니다",
                 [
                     {text: '확인', onPress: () => console.log('OK Pressed')},
@@ -203,7 +203,7 @@ export default class Account extends Component {
         } else {
             if (this.state.newPw != this.state.re_newPw) {
                 Alert.alert(
-                    "Error",
+                    "",
                     "패스워드가 일치하지 않습니다",
                     [
                         {text: '확인', onPress: () => console.log('OK Pressed')},

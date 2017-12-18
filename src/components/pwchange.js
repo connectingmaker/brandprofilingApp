@@ -59,7 +59,7 @@ export default class Pwchange extends Component {
                         default:
                             this.setState({emailText:"", phoneNumber:""})
                             Alert.alert(
-                                'Error',
+                                '',
                                 '정보가 일치하지 않습니다.',
                                 [
                                     {text: '확인'},
@@ -76,7 +76,7 @@ export default class Pwchange extends Component {
         else{
             this.setState({emailText:""})
             Alert.alert(
-                'Error',
+                '',
                 '이메일형식이 올바르지 않습니다.',
                 [
                     {text: '확인'},
