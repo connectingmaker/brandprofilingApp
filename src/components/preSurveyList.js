@@ -54,10 +54,10 @@ export default class PreSurveyList extends Component {
                             </View>
                             <View style={{flexDirection: 'row',paddingLeft:20,paddingBottom:10}}>
                                 <View style={{backgroundColor: '#f6f6f6', flex: 0.3,padding:10,borderWidth:1,borderColor:"#d0d0d0",borderRightColor:"#f6f6f6"}} >
-                                    <Text style={{color:'#919191',fontSize:13}}>응답시간</Text>
+                                    <Text style={{color:'#919191',fontSize:13}}>응답예상시간</Text>
                                 </View>
                                 <View style={{borderColor: '#d0d0d0', flex: 0.5,padding:10,borderWidth:1,borderColor:"#d0d0d0"}}>
-                                    <Text style={{color:'#919191',fontSize:13}}>2분</Text>
+                                    <Text style={{color:'#919191',fontSize:13}}>2</Text>
                                 </View>
                             </View>
 
