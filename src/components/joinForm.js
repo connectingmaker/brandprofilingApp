@@ -413,7 +413,7 @@ export default class JoinForm extends Component {
                         <View>
                             <View style={JoinFormStyle.contentsLayout}>
                                 <View>
-                                    <Text style={JoinFormStyle.contentsSize}>계정을 찾거나 포인트를 환급 받을 떄 사용될 <Text style={JoinFormStyle.boldFont}>본인 핸드폰 번호를</Text>를 입력해주세요.</Text>
+                                    <Text style={JoinFormStyle.contentsSize}>계정을 찾거나 포인트를 환급 받을 떄 사용될 <Text style={JoinFormStyle.boldFont}>본인 핸드폰 번호</Text>를 입력해주세요.</Text>
                                 </View>
 
                             </View>
