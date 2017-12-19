@@ -122,7 +122,7 @@ export default class Payment extends Component {
 
                             if(POINT < 5000) {
                                 Alert.alert(
-                                    'Error',
+                                    '',
                                     '포인트가 부족합니다.',
                                     [
                                         {text: '확인', onPress: () => Actions.pop({})},
@@ -592,7 +592,6 @@ const paymentFormStyle = StyleSheet.create({
         ,paddingTop:13
         ,paddingLeft:11
         ,paddingBottom:12
-        ,height:38
         ,backgroundColor: "#ffffff"
     }
 

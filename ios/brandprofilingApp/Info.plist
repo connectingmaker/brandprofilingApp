@@ -25,14 +25,14 @@
 		<dict>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>fb1756148374679717</string>
+				<string>fb164372370981694</string>
 			</array>
 		</dict>
 	</array>
 	<key>CFBundleVersion</key>
-	<string>1.2.0.12</string>
+	<string>1.2.0.14</string>
 	<key>FacebookAppID</key>
-	<string>1756148374679717</string>
+	<string>164372370981694</string>
 	<key>FacebookDisplayName</key>
 	<string>브랜드프로파일링</string>
 	<key>LSApplicationQueriesSchemes</key>

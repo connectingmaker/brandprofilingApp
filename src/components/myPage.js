@@ -297,7 +297,6 @@ const myPageFormStyle = StyleSheet.create({
     }
     ,contentsSize: {
         fontSize:13
-        ,lineHeight:25
     }
     ,boldFont: {
         color:"#DA4211"
