@@ -279,7 +279,7 @@ export default class pointHistory extends Component {
                         <View style={SurveyFormStyle.lingBg}></View>
                     </View>
                     {renderIf(this.state.historystats == true)(
-                    <View>
+                    <View style={{marginBottom:10}}>
                         <ListView style={SurveyFormStyle.inPointLayout} dataSource={this.state.dataSource}
                                   renderRow={(rowData) => this.pointHistory_IN(rowData) }>
                         </ListView>
@@ -504,6 +504,7 @@ const SurveyFormStyle = StyleSheet.create({
         ,shadowColor: "rgba(0,0,0,23)"
         ,shadowOffset: { width: 0, height: 1 }
         ,shadowOpacity: 0.3
+        ,marginBottom:10
     }
     ,contentsLayout3: {
         width: "100%"

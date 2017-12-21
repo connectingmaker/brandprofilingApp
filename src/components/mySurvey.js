@@ -157,6 +157,7 @@ export default class mySurvey extends Component {
             return (
                 <ListView
                     dataSource={this.state.dataSource}
+                    style={{marginBottom:10}}
                     renderRow={(rowData) => this.renderSurveyView(rowData) }
                 />
             );
