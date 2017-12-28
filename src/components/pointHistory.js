@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { StyleSheet, Image, View, TouchableOpacity, Text ,ScrollView, ListView, AsyncStorage} from 'react-native';
 import { Actions } from 'react-native-router-flux';
 import { Container, Header, Content, Footer, Item, Icon, Input, Button ,ActionSheet, Spinner} from 'native-base';
+import Moment from 'moment';
 import config from '../../src/config';
 import renderIf from 'render-if'
 
@@ -178,7 +179,8 @@ export default class pointHistory extends Component {
                 </View>
                 <View style={{flex:1, flexDirection: 'row'}}>
                     <View style={{flex:0.6,alignItems:'flex-start',justifyContent:'center'}}>
-                        <Text style={{color:'#979797',fontSize:11}}>적립일 {obj.INSERT_DATETIME}</Text>
+                        <Text style={{color:'#979797',fontSize:11}}>적립일 {Moment(obj.INSERT_DATETIME).format('YYYY-MM-DD HH:mm:ss')}</Text>
+
                     </View>
                     <View style={{flex:0.4,alignItems:'flex-end'}}>
                         <Text style={{color:'#979797',fontSize:11}}>{obj.QUEST_NUM}차</Text>
