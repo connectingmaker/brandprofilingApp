@@ -154,41 +154,73 @@ export default class Privacy extends Component {
                                 </Text>
                                 <Text style={noticeFormStyle.contentsSize}>
                                     <Text>④ 쿠키 사용 목적</Text>
+                                </Text>
+                                <Text style={noticeFormStyle.contentsSize}>
                                     <Text>•회원과 비회원의 접속 빈도나 방문 시간 등을 분석, 이용자의 취향과 관심 분야를 파악 및 자취 추적, 각종 이벤트 참여 정도 및 방문 횟수 파악 등을 통한 타겟 마케팅 및 개인 맞춤 서비스 제공</Text>
-                                    <Text>•광고 효과 측정을 목적으로 하여, 타겟 광고를 발송</Text>
-                                    <Text> •이용자는 쿠키 설치에 대한 선택권을 가지고 있습니다. 따라서, 이용자는 웹 브라우저에서 옵션 설정 또는 모바일 애플리케이션의 설정에서 쿠키를 허용하거나 저장을 거부할 수 있습니다.</Text>
+                                </Text>
+                                <Text style={noticeFormStyle.contentsSize}>
+                                        <Text>•광고 효과 측정을 목적으로 하여, 타겟 광고를 발송</Text>
+                                </Text>
+                                <Text style={noticeFormStyle.contentsSize}>
+                                        <Text> •이용자는 쿠키 설치에 대한 선택권을 가지고 있습니다. 따라서, 이용자는 웹 브라우저에서 옵션 설정 또는 모바일 애플리케이션의 설정에서 쿠키를 허용하거나 저장을 거부할 수 있습니다.</Text>
+                                </Text>
+                                <Text style={noticeFormStyle.contentsSize}>
+                                        <Text> 설정 방법의 예</Text>
+                                </Text>
+                                <Text style={noticeFormStyle.contentsSize}>
+                                        <Text> 1) Internet Explorer의 경우</Text>
+                                </Text>
+                                <Text style={noticeFormStyle.contentsSize}>
+                                        <Text> 웹 브라우저 상단의 도구 메뉴 > 인터넷 옵션 > 개인정보 > 설정</Text>
+                                </Text>
+                                <Text style={noticeFormStyle.contentsSize}>
 
-                                    <Text> 설정 방법의 예</Text>
-                                    <Text> 1) Internet Explorer의 경우</Text>
-                                    <Text> 웹 브라우저 상단의 도구 메뉴 > 인터넷 옵션 > 개인정보 > 설정</Text>
-
-                                    <Text> 2) Chrome의 경우</Text>
-                                    <Text>웹 브라우저 우측의 설정 메뉴 > 화면 하단의 고급 설정 표시 > 개인정보의 콘텐츠 설정 버튼 > 쿠키</Text>
+                                        <Text> 2) Chrome의 경우</Text>
+                                </Text>
+                                <Text style={noticeFormStyle.contentsSize}>
+                                        <Text>웹 브라우저 우측의 설정 메뉴 > 화면 하단의 고급 설정 표시 > 개인정보의 콘텐츠 설정 버튼 > 쿠키</Text>
                                 </Text>
 
                             <Text style={noticeFormStyle.contentsSize2}>8. 개인정보의 기술적, 관리적 대책</Text>
                                 <Text style={noticeFormStyle.contentsSize}>
                                     <Text>회사는 이용자가 제공한 개인정보에 대하여 훼손, 침해, 누설, 변조 되지 않도록 하기 위한 안전성 확보를 위해서 기술적, 관리적 대책을 마련하고 있습니다.</Text>
                                 </Text>
-                                <Text style={noticeFormStyle.contentsSize}>
-                                    <Text>① 개인정보에 대한 암호화</Text>
-                                    <Text>② 해킹이나 컴퓨터 바이러스 방지 장치</Text>
-                                    <Text> ③ 개인정보 접근 권한 부여 후 확인 절차 마련</Text>
-                                    <Text> ④ 개인정보 데이터와 일반 데이터의 혼합관리 금지</Text>
-                                    <Text> ⑤ 개인정보관리책임자 및 담당자 대상 개인정보보호 교육 실시</Text>
-                                    <Text> • 아이디와 비밀번호 관리</Text>
+                                    <Text style={noticeFormStyle.contentsSize}>
+                                        <Text>① 개인정보에 대한 암호화</Text>
+                                    </Text>
+                                    <Text style={noticeFormStyle.contentsSize}>
+                                        <Text>② 해킹이나 컴퓨터 바이러스 방지 장치</Text>
+                                    </Text>
+                                    <Text style={noticeFormStyle.contentsSize}>
+                                        <Text>③ 개인정보 접근 권한 부여 후 확인 절차 마련</Text>
+                                    </Text>
+                            <Text style={noticeFormStyle.contentsSize}>
+                                    <Text>④ 개인정보 데이터와 일반 데이터의 혼합관리 금지</Text>
+                            </Text>
+                            <Text style={noticeFormStyle.contentsSize}>
+                                    <Text>⑤ 개인정보관리책임자 및 담당자 대상 개인정보보호 교육 실시</Text>
+                            </Text>
+                            <Text style={noticeFormStyle.contentsSize}>
+                                    <Text>• 아이디와 비밀번호 관리</Text>
+                            </Text>
+                            <Text style={noticeFormStyle.contentsSize}>
                                     <Text>회사는 이용자의 부주의로 아이디, 비밀번호가 유출되어 발생한 문제와 기본적인 인터넷의 위험성으로 일어나는 일들에 대해 책임을 지지 않습니다.    비밀번호를 자주 변경하며 로그인 시 개인정보가 유출되지 않도록 각별한 주의를 기울여 주시기 바랍니다.</Text>
-                                </Text>
-
+                            </Text>
                             <Text style={noticeFormStyle.contentsSize2}> 9. 개인정보에 관한 민원서비스</Text>
                                 <Text style={noticeFormStyle.contentsSize}>
                                     <Text>회사는 이용자의 개인정보를 보호하고 개인정보와 관련한 사항을 처리하기 위하여 아래와 같이 관련 부서 및 개인정보관리책임자를 지정하고 있습니다.</Text>
                                 </Text>
                             <Text style={noticeFormStyle.contentsSize}>
                                 <Text>•개인정보관리부서 : 경영지원실</Text>
-                                <Text> •개인정보관리책임자 성명 : 임동원</Text>
-                                <Text> •전화 : 02-541-7871</Text>
-                                <Text>  •이메일 : contact@perception.co.kr</Text>
+                            </Text>
+                            <Text style={noticeFormStyle.contentsSize}>
+                                <Text>•개인정보관리책임자 성명 : 임동원</Text>
+                            </Text>
+                            <Text style={noticeFormStyle.contentsSize}>
+                                <Text>•전화 : 02-541-7871</Text>
+                            </Text>
+                            <Text style={noticeFormStyle.contentsSize}>
+                                <Text>•이메일 : contact@perception.co.kr</Text>
                             </Text>
                             <Text style={noticeFormStyle.contentsSize}>
                                 <Text>이용자는 회사의 서비스를 이용하며 발생하는 모든 개인정보보호 관련 민원을 개인정보관리책임자 혹은 담당 부서로 신고하실 수 있습니다.
@@ -196,16 +228,24 @@ export default class Privacy extends Component {
                             </Text>
                             <Text style={noticeFormStyle.contentsSize}>
                                 <Text>1. 개인정보침해신고센터- http://privacy.kisa.or.kr (국번 없이 118)</Text>
-                                <Text> 2. 개인정보 분쟁조정위원회-http://www.kopico.go.kr(국번없이 1833-6972)</Text>
-                                <Text> 3. 대검찰청 사이버수사과-http://www.spo.go.kr (02-3480-3573)</Text>
-                                <Text> 4. 경찰청 사이버안전국-http://cyberbureau.police.go.kr (국번 없이 182)</Text>
+                            </Text>
+                            <Text style={noticeFormStyle.contentsSize}>
+                                <Text>2. 개인정보 분쟁조정위원회-http://www.kopico.go.kr(국번없이 1833-6972)</Text>
+                            </Text>
+                            <Text style={noticeFormStyle.contentsSize}>
+                                <Text>3. 대검찰청 사이버수사과-http://www.spo.go.kr (02-3480-3573)</Text>
+                            </Text>
+                            <Text style={noticeFormStyle.contentsSize}>
+                                <Text>4. 경찰청 사이버안전국-http://cyberbureau.police.go.kr (국번 없이 182)</Text>
                             </Text>
 
                             <Text style={noticeFormStyle.contentsSize2}> 10. 개인정보 처리방침 변경</Text>
 
                             <Text style={noticeFormStyle.contentsSize}>
                                 <Text>① 이 개인정보 처리방침은 2017년 12월 26일 부터 적용됩니다.</Text>
-                                    <Text> ② 회사는 개인정보취급방침을 개정하는 경우 http://brandprofiling.co.kr/
+                            </Text>
+                            <Text style={noticeFormStyle.contentsSize}>
+                                    <Text>② 회사는 개인정보취급방침을 개정하는 경우 http://brandprofiling.co.kr/
                                         또는 모바일 앱의 ‘공지사항’(또는 개별공지)을 통하여 공지할 것입니다.</Text>
                             </Text>
 
