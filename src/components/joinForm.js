@@ -153,7 +153,7 @@ export default class JoinForm extends Component {
                             break;
                         case "101":
                             Alert.alert(
-                                'Error',
+                                '',
                                 '하루발송량이 초과되었습니다.',
                                 [
                                     {text: '확인', onPress: () => console.log('OK Pressed')},
@@ -163,7 +163,7 @@ export default class JoinForm extends Component {
                             break;
                         case "102":
                             Alert.alert(
-                                'Error',
+                                '',
                                 '등록된 회원입니다.',
                                 [
                                     {text: '확인', onPress: () => console.log('OK Pressed')},
@@ -450,7 +450,7 @@ export default class JoinForm extends Component {
                             <View style={{padding:20}}>
                                 <Item regular style={{backgroundColor:"#ffffff"}}>
                                     <Image source={require('../../assets/img/icon_key_off.png')} resizeMode={'contain'} style={{width:16, height:13, marginTop:5, marginLeft:10}} />
-                                    <Input placeholder='인증번호 입력' style={JoinFormStyle.input} onChangeText={(text) => this.setState({authCodeText: text})} keyboardType="phone-pad"/>
+                                    <Input placeholder='인증번호 입력' style={JoinFormStyle.input2} onChangeText={(text) => this.setState({authCodeText: text})} keyboardType="phone-pad"/>
                                 </Item>
 
                             </View>

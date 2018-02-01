@@ -173,18 +173,42 @@ export default class pointHistory extends Component {
                     <View style={{flex:0.6,alignItems:'flex-start',justifyContent:'center'}}>
                         <Text style={SurveyFormStyle.contentsSize}><Text style={{color:'#979797',fontSize:13}}>{obj.CAMPAIGN_TITLE}</Text></Text>
                     </View>
+
+                    {renderIf(obj.CODE_TYPE == "IN")(
                     <View style={{flex:0.4,alignItems:'flex-end'}}>
                         <Text style={SurveyFormStyle.boldFont}>{obj.POINT}P</Text>
                     </View>
+                    )}
+
+                    {renderIf(obj.CODE_TYPE == "OUT")(
+                        <View style={{flex:0.4,alignItems:'flex-end'}}>
+                            <Text style={SurveyFormStyle.boldFont_blue}>{obj.POINT}P</Text>
+                        </View>
+                    )}
                 </View>
                 <View style={{flex:1, flexDirection: 'row'}}>
+                    {renderIf(obj.CODE_TYPE == "IN")(
                     <View style={{flex:0.6,alignItems:'flex-start',justifyContent:'center'}}>
                         <Text style={{color:'#979797',fontSize:11}}>적립일 {Moment(obj.INSERT_DATETIME).format('YYYY-MM-DD HH:mm:ss')}</Text>
 
                     </View>
+
+                    )}
+
+                    {renderIf(obj.CODE_TYPE == "OUT")(
+                        <View style={{flex:0.6,alignItems:'flex-start',justifyContent:'center'}}>
+                            <Text style={{color:'#979797',fontSize:11}}>회수일 {Moment(obj.INSERT_DATETIME).format('YYYY-MM-DD HH:mm:ss')}</Text>
+
+                        </View>
+                    )}
+
+
+                    {renderIf(obj.CODE_TYPE == "IN")(
                     <View style={{flex:0.4,alignItems:'flex-end'}}>
                         <Text style={{color:'#979797',fontSize:11}}>{obj.QUEST_NUM}차</Text>
                     </View>
+                    )}
+
                 </View>
                 <View style={SurveyFormStyle.lingBg}></View>
             </View>
@@ -281,7 +305,7 @@ export default class pointHistory extends Component {
                         <View style={SurveyFormStyle.lingBg}></View>
                     </View>
                     {renderIf(this.state.historystats == true)(
-                    <View style={{marginBottom:10}}>
+                    <View style={{marginBottom:20}}>
                         <ListView style={SurveyFormStyle.inPointLayout} dataSource={this.state.dataSource}
                                   renderRow={(rowData) => this.pointHistory_IN(rowData) }>
                         </ListView>
@@ -490,7 +514,7 @@ const SurveyFormStyle = StyleSheet.create({
     }
     ,contentsLayout2: {
         width: "100%"
-        ,marginTop:30
+        ,marginTop:10
         ,paddingTop:10
         ,paddingBottom:10
         ,paddingLeft:20
@@ -506,7 +530,6 @@ const SurveyFormStyle = StyleSheet.create({
         ,shadowColor: "rgba(0,0,0,23)"
         ,shadowOffset: { width: 0, height: 1 }
         ,shadowOpacity: 0.3
-        ,marginBottom:10
     }
     ,contentsLayout3: {
         width: "100%"
@@ -533,6 +556,11 @@ const SurveyFormStyle = StyleSheet.create({
 
     ,boldFont: {
         color:"#DA4211"
+        ,fontWeight: 'bold'
+    }
+
+    ,boldFont_blue: {
+        color:"#117eda"
         ,fontWeight: 'bold'
     }
 

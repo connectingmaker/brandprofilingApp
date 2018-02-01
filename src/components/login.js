@@ -46,8 +46,7 @@ export default class Login extends Component {
                                 if (error) {
                                     console.log(error)
                                 } else {
-                                    console.log(result)
-
+                                    console.log(result);
 
                                     var object = {
                                         method: 'POST',
@@ -65,6 +64,8 @@ export default class Login extends Component {
 
                                         })
                                     };
+
+                                    console.log(object);
 
                                     fetch(config.SERVER_URL+'/api/memberFaceBook', object)
                                         .then((response) => response.text())
@@ -136,7 +137,7 @@ export default class Login extends Component {
 
                         <Image source={require('../../assets/img/login_logo.png')} resizeMode={'contain'} style={LoginStyle.logo}></Image>
                         <Text style={LoginStyle.logoTitle}>
-                            브랜드 프로파일링 서베이 패널
+                            브랜드 포지셔닝 진단 및 브랜드 개발
                         </Text>
                     </View>
                     <View style={{flex:.3, alignItems:'center', justifyContent:'center', alignSelf: 'stretch', paddingBottom: 20}}>

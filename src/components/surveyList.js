@@ -187,6 +187,7 @@ export default class surveyList extends Component {
         if(this.state.loaded == true) {
             return (
                 <ListView
+                    style={{marginBottom:10}}
                     dataSource={this.state.dataSource}
                     renderRow={(rowData) => this.renderSurveyView(rowData) }
                 />
