@@ -275,7 +275,7 @@ const noticeFormStyle = StyleSheet.create({
         ,paddingBottom:10
         ,paddingLeft:20
         ,paddingRight:20
-        ,marginBottom:30
+        ,marginBottom:20
         ,backgroundColor:"#fff"
         ,shadowColor: "rgba(0,0,0,23)"
         ,shadowOffset: { width: 0, height: 1 }

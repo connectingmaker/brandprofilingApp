@@ -63,7 +63,7 @@ export default class Survey extends Component {
                                     <Text style={SurveyFormStyle.contentsSize}>이 설문조사는 응답하신 문항에 따라 포인트가 다르게 적립됩니다.</Text>
                                 </View>
                                 <View>
-                                    <Text style={SurveyFormStyle.contentsSize}>완료하신 경우에는 <Text style={SurveyFormStyle.boldFont}>{this.props.point}P</Text>를,  설문대상자가 아니거나 <Text style={SurveyFormStyle.boldFont}>설문모집인원이 초과된 경우</Text>에는 최소 10P를 받으실 수 있습니다.</Text>
+                                    <Text style={SurveyFormStyle.contentsSize}>완료하신 경우에는 <Text style={SurveyFormStyle.boldFont}>{this.props.point}P</Text>를 드립니다.</Text>
                                 </View>
                                 <View style={SurveyFormStyle.lingBg}></View>
                                 <View>
