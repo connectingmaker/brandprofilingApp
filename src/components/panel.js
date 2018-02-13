@@ -159,6 +159,11 @@ export default class BP extends Component {
                 </Header>
 
                 <Content style={{padding:10}}>
+                    <View style={PanelFormStyle.contentsLayout3}>
+                        <View style={{paddingTop:5, paddingBottom:5}}>
+                            <Text style={PanelFormStyle.title}> 브랜드 프로파일링 앱의 전문 패널이 되시면 기업체가 의뢰하는 패널 전문 리서치에 참여 하실 수 있도록 회원등급이 업그레이드되며 일반 리서치에 비해 포인트가 3배~5배 정도 더 지급됩니다. </Text>
+                        </View>
+                    </View>
                     <View style={PanelFormStyle.contentsLayout2}>
                         <View style={{paddingTop:5, paddingBottom:5}}>
                             <Text style={PanelFormStyle.title}>1. 간단한 자기소개서를 작성해주세요.(본인의 장점, 전문패널로서의 강점 등) (500자 이내)</Text>
@@ -244,7 +249,6 @@ const PanelFormStyle = StyleSheet.create({
     }
     ,contentsLayout3: {
         width: "100%"
-        ,marginTop:10
         ,marginBottom:20
         ,paddingTop:10
         ,paddingBottom:10
