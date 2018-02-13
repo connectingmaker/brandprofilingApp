@@ -569,6 +569,7 @@ const paymentFormStyle = StyleSheet.create({
     ,contentsLayout2: {
         width: "100%"
         ,marginTop:10
+        ,marginBottom:10
         ,paddingTop:10
         ,paddingBottom:10
         ,paddingLeft:20

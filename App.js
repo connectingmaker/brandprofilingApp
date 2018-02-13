@@ -180,14 +180,14 @@ export default class App extends Component<{}> {
             if (Platform.OS === 'ios') {
                 switch (notif._notificationType) {
                     case NotificationType.Remote:
-                        //notif.finish(RemoteNotificationResult.NewData); //other types available: RemoteNotificationResult.NewData, RemoteNotificationResult.ResultFailed
+                        notif.finish(RemoteNotificationResult.NewData); //other types available: RemoteNotificationResult.NewData, RemoteNotificationResult.ResultFailed
                         break;
                     case NotificationType.NotificationResponse:
-                        //notif.finish();
+                        notif.finish();
                         break;
                     case NotificationType.WillPresent:
                         console.log('in the method');
-                        //notif.finish(WillPresentNotificationResult.All); //other types available: WillPresentNotificationResult.None
+                        notif.finish(WillPresentNotificationResult.All); //other types available: WillPresentNotificationResult.None
                         break;
                 }
             }

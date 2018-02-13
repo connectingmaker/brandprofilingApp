@@ -201,7 +201,7 @@ export default class myPage extends Component {
 
 
                     </View>
-                    <View style={myPageFormStyle.contentsLayout3}>
+                    <View style={myPageFormStyle.contentsLayout4}>
                         <View style={{paddingTop: 5, paddingBottom: 5}}>
                             <Text style={myPageFormStyle.title}>회원탈퇴</Text>
                         </View>
@@ -285,6 +285,19 @@ const myPageFormStyle = StyleSheet.create({
     ,contentsLayout3: {
         width: "100%"
         ,marginTop:10
+        ,marginBottom: 10
+        ,paddingTop:10
+        ,paddingBottom:10
+        ,paddingLeft:20
+        ,paddingRight:20
+        ,backgroundColor:"#fff"
+        ,shadowColor: "rgba(0,0,0,23)"
+        ,shadowOffset: { width: 0, height: 1 }
+        ,shadowOpacity: 0.3
+    }
+
+    ,contentsLayout4: {
+        width: "100%"
         ,marginBottom: 10
         ,paddingTop:10
         ,paddingBottom:10
