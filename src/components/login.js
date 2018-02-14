@@ -65,35 +65,121 @@ export default class Login extends Component {
                                         })
                                     };
 
-                                    console.log(object);
+                                    console.log(result);
 
-                                    fetch(config.SERVER_URL+'/api/memberFaceBook', object)
-                                        .then((response) => response.text())
-                                        .then((responseJson) => {
+                                    var email = result.email;
 
-                                            var data = eval("("+responseJson+")");
+                                    //페이스북 이메일이 없을 경우 핸드폰 번호 인증받기
+                                    if(email == "") {
 
-                                            var dataObject = {
-                                                "SESS_UID" : data[0].UID
-                                                ,"SESS_USEREMAIL" : data[0].USEREMAIL
-                                                , "SESS_ALL_PUSH_YN": data[0].ALL_PUSH_YN
-                                                , "SESS_SURVEY_PUSH_YN": data[0].SURVEY_PUSH_YN
-                                            };
+                                        fetch(config.SERVER_URL+'/api/memberFaceBookCheck', object)
+                                            .then((response) => response.text())
+                                            .then((responseJson) => {
+                                                var data = eval("("+responseJson+")");
+                                                console.log(data.length);
+                                                if(data.length == 0) {
+                                                    var dataObject = {
+                                                        "FACEBOOK_EMAIL": result.email
+                                                        , "FACEBOOK_USERNAME": result.name
+                                                        , "FACEBOOK_ID": result.id
+                                                        , "TOKEN": userToken
+                                                        , "OS": Platform.OS
+                                                        , "VERSION": Platform.Version
+                                                    };
 
-                                            console.log(dataObject);
 
-                                            AsyncStorage.setItem(config.STORE_KEY, JSON.stringify(dataObject), () => {
-                                                Actions.Main();
+                                                    AsyncStorage.setItem(config.STORE_KEY, JSON.stringify(dataObject), () => {
+                                                        Actions.FacebookAuth();
+                                                        //Actions.Main();
+                                                    });
+                                                } else {
+                                                    fetch(config.SERVER_URL+'/api/memberFaceBook', object)
+                                                        .then((response) => response.text())
+                                                        .then((responseJson) => {
+
+                                                            var data = eval("("+responseJson+")");
+
+                                                            var dataObject = {
+                                                                "SESS_UID" : data[0].UID
+                                                                ,"SESS_USEREMAIL" : data[0].USEREMAIL
+                                                                , "SESS_ALL_PUSH_YN": data[0].ALL_PUSH_YN
+                                                                , "SESS_SURVEY_PUSH_YN": data[0].SURVEY_PUSH_YN
+                                                            };
+
+                                                            console.log(dataObject);
+
+                                                            AsyncStorage.setItem(config.STORE_KEY, JSON.stringify(dataObject), () => {
+                                                                Actions.Main();
+                                                            });
+
+
+
+
+
+                                                        })
+                                                        .catch((error) => {
+                                                            console.log("오류");
+                                                        });
+                                                }
+
+
+                                                /*
+                                                if(data.FACEBOOK_CNT == 0) {
+                                                    var dataObject = {
+                                                        "FACEBOOK_EMAIL": result.email
+                                                        , "FACEBOOK_USERNAME": result.name
+                                                        , "FACEBOOK_ID": result.id
+                                                        , "TOKEN": userToken
+                                                        , "OS": Platform.OS
+                                                        , "VERSION": Platform.Version
+                                                    };
+
+
+                                                    AsyncStorage.setItem(config.STORE_KEY, JSON.stringify(dataObject), () => {
+                                                        Actions.FacebookAuth();
+                                                        //Actions.Main();
+                                                    });
+                                                } else {
+
+                                                }
+                                                */
+
+
+
                                             });
 
+                                    } else {
+                                        fetch(config.SERVER_URL+'/api/memberFaceBook', object)
+                                            .then((response) => response.text())
+                                            .then((responseJson) => {
+
+                                                var data = eval("("+responseJson+")");
+
+                                                var dataObject = {
+                                                    "SESS_UID" : data[0].UID
+                                                    ,"SESS_USEREMAIL" : data[0].USEREMAIL
+                                                    , "SESS_ALL_PUSH_YN": data[0].ALL_PUSH_YN
+                                                    , "SESS_SURVEY_PUSH_YN": data[0].SURVEY_PUSH_YN
+                                                };
+
+                                                console.log(dataObject);
+
+                                                AsyncStorage.setItem(config.STORE_KEY, JSON.stringify(dataObject), () => {
+                                                    Actions.Main();
+                                                });
 
 
 
 
-                                        })
-                                        .catch((error) => {
-                                            console.log("오류");
-                                        });
+
+                                            })
+                                            .catch((error) => {
+                                                console.log("오류");
+                                            });
+                                    }
+
+
+
                                 }
                             }
 

@@ -18,6 +18,7 @@ import Privacy from './src/components/privacy';
 import Pwchange from './src/components/pwchange';
 import SurveyJoin from './src/components/surveyJoin';
 import Panel from './src/components/panel'
+import FacebookAuth from './src/components/facebookAuth'
 
 
 import config from './src/config';
@@ -238,6 +239,7 @@ export default class App extends Component<{}> {
 
                     <Scene key="Main" component={Main} initial={this.state.logged} uid={this.state.uid} title="사전조사" hideNavBar={true} />
                     <Scene key="JoinForm" component={JoinForm} title="회원가입" hideNavBar={true} direction="vertical" uid={this.state.uid} schema="modal" wrapRouter={true}/>
+                    <Scene key="FacebookAuth" component={FacebookAuth} title="핸드폰인증" hideNavBar={true} direction="vertical" uid={this.state.uid} schema="modal" wrapRouter={true}/>
                     <Scene key="Account" component={Account} title="계정/비번찾기" hideNavBar={true} direction="vertical" uid={this.state.uid} schema="modal" wrapRouter={true}/>
                     <Scene key="PreSurvey" component={PreSurvey} title="사전조사" hideNavBar={true} direction="vertical" uid={this.state.uid} schema="modal" wrapRouter={true}/>
                     <Scene key="Survey" component={Survey} title="일반조사" hideNavBar={true} direction="vertical" uid={this.state.uid} schema="modal" wrapRouter={true}/>

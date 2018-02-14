@@ -25,6 +25,7 @@ export default class Payment extends Component {
             ,requestBankName : ""
             ,requestBankAccount : ""
             ,requestPoint : ""
+            ,jumin:""
             ,promptVisible:false
         }
     }
@@ -240,6 +241,18 @@ export default class Payment extends Component {
             return;
         }
 
+        if(this.state.jumin == ""){
+            Alert.alert(
+                '',
+                '주민등록번호를 입력해주세요.',
+                [
+                    {text: '확인', onPress: () => console.log('OK Pressed')},
+                ],
+                { cancelable: false }
+            )
+            return;
+        }
+
 
         AsyncStorage.getItem(config.STORE_KEY).then((value) => {
             var json = eval("("+value+")");
@@ -254,9 +267,11 @@ export default class Payment extends Component {
                     cashBankPoint : this.state.cashBackPoint
                     , bankSelect : this.state.selected2
                     , cashBankAccount: this.state.cashBackAccount
-                    , uid : uid})
+                    , uid : uid
+                    , jumin : this.state.jumin
+                })
             }
-            fetch(config.SERVER_URL+"/api/pointSend", object)
+            fetch(config.SERVER_URL+"/api/pointSend_V1_01", object)
                 .then((response) => response.text())
                 .then((responseData) =>
                 {
@@ -484,8 +499,11 @@ export default class Payment extends Component {
                                 </Form>
                             </View>
 
-                            <View style={{paddingLeft:20,paddingRight:20,paddingBottom:20}}>
+                            <View style={{paddingLeft:20,paddingRight:20,paddingBottom:5}}>
                                     <Input placeholder='계좌번호 입력' style={paymentFormStyle.input} value={this.state.cashBackAccount} onChangeText={(text) => this.setState({cashBackAccount: text})} keyboardType="numeric"/>
+                            </View>
+                            <View style={{paddingLeft:20,paddingRight:20,paddingBottom:20}}>
+                                <Input placeholder='주민등록번호' style={paymentFormStyle.input} value={this.state.jumin} onChangeText={(text) => this.setState({jumin: text})} keyboardType="numeric"/>
                             </View>
                             <Button bordered full style={{borderColor:"#979797", backgroundColor:"#DA4211", justifyContent: 'center', paddingLeft:10}} onPress={() => this.bankSubmit()}>
                                 <Text style={{marginLeft:10, color:"#ffffff"}}>신청하기</Text>
