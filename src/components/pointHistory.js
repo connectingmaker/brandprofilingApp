@@ -153,7 +153,7 @@ export default class pointHistory extends Component {
 
                     {renderIf(obj.CODE_POINT == 7)(
                         <View style={{flex:0.6,alignItems:'flex-start',justifyContent:'center'}}>
-                            <Text style={{color:'#979797',fontSize:11}}>신청일 {obj.INSERT_DATETIME}</Text>
+                            <Text style={{color:'#979797',fontSize:11}}>신청일 {Moment(obj.INSERT_DATETIME).format('YYYY-MM-DD HH:mm:ss')}</Text>
                         </View>
                     )}
                     <View style={{flex:0.4,alignItems:'flex-end'}}>

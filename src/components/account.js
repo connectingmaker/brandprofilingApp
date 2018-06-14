@@ -1,10 +1,31 @@
 import React, { Component } from 'react';
 import { Actions } from 'react-native-router-flux';
-import { View, Text, Image, StyleSheet, TouchableOpacity, Clipboard, Alert } from 'react-native';
-import { Container, Header, Body, Content, Footer,Item, Icon, Input,Button } from 'native-base';
+import { View, Text, Image, StyleSheet, TouchableOpacity, Clipboard, Alert, Platform, NativeModules } from 'react-native';
+import { Container, Header, Left, Body, Right, Content, Footer,Item, Icon, Input,Button } from 'native-base';
 import renderIf from 'render-if'
 import config from '../../src/config';
 
+import I18n from 'react-native-i18n';
+var langRegionLocale = "en_US";
+if (Platform.OS === "android") {
+    langRegionLocale = NativeModules.I18nManager.localeIdentifier || "";
+} else if (Platform.OS === "ios") {
+    langRegionLocale = NativeModules.SettingsManager.settings.AppleLocale || "";
+}
+
+var languageLocale = langRegionLocale.substring(0, 2);
+
+import en from '../lang/en';
+import zh from '../lang/zh';
+import ko from '../lang/ko';
+
+I18n.fallbacks = true;
+I18n.locale = languageLocale;
+I18n.translations = {
+    en,
+    zh,
+    ko
+};
 
 
 export default class Account extends Component {
@@ -279,14 +300,18 @@ export default class Account extends Component {
         return (
             <Container>
                 <Header style={AccountFormStyle.headerLayout}>
-                    <View style={{flex:.15, justifyContent: 'center', alignItems: 'flex-start'}}>
-                        <TouchableOpacity onPress={Actions.pop}>
-                        <Text style={{fontSize:12}}>나가기</Text>
+
+
+                    <Left style={{flex:1}}>
+                        <TouchableOpacity onPress={Actions.pop} style={{width:50, height:50, justifyContent:'center', alignItems:'flex-start'}}>
+                            <View>
+                                <Text style={{fontSize:12}}>나가기</Text>
+                            </View>
                         </TouchableOpacity>
-                    </View>
-                    <View style={{flex:.7, justifyContent: 'center', alignItems: 'center'}}>
+                    </Left>
+                    <Body style={{flex:1}}>
                         {renderIf(this.state.stepView == 1)(
-                        <Text style={{fontSize:16}}>계정 / 비번 찾기</Text>
+                            <Text style={{fontSize:16}}>계정 / 비번 찾기</Text>
                         )}
                         {renderIf(this.state.stepView == 2 || this.state.stepView == 4)(
                             <Text style={{fontSize:16}}>이메일 계정 찾기</Text>
@@ -301,10 +326,10 @@ export default class Account extends Component {
                             <Text style={{fontSize:16}}>비밀번호 변경 완료</Text>
                         )}
 
-                    </View>
-                    <View style={{flex:.15, justifyContent: 'center', alignItems: 'center'}}>
+                    </Body>
+                    <Right style={{flex:1}}>
 
-                    </View>
+                    </Right>
                 </Header>
                 <Content style={{padding:10}}>
                     {renderIf(this.state.stepView == 1)(

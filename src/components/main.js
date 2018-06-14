@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Actions } from 'react-native-router-flux';
-import { View, Text, Image, StyleSheet, TouchableOpacity,Easing, BackAndroid, BackHandler, Platform, ToastAndroid, AppState,AsyncStorage} from 'react-native';
+import { View, Text, Image, StyleSheet, TouchableOpacity,Easing, BackAndroid, BackHandler, Platform, ToastAndroid, AppState,AsyncStorage,NativeModules} from 'react-native';
 import { Container, Header, Content, Footer, FooterTab, Item, Icon, Input, Button, Tab, Tabs, TabHeading,Left,Body,Right,Title} from 'native-base';
 import Drawer from 'react-native-drawer'
 import config from '../config';
@@ -14,13 +14,35 @@ import renderIf from 'render-if'
 
 
 
+import I18n from 'react-native-i18n';
 
+var langRegionLocale = "en_US";
+if (Platform.OS === "android") {
+    langRegionLocale = NativeModules.I18nManager.localeIdentifier || "";
+} else if (Platform.OS === "ios") {
+    langRegionLocale = NativeModules.SettingsManager.settings.AppleLocale || "";
+}
+
+var languageLocale = langRegionLocale.substring(0, 2);
+
+import en from '../lang/en';
+import zh from '../lang/zh';
+import ko from '../lang/ko';
+
+I18n.fallbacks = true;
+I18n.locale = languageLocale;
+I18n.translations = {
+    en,
+    zh,
+    ko
+};
 
 export default class Main extends Component {
     constructor(props) {
         super(props)
         this.state = {index: 0, allpush_yn: false, surveypush_yn: false} // default screen index
         this.lastBackButtonPress = null;
+
 
     }
 
@@ -97,7 +119,7 @@ export default class Main extends Component {
             <Container style={{marginLeft:-5}}>
                 <Header style={MainFormStyle.headerLayout}>
                 <Left style={{flex:1}}>
-                    <TouchableOpacity onPress={Actions.Notice}>
+                    <TouchableOpacity onPress={Actions.Notice} style={{width:30, height:50, justifyContent:'center', alignItems:'center'}}>
                         <View>
                             <Image source={require('../../assets/img/header_icon_alarm.png')} resizeMode={'contain'} style={{width:15, height:15}}/>
                         </View>
@@ -126,7 +148,7 @@ export default class Main extends Component {
                 )}
                 </Body>
                 <Right style={{flex:1}}>
-                    <TouchableOpacity onPress={() => this.openControlPanel()}>
+                    <TouchableOpacity onPress={() => this.openControlPanel()} style={{width:30, height:50, justifyContent:'center', alignItems:'center'}}>
                         <View>
                             <Image source={require('../../assets/img/header_icon_set.png')} resizeMode={'contain'} style={{width:15, height:15}}/>
                         </View>
@@ -141,16 +163,17 @@ export default class Main extends Component {
                     {renderIf(this.state.index == 0)(
                     <FooterTab style={{backgroundColor:"#fff"}}>
                         <Button onPress={() => this.switchScreen(0) }>
-                            <Image source={require('../../assets/img/surveyList_icon_on.png')} resizeMode={'contain'} style={{width:25,height:25}}/><Text style={{color:"#DA4211", fontSize:12, paddingTop:5}}>설문목록</Text>
+                            <Image source={require('../../assets/img/surveyList_icon_on.png')} resizeMode={'contain'} style={{width:25,height:25}}/><Text style={{color:"#DA4211", fontSize:12, paddingTop:5}}>{I18n.t('tab1')}
+                        </Text>
                         </Button>
                         <Button onPress={() => this.switchScreen(1) }>
-                            <Image source={require('../../assets/img/mySurvey_icon_off.png')} resizeMode={'contain'} style={{width:25,height:25}}/><Text style={{fontSize:12, paddingTop:5}}>완료설문</Text>
+                            <Image source={require('../../assets/img/mySurvey_icon_off.png')} resizeMode={'contain'} style={{width:25,height:25}}/><Text style={{fontSize:12, paddingTop:5}}>{I18n.t('tab2')}</Text>
                         </Button>
                         <Button onPress={() => this.switchScreen(3) }>
-                            <Image source={require('../../assets/img/point_icon_off.png')} resizeMode={'contain'} style={{width:25,height:25}}/><Text style={{fontSize:12, paddingTop:5}}>포인트</Text>
+                            <Image source={require('../../assets/img/point_icon_off.png')} resizeMode={'contain'} style={{width:25,height:25}}/><Text style={{fontSize:12, paddingTop:5}}>{I18n.t('tab3')}</Text>
                         </Button>
                         <Button onPress={() => this.switchScreen(4) }>
-                            <Image source={require('../../assets/img/myPage_icon_off.png')} resizeMode={'contain'} style={{width:25,height:25}}/><Text style={{fontSize:12, paddingTop:5}}>마이페이지</Text>
+                            <Image source={require('../../assets/img/myPage_icon_off.png')} resizeMode={'contain'} style={{width:25,height:25}}/><Text style={{fontSize:12, paddingTop:5}}>{I18n.t('tab4')}</Text>
                         </Button>
 
                     </FooterTab>
@@ -158,16 +181,16 @@ export default class Main extends Component {
                     {renderIf(this.state.index == 1)(
                         <FooterTab style={{backgroundColor:"#fff"}}>
                             <Button onPress={() => this.switchScreen(0) }>
-                                <Image source={require('../../assets/img/surveyList_icon_off.png')} resizeMode={'contain'} style={{width:25,height:25}}/><Text style={{fontSize:12, paddingTop:5}}>설문목록</Text>
+                                <Image source={require('../../assets/img/surveyList_icon_off.png')} resizeMode={'contain'} style={{width:25,height:25}}/><Text style={{fontSize:12, paddingTop:5}}>{I18n.t('tab1')}</Text>
                             </Button>
                             <Button onPress={() => this.switchScreen(1) }>
-                                <Image source={require('../../assets/img/mySurvey_icon_on.png')} resizeMode={'contain'} style={{width:25,height:25}}/><Text style={{color:"#DA4211", fontSize:12, paddingTop:5}}>완료설문</Text>
+                                <Image source={require('../../assets/img/mySurvey_icon_on.png')} resizeMode={'contain'} style={{width:25,height:25}}/><Text style={{color:"#DA4211", fontSize:12, paddingTop:5}}>{I18n.t('tab2')}</Text>
                             </Button>
                             <Button onPress={() => this.switchScreen(3) }>
-                                <Image source={require('../../assets/img/point_icon_off.png')} resizeMode={'contain'} style={{width:25,height:25}}/><Text style={{fontSize:12, paddingTop:5}}>포인트</Text>
+                                <Image source={require('../../assets/img/point_icon_off.png')} resizeMode={'contain'} style={{width:25,height:25}}/><Text style={{fontSize:12, paddingTop:5}}>{I18n.t('tab3')}</Text>
                             </Button>
                             <Button onPress={() => this.switchScreen(4) }>
-                                <Image source={require('../../assets/img/myPage_icon_off.png')} resizeMode={'contain'} style={{width:25,height:25}}/><Text style={{fontSize:12, paddingTop:5}}>마이페이지</Text>
+                                <Image source={require('../../assets/img/myPage_icon_off.png')} resizeMode={'contain'} style={{width:25,height:25}}/><Text style={{fontSize:12, paddingTop:5}}>{I18n.t('tab4')}</Text>
                             </Button>
 
                         </FooterTab>
@@ -175,16 +198,16 @@ export default class Main extends Component {
                     {renderIf(this.state.index == 3)(
                         <FooterTab style={{backgroundColor:"#fff"}}>
                             <Button onPress={() => this.switchScreen(0) }>
-                                <Image source={require('../../assets/img/surveyList_icon_off.png')} resizeMode={'contain'} style={{width:25,height:25}}/><Text style={{fontSize:12, paddingTop:5}}>설문목록</Text>
+                                <Image source={require('../../assets/img/surveyList_icon_off.png')} resizeMode={'contain'} style={{width:25,height:25}}/><Text style={{fontSize:12, paddingTop:5}}>{I18n.t('tab1')}</Text>
                             </Button>
                             <Button onPress={() => this.switchScreen(1) }>
-                                <Image source={require('../../assets/img/mySurvey_icon_off.png')} resizeMode={'contain'} style={{width:25,height:25}}/><Text style={{fontSize:12, paddingTop:5}}>완료설문</Text>
+                                <Image source={require('../../assets/img/mySurvey_icon_off.png')} resizeMode={'contain'} style={{width:25,height:25}}/><Text style={{fontSize:12, paddingTop:5}}>{I18n.t('tab2')}</Text>
                             </Button>
                             <Button onPress={() => this.switchScreen(3) }>
-                                <Image source={require('../../assets/img/point_icon_on.png')} resizeMode={'contain'} style={{width:25,height:25}}/><Text style={{color:"#DA4211", fontSize:12, paddingTop:5}}>포인트</Text>
+                                <Image source={require('../../assets/img/point_icon_on.png')} resizeMode={'contain'} style={{width:25,height:25}}/><Text style={{color:"#DA4211", fontSize:12, paddingTop:5}}>{I18n.t('tab3')}</Text>
                             </Button>
                             <Button onPress={() => this.switchScreen(4) }>
-                                <Image source={require('../../assets/img/myPage_icon_off.png')} resizeMode={'contain'} style={{width:25,height:25}}/><Text style={{fontSize:12, paddingTop:5}}>마이페이지</Text>
+                                <Image source={require('../../assets/img/myPage_icon_off.png')} resizeMode={'contain'} style={{width:25,height:25}}/><Text style={{fontSize:12, paddingTop:5}}>{I18n.t('tab4')}</Text>
                             </Button>
 
                         </FooterTab>
@@ -192,16 +215,16 @@ export default class Main extends Component {
                     {renderIf(this.state.index == 4)(
                         <FooterTab style={{backgroundColor:"#fff"}}>
                             <Button onPress={() => this.switchScreen(0) }>
-                                <Image source={require('../../assets/img/surveyList_icon_off.png')} resizeMode={'contain'} style={{width:25,height:25}}/><Text style={{fontSize:12, paddingTop:5}}>설문목록</Text>
+                                <Image source={require('../../assets/img/surveyList_icon_off.png')} resizeMode={'contain'} style={{width:25,height:25}}/><Text style={{fontSize:12, paddingTop:5}}>{I18n.t('tab1')}</Text>
                             </Button>
                             <Button onPress={() => this.switchScreen(1) }>
-                                <Image source={require('../../assets/img/mySurvey_icon_off.png')} resizeMode={'contain'} style={{width:25,height:25}}/><Text style={{fontSize:12, paddingTop:5}}>완료설문</Text>
+                                <Image source={require('../../assets/img/mySurvey_icon_off.png')} resizeMode={'contain'} style={{width:25,height:25}}/><Text style={{fontSize:12, paddingTop:5}}>{I18n.t('tab2')}</Text>
                             </Button>
                             <Button onPress={() => this.switchScreen(3) }>
-                                <Image source={require('../../assets/img/point_icon_off.png')} resizeMode={'contain'} style={{width:25,height:25}}/><Text style={{fontSize:12, paddingTop:5}}>포인트</Text>
+                                <Image source={require('../../assets/img/point_icon_off.png')} resizeMode={'contain'} style={{width:25,height:25}}/><Text style={{fontSize:12, paddingTop:5}}>{I18n.t('tab3')}</Text>
                             </Button>
                             <Button onPress={() => this.switchScreen(4) }>
-                                <Image source={require('../../assets/img/myPage_icon_on.png')} resizeMode={'contain'} style={{width:25,height:25}}/><Text  style={{color:"#DA4211", fontSize:12, paddingTop:5}}>마이페이지</Text>
+                                <Image source={require('../../assets/img/myPage_icon_on.png')} resizeMode={'contain'} style={{width:25,height:25}}/><Text  style={{color:"#DA4211", fontSize:12, paddingTop:5}}>{I18n.t('tab4')}</Text>
                             </Button>
 
                         </FooterTab>

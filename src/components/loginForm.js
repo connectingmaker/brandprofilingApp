@@ -1,11 +1,32 @@
 import React, { Component } from 'react';
 import { Actions } from 'react-native-router-flux';
-import { View, Text, Image, StyleSheet, TextInput, TouchableOpacity, Alert, AsyncStorage, Platform } from 'react-native';
-import { Container, Header, Body, Footer, Item, Icon, Input, Toast } from 'native-base';
+import { View, Text, Image, StyleSheet, TextInput, TouchableOpacity, Alert, AsyncStorage, Platform, NativeModules } from 'react-native';
+import { Container, Header, Left, Body, Right, Footer, Item, Icon, Input, Toast } from 'native-base';
 import FCM from "react-native-fcm";
 import config from '../../src/config';
 
 
+import I18n from 'react-native-i18n';
+var langRegionLocale = "en_US";
+if (Platform.OS === "android") {
+    langRegionLocale = NativeModules.I18nManager.localeIdentifier || "";
+} else if (Platform.OS === "ios") {
+    langRegionLocale = NativeModules.SettingsManager.settings.AppleLocale || "";
+}
+
+var languageLocale = langRegionLocale.substring(0, 2);
+
+import en from '../lang/en';
+import zh from '../lang/zh';
+import ko from '../lang/ko';
+
+I18n.fallbacks = true;
+I18n.locale = languageLocale;
+I18n.translations = {
+    en,
+    zh,
+    ko
+};
 
 export default class LoginForm extends Component {
     constructor(){
@@ -51,9 +72,9 @@ export default class LoginForm extends Component {
         if(this.state.emailText == ""){
             Alert.alert(
                 '',
-                '이메일정보를 입력해주세요.',
+                I18n.t("login_form_alert_email"),
                 [
-                    {text: '확인', onPress: () => console.log('OK Pressed')},
+                    {text: I18n.t("login_form_alert_confirm"), onPress: () => console.log('OK Pressed')},
                 ],
                 { cancelable: false }
             )
@@ -63,9 +84,9 @@ export default class LoginForm extends Component {
         if(this.state.passPw == ""){
             Alert.alert(
                 '',
-                '패스워드를 입력해주세요.',
+                I18n.t("login_form_alert_pw"),
                 [
-                    {text: '확인', onPress: () => console.log('OK Pressed')},
+                    {text: I18n.t("login_form_alert_confirm"), onPress: () => console.log('OK Pressed')},
                 ],
                 { cancelable: false }
             )
@@ -127,7 +148,7 @@ export default class LoginForm extends Component {
                                 '',
                                 data[0].ERR_MSG,
                                 [
-                                    {text: '확인', onPress: () => console.log('OK Pressed')},
+                                    {text: I18n.t("login_form_alert_confirm"), onPress: () => console.log('OK Pressed')},
                                 ],
                                 {cancelable: false}
                             )
@@ -143,7 +164,7 @@ export default class LoginForm extends Component {
                         '',
                         'Network Error',
                         [
-                            {text: '확인', onPress: () => console.log('OK Pressed')},
+                            {text: I18n.t("login_form_alert_confirm"), onPress: () => console.log('OK Pressed')},
                         ],
                         {cancelable: false}
                     )
@@ -164,28 +185,34 @@ export default class LoginForm extends Component {
         return (
             <Container>
                 <Header style={LoginFormStyle.headerLayoyt}>
-                    <View style={{flex:.15, alignItems: 'flex-start',justifyContent:'center'}}>
-                        <TouchableOpacity onPress={Actions.pop}>
-                        <Text style={{color:"#ffffff", fontSize:12}}>뒤로</Text>
+                    <Left style={{flex:1}}>
+                        <TouchableOpacity onPress={Actions.pop} style={{width:50, height:50, justifyContent:'center', alignItems:'flex-start'}}>
+                            <View>
+                                <Text style={{color:"#ffffff", fontSize:12}}>{I18n.t("login_form_exit")}</Text>
+                            </View>
                         </TouchableOpacity>
-                    </View>
-                    <View style={{flex:.7, alignItems: 'center'}}>
-                        <Text style={{color:"#ffffff", fontSize:16}}>이메일로 로그인</Text>
-                    </View>
-                    <View style={{flex:.15, alignItems: 'center',justifyContent:'flex-end'}}>
-                        <TouchableOpacity onPress={() => this.loginCheck()}>
-                        <Text style={{color:"#ffffff", fontSize:12}}>로그인</Text>
+                    </Left>
+                    <Body style={{flex:1}}>
+                        <Text style={{color:"#ffffff", fontSize:16}}>{I18n.t("login_form_title")}</Text>
+                    </Body>
+                    <Right style={{flex:1}}>
+                        <TouchableOpacity onPress={() => this.loginCheck()} style={{width:50, height:50, justifyContent:'center', alignItems:'flex-end'}}>
+                            <View>
+                                <Text style={{color:"#ffffff", fontSize:12}}>{I18n.t("login_form_login_btn")}</Text>
+                            </View>
                         </TouchableOpacity>
-                    </View>
+                    </Right>
                 </Header>
+
+
                 <Body style={LoginFormStyle.viewLayout}>
                 <Item regular>
                     <Image source={require('../../assets/img/join_icon_email.png')} resizeMode={'contain'} style={{width:16, height:13, marginTop:5, marginLeft:10}} />
-                    <Input placeholder='이메일' style={LoginFormStyle.input} onChangeText={(text) => this.setState({emailText: text})} keyboardType="email-address"/>
+                    <Input placeholder={I18n.t("login_form_filed_email_txt")} style={LoginFormStyle.input} onChangeText={(text) => this.setState({emailText: text})} keyboardType="email-address"/>
                 </Item>
                 <Item regular style={{marginTop:10}}>
                     <Image source={require('../../assets/img/join_icon_pw.png')} resizeMode={'contain'} style={{width:13, height:16, marginTop:3, marginLeft:13}} />
-                    <Input placeholder='비밀번호' style={LoginFormStyle.inputPw} onChangeText={(text) => this.setState({passPw: text})} keyboardType="default" secureTextEntry={true}/>
+                    <Input placeholder={I18n.t("login_form_filed_pw_txt")} style={LoginFormStyle.inputPw} onChangeText={(text) => this.setState({passPw: text})} keyboardType="default" secureTextEntry={true}/>
                 </Item>
                 </Body>
 

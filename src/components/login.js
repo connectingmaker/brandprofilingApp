@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { StyleSheet, Image, View, TouchableOpacity, AsyncStorage, Platform } from 'react-native';
+import { StyleSheet, Image, View, TouchableOpacity, AsyncStorage, Platform, NativeModules } from 'react-native';
 import { Actions } from 'react-native-router-flux';
 import { Container, Header, Title, Content, Footer, FooterTab, Button, Left, Right, Body, Icon, Text, ActionSheet } from 'native-base';
 import { AccessToken, GraphRequest, GraphRequestManager, LoginManager } from 'react-native-fbsdk';
@@ -7,7 +7,28 @@ import FCM from "react-native-fcm";
 
 import config from '../config'
 
+import I18n from 'react-native-i18n';
 
+var langRegionLocale = "en_US";
+if (Platform.OS === "android") {
+    langRegionLocale = NativeModules.I18nManager.localeIdentifier || "";
+} else if (Platform.OS === "ios") {
+    langRegionLocale = NativeModules.SettingsManager.settings.AppleLocale || "";
+}
+
+var languageLocale = langRegionLocale.substring(0, 2);
+
+import en from '../lang/en';
+import zh from '../lang/zh';
+import ko from '../lang/ko';
+
+I18n.fallbacks = true;
+I18n.locale = languageLocale;
+I18n.translations = {
+    en,
+    zh,
+    ko
+};
 
 export default class Login extends Component {
 
@@ -223,7 +244,7 @@ export default class Login extends Component {
 
                         <Image source={require('../../assets/img/login_logo.png')} resizeMode={'contain'} style={LoginStyle.logo}></Image>
                         <Text style={LoginStyle.logoTitle}>
-                            브랜드 포지셔닝 진단 및 브랜드 개발
+                            {I18n.t('login_title')}
                         </Text>
                     </View>
                     <View style={{flex:.3, alignItems:'center', justifyContent:'center', alignSelf: 'stretch', paddingBottom: 20}}>
@@ -240,7 +261,7 @@ export default class Login extends Component {
 
                     <View style={LoginStyle.footerViewLeft}>
                         <TouchableOpacity onPress={Actions.Account} style={{alignSelf: 'stretch', alignItems:'center', justifyContent:'center'}}>
-                        <Text style={LoginStyle.footerViewLeftFont}>계정/비번 찾기</Text>
+                        <Text style={LoginStyle.footerViewLeftFont}>{I18n.t('login_idpw_text')}</Text>
                         </TouchableOpacity>
                     </View>
 
@@ -253,7 +274,7 @@ export default class Login extends Component {
 
                     <View style={LoginStyle.footerViewRight}>
                         <TouchableOpacity onPress={Actions.JoinForm} style={{alignSelf: 'stretch', alignItems:'center', justifyContent:'center'}}>
-                        <Text style={LoginStyle.footerViewRightFont}>회원가입</Text>
+                        <Text style={LoginStyle.footerViewRightFont}>{I18n.t('login_regist_text')}</Text>
                         </TouchableOpacity>
                     </View>
 

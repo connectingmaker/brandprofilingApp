@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Actions } from 'react-native-router-flux';
-import { View, Text, Image, StyleSheet, TouchableOpacity,AlertIOS,Alert,Platform,ListView } from 'react-native';
-import { Container, Header, Body, Content, Footer,Item, Icon, Input,Button } from 'native-base';
+import { View, Text, Image, StyleSheet, TouchableOpacity,AlertIOS,Alert,Platform,ListView} from 'react-native';
+import { Container, Header, Left,Body,Right, Content, Footer,Item, Icon, Input,Button } from 'native-base';
 
 import config from '../config';
 import renderIf from 'render-if'
@@ -122,15 +122,21 @@ export default class Notice extends Component {
 
 
                 <Header style={noticeFormStyle.headerLayout}>
-                    <View style={{flex:.2, justifyContent: 'center', alignItems: 'flex-start'}}>
-                        <Text style={{fontSize:12,color:'#fff'}} onPress={Actions.pop}>나가기</Text>
-                    </View>
-                    <View style={{flex:.6, justifyContent: 'center', alignItems: 'center'}}>
-                        <Text style={{fontSize:16,color:'#fff'}}>공지사항</Text>
-                    </View>
-                    <View style={{flex:.2, justifyContent: 'center', alignItems: 'flex-end'}}>
-                    </View>
+
+                <Left style={{flex:1}}>
+                    <TouchableOpacity onPress={Actions.pop} style={{width:50, height:50, justifyContent:'center', alignItems:'center'}}>
+                        <View>
+                            <Text style={{fontSize:12,color:'#fff'}}>나가기</Text>
+                        </View>
+                    </TouchableOpacity>
+                </Left>
+                <Body style={{flex:1}}>
+                    <Text style={{fontSize:16,color:'#fff'}}>공지사항</Text>
+                </Body>
+                <Right style={{flex:1}} style={{width:50, height:50, justifyContent:'center', alignItems:'center'}}>
+                </Right>
                 </Header>
+
 
 
 
