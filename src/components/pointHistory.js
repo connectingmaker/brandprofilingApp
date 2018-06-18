@@ -1,10 +1,32 @@
 import React, { Component } from 'react';
-import { StyleSheet, Image, View, TouchableOpacity, Text ,ScrollView, ListView, AsyncStorage} from 'react-native';
+import { StyleSheet, Image, View, TouchableOpacity, Text ,ScrollView, ListView, AsyncStorage, Platform, NativeModules} from 'react-native';
 import { Actions } from 'react-native-router-flux';
 import { Container, Header, Content, Footer, Item, Icon, Input, Button ,ActionSheet, Spinner} from 'native-base';
 import Moment from 'moment';
 import config from '../../src/config';
 import renderIf from 'render-if'
+
+import I18n from 'react-native-i18n';
+var langRegionLocale = "en_US";
+if (Platform.OS === "android") {
+    langRegionLocale = NativeModules.I18nManager.localeIdentifier || "";
+} else if (Platform.OS === "ios") {
+    langRegionLocale = NativeModules.SettingsManager.settings.AppleLocale || "";
+}
+
+var languageLocale = langRegionLocale.substring(0, 2);
+
+import en from '../lang/en';
+import zh from '../lang/zh';
+import ko from '../lang/ko';
+
+I18n.fallbacks = true;
+I18n.locale = languageLocale;
+I18n.translations = {
+    en,
+    zh,
+    ko
+};
 
 
 export default class pointHistory extends Component {
@@ -112,7 +134,7 @@ export default class pointHistory extends Component {
             <View style={SurveyFormStyle.contentsLayout}>
                 <View style={{flex:1, flexDirection: 'row', paddingTop:10, paddingBottom:5}}>
                     <View style={{flex:0.4,alignItems:'flex-start',justifyContent:'center'}}>
-                        <Text style={{color:'#4D4D4D',fontSize:15,fontWeight: 'bold'}}>나의 포인트</Text>
+                        <Text style={{color:'#4D4D4D',fontSize:15,fontWeight: 'bold'}}>{I18n.t("point_myPoint")}</Text>
                     </View>
                     <View style={{flex:0.6,alignItems:'flex-end'}}>
                         <Text style={SurveyFormStyle.boldFont}>52,300P</Text>
@@ -120,7 +142,7 @@ export default class pointHistory extends Component {
                 </View>
                 <View style={SurveyFormStyle.lingBg}></View>
                 <Button bordered full style={{borderColor:"#979797", backgroundColor:"#DA4211", justifyContent: 'center', paddingLeft:10}} onPress={Actions.Payment}>
-                    <Text style={{marginLeft:10, color:"#ffffff"}} >환급신청</Text>
+                    <Text style={{marginLeft:10, color:"#ffffff"}} >{I18n.t("point_myPoint_btn")}</Text>
                 </Button>
             </View>
         );
@@ -147,7 +169,7 @@ export default class pointHistory extends Component {
 
                     {renderIf(obj.CODE_POINT == 6)(
                         <View style={{flex:0.6,alignItems:'flex-start',justifyContent:'center'}}>
-                            <Text style={{color:'#979797',fontSize:11}}>환급완료 {obj.UPDATE_DATETIME}</Text>
+                            <Text style={{color:'#979797',fontSize:11}}>{I18n.t("point_refund_complate_text")} {obj.UPDATE_DATETIME}</Text>
                         </View>
                     )}
 
@@ -189,7 +211,7 @@ export default class pointHistory extends Component {
                 <View style={{flex:1, flexDirection: 'row'}}>
                     {renderIf(obj.CODE_TYPE == "IN")(
                     <View style={{flex:0.6,alignItems:'flex-start',justifyContent:'center'}}>
-                        <Text style={{color:'#979797',fontSize:11}}>적립일 {Moment(obj.INSERT_DATETIME).format('YYYY-MM-DD HH:mm:ss')}</Text>
+                        <Text style={{color:'#979797',fontSize:11}}>{I18n.t("point_in_text")} {Moment(obj.INSERT_DATETIME).format('YYYY-MM-DD HH:mm:ss')}</Text>
 
                     </View>
 
@@ -241,7 +263,7 @@ export default class pointHistory extends Component {
                     <View style={SurveyFormStyle.contentsLayout}>
                         <View style={{flex:1, flexDirection: 'row', paddingTop:10, paddingBottom:5}}>
                             <View style={{flex:0.4,alignItems:'flex-start',justifyContent:'center'}}>
-                                <Text style={{color:'#4D4D4D',fontSize:15,fontWeight: 'bold'}}>나의 포인트</Text>
+                                <Text style={{color:'#4D4D4D',fontSize:15,fontWeight: 'bold'}}>{I18n.t("point_myPoint")}</Text>
                             </View>
                             <View style={{flex:0.6,alignItems:'flex-end'}}>
                                 <Text style={SurveyFormStyle.boldFont}>{this.state.myPoint}P</Text>
@@ -249,7 +271,7 @@ export default class pointHistory extends Component {
                         </View>
                         <View style={SurveyFormStyle.lingBg}></View>
                         <Button bordered full style={{borderColor:"#979797", backgroundColor:"#DA4211", justifyContent: 'center', paddingLeft:10}} onPress={Actions.Payment}>
-                            <Text style={{marginLeft:10, color:"#ffffff"}} >환급신청</Text>
+                            <Text style={{marginLeft:10, color:"#ffffff"}} >{I18n.t("point_myPoint_btn")}</Text>
                         </Button>
                     </View>
 
@@ -257,11 +279,11 @@ export default class pointHistory extends Component {
 
                         <View style={{flex:1, flexDirection: 'row', paddingTop:10, paddingBottom:5}}>
                             <TouchableOpacity style={{flexDirection: 'row', width:"100%", height:"100%"}} onPress={()=>this.bankStats()}>
-                            <View style={{flex:0.4,alignItems:'flex-start',justifyContent:'center'}}>
-                                <Text style={{color:'#4D4D4D',fontSize:15,fontWeight: 'bold'}}>포인트 환급 내역</Text>
+                            <View style={{flex:0.8,alignItems:'flex-start',justifyContent:'center'}}>
+                                <Text style={{color:'#4D4D4D',fontSize:15,fontWeight: 'bold'}}>{I18n.t("point_Refund_history")}</Text>
                             </View>
 
-                            <View style={{flex:0.6,alignItems:'flex-end'}}>
+                            <View style={{flex:0.2,alignItems:'flex-end'}}>
                                 {renderIf(this.state.bankstats == false)(
                                 <Image source={require("../../assets/img/down_arrow_img.png")} resizeMode={'contain'} style={{width:18, height:18}} />
                                 )}
@@ -288,10 +310,10 @@ export default class pointHistory extends Component {
                     <View style={SurveyFormStyle.contentsLayout2}>
                         <View style={{flex:1, flexDirection: 'row', paddingTop:10, paddingBottom:5}}>
                             <TouchableOpacity style={{flexDirection: 'row', width:"100%", height:"100%"}} onPress={()=>this.historyStats()}>
-                                <View style={{flex:0.4,alignItems:'flex-start',justifyContent:'center'}}>
-                                    <Text style={{color:'#4D4D4D',fontSize:15,fontWeight: 'bold'}}>포인트 적립 내역</Text>
+                                <View style={{flex:0.8,alignItems:'flex-start',justifyContent:'center'}}>
+                                    <Text style={{color:'#4D4D4D',fontSize:15,fontWeight: 'bold'}}>{I18n.t("point_complate_history")}</Text>
                                 </View>
-                                <View style={{flex:0.6,alignItems:'flex-end'}}>
+                                <View style={{flex:0.2,alignItems:'flex-end'}}>
                                     {renderIf(this.state.historystats == false)(
                                         <Image source={require("../../assets/img/down_arrow_img.png")} resizeMode={'contain'} style={{width:18, height:18}} />
                                     )}

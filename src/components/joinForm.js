@@ -130,9 +130,9 @@ export default class JoinForm extends Component {
         if(this.state.phoneText == "") {
             Alert.alert(
                 '',
-                '핸드폰번호를 입력해주세요.',
+                I18n.t('joinForm_step3_alert_phone1'),
                 [
-                    {text: '확인', onPress: () => console.log('OK Pressed')},
+                    {text: I18n.t('alert_confirm'), onPress: () => console.log('OK Pressed')},
                 ],
                 {cancelable: false}
             )
@@ -140,9 +140,9 @@ export default class JoinForm extends Component {
         } else if(!regExp.test(this.state.phoneText)){
             Alert.alert(
                 '',
-                '핸드폰번호를 정확히 입력해주세요.',
+                I18n.t('joinForm_step3_alert_phone2'),
                 [
-                    {text: '확인', onPress: () => console.log('OK Pressed')},
+                    {text: I18n.t('alert_confirm'), onPress: () => console.log('OK Pressed')},
                 ],
                 {cancelable: false}
             )
@@ -177,9 +177,9 @@ export default class JoinForm extends Component {
                         case "101":
                             Alert.alert(
                                 '',
-                                '하루발송량이 초과되었습니다.',
+                                I18n.t('joinForm_step3_alert_phone3'),
                                 [
-                                    {text: '확인', onPress: () => console.log('OK Pressed')},
+                                    {text: I18n.t('alert_confirm'), onPress: () => console.log('OK Pressed')},
                                 ],
                                 { cancelable: false }
                             );
@@ -187,9 +187,9 @@ export default class JoinForm extends Component {
                         case "102":
                             Alert.alert(
                                 '',
-                                '등록된 회원입니다.',
+                                I18n.t('joinForm_step3_alert_phone4'),
                                 [
-                                    {text: '확인', onPress: () => console.log('OK Pressed')},
+                                    {text: I18n.t('alert_confirm'), onPress: () => console.log('OK Pressed')},
                                 ],
                                 { cancelable: false }
                             );
@@ -211,9 +211,9 @@ export default class JoinForm extends Component {
         } else {
             Alert.alert(
                 '',
-                '인증번호가 일치하지 않습니다.',
+                I18n.t('joinForm_step3_filed_auth'),
                 [
-                    {text: '확인', onPress: () => console.log('OK Pressed')},
+                    {text: I18n.t("alert_confirm"), onPress: () => console.log('OK Pressed')},
                 ],
                 { cancelable: false }
             )
@@ -227,9 +227,9 @@ export default class JoinForm extends Component {
         if(!passwordRules.test(this.state.passPw)){
             Alert.alert(
                 '',
-                '영문과 숫자 그리고 특수문자 !@#$%^& 조합으로 6~16자리를 사용해야 합니다.',
+                I18n.t('joinForm_step4_alert_passwd'),
                 [
-                    {text: '확인', onPress: () => console.log('OK Pressed')},
+                    {text: I18n.t("alert_confirm"), onPress: () => console.log('OK Pressed')},
                 ],
                 { cancelable: false }
             );
@@ -257,9 +257,9 @@ export default class JoinForm extends Component {
                     if(data.length == 0) {
                         Alert.alert(
                             'Error',
-                            '오류가 발생되었습니다.',
+                            I18n.t('joinForm_step4_alert_error'),
                             [
-                                {text: '확인', onPress: () => console.log('OK Pressed')},
+                                {text: I18n.t("alert_confirm"), onPress: () => console.log('OK Pressed')},
                             ],
                             { cancelable: false }
                         );
@@ -480,16 +480,30 @@ export default class JoinForm extends Component {
                     {renderIf(this.state.stepView == 3)(
                         <View>
                             <View style={JoinFormStyle.contentsLayout}>
+                                {renderIf(languageLocale == "ko") (
                                 <View>
                                     <Text style={JoinFormStyle.contentsSize}>계정을 찾거나 포인트를 환급 받을 떄 사용될 <Text style={JoinFormStyle.boldFont}>본인 핸드폰 번호를</Text>를 입력해주세요.</Text>
                                 </View>
+                                )}
+
+                                {renderIf(languageLocale == "en") (
+                                    <View>
+                                        <Text style={JoinFormStyle.contentsSize}>{I18n.t('joinForm_step3_title')}</Text>
+                                    </View>
+                                )}
+
+                                {renderIf(languageLocale == "zh") (
+                                    <View>
+                                        <Text style={JoinFormStyle.contentsSize}>{I18n.t('joinForm_step3_title')}</Text>
+                                    </View>
+                                )}
 
                             </View>
 
                             <View style={{padding:20}}>
                                 <Item regular style={{backgroundColor:"#ffffff"}}>
                                     <Image source={require('../../assets/img/join_icon_email.png')} resizeMode={'contain'} style={{width:16, height:13, marginTop:5, marginLeft:10}} />
-                                    <Input placeholder='핸드폰번호 입력' style={JoinFormStyle.input2} value={this.state.phoneText} onChangeText={(text) => this.setState({phoneText: text})} keyboardType="phone-pad"/>
+                                    <Input placeholder={I18n.t('joinForm_step3_filed_phone')} style={JoinFormStyle.input2} value={this.state.phoneText} onChangeText={(text) => this.setState({phoneText: text})} keyboardType="phone-pad"/>
                                 </Item>
                             </View>
                         </View>
@@ -498,8 +512,19 @@ export default class JoinForm extends Component {
                     {renderIf(this.state.stepView == 4)(
                         <View>
                             <View style={JoinFormStyle.contentsLayout}>
+
                                 <View>
+                                    {renderIf(languageLocale == "ko") (
                                     <Text style={JoinFormStyle.contentsSize}><Text style={JoinFormStyle.boldFont}>{this.state.phoneText}</Text>으로 인증번호가 전송되었습니다. 아래 입력 칸에 인증번호를 입력해주세요.</Text>
+                                    )}
+
+                                    {renderIf(languageLocale == "en") (
+                                        <Text style={JoinFormStyle.contentsSize}><Text style={JoinFormStyle.boldFont}>{this.state.phoneText}</Text>으로 인증번호가 전송되었습니다. 아래 입력 칸에 인증번호를 입력해주세요.</Text>
+                                    )}
+
+                                    {renderIf(languageLocale == "zh") (
+                                        <Text style={JoinFormStyle.contentsSize}><Text style={JoinFormStyle.boldFont}>{this.state.phoneText}</Text>으로 인증번호가 전송되었습니다. 아래 입력 칸에 인증번호를 입력해주세요.</Text>
+                                    )}
                                 </View>
 
                             </View>
@@ -507,7 +532,7 @@ export default class JoinForm extends Component {
                             <View style={{padding:20}}>
                                 <Item regular style={{backgroundColor:"#ffffff"}}>
                                     <Image source={require('../../assets/img/icon_key_off.png')} resizeMode={'contain'} style={{width:16, height:13, marginTop:5, marginLeft:10}} />
-                                    <Input placeholder='인증번호 입력' style={JoinFormStyle.input2} onChangeText={(text) => this.setState({authCodeText: text})} keyboardType="phone-pad"/>
+                                    <Input placeholder={I18n.t('joinForm_step3_filed_auth')} style={JoinFormStyle.input2} onChangeText={(text) => this.setState({authCodeText: text})} keyboardType="phone-pad"/>
                                 </Item>
 
                             </View>
@@ -520,9 +545,20 @@ export default class JoinForm extends Component {
                         <View>
                             <View style={JoinFormStyle.contentsLayout}>
                                 <View>
-                                    <Text style={JoinFormStyle.contentsSize}><Text style={JoinFormStyle.boldFont}>사용하실 비밀번호</Text>를 입력해주세요. <Text style={JoinFormStyle.boldFont}>영문</Text>과 <Text style={JoinFormStyle.boldFont}>숫자 </Text>
-                                      그리고 사용 가능한 <Text style={JoinFormStyle.boldFont}>특수문자</Text>를 사용하여 <Text style={JoinFormStyle.boldFont}>6-16자리</Text>의 조합을 사용하실 수 있습니다. 비밀번호 설정을 완료하면 회원가입이 완료가 됩니다.
-                                    </Text>
+                                    {renderIf(languageLocale == "ko") (
+                                        <Text style={JoinFormStyle.contentsSize}><Text style={JoinFormStyle.boldFont}>사용하실 비밀번호</Text>를 입력해주세요. <Text style={JoinFormStyle.boldFont}>영문</Text>과 <Text style={JoinFormStyle.boldFont}>숫자 </Text>
+                                            그리고 사용 가능한 <Text style={JoinFormStyle.boldFont}>특수문자</Text>를 사용하여 <Text style={JoinFormStyle.boldFont}>6-16자리</Text>의 조합을 사용하실 수 있습니다. 비밀번호 설정을 완료하면 회원가입이 완료가 됩니다.
+                                        </Text>
+                                    )}
+
+                                    {renderIf(languageLocale == "en") (
+                                        <Text style={JoinFormStyle.contentsSize}>Please enter your password. You can use a combination of 6 to 16 digits using alphanumeric characters and special characters that you can use. Once you have set up your password, your membership will be completed.</Text>
+                                    )}
+
+                                    {renderIf(languageLocale == "zh") (
+                                        <Text style={JoinFormStyle.contentsSize}>Please enter your password. You can use a combination of 6 to 16 digits using alphanumeric characters and special characters that you can use. Once you have set up your password, your membership will be completed.</Text>
+                                    )}
+
                                 </View>
 
                             </View>
@@ -530,7 +566,7 @@ export default class JoinForm extends Component {
                             <View style={{padding:20}}>
                                 <Item regular style={{backgroundColor:"#ffffff"}}>
                                     <Image source={require('../../assets/img/icon_key_off.png')} resizeMode={'contain'} style={{width:16, height:13, marginTop:5, marginLeft:10}} />
-                                    <Input placeholder='패스워드 입력' style={JoinFormStyle.input2} onChangeText={(text) => this.setState({passPw: text})} keyboardType="default" secureTextEntry={true}/>
+                                    <Input placeholder={I18n.t("joinForm_step4_filed_passwd")} style={JoinFormStyle.input2} onChangeText={(text) => this.setState({passPw: text})} keyboardType="default" secureTextEntry={true}/>
                                 </Item>
                             </View>
                         </View>
@@ -541,7 +577,7 @@ export default class JoinForm extends Component {
                             <View style={JoinFormStyle.contentsLayout}>
                                 <View>
                                     <Text style={JoinFormStyle.contentsSize}>
-                                        가입이 완료되었습니다. 감사합니다.
+                                        {I18n.t("joinForm_step5_complate")}
                                     </Text>
                                 </View>
 
@@ -564,7 +600,7 @@ export default class JoinForm extends Component {
                     {renderIf(this.state.stepView == 2)(
                         <TouchableOpacity style={{width:"100%", height:"100%", justifyContent: 'center', alignItems: 'center'}} onPress={()=>this.emailCheck()}>
                             <View>
-                               <Text style={{color:"#ffffff", width:"100%"}}>다음</Text>
+                               <Text style={{color:"#ffffff", width:"100%"}}>{I18n.t("joinForm_next1")}</Text>
                             </View>
                         </TouchableOpacity>
                     )}
@@ -572,7 +608,7 @@ export default class JoinForm extends Component {
                     {renderIf(this.state.stepView == 3)(
                         <TouchableOpacity style={{width:"100%", height:"100%", justifyContent: 'center', alignItems: 'center'}} onPress={()=>this.phoneAuth()}>
                             <View>
-                                <Text style={{color:"#ffffff", width:"100%"}}>다음</Text>
+                                <Text style={{color:"#ffffff", width:"100%"}}>{I18n.t("joinForm_next1")}</Text>
                             </View>
                         </TouchableOpacity>
                     )}
@@ -580,7 +616,7 @@ export default class JoinForm extends Component {
                     {renderIf(this.state.stepView == 4)(
                         <TouchableOpacity style={{width:"100%", height:"100%", justifyContent: 'center', alignItems: 'center'}} onPress={()=>this.phoneAuthCheck()}>
                             <View>
-                                <Text style={{color:"#ffffff", width:"100%"}}>다음</Text>
+                                <Text style={{color:"#ffffff", width:"100%"}}>{I18n.t("joinForm_next1")}</Text>
                             </View>
                         </TouchableOpacity>
                     )}
@@ -589,7 +625,7 @@ export default class JoinForm extends Component {
                     {renderIf(this.state.stepView == 5)(
                         <TouchableOpacity style={{width:"100%", height:"100%", justifyContent: 'center', alignItems: 'center'}} onPress={()=>this.passWdCheck()}>
                             <View>
-                                <Text style={{color:"#ffffff", width:"100%"}}>다음</Text>
+                                <Text style={{color:"#ffffff", width:"100%"}}>{I18n.t("joinForm_next1")}</Text>
                             </View>
                         </TouchableOpacity>
                     )}
@@ -597,7 +633,7 @@ export default class JoinForm extends Component {
                     {renderIf(this.state.stepView == 6)(
                         <TouchableOpacity style={{width:"100%", height:"100%", justifyContent: 'center', alignItems: 'center'}} onPress={()=>Actions.LoginForm()}>
                             <View>
-                                <Text style={{color:"#ffffff", width:"100%"}}>다음</Text>
+                                <Text style={{color:"#ffffff", width:"100%"}}>{I18n.t("joinForm_next1")}</Text>
                             </View>
                         </TouchableOpacity>
                     )}

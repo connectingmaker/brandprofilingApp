@@ -1,8 +1,33 @@
 import React, { Component } from 'react';
-import { StyleSheet, Image, View, TouchableOpacity, Text ,ScrollView, AsyncStorage,Alert} from 'react-native';
+import { StyleSheet, Image, View, TouchableOpacity, Text ,ScrollView, AsyncStorage,Alert, Platform, NativeModules} from 'react-native';
 import { Actions } from 'react-native-router-flux';
 import { Container, Header, Content, Footer, Item, Icon, Input, Button ,ActionSheet, Spinner} from 'native-base';
 import config from '../config'
+
+
+
+import I18n from 'react-native-i18n';
+var langRegionLocale = "en_US";
+if (Platform.OS === "android") {
+    langRegionLocale = NativeModules.I18nManager.localeIdentifier || "";
+} else if (Platform.OS === "ios") {
+    langRegionLocale = NativeModules.SettingsManager.settings.AppleLocale || "";
+}
+
+var languageLocale = langRegionLocale.substring(0, 2);
+
+import en from '../lang/en';
+import zh from '../lang/zh';
+import ko from '../lang/ko';
+import renderIf from "render-if";
+
+I18n.fallbacks = true;
+I18n.locale = languageLocale;
+I18n.translations = {
+    en,
+    zh,
+    ko
+};
 
 
 
@@ -135,7 +160,7 @@ export default class myPage extends Component {
                         <TouchableOpacity onPress={Actions.BP}>
                             <View style={{flex: 1, flexDirection: 'row', paddingTop: 5, paddingBottom: 5}}>
                                 <View style={{flex: 0.7, alignItems: 'flex-start', justifyContent: 'center'}}>
-                                    <Text style={myPageFormStyle.contentsSize}>어플리케이션 소개</Text>
+                                    <Text style={myPageFormStyle.contentsSize}>{I18n.t("mypage_app_text")}</Text>
                                 </View>
 
                                 <View style={{flex: 0.3, alignItems: 'flex-end'}}>
@@ -150,7 +175,7 @@ export default class myPage extends Component {
                         <TouchableOpacity onPress={Actions.Panel}>
                             <View style={{flex: 1, flexDirection: 'row', paddingTop: 5, paddingBottom: 5}}>
                                 <View style={{flex: 0.7, alignItems: 'flex-start', justifyContent: 'center'}}>
-                                    <Text style={myPageFormStyle.contentsSize}>전문패널 신청</Text>
+                                    <Text style={myPageFormStyle.contentsSize}>{I18n.t("mypage_panel_text")}</Text>
                                 </View>
 
                                 <View style={{flex: 0.3, alignItems: 'flex-end'}}>
@@ -163,7 +188,7 @@ export default class myPage extends Component {
                     <View style={myPageFormStyle.contentsLayout}>
                         <View style={{flex: 1, flexDirection: 'row', paddingTop: 5, paddingBottom: 5}}>
                             <View style={{flex: 0.2, alignItems: 'flex-start', justifyContent: 'center'}}>
-                                <Text style={myPageFormStyle.title}>계정</Text>
+                                <Text style={myPageFormStyle.title}>{I18n.t("mypage_name_filed")}</Text>
                             </View>
                             <View style={{flex: 0.8, alignItems: 'flex-end', justifyContent: 'center'}}>
                                 <Text style={myPageFormStyle.title}><Text style={myPageFormStyle.boldFont}>{this.state.email}</Text></Text>
@@ -184,7 +209,7 @@ export default class myPage extends Component {
                         <View style={{flex: 1, flexDirection: 'row', paddingTop: 5, paddingBottom: 5}}>
                             <View style={{flex: 0.45}}>
                                 <Button bordered full style={{borderColor: "#979797"}} onPress={Actions.Pwchange}>
-                                    <Text>비밀번호 변경</Text>
+                                    <Text>{I18n.t("mypage_passwd_text")}</Text>
                                 </Button>
                             </View>
 
@@ -194,7 +219,7 @@ export default class myPage extends Component {
 
                             <View style={{flex: 0.45}}>
                                 <Button bordered full style={{borderColor: "#979797"}} onPress={() => this.logout()}>
-                                    <Text>로그아웃</Text>
+                                    <Text>{I18n.t("mypage_logout_text")}</Text>
                                 </Button>
                             </View>
                         </View>
@@ -203,22 +228,34 @@ export default class myPage extends Component {
                     </View>
                     <View style={myPageFormStyle.contentsLayout4}>
                         <View style={{paddingTop: 5, paddingBottom: 5}}>
-                            <Text style={myPageFormStyle.title}>회원탈퇴</Text>
+                            <Text style={myPageFormStyle.title}>{I18n.t("mypage_drop_text")}</Text>
                         </View>
                         <View style={myPageFormStyle.lingBg}></View>
                         <View style={{paddingTop: 5, paddingBottom: 5}}>
-                            <Text style={myPageFormStyle.contentsSize}>회원탈퇴 시 계정 정보가 삭제 되고 포인트가 소멸됩니다. 회원탈퇴로 소멸된 포인트와
-                                삭제된 계정정보는 <Text style={myPageFormStyle.boldFont}>다시 복구할 수 없으니 신중하게 결정</Text>해주시길
-                                바랍니다.</Text>
+
+                            {renderIf(languageLocale == "ko") (
+                                <Text style={myPageFormStyle.contentsSize}>회원탈퇴 시 계정 정보가 삭제 되고 포인트가 소멸됩니다. 회원탈퇴로 소멸된 포인트와
+                                    삭제된 계정정보는 <Text style={myPageFormStyle.boldFont}>다시 복구할 수 없으니 신중하게 결정</Text>해주시길
+                                    바랍니다.</Text>
+                            )}
+
+                            {renderIf(languageLocale == "en") (
+                                <Text style={myPageFormStyle.contentsSize}>When you leave a member, your account information will be deleted and your points will expire. We will not be able to recover the lost points and deleted account information due to membership withdrawal, so please make a careful decision.</Text>
+                            )}
+
+                            {renderIf(languageLocale == "zh") (
+                                <Text style={myPageFormStyle.contentsSize}>When you leave a member, your account information will be deleted and your points will expire. We will not be able to recover the lost points and deleted account information due to membership withdrawal, so please make a careful decision.</Text>
+                            )}
+
                         </View>
                         <Button bordered full style={{borderColor: "#979797"}} onPress={() => this.memberDrop()}>
-                            <Text>회원탈퇴</Text>
+                            <Text>{I18n.t("mypage_drop_text")}</Text>
                         </Button>
                         <View style={myPageFormStyle.lingBg}></View>
                         <View style={{flex: 1, flexDirection: 'row', paddingTop: 5, paddingBottom: 5}}>
                             <View style={{flex: 0.45}}>
                                 <Button bordered full style={{borderColor: "#979797"}} onPress={Actions.Terms}>
-                                    <Text>이용약관</Text>
+                                    <Text>{I18n.t("mypage_agree_text")}</Text>
                                 </Button>
                             </View>
 
@@ -228,7 +265,7 @@ export default class myPage extends Component {
 
                             <View style={{flex: 0.45}}>
                                 <Button bordered full style={{borderColor: "#979797"}} onPress={Actions.Privacy}>
-                                    <Text>개인정보취급방침</Text>
+                                    <Text>{I18n.t("mypage_private_text")}</Text>
                                 </Button>
                             </View>
                         </View>

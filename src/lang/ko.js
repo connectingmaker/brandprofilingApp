@@ -32,8 +32,47 @@ export default {
     ,joinForm_step2_filed_email : '이메일'
     ,joinForm_step2_alert_email1 : '등록된 이메일이 존재합니다'
     ,joinForm_step2_alert_email2 : '이메일형식이 올바르지 않습니다'
+    ,joinForm_step3_title : '계정으로 사용될 이메일 주소를 입력해주세요.'
+    ,joinForm_step3_filed_phone : '핸드폰번호 입력'
+    ,joinForm_step3_alert_phone1 : '핸드폰번호 입력해주세요'
+    ,joinForm_step3_alert_phone2 : '핸드폰번호를 정확히 입력해주세요'
+    ,joinForm_step3_alert_phone3 : '하루발송량을 초과되었습니다'
+    ,joinForm_step3_alert_phone4 : '등록된 회원입니다'
+    ,joinForm_step3_auth_title : '핸드폰으로 인증번호가 전송되었습니다. 아래 입력 칸에 인증번호를 입력해주세요.'
+    ,joinForm_step3_filed_auth : '인증번호 입력'
+    ,joinForm_step3_alert_auth : '인증번호가 일치하지 않습니다.'
+
+    ,joinForm_step4_filed_passwd : '패스워드'
+    ,joinForm_step4_alert_passwd : '영문과 숫자 그리고 특수문자 !@#$%^& 조합으로 6~16자리를 사용해야 합니다.'
+    ,joinForm_step4_alert_error : '오류가 발생되었습니다'
+
+    ,joinForm_step5_complate : '가입이 완료되었습니다. 감사합니다.'
+
+    ,point_myPoint : '나의 포인트'
+    ,point_myPoint_btn : '환급신청'
+    ,point_Refund_history : '포인트 환급 내역'
+    ,point_complate_history : '포인트 적립 내역'
+    ,point_in_text : '적립일'
+    ,point_refund_complate_text : '환급완료'
+
+    ,mypage_app_text : '어플리케이션 소개'
+    ,mypage_panel_text : '전문패널신청'
+    ,mypage_name_filed : '계정'
+    ,mypage_age : '세'
+    ,mypage_passwd_text : '비밀번호변경'
+    ,mypage_logout_text : '로그아웃'
+    ,mypage_drop_text : '회원탈퇴'
+    ,mypage_agree_text : '이용약관'
+    ,mypage_private_text: '개인정보취급방침'
+
 
     ,account_header_title : '회원가입'
     ,account_header_exit : '나가기'
     ,account_alert_phone : '핸드폰번호를 입력해주세요.'
+
+
+    ,side_title : '어플리케이션 소개'
+    ,all_push_text : '전체알람'
+    ,survey_push_text : '설문 관련 알람'
+
 }

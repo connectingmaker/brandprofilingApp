@@ -1,11 +1,32 @@
 import React, { Component } from 'react';
-import { StyleSheet, Image, View, TouchableOpacity, Text ,ScrollView, ListView, AsyncStorage} from 'react-native';
+import { StyleSheet, Image, View, TouchableOpacity, Text ,ScrollView, ListView, AsyncStorage, Platform, NativeModules} from 'react-native';
 import { Actions } from 'react-native-router-flux';
 import { Container, Header, Content, Footer, Item, Icon, Input, Button ,ActionSheet, Spinner} from 'native-base';
 import config from '../../src/config';
 
+import renderIf from 'render-if'
+import I18n from 'react-native-i18n';
 
+var langRegionLocale = "en_US";
+if (Platform.OS === "android") {
+    langRegionLocale = NativeModules.I18nManager.localeIdentifier || "";
+} else if (Platform.OS === "ios") {
+    langRegionLocale = NativeModules.SettingsManager.settings.AppleLocale || "";
+}
 
+var languageLocale = langRegionLocale.substring(0, 2);
+
+import en from '../lang/en';
+import zh from '../lang/zh';
+import ko from '../lang/ko';
+
+I18n.fallbacks = true;
+I18n.locale = languageLocale;
+I18n.translations = {
+    en,
+    zh,
+    ko
+};
 
 export default class mySurvey extends Component {
 
@@ -85,28 +106,73 @@ export default class mySurvey extends Component {
                         <View style={{flex:0.1}}>
                             <Image source={require('../../assets/img/main_icon_logo_off.png')} resizeMode={'contain'} style={{width:20,height:20}}/>
                         </View>
-                        <View style={{flex:0.7,alignItems:'flex-start',justifyContent:'center'}}>
+                        <View style={{flex:0.4,alignItems:'flex-start',justifyContent:'center'}}>
+                            {renderIf(languageLocale == "ko") (
                             <Text style={SurveyFormStyle.boldFont}>완료</Text>
+                            )}
+                            {renderIf(languageLocale == "en") (
+                                <Text style={SurveyFormStyle.boldFont}>Complate</Text>
+                            )}
+                            {renderIf(languageLocale == "zh") (
+                                <Text style={SurveyFormStyle.boldFont}>Complate</Text>
+                            )}
                         </View>
-                        <View style={{flex:0.2, alignItems:'flex-end'}}>
-                            <Text style={{fontSize:11, alignItems:'flex-end'}}>{obj.CATEGORY_NAME_KO}</Text>
+                        <View style={{flex:0.5, alignItems:'flex-end'}}>
+                            {renderIf(languageLocale == "ko") (
+                                <Text style={{fontSize:11, alignItems:'flex-end'}}>{obj.CATEGORY_NAME_KO}</Text>
+                            )}
+                            {renderIf(languageLocale == "en") (
+                                <Text style={{fontSize:11, alignItems:'flex-end'}}>{obj.CATEGORY_NAME_EN}</Text>
+                            )}
+                            {renderIf(languageLocale == "zh") (
+                                <Text style={{fontSize:11, alignItems:'flex-end'}}>{obj.CATEGORY_NAME_CN}</Text>
+                            )}
                         </View>
                     </View>
                     <View>
+                        {renderIf(languageLocale == "ko") (
                         <Text style={SurveyFormStyle.title}>{obj.CAMPAIGN_TITLE}</Text>
+                        )}
+
+                        {renderIf(languageLocale == "en") (
+                            <Text style={SurveyFormStyle.title}>{obj.CAMPAIGN_TITLE}</Text>
+                        )}
+
+                        {renderIf(languageLocale == "zh") (
+                            <Text style={SurveyFormStyle.title}>{obj.CAMPAIGN_TITLE}</Text>
+                        )}
                     </View>
                     <View style={SurveyFormStyle.lingBg}>
                     </View>
 
                     <View>
+                        {renderIf(languageLocale == "ko") (
                         <Text>{obj.CAMPAIGN_DESC}</Text>
+                        )}
+
+                        {renderIf(languageLocale == "en") (
+                            <Text>{obj.CAMPAIGN_DESC}</Text>
+                        )}
+
+                        {renderIf(languageLocale == "zh") (
+                            <Text>{obj.CAMPAIGN_DESC}</Text>
+                        )}
                     </View>
                 </View>
 
 
                 <View style={{flexDirection: 'row', width:"100%", paddingTop:10}}>
                     <View style={{backgroundColor: '#f6f6f6', flex: 0.3,padding:5,borderWidth:1,justifyContent:'center',borderColor:"#d0d0d0",borderBottomColor:"#f6f6f6",borderRightColor:"#f6f6f6"}} >
+                        {renderIf(languageLocale == "ko") (
                         <Text style={{color:'#919191',fontSize:12, textAlign:"center"}}>포인트적립</Text>
+                        )}
+                        {renderIf(languageLocale == "en") (
+                            <Text style={{color:'#919191',fontSize:12, textAlign:"center"}}>Earn points</Text>
+                        )}
+
+                        {renderIf(languageLocale == "zh") (
+                            <Text style={{color:'#919191',fontSize:12, textAlign:"center"}}>Earn points</Text>
+                        )}
                     </View>
                     <View style={{borderColor: '#d0d0d0', flex: 0.7,justifyContent:'center',padding:5,borderWidth:1,borderColor:"#d0d0d0",borderBottomColor:"#f6f6f6"}}>
                         <Text>{obj.POINT}P</Text>
@@ -116,19 +182,59 @@ export default class mySurvey extends Component {
 
                 <View style={{flexDirection: 'row', width:"100%"}}>
                     <View style={{backgroundColor: '#f6f6f6', flex: 0.3,padding:5,borderWidth:1,justifyContent:'center',borderColor:"#d0d0d0",borderBottomColor:"#f6f6f6",borderRightColor:"#f6f6f6"}} >
+                        {renderIf(languageLocale == "ko") (
                         <Text style={{color:'#919191',fontSize:12, textAlign:"center"}}>응답시간</Text>
+                        )}
+
+                        {renderIf(languageLocale == "en") (
+                            <Text style={{color:'#919191',fontSize:12, textAlign:"center"}}>Response time</Text>
+                        )}
+
+                        {renderIf(languageLocale == "zh") (
+                            <Text style={{color:'#919191',fontSize:12, textAlign:"center"}}>Response time</Text>
+                        )}
                     </View>
                     <View style={{borderColor: '#d0d0d0', flex: 0.7,padding:5,borderWidth:1,borderColor:"#d0d0d0",borderBottomColor:"#f6f6f6"}}>
+                        {renderIf(languageLocale == "ko") (
                         <Text style={{color:'#919191',fontSize:13}}>{obj.SURVEY_TIME}분</Text>
+                        )}
+
+                        {renderIf(languageLocale == "en") (
+                            <Text style={{color:'#919191',fontSize:13}}>{obj.SURVEY_TIME}Time</Text>
+                        )}
+
+                        {renderIf(languageLocale == "zh") (
+                            <Text style={{color:'#919191',fontSize:13}}>{obj.SURVEY_TIME}Time</Text>
+                        )}
                     </View>
 
                 </View>
                 <View style={{flexDirection: 'row', width:"100%"}}>
                     <View style={{backgroundColor: '#f6f6f6', flex: 0.3,padding:5,borderWidth:1,justifyContent:'center',borderColor:"#d0d0d0",borderBottomColor:"#d0d0d0",borderRightColor:"#f6f6f6"}} >
+                        {renderIf(languageLocale == "ko") (
                         <Text style={{color:'#919191',fontSize:12, textAlign:"center"}}>모집인원</Text>
+                        )}
+
+                        {renderIf(languageLocale == "en") (
+                            <Text style={{color:'#919191',fontSize:12, textAlign:"center"}}>Recruitment number</Text>
+                        )}
+
+                        {renderIf(languageLocale == "zh") (
+                            <Text style={{color:'#919191',fontSize:12, textAlign:"center"}}>Recruitment number</Text>
+                        )}
                     </View>
                     <View style={{borderColor: '#d0d0d0', flex: 0.7,padding:5,borderWidth:1,borderColor:"#d0d0d0",borderBottomColor:"#d0d0d0"}}>
+                        {renderIf(languageLocale == "ko") (
                         <Text style={{color:'#919191',fontSize:12}}>{obj.JOIN_CNT}명 ({obj.TOTAL_CNT}명 참여)</Text>
+                        )}
+
+                        {renderIf(languageLocale == "en") (
+                            <Text style={{color:'#919191',fontSize:12}}>{obj.JOIN_CNT} people ({obj.TOTAL_CNT} people participated)</Text>
+                        )}
+
+                        {renderIf(languageLocale == "zh") (
+                            <Text style={{color:'#919191',fontSize:12}}>{obj.JOIN_CNT} people  ({obj.TOTAL_CNT} people participated)</Text>
+                        )}
                     </View>
 
                 </View>

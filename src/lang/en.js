@@ -32,10 +32,46 @@ export default {
     ,joinForm_step2_filed_email : 'Email'
     ,joinForm_step2_alert_email1 : 'A registered email exists.'
     ,joinForm_step2_alert_email2 : 'Email format is invalid.'
+    ,joinForm_step3_title : 'Please enter your mobile phone number to find an account or get a point refund.'
+    ,joinForm_step3_filed_phone : 'Enter your mobile phone number'
+    ,joinForm_step3_alert_phone1 : 'Please enter your mobile phone number.'
+    ,joinForm_step3_alert_phone2 : 'Please enter your mobile phone number correctly.'
+    ,joinForm_step3_alert_phone3 : 'Daily shipments have been exceeded.'
+    ,joinForm_step3_alert_phone4 : 'Registered member.'
+    ,joinForm_step3_auth_title : 'Your verification number has been sent to your mobile phone. Please enter it in the box below.'
+    ,joinForm_step3_filed_auth : 'Verification number'
+    ,joinForm_step3_alert_auth : 'Authentication numbers do not match.'
 
 
+    ,joinForm_step4_filed_passwd : 'Password'
+    ,joinForm_step4_alert_passwd : 'Passwords must be a combination of 6 to 16 digits using alphanumeric characters and special characters !@#$%^&.'
+    ,joinForm_step4_alert_error : 'Error has occurred.'
+
+    ,joinForm_step5_complate : 'Completed. Thank you.'
+
+    ,point_myPoint : 'My point'
+    ,point_myPoint_btn : 'Refund'
+    ,point_Refund_history : 'Point refund history'
+    ,point_complate_history : 'Points accumulation history'
+    ,point_in_text : 'Date to Earn'
+
+
+
+    ,mypage_app_text : 'Application Introduction'
+    ,mypage_panel_text : 'Apply for a professional panel'
+    ,mypage_name_filed : 'Account'
+    ,mypage_age : '세'
+    ,mypage_passwd_text : 'Change Password'
+    ,mypage_logout_text : 'Log out'
+    ,mypage_drop_text : 'Withdrawal'
+    ,mypage_agree_text : 'Terms of Use'
+    ,mypage_private_text: 'Privacy Policy'
 
     ,account_header_title : '회원가입'
     ,account_header_exit : '나가기'
     ,account_alert_phone : '핸드폰번호를 입력해주세요.'
+
+    ,side_title : 'Application settings'
+    ,all_push_text : 'Full alarm'
+    ,survey_push_text : 'Survey related alarm'
 }
