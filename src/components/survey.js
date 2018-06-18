@@ -1,8 +1,32 @@
 import React, { Component } from 'react';
 import { Actions } from 'react-native-router-flux';
 import { View, Text, Image, StyleSheet, TouchableOpacity,Alert } from 'react-native';
-import { Container, Header, Body, Content, Footer,Item, Icon, Input,Button } from 'native-base';
+import { Container, Header, Left, Body, Right, Content, Footer,Item, Icon, Input,Button } from 'native-base';
 import renderIf from 'render-if'
+
+
+import I18n from 'react-native-i18n';
+var langRegionLocale = "en_US";
+if (Platform.OS === "android") {
+    langRegionLocale = NativeModules.I18nManager.localeIdentifier || "";
+} else if (Platform.OS === "ios") {
+    langRegionLocale = NativeModules.SettingsManager.settings.AppleLocale || "";
+}
+
+var languageLocale = langRegionLocale.substring(0, 2);
+
+import en from '../lang/en';
+import zh from '../lang/zh';
+import ko from '../lang/ko';
+
+I18n.fallbacks = true;
+I18n.locale = languageLocale;
+I18n.translations = {
+    en,
+    zh,
+    ko
+};
+
 
 
 export default class Survey extends Component {
@@ -33,18 +57,27 @@ export default class Survey extends Component {
         return (
 
             <Container>
-                    <Header style={SurveyFormStyle.headerLayout2}>
-                        <TouchableOpacity onPress={() => Actions.Main({type:"reset", refresh: true})} style={{flex:.2, justifyContent: 'flex-start', alignItems: 'center'}}>
-                        <View style={{flex:.2, justifyContent: 'center', alignItems: 'center'}}>
-                            <Text style={{fontSize:12,color:'#fff'}}>나가기</Text>
-                        </View>
+                <Header style={SurveyFormStyle.headerLayout2}>
+                    <Left style={{flex:1}}>
+                        <TouchableOpacity onPress={() => Actions.Main({type:"reset", refresh: true})} style={{width:30, height:50, justifyContent:'center', alignItems:'center'}}>
+                            <View>
+                                <Text style={{fontSize:12,color:'#fff'}}>나가기</Text>
+                            </View>
                         </TouchableOpacity>
-                        <View style={{flex:.6, justifyContent: 'center', alignItems: 'center'}}>
-                            <Text style={{fontSize:16,color:'#fff'}}>설문하기</Text>
-                        </View>
-                        <View style={{flex:.2, justifyContent: 'center', alignItems: 'center'}}>
-                        </View>
-                    </Header>
+                    </Left>
+                    <Body style={{flex:1}}>
+                    <View style={{alignItems: 'center',justifyContent:'center'}}>
+                        <Text style={{fontSize:16,color:'#fff'}}>설문하기</Text>
+                    </View>
+                    </Body>
+                    <Right style={{flex:1}}>
+                        <TouchableOpacity onPress={() => this.openControlPanel()} style={{width:30, height:50, justifyContent:'center', alignItems:'center'}}>
+                            <View>
+                            </View>
+                        </TouchableOpacity>
+                    </Right>
+
+                </Header>
 
                 <Content style={{padding:10}}>
                     {renderIf(this.state.stepView == 1)(
@@ -55,25 +88,36 @@ export default class Survey extends Component {
                                         <Image source={require('../../assets/img/presurvey_icon_list.png')} resizeMode={'contain'} style={{width:30,height:30}}/>
                                     </View>
                                     <View style={{padding:10,alignItems:'center'}}>
-                                        <Text style={{fontSize:12}}>설문에 참여하기 전에 꼭 확인해주세요!</Text>
+                                        <Text style={{fontSize:12}}>{I18n.t("survey_text1")}</Text>
                                     </View>
                                 </View>
                                 <View style={SurveyFormStyle.lingBg}></View>
                                 <View>
-                                    <Text style={SurveyFormStyle.contentsSize}>이 설문조사는 응답하신 문항에 따라 포인트가 다르게 적립됩니다.</Text>
+                                    <Text style={SurveyFormStyle.contentsSize}>{I18n.t("survey_text2")}</Text>
                                 </View>
                                 <View>
-                                    <Text style={SurveyFormStyle.contentsSize}>완료하신 경우에는 <Text style={SurveyFormStyle.boldFont}>{this.props.point}P</Text>를 드립니다.</Text>
+                                    {renderIf(languageLocale == "ko") (
+                                        <Text style={SurveyFormStyle.contentsSize}>완료하신 경우에는 <Text style={SurveyFormStyle.boldFont}>{this.props.point}P</Text>를 드립니다.</Text>
+                                    )}
+
+                                    {renderIf(languageLocale == "en") (
+                                        <Text style={SurveyFormStyle.contentsSize}>If you are finished, we will give <Text style={SurveyFormStyle.boldFont}>{this.props.point}P</Text></Text>
+                                    )}
+
+                                    {renderIf(languageLocale == "zh") (
+                                        <Text style={SurveyFormStyle.contentsSize}>If you are finished, we will give <Text style={SurveyFormStyle.boldFont}>{this.props.point}P</Text></Text>
+                                    )}
+
                                 </View>
                                 <View style={SurveyFormStyle.lingBg}></View>
                                 <View>
-                                    <Text style={SurveyFormStyle.contentsSize}>본 설문조사는 설문참여 시 지적 재산권 보호 및 정보 비밀 유지에 동의한 것으로 간주됩니다. 동의하지 않을 경우 화면 상단의 '나가기'를 눌러주세요.</Text>
+                                    <Text style={SurveyFormStyle.contentsSize}>{I18n.t("survey_text4")}</Text>
                                 </View>
                                 <View style={SurveyFormStyle.lingBg}></View>
 
 
                                 <Button bordered full style={{borderColor:"#979797", backgroundColor:"#DA4211", justifyContent: 'center', paddingLeft:10}} onPress={()=>Actions.SurveyJoin({campaign_code:this.props.campaign_code, quest_num:this.props.quest_num, uid:this.props.uid})}>
-                                    <Text style={{marginLeft:10, color:"#ffffff"}}>네, 확인했습니다.</Text>
+                                    <Text style={{marginLeft:10, color:"#ffffff"}}>{I18n.t("survey_text5")}</Text>
                                 </Button>
 
                             </View>
@@ -88,23 +132,35 @@ export default class Survey extends Component {
                                     <Image source={require('../../assets/img/presurvey_icon_list.png')} resizeMode={'contain'} style={{width:30,height:30}}/>
                                 </View>
                                 <View style={{padding:10,alignItems:'center'}}>
-                                    <Text style={{fontSize:12}}>설문 응답이 성공적으로 제출되었습니다.</Text>
+                                    <Text style={{fontSize:12}}>{I18n.t("survey_text6")}</Text>
                                 </View>
                             </View>
                             <View style={preSurveyFormStyle.lingBg}></View>
                             <View>
-                                <Text style={preSurveyFormStyle.contentsSize}><Text style={preSurveyFormStyle.boldFont}>{this.props.point}P</Text>를 회원님의 적립함에 넣어드렸어요! 소중한 참여에 다시 한번 감사드립니다.</Text>
+                                {renderIf(languageLocale == "ko") (
+                                    <Text style={preSurveyFormStyle.contentsSize}><Text style={preSurveyFormStyle.boldFont}>{this.props.point}P</Text>를 회원님의 적립함에 넣어드렸어요! 소중한 참여에 다시 한번 감사드립니다.</Text>
+                                )}
+
+                                {renderIf(languageLocale == "en") (
+                                    <Text style={preSurveyFormStyle.contentsSize}>With all of our gratitude, we have put <Text style={preSurveyFormStyle.boldFont}>{this.props.point}P</Text> into your membership! Thank you once again for your valuable participation.</Text>
+                                )}
+
+                                {renderIf(languageLocale == "zh") (
+                                    <Text style={SurveyFormStyle.contentsSize}>With all of our gratitude, we have put <Text style={preSurveyFormStyle.boldFont}>{this.props.point}P</Text> into your membership! Thank you once again for your valuable participation.</Text>
+                                )}
+
+
                             </View>
                             <View style={preSurveyFormStyle.lingBg}></View>
                             <View>
-                                <Text style={preSurveyFormStyle.contentsSize}>이제 새로운 설문에 참여해보세요!</Text>
+                                <Text style={preSurveyFormStyle.contentsSize}>{I18n.t("survey_text8")}</Text>
                             </View>
                             <View style={{flex:1, flexDirection: 'row', paddingTop:5, paddingBottom:5}}>
 
 
                                 <View style={{flex:1}}>
                                     <Button bordered full style={{borderColor:"#979797",backgroundColor:"#DA4211"}} onPress={() => Actions.Main({type:"reset", refresh: true})}>
-                                        <Text style={{color:"#fff"}}>참여가능  설문</Text>
+                                        <Text style={{color:"#fff"}}>{I18n.t("survey_text9")}</Text>
                                     </Button>
                                 </View>
                             </View>

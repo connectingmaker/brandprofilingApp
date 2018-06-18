@@ -72,4 +72,12 @@ export default {
     ,side_title : 'Application settings'
     ,all_push_text : 'Full alarm'
     ,survey_push_text : 'Survey related alarm'
+
+    ,survey_text1 : 'Please check before participating in the survey!'
+    ,survey_text2 : 'This survey will be credited differently depending on the question you answered'
+    ,survey_text4 : 'This survey is deemed to have been consented to intellectual property protection and information confidentiality when participating in surveys. If you do not agree, please press "Leave" at the top of the screen.'
+    ,survey_text5 : 'Yes, I did.'
+    ,survey_text6 : 'Your survey has been successfully submitted.'
+    ,survey_text8 : 'Join the new survey now!'
+    ,survey_text9 : 'Available survey'
 }
