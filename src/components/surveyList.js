@@ -110,7 +110,7 @@ export default class surveyList extends Component {
                             <Image source={require('../../assets/img/main_icon_logo_on.png')} resizeMode={'contain'} style={{width:20,height:20}}/>
                         </View>
                         <View style={{flex:0.7,alignItems:'flex-start',justifyContent:'center'}}>
-                            <Text style={SurveyFormStyle.boldFont}>{obj.POINT}P</Text>
+                            <Text style={SurveyFormStyle.boldFont}>ggg{obj.POINT}P</Text>
                         </View>
                         <View style={{flex:0.2, alignItems:'flex-end'}}>
                             <Text style={{fontSize:11, alignItems:'flex-end'}}>{obj.CATEGORY_NAME_KO}</Text>

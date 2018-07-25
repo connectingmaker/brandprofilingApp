@@ -63,9 +63,9 @@ export default class Account extends Component {
         if(this.state.phoneNumber == "") {
             Alert.alert(
                 '',
-                '핸드폰번호를 입력해주세요.',
+                I18n.t("account_alert_phone"),
                 [
-                    {text: '확인', onPress: () => console.log('OK Pressed')},
+                    {text: I18n.t("alert_confirm"), onPress: () => console.log('OK Pressed')},
                 ],
                 {cancelable: false}
             )
@@ -103,7 +103,7 @@ export default class Account extends Component {
                                 'ERR_CODE='+data.ERR_CODE,
                                 data.ERR_MSG,
                                 [
-                                    {text: '확인', onPress: () => console.log('OK Pressed')},
+                                    {text: I18n.t("alert_confirm"), onPress: () => console.log('OK Pressed')},
                                 ],
                                 {cancelable: false}
                             )
@@ -122,9 +122,9 @@ export default class Account extends Component {
         if(this.state.emailText == "") {
             Alert.alert(
                 '',
-                '이메일 계정을 입력해주세요.',
+                I18n.t("account_alert_email"),
                 [
-                    {text: '확인', onPress: () => console.log('OK Pressed')},
+                    {text: I18n.t("alert_confirm"), onPress: () => console.log('OK Pressed')},
                 ],
                 {cancelable: false}
             )
@@ -134,9 +134,9 @@ export default class Account extends Component {
         if(this.state.phoneNumber == "") {
             Alert.alert(
                 '',
-                '핸드폰 번호를 입력해주세요.',
+                I18n.t("account_alert_phone"),
                 [
-                    {text: '확인', onPress: () => console.log('OK Pressed')},
+                    {text: I18n.t("alert_confirm"), onPress: () => console.log('OK Pressed')},
                 ],
                 {cancelable: false}
             )
@@ -174,7 +174,7 @@ export default class Account extends Component {
                             'ERR_CODE='+data.ERR_CODE,
                             data.ERR_MSG,
                             [
-                                {text: '확인', onPress: () => console.log('OK Pressed')},
+                                {text: I18n.t("alert_confirm"), onPress: () => console.log('OK Pressed')},
                             ],
                             {cancelable: false}
                         )
@@ -195,9 +195,9 @@ export default class Account extends Component {
         if(this.state.checkNumber != this.state.authcode) {
             Alert.alert(
                 "",
-                "인증번호가 입력해주세요.",
+                I18n.t("account_alert_auth"),
                 [
-                    {text: '확인', onPress: () => console.log('OK Pressed')},
+                    {text: I18n.t("alert_confirm"), onPress: () => console.log('OK Pressed')},
                 ],
                 {cancelable: false}
             )
@@ -214,9 +214,9 @@ export default class Account extends Component {
         if(!passwordRules.test(this.state.newPw)){
             Alert.alert(
                 '',
-                '영문과 숫자 그리고 특수문자 !@#$%^& 조합으로 6~16자리를 사용해야 합니다.',
+                I18n.t("account_alert_passwd"),
                 [
-                    {text: '확인', onPress: () => console.log('OK Pressed')},
+                    {text: I18n.t("alert_confirm"), onPress: () => console.log('OK Pressed')},
                 ],
                 { cancelable: false }
             );
@@ -225,9 +225,9 @@ export default class Account extends Component {
             if (this.state.newPw != this.state.re_newPw) {
                 Alert.alert(
                     "",
-                    "패스워드가 일치하지 않습니다",
+                    I18n.t("account_alert_passwd_check"),
                     [
-                        {text: '확인', onPress: () => console.log('OK Pressed')},
+                        {text: I18n.t("alert_confirm"), onPress: () => console.log('OK Pressed')},
                     ],
                     {cancelable: false}
                 )
@@ -302,32 +302,32 @@ export default class Account extends Component {
                 <Header style={AccountFormStyle.headerLayout}>
 
 
-                    <Left style={{flex:1}}>
+                    <Left style={{flex:.2}}>
                         <TouchableOpacity onPress={Actions.pop} style={{width:50, height:50, justifyContent:'center', alignItems:'flex-start'}}>
                             <View>
-                                <Text style={{fontSize:12}}>나가기</Text>
+                                <Text style={{fontSize:12}}>{I18n.t("account_exit")}</Text>
                             </View>
                         </TouchableOpacity>
                     </Left>
-                    <Body style={{flex:1}}>
+                    <Body style={{flex:.6}}>
                         {renderIf(this.state.stepView == 1)(
-                            <Text style={{fontSize:16}}>계정 / 비번 찾기</Text>
+                            <Text style={{fontSize:16}}>{I18n.t("account_title1")}</Text>
                         )}
                         {renderIf(this.state.stepView == 2 || this.state.stepView == 4)(
-                            <Text style={{fontSize:16}}>이메일 계정 찾기</Text>
+                            <Text style={{fontSize:16}}>{I18n.t("account_title2")}</Text>
                         )}
                         {renderIf(this.state.stepView == 3 || this.state.stepView == 5)(
-                            <Text style={{fontSize:16}}>비밀번호 찾기</Text>
+                            <Text style={{fontSize:16}}>{I18n.t("account_title3")}</Text>
                         )}
                         {renderIf(this.state.stepView == 6)(
-                            <Text style={{fontSize:16}}>새로운 비밀번호</Text>
+                            <Text style={{fontSize:16}}>{I18n.t("account_title4")}</Text>
                         )}
                         {renderIf(this.state.stepView == 7)(
-                            <Text style={{fontSize:16}}>비밀번호 변경 완료</Text>
+                            <Text style={{fontSize:16}}>{I18n.t("account_title5")}</Text>
                         )}
 
                     </Body>
-                    <Right style={{flex:1}}>
+                    <Right style={{flex:.2}}>
 
                     </Right>
                 </Header>
@@ -336,11 +336,11 @@ export default class Account extends Component {
                         <View style={{paddingTop:30, paddingLeft:20, paddingRight:20}}>
                             <Button bordered full style={{borderColor:"#979797", backgroundColor:"#ffffff", justifyContent:'flex-start', paddingLeft:10}} onPress={()=>this.stepNext(2)}>
                                 <Image source={require("../../assets/img/join_icon_email.png")} resizeMode={'contain'} style={{width:18, height:18}} />
-                                <Text style={{marginLeft:10}}>이메일 계정 찾기</Text>
+                                <Text style={{marginLeft:10}}>{I18n.t("account_btn_1")}</Text>
                             </Button>
                             <Button bordered full style={{borderColor:"#979797", backgroundColor:"#ffffff", justifyContent:'flex-start', paddingLeft:10, marginTop:11 }} onPress={()=>this.stepNext(3)}>
                                 <Image source={require("../../assets/img/join_icon_pw.png")} resizeMode={'contain'} style={{width:18, height:18}} />
-                                <Text style={{marginLeft:10}}>비밀번호 찾기</Text>
+                                <Text style={{marginLeft:10}}>{I18n.t("account_btn_2")}</Text>
                             </Button>
                         </View>
                     )}
@@ -348,7 +348,19 @@ export default class Account extends Component {
                         <View>
                             <View style={AccountFormStyle.contentsLayout}>
                                 <View>
-                                    <Text style={AccountFormStyle.contentsSize}><Text style={AccountFormStyle.boldFont}>가입된 이메일 계정</Text>을 찾기 위해 가입시 인증하신 <Text style={AccountFormStyle.boldFont}>핸드폰 번호</Text>를 입력해주세요.</Text>
+
+                                    {renderIf(languageLocale == "ko") (
+                                        <Text style={AccountFormStyle.contentsSize}><Text style={AccountFormStyle.boldFont}>가입된 이메일 계정</Text>을 찾기 위해 가입시 인증하신 <Text style={AccountFormStyle.boldFont}>핸드폰 번호</Text>를 입력해주세요.</Text>
+                                    )}
+
+                                    {renderIf(languageLocale == "en") (
+                                        <Text style={AccountFormStyle.contentsSize}>Please enter your validated mobile phone number to find an email account.</Text>
+                                    )}
+
+                                    {renderIf(languageLocale == "zh") (
+                                        <Text style={AccountFormStyle.contentsSize}>Please enter your validated mobile phone number to find an email account.</Text>
+                                    )}
+
                                 </View>
 
                             </View>
@@ -356,7 +368,7 @@ export default class Account extends Component {
                             <View style={{padding:20}}>
                                 <Item regular style={{backgroundColor:"#ffffff"}}>
                                     <Image source={require('../../assets/img/join_icon_phone.png')} resizeMode={'contain'} style={{width:16, height:13, marginTop:5, marginLeft:10}} />
-                                    <Input placeholder='핸드폰번호입력' style={AccountFormStyle.input} value={this.state.phoneNumber} onChangeText={(text) => this.setState({phoneNumber: text})} keyboardType="numeric"/>
+                                    <Input placeholder={I18n.t("account_filed_phone")} style={AccountFormStyle.input} value={this.state.phoneNumber} onChangeText={(text) => this.setState({phoneNumber: text})} keyboardType="numeric"/>
                                 </Item>
                             </View>
                         </View>
@@ -365,20 +377,31 @@ export default class Account extends Component {
                         <View>
                             <View style={AccountFormStyle.contentsLayout}>
                                 <View>
-                                    <Text style={AccountFormStyle.contentsSize}><Text style={AccountFormStyle.boldFont}>비밀번호</Text>를 찾기 위해 가입시 인증하신 <Text style={AccountFormStyle.boldFont}>이메일 주소</Text> 와 <Text style={AccountFormStyle.boldFont}>핸드폰 번호</Text>를 입력해주세요.</Text>
+                                    {renderIf(languageLocale == "ko") (
+                                        <Text style={AccountFormStyle.contentsSize}><Text style={AccountFormStyle.boldFont}>비밀번호</Text>를 찾기 위해 가입시 인증하신 <Text style={AccountFormStyle.boldFont}>이메일 주소</Text> 와 <Text style={AccountFormStyle.boldFont}>핸드폰 번호</Text>를 입력해주세요.</Text>
+                                    )}
+
+                                    {renderIf(languageLocale == "en") (
+                                        <Text style={AccountFormStyle.contentsSize}>To find your password, please enter your email address and mobile phone number that you signed up with when you signed up.</Text>
+                                    )}
+
+                                    {renderIf(languageLocale == "zh") (
+                                        <Text style={AccountFormStyle.contentsSize}>To find your password, please enter your email address and mobile phone number that you signed up with when you signed up.</Text>
+                                    )}
+
                                 </View>
 
                             </View>
                             <View style={{paddingLeft:20,paddingRight:20,paddingTop:20,paddingBottom:10}}>
                                 <Item regular style={{backgroundColor:"#ffffff"}}>
                                     <Image source={require('../../assets/img/join_icon_email.png')} resizeMode={'contain'} style={{width:16, height:13, marginTop:5, marginLeft:10}} />
-                                    <Input placeholder='이메일 계정 입력' style={AccountFormStyle.input} value={this.state.emailText} onChangeText={(text) => this.setState({emailText: text})} keyboardType="email-address"/>
+                                    <Input placeholder={I18n.t("account_filed_email")} style={AccountFormStyle.input} value={this.state.emailText} onChangeText={(text) => this.setState({emailText: text})} keyboardType="email-address"/>
                                 </Item>
                             </View>
                             <View style={{paddingLeft:20,paddingRight:20}}>
                                 <Item regular style={{backgroundColor:"#ffffff"}}>
                                     <Image source={require('../../assets/img/join_icon_phone.png')} resizeMode={'contain'} style={{width:16, height:13, marginTop:5, marginLeft:10}} />
-                                    <Input placeholder='핸드폰번호 입력' style={AccountFormStyle.input} value={this.state.phoneNumber} onChangeText={(text) => this.setState({phoneNumber: text})} keyboardType="numeric"/>
+                                    <Input placeholder={I18n.t("account_filed_phone")} style={AccountFormStyle.input} value={this.state.phoneNumber} onChangeText={(text) => this.setState({phoneNumber: text})} keyboardType="numeric"/>
                                 </Item>
                             </View>
                         </View>
@@ -387,7 +410,18 @@ export default class Account extends Component {
                         <View>
                             <View style={AccountFormStyle.contentsLayout}>
                                 <View>
-                                    <Text style={AccountFormStyle.contentsSize}>가입하신 이메일 주소는 <Text style={AccountFormStyle.boldFont}>{this.state.returnEmail}</Text>입니다.</Text>
+                                    {renderIf(languageLocale == "ko") (
+                                        <Text style={AccountFormStyle.contentsSize}>가입하신 이메일 주소는 <Text style={AccountFormStyle.boldFont}>{this.state.returnEmail}</Text>입니다.</Text>
+                                    )}
+
+                                    {renderIf(languageLocale == "en") (
+                                        <Text style={AccountFormStyle.contentsSize}>Your email address is <Text style={AccountFormStyle.boldFont}>{this.state.returnEmail}</Text></Text>
+                                    )}
+
+                                    {renderIf(languageLocale == "zh") (
+                                        <Text style={AccountFormStyle.contentsSize}>Your email address is  <Text style={AccountFormStyle.boldFont}>{this.state.returnEmail}</Text></Text>
+                                    )}
+
                                 </View>
 
                             </View>
@@ -395,7 +429,7 @@ export default class Account extends Component {
                             <View style={{padding:20}}>
                                 <Button bordered full style={{borderColor:"#979797", backgroundColor:"#DA4211", justifyContent: 'flex-start', paddingLeft:10}} onPress={() => this.emailCopy()}>
                                     <Image source={require("../../assets/img/join_icon_email_on2.png")} resizeMode={'contain'} style={{width:18, height:18}} />
-                                    <Text style={{marginLeft:10, color:"#ffffff"}}>이메일 계정 주소 복사하기</Text>
+                                    <Text style={{marginLeft:10, color:"#ffffff"}}>{I18n.t("account_email_copy")}</Text>
                                 </Button>
                             </View>
                         </View>
@@ -404,7 +438,18 @@ export default class Account extends Component {
                         <View>
                             <View style={AccountFormStyle.contentsLayout}>
                                 <View>
-                                    <Text style={AccountFormStyle.contentsSize}>SMS가 발송되었습니다. 비밀번호를 변경하기 위해  <Text style={AccountFormStyle.boldFont}>인증번호</Text>를 입력해주세요</Text>
+                                    {renderIf(languageLocale == "ko") (
+                                        <Text style={AccountFormStyle.contentsSize}>SMS가 발송되었습니다. 비밀번호를 변경하기 위해  <Text style={AccountFormStyle.boldFont}>인증번호</Text>를 입력해주세요</Text>
+                                    )}
+
+                                    {renderIf(languageLocale == "en") (
+                                        <Text style={AccountFormStyle.contentsSize}>An email has been sent. Please enter your verification number to change your password, or change your password via the email link.</Text>
+                                    )}
+
+                                    {renderIf(languageLocale == "zh") (
+                                        <Text style={AccountFormStyle.contentsSize}>An email has been sent. Please enter your verification number to change your password, or change your password via the email link.</Text>
+                                    )}
+
                                 </View>
 
                             </View>
@@ -412,7 +457,7 @@ export default class Account extends Component {
                             <View style={{padding:20}}>
                                 <Item regular style={{backgroundColor:"#ffffff"}}>
                                     <Image source={require('../../assets/img/join_icon_check.png')} resizeMode={'contain'} style={{width:16, height:13, marginTop:5, marginLeft:10}} />
-                                    <Input placeholder='인증번호 입력' style={AccountFormStyle.input} value={this.state.checkNumber} onChangeText={(text) => this.setState({checkNumber: text})} keyboardType="numeric"/>
+                                    <Input placeholder={I18n.t("account_filed_auth_code")} style={AccountFormStyle.input} value={this.state.checkNumber} onChangeText={(text) => this.setState({checkNumber: text})} keyboardType="numeric"/>
                                 </Item>
                             </View>
                         </View>
@@ -428,13 +473,13 @@ export default class Account extends Component {
                             <View style={{paddingLeft:20,paddingRight:20,paddingTop:20,paddingBottom:10}}>
                                 <Item regular style={{backgroundColor:"#ffffff"}}>
                                     <Image source={require('../../assets/img/join_icon_pw.png')} resizeMode={'contain'} style={{width:16, height:13, marginTop:5, marginLeft:10}} />
-                                    <Input placeholder='새로운 비밀번호 입력' style={AccountFormStyle.input} value={this.state.newPw} onChangeText={(text) => this.setState({newPw: text})} keyboardType="default" secureTextEntry={true}/>
+                                    <Input placeholder={I18n.t("account_filed_passwd1")} style={AccountFormStyle.input} value={this.state.newPw} onChangeText={(text) => this.setState({newPw: text})} keyboardType="default" secureTextEntry={true}/>
                                 </Item>
                             </View>
                             <View style={{paddingLeft:20,paddingRight:20}}>
                                 <Item regular style={{backgroundColor:"#ffffff"}}>
                                     <Image source={require('../../assets/img/join_icon_pw.png')} resizeMode={'contain'} style={{width:16, height:13, marginTop:5, marginLeft:10}} />
-                                    <Input placeholder='다시 입력' style={AccountFormStyle.input} value={this.state.re_newPw} onChangeText={(text) => this.setState({re_newPw: text})} keyboardType="default" secureTextEntry={true}/>
+                                    <Input placeholder={I18n.t("account_filed_passwd2")} style={AccountFormStyle.input} value={this.state.re_newPw} onChangeText={(text) => this.setState({re_newPw: text})} keyboardType="default" secureTextEntry={true}/>
                                 </Item>
                             </View>
 
@@ -445,7 +490,7 @@ export default class Account extends Component {
                         <View>
                             <View style={AccountFormStyle.contentsLayout}>
                                 <View>
-                                    <Text style={AccountFormStyle.contentsSize}>비밀번호 변경이 완료되었습니다.</Text>
+                                    <Text style={AccountFormStyle.contentsSize}>{I18n.t("account_passwd_change")}</Text>
                                 </View>
 
                             </View>
@@ -459,7 +504,7 @@ export default class Account extends Component {
 
                         <TouchableOpacity style={{width:"100%", height:"100%", justifyContent: 'center', alignItems: 'center'}} onPress={()=>this.phoneCheck()}>
                             <View>
-                                <Text style={{color:"#ffffff" }}>이메일 계정 주소 찾기</Text>
+                                <Text style={{color:"#ffffff" }}>{I18n.t("account_title2")}</Text>
                             </View>
                         </TouchableOpacity>
                 </Footer>
@@ -469,7 +514,7 @@ export default class Account extends Component {
                 <Footer style={{backgroundColor:"#222222", width:"100%", height:44, justifyContent: 'center', alignItems: 'center'}}>
                     <TouchableOpacity style={{width:"100%", height:"100%", justifyContent: 'center', alignItems: 'center'}} onPress={()=>this.pwCheck()} >
                         <View>
-                            <Text style={{color:"#ffffff" }}>비밀번호 찾기</Text>
+                            <Text style={{color:"#ffffff" }}>{I18n.t("account_title3")}</Text>
                         </View>
                     </TouchableOpacity>
                 </Footer>
@@ -479,7 +524,7 @@ export default class Account extends Component {
                     <Footer style={{backgroundColor:"#222222", width:"100%", height:44, justifyContent: 'center', alignItems: 'center'}}>
                         <TouchableOpacity style={{width:"100%", height:"100%", justifyContent: 'center', alignItems: 'center'}} onPress={Actions.root} >
                             <View>
-                                <Text style={{color:"#ffffff" }}>이메일 로그인</Text>
+                                <Text style={{color:"#ffffff" }}>{I18n.t("account_login_btn")}</Text>
                             </View>
                         </TouchableOpacity>
                     </Footer>
@@ -488,7 +533,7 @@ export default class Account extends Component {
                     <Footer style={{backgroundColor:"#222222", width:"100%", height:44, justifyContent: 'center', alignItems: 'center'}}>
                         <TouchableOpacity style={{width:"100%", height:"100%", justifyContent: 'center', alignItems: 'center'}} onPress={()=>this.numberCheck()}>
                             <View>
-                                <Text style={{color:"#ffffff" }}>인증번호 입력</Text>
+                                <Text style={{color:"#ffffff" }}>{I18n.t("account_auth_btn")}</Text>
                             </View>
                         </TouchableOpacity>
                     </Footer>
@@ -497,7 +542,7 @@ export default class Account extends Component {
                     <Footer style={{backgroundColor:"#222222", width:"100%", height:44, justifyContent: 'center', alignItems: 'center'}}>
                         <TouchableOpacity style={{width:"100%", height:"100%", justifyContent: 'center', alignItems: 'center'}} onPress={()=>this.newPwCheck()}>
                             <View>
-                                <Text style={{color:"#ffffff" }}>비밀번호 변경</Text>
+                                <Text style={{color:"#ffffff" }}>{I18n.t("account_passwd_btn")}</Text>
                             </View>
                         </TouchableOpacity>
                     </Footer>

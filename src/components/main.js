@@ -126,26 +126,9 @@ export default class Main extends Component {
                     </TouchableOpacity>
                 </Left>
                 <Body style={{flex:1}}>
-                {renderIf(this.state.index == 0)(
-                    <View style={{alignItems: 'center',justifyContent:'center'}}>
-                        <Image source={require('../../assets/img/header_icon_logo.png')} resizeMode={'contain'} style={{width:140, height:30}}/>
-                    </View>
-                )}
-                {renderIf(this.state.index == 1)(
-                    <View style={{alignItems: 'center',justifyContent:'center'}}>
-                        <Image source={require('../../assets/img/header_img_mysurvey.png')} resizeMode={'contain'} style={{width:140, height:30}}/>
-                    </View>
-                )}
-                {renderIf(this.state.index == 3)(
-                    <View style={{alignItems: 'center',justifyContent:'center'}}>
-                        <Image source={require('../../assets/img/header_img_point.png')} resizeMode={'contain'} style={{width:140, height:30}}/>
-                    </View>
-                )}
-                {renderIf(this.state.index == 4)(
-                    <View style={{alignItems: 'center',justifyContent:'center'}}>
-                        <Image source={require('../../assets/img/header_img_mypage.png')} resizeMode={'contain'} style={{width:140, height:30}}/>
-                    </View>
-                )}
+                <View style={{alignItems: 'center',justifyContent:'center'}}>
+                    <Image source={require('../../assets/img/header_icon_logo.png')} resizeMode={'contain'} style={{width:140, height:30}}/>
+                </View>
                 </Body>
                 <Right style={{flex:1}}>
                     <TouchableOpacity onPress={() => this.openControlPanel()} style={{width:30, height:50, justifyContent:'center', alignItems:'center'}}>
