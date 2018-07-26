@@ -3,8 +3,9 @@ export default {
     ,alert_confirm : '확인'
     ,tab1 : '설문조사'
     ,tab2 : '완료설문'
-    ,tab3 : '포인트'
-    ,tab4 : '마이페이지'
+    ,tab3 : '컨텐츠보기'
+    ,tab4 : '포인트'
+    ,tab5 : '마이페이지'
     ,login_idpw_text: '계정/비번 찾기'
     ,login_regist_text: '회원가입'
 
