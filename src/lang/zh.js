@@ -3,7 +3,7 @@ export default {
     ,alert_confirm : '确认'
     ,tab1 : '问卷'
     ,tab2 : '已完成问卷'
-    ,tab3 : 'contents'
+    ,tab3 : '内容'
     ,tab4 : '积分'
     ,tab5 : '我的页面'
     ,login_idpw_text: '找回账号 / 密码'
