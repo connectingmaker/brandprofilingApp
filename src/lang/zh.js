@@ -1,13 +1,16 @@
 export default {
     login_title: 'Brand Profiling Survey Panel'
-    ,alert_confirm : 'Confirm'
-    ,tab1 : 'survey'
-    ,tab2 : 'complate'
+    ,alert_confirm : '确认'
+    ,tab1 : '问卷'
+    ,tab2 : '已完成问卷'
     ,tab3 : 'contents'
-    ,tab4 : 'point'
-    ,tab5 : 'mypage'
-    ,login_idpw_text: 'Account / Discovery'
-    ,login_regist_text: 'Sign Up'
+    ,tab4 : '积分'
+    ,tab5 : '我的页面'
+    ,login_idpw_text: '找回账号 / 密码'
+    ,login_regist_text: '注册会员'
+
+    ,intro01_title:'快速了解品牌概念和品牌定位，\n可获取更多品牌相关信息'
+    ,intro01_text:'1. 通过积分使用资料\n2. 掌握品牌Profiling的概念，以及品牌建设理论 \n3. 用于个人论文和研究(工具免费支持)'
 
     ,intro02_title:'比较不同品牌之间的概念和理念，\n并可查看核心品牌列表'
     ,intro02_text:'1. 按类别获取关键品牌信息\n2. 比较和分析不同品牌间的概念和理念 \n3. 为开发新品牌理念，通过此平台可发现\n未被发掘的消费者需求。'
@@ -25,14 +28,6 @@ export default {
     ,intro_complete_lavel:'已完成'
     ,intro_skip_lavel:'跳跃'
 
-    ,login_title: 'Brand Profiling Survey Panel'
-    ,alert_confirm : '确认'
-    ,tab1 : '问卷'
-    ,tab2 : '已完成问卷'
-    ,tab3 : '积分'
-    ,tab4 : '我的页面'
-    ,login_idpw_text: '找回账号 / 密码'
-    ,login_regist_text: '注册会员'
 
     ,login_form_title : '使用邮箱登录'
     ,login_form_exit: '退出'
