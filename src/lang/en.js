@@ -21,9 +21,10 @@ export default {
     ,login_title: 'Brand Profiling Survey Panel'
     ,alert_confirm : 'Confirm'
     ,tab1 : 'survey'
-    ,tab2 : 'complete'
-    ,tab3 : 'point'
-    ,tab4 : 'mypage'
+    ,tab2 : 'complate'
+    ,tab3 : 'contents'
+    ,tab4 : 'point'
+    ,tab5 : 'mypage'
     ,login_idpw_text: 'Account / Discovery'
     ,login_regist_text: 'Sign Up'
 
