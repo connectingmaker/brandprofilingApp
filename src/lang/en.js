@@ -1,8 +1,27 @@
 export default {
-    login_title: 'Brand Profiling Survey Panel'
+    intro01_title:'Quickly understand the brand concept and positioning,\nand get branding related information'
+    ,intro01_text:'1. To get valuable information by using reward points\n2. To understand \'Brand Profiling\' concept and branding theories\n3. To use in personal dissertation and research(tool free support)'
+
+    ,intro02_title:'Compare concepts across brands \nand check out our list of key brands'
+    ,intro02_text:'1. To obtain major brand information by category\n2. To compare and analyze concepts between brands \n3. To discover unmet needs for new brand concepts'
+
+    ,intro03_title:'Participate in various activities by applying\nthe brand-specific expert panels'
+    ,intro03_text:'1. To attend free seminars and \'Brand Profiling\' education\n2. To participate in branding-related consulting\n3. To be involved in community activities for brand experts'
+
+    ,intro04_title:'Are you planning consumer research\n for product development? \nQuickly and easily explore using BP'
+    ,intro04_text:'1. To draw \'Needs\' and \'Pain points\' when using product\n2. To identify buying motivations\n3. To investigate product related brand keywords'
+
+    ,intro05_title:'Need product development ideas?\nExperience an efficient process \nfor creating ideas'
+    ,intro05_text:'1. To derive product development keywords\n through consumer research\n2. To provide similar product images and trend keywords\n for benchmarking\n3. To offer a trigger card to help come up with ideas'
+
+    ,intro_next_lavel:'next'
+    ,intro_complete_lavel:'complete'
+    ,intro_skip_lavel:'skip'
+
+    ,login_title: 'Brand Profiling Survey Panel'
     ,alert_confirm : 'Confirm'
     ,tab1 : 'survey'
-    ,tab2 : 'complate'
+    ,tab2 : 'complete'
     ,tab3 : 'point'
     ,tab4 : 'mypage'
     ,login_idpw_text: 'Account / Discovery'

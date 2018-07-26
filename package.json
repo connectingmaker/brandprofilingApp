@@ -17,6 +17,8 @@
     "react-bootstrap-table": "^4.0.6",
     "react-moment": "^0.6.8",
     "react-native": "^0.49.5",
+    "react-native-app-intro": "^1.1.5",
+    "react-native-app-intro-slider": "^0.2.4",
     "react-native-drawer": "^2.5.0",
     "react-native-dropdown": "0.0.6",
     "react-native-exit-app": "^1.0.0",

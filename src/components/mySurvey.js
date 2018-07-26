@@ -111,10 +111,10 @@ export default class mySurvey extends Component {
                             <Text style={SurveyFormStyle.boldFont}>완료</Text>
                             )}
                             {renderIf(languageLocale == "en") (
-                                <Text style={SurveyFormStyle.boldFont}>Complate</Text>
+                                <Text style={SurveyFormStyle.boldFont}>Complete</Text>
                             )}
                             {renderIf(languageLocale == "zh") (
-                                <Text style={SurveyFormStyle.boldFont}>Complate</Text>
+                                <Text style={SurveyFormStyle.boldFont}>已完成</Text>
                             )}
                         </View>
                         <View style={{flex:0.5, alignItems:'flex-end'}}>
