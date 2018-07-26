@@ -24,12 +24,16 @@ if (Platform.OS === "android") {
 } else if (Platform.OS === "ios") {
     langRegionLocale = NativeModules.SettingsManager.settings.AppleLocale || "";
 }
-
 var languageLocale = langRegionLocale.substring(0, 2);
 
 import en from '../lang/en';
 import zh from '../lang/zh';
 import ko from '../lang/ko';
+
+if(languageLocale != "ko" && languageLocale != "en" && languageLocale != "zh") {
+    languageLocale = "en";
+}
+
 
 I18n.fallbacks = true;
 I18n.locale = languageLocale;
@@ -71,6 +75,9 @@ export default class Main extends Component {
         AsyncStorage.getItem(config.STORE_KEY).then((value) => {
             var json = eval("(" + value + ")");
             var uid = json.SESS_UID;
+
+
+            //console.log(value);
 
             if(json.contentMain == true) {
                 this.setState({index: 0, contentsMain: true, padding: {padding:10}});
