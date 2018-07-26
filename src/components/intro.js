@@ -14,7 +14,7 @@ if (Platform.OS === "android") {
 }
 
 var languageLocale = langRegionLocale.substring(0, 2);
-languageLocale = "zh";
+
 
 if(languageLocale != "ko" && languageLocale != "en" && languageLocale != "zh") {
     languageLocale = "en";
