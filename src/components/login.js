@@ -4,7 +4,7 @@ import { Actions } from 'react-native-router-flux';
 import { Container, Header, Title, Content, Footer, FooterTab, Button, Left, Right, Body, Icon, Text, ActionSheet } from 'native-base';
 import { AccessToken, GraphRequest, GraphRequestManager, LoginManager } from 'react-native-fbsdk';
 import FCM from "react-native-fcm";
-
+import renderIf from 'render-if'
 import config from '../config'
 
 import I18n from 'react-native-i18n';
@@ -17,6 +17,10 @@ if (Platform.OS === "android") {
 }
 
 var languageLocale = langRegionLocale.substring(0, 2);
+
+if(languageLocale != "ko" && languageLocale != "en" && languageLocale != "zh") {
+    languageLocale = "en";
+}
 
 import en from '../lang/en';
 import zh from '../lang/zh';
@@ -249,11 +253,28 @@ export default class Login extends Component {
                     </View>
                     <View style={{flex:.3, alignItems:'center', justifyContent:'center', alignSelf: 'stretch', paddingBottom: 20}}>
                         <TouchableOpacity onPress={Actions.LoginForm} style={{alignSelf: 'stretch', alignItems:'center', justifyContent:'center'}}>
+                            {renderIf(languageLocale == "ko") (
                             <Image source={require('../../assets/img/login_emailBtn.png')} resizeMode={'contain'} style={LoginStyle.btn} />
+                            )}
+                            {renderIf(languageLocale == "en") (
+                                <Image source={require('../../assets/img/login_emailBtn_en.png')} resizeMode={'contain'} style={LoginStyle.btn} />
+                            )}
+                            {renderIf(languageLocale == "zh") (
+                                <Image source={require('../../assets/img/login_emailBtn_zh.png')} resizeMode={'contain'} style={LoginStyle.btn} />
+                            )}
+
                         </TouchableOpacity>
 
                         <TouchableOpacity onPress={() => this._fbAuth()} style={{alignSelf: 'stretch', alignItems:'center', justifyContent:'center'}}>
+                            {renderIf(languageLocale == "ko") (
                             <Image source={require('../../assets/img/login_facebookBtn.png')} resizeMode={'contain'} style={LoginStyle.btn} />
+                            )}
+                            {renderIf(languageLocale == "en") (
+                                <Image source={require('../../assets/img/login_facebookBtn_en.png')} resizeMode={'contain'} style={LoginStyle.btn} />
+                            )}
+                            {renderIf(languageLocale == "zh") (
+                                <Image source={require('../../assets/img/login_facebookBtn_zh.png')} resizeMode={'contain'} style={LoginStyle.btn} />
+                            )}
                         </TouchableOpacity>
                     </View>
                 </Body>

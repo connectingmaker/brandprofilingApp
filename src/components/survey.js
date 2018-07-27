@@ -59,15 +59,31 @@ export default class Survey extends Component {
             <Container>
                 <Header style={SurveyFormStyle.headerLayout2}>
                     <Left style={{flex:1}}>
-                        <TouchableOpacity onPress={() => Actions.Main({type:"reset", refresh: true})} style={{width:30, height:50, justifyContent:'center', alignItems:'center'}}>
+                        <TouchableOpacity onPress={() => Actions.Main({type:"reset", refresh: true})} style={{width:50, height:50, justifyContent:'center', alignItems:'center'}}>
                             <View>
-                                <Text style={{fontSize:12,color:'#fff'}}>나가기</Text>
+                                {renderIf(languageLocale=="ko")(
+                                    <Text style={{fontSize:12,color:'#fff'}}>나가기</Text>
+                                )}
+                                {renderIf(languageLocale=="en")(
+                                    <Text style={{fontSize:12,color:'#fff'}}>Leave</Text>
+                                )}
+                                {renderIf(languageLocale=="zh")(
+                                    <Text style={{fontSize:12,color:'#fff'}}>退出</Text>
+                                )}
                             </View>
                         </TouchableOpacity>
                     </Left>
                     <Body style={{flex:1}}>
                     <View style={{alignItems: 'center',justifyContent:'center'}}>
-                        <Text style={{fontSize:16,color:'#fff'}}>설문하기</Text>
+                        {renderIf(languageLocale=="ko")(
+                            <Text style={{fontSize:16,color:'#fff'}}>설문하기</Text>
+                        )}
+                        {renderIf(languageLocale=="en")(
+                            <Text style={{fontSize:16,color:'#fff'}}>Survey</Text>
+                        )}
+                        {renderIf(languageLocale=="zh")(
+                            <Text style={{fontSize:16,color:'#fff'}}>调查</Text>
+                        )}
                     </View>
                     </Body>
                     <Right style={{flex:1}}>

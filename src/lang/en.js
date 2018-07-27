@@ -21,7 +21,7 @@ export default {
     ,login_title: 'Brand Profiling Survey Panel'
     ,alert_confirm : 'Confirm'
     ,tab1 : 'survey'
-    ,tab2 : 'complate'
+    ,tab2 : 'complete'
     ,tab3 : 'contents'
     ,tab4 : 'point'
     ,tab5 : 'mypage'
