@@ -1,10 +1,38 @@
 import React, { Component } from 'react';
 import { Actions } from 'react-native-router-flux';
-import { View, Text, Image, StyleSheet, TouchableOpacity,AlertIOS,Alert,Platform, AsyncStorage } from 'react-native';
+import { View, Text, Image, StyleSheet, TouchableOpacity,AlertIOS,Alert,Platform, AsyncStorage , NativeModules} from 'react-native';
 import { Container, Header, Body, Content, Footer, Icon, Input,Button, Form, Picker, Item as FormItem } from 'native-base';
 import config from '../config';
 import renderIf from 'render-if'
 const Item = Picker.Item;
+
+import I18n from 'react-native-i18n';
+var langRegionLocale = "en_US";
+if (Platform.OS === "android") {
+    langRegionLocale = NativeModules.I18nManager.localeIdentifier || "";
+} else if (Platform.OS === "ios") {
+    langRegionLocale = NativeModules.SettingsManager.settings.AppleLocale || "";
+}
+
+var languageLocale = langRegionLocale.substring(0, 2);
+
+import en from '../lang/en';
+import zh from '../lang/zh';
+import ko from '../lang/ko';
+
+if(languageLocale != "ko" && languageLocale != "en" && languageLocale != "zh") {
+    languageLocale = "en";
+}
+
+
+I18n.fallbacks = true;
+I18n.locale = languageLocale;
+I18n.translations = {
+    en,
+    zh,
+    ko
+};
+
 export default class Payment extends Component {
 
 
@@ -319,10 +347,26 @@ export default class Payment extends Component {
                 {renderIf(this.state.stepView == 1)(
                     <Header style={paymentFormStyle.headerLayout2}>
                         <View style={{flex:.2, justifyContent: 'center', alignItems: 'flex-start'}}>
-                            <Text style={{fontSize:12,color:'#fff'}} onPress={Actions.pop}>나가기</Text>
+                            {renderIf(languageLocale=="ko")(
+                                <Text style={{fontSize:12,color:'#fff'}} onPress={Actions.pop}>나가기</Text>
+                            )}
+                            {renderIf(languageLocale=="en")(
+                                <Text style={{fontSize:12,color:'#fff'}} onPress={Actions.pop}>Leave</Text>
+                            )}
+                            {renderIf(languageLocale=="zh")(
+                                <Text style={{fontSize:12,color:'#fff'}} onPress={Actions.pop}>退出</Text>
+                            )}
                         </View>
                         <View style={{flex:.6, justifyContent: 'center', alignItems: 'center'}}>
+                            {renderIf(languageLocale == "ko")(
                             <Text style={{fontSize:16,color:'#fff'}}>환급신청</Text>
+                            )}
+                            {renderIf(languageLocale == "en")(
+                                <Text style={{fontSize:16,color:'#fff'}}>Refund</Text>
+                            )}
+                            {renderIf(languageLocale == "zh")(
+                                <Text style={{fontSize:16,color:'#fff'}}>申请兑换</Text>
+                            )}
                         </View>
                         <View style={{flex:.2, justifyContent: 'center', alignItems: 'flex-end'}}>
                         </View>
@@ -353,7 +397,20 @@ export default class Payment extends Component {
                     </Header>
                 )}
                 <Content style={{padding:10}}>
-                    {renderIf(this.state.stepView == 1)(
+                    {renderIf(this.state.stepView == 1 && languageLocale != "ko" )(
+                        <View style={paymentFormStyle.contentsLayout}>
+                            <View>
+                                <View style={{padding:10,alignItems:'center'}}>
+                                    <Image source={require('../../assets/img/point_icon_off.png')} resizeMode={'contain'} style={{width:30,height:30}}/>
+                                </View>
+                                <View style={{alignItems:'center'}}>
+                                    <Text style={{fontSize:12}}>Only available in Korea.</Text>
+                                </View>
+                            </View>
+                        </View>
+                    )}
+                    {renderIf(this.state.stepView == 1 && languageLocale == "ko" )(
+
                     <View>
                         <View style={paymentFormStyle.contentsLayout}>
                             <View>
@@ -361,61 +418,88 @@ export default class Payment extends Component {
                                     <Image source={require('../../assets/img/point_icon_off.png')} resizeMode={'contain'} style={{width:30,height:30}}/>
                                 </View>
                                 <View style={{alignItems:'center'}}>
+                                    {renderIf(languageLocale == "ko")(
                                     <Text style={{fontSize:12}}>환급신청을 통해 포인트를 통장으로 입금받으실 수 있습니다.</Text>
+                                    )}
+                                    {renderIf(languageLocale != "ko")(
+                                        <Text style={{fontSize:12}}>Only available in Korea.</Text>
+                                    )}
                                 </View>
                             </View>
                             <View style={paymentFormStyle.lingBg}></View>
 
                             <View style={{flex:1, flexDirection: 'row', paddingTop:10, paddingBottom:5}}>
+
                                 <View style={{flex:0.4,alignItems:'flex-start',justifyContent:'center'}}>
+                                    {renderIf(languageLocale == "ko")(
                                     <Text style={{color:'#4D4D4D',fontSize:15,fontWeight: 'bold'}}>포인트 환급 비율</Text>
+                                    )}
                                 </View>
                                 <View style={{flex:0.6,alignItems:'flex-end'}}>
+                                    {renderIf(languageLocale == "ko")(
                                     <Text style={paymentFormStyle.boldFont}>1P 당 1원</Text>
+                                    )}
                                 </View>
                             </View>
                             <View style={paymentFormStyle.lingBg}></View>
 
                             <View style={{flex:1, flexDirection: 'row', paddingTop:10, paddingBottom:5}}>
                                 <View style={{flex:0.4,alignItems:'flex-start',justifyContent:'center'}}>
+                                    {renderIf(languageLocale == "ko")(
                                     <Text style={{color:'#4D4D4D',fontSize:15,fontWeight: 'bold'}}>최소 환급 포인트</Text>
+                                    )}
                                 </View>
                                 <View style={{flex:0.6,alignItems:'flex-end'}}>
+                                    {renderIf(languageLocale == "ko")(
                                     <Text style={paymentFormStyle.boldFont}>5,000P</Text>
+                                    )}
                                 </View>
                             </View>
                             <View style={paymentFormStyle.lingBg}></View>
 
                             <View style={{flex:1, flexDirection: 'row', paddingTop:10, paddingBottom:5}}>
                                 <View style={{flex:0.4,alignItems:'flex-start',justifyContent:'center'}}>
+                                    {renderIf(languageLocale == "ko")(
                                     <Text style={{color:'#4D4D4D',fontSize:15,fontWeight: 'bold'}}>환급방법</Text>
+                                    )}
                                 </View>
                                 <View style={{flex:0.6,alignItems:'flex-end'}}>
+                                    {renderIf(languageLocale == "ko")(
                                     <Text style={paymentFormStyle.boldFont}>본인 명의 통장으로 입금</Text>
+                                    )}
                                 </View>
                             </View>
                             <View style={paymentFormStyle.lingBg}></View>
 
                             <View style={{flex:1, flexDirection: 'row', paddingTop:10, paddingBottom:5}}>
                                 <View style={{flex:0.4,alignItems:'flex-start',justifyContent:'center'}}>
+                                    {renderIf(languageLocale == "ko")(
                                     <Text style={{color:'#4D4D4D',fontSize:15,fontWeight: 'bold'}}>환급시기</Text>
+                                    )}
                                 </View>
                                 <View style={{flex:0.6,alignItems:'flex-end'}}>
-                                    <Text style={paymentFormStyle.boldFont}>접수완료 5~10일 후</Text>
+                                    {renderIf(languageLocale == "ko")(
+                                    )}
                                 </View>
                             </View>
 
                         </View>
                         <View style={paymentFormStyle.contentsLayout2}>
                             <View>
+                                {renderIf(languageLocale == "ko")(
                                 <Text style={{color:'#4D4D4D',fontSize:15,fontWeight: 'bold'}}>포인트 환급 신청시 주의사항</Text>
+                                )}
                             </View>
                             <View style={paymentFormStyle.lingBg}></View>
                             <View style={{paddingBottom:5}}>
+                                {renderIf(languageLocale == "ko")(
                                 <Text style={paymentFormStyle.contentsSize}>포인트 환급 신청 후에는 신청 내역을 변경하거나 취소할 수 없습니다. <Text style={paymentFormStyle.boldFont}>잘못된 계좌 번호</Text> 또는 <Text style={paymentFormStyle.boldFont}>타인의 계좌번호</Text>를 입력할 경우, 포인트 <Text style={paymentFormStyle.boldFont}>환급 신청이 취소</Text>가 되고, 환급 신청이 취소된 포인트는 <Text style={paymentFormStyle.boldFont}>다시 적립</Text>됩니다.</Text>
-                            </View>
+                                )}
+                                </View>
                             <Button bordered full style={{borderColor:"#979797", backgroundColor:"#DA4211", justifyContent: 'center', paddingLeft:10}} onPress={()=>this.check()}>
+                                {renderIf(languageLocale == "ko")(
                                 <Text style={{marginLeft:10, color:"#ffffff"}}>네, 확인했습니다.</Text>
+                                )}
                             </Button>
 
                         </View>
