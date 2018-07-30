@@ -141,8 +141,11 @@ export default class pointHistory extends Component {
                     </View>
                 </View>
                 <View style={SurveyFormStyle.lingBg}></View>
+
                 <Button bordered full style={{borderColor:"#979797", backgroundColor:"#DA4211", justifyContent: 'center', paddingLeft:10}} onPress={Actions.Payment}>
+                    {renderIf(languageLocale == "ko")(
                     <Text style={{marginLeft:10, color:"#ffffff"}} >{I18n.t("point_myPoint_btn")}</Text>
+                    )}
                 </Button>
             </View>
         );
@@ -193,7 +196,15 @@ export default class pointHistory extends Component {
             <View>
                 <View style={{flex:1, flexDirection: 'row', paddingTop:5, paddingBottom:5}}>
                     <View style={{flex:0.6,alignItems:'flex-start',justifyContent:'center'}}>
+                        {renderIf(languageLocale == "ko")(
                         <Text style={SurveyFormStyle.contentsSize}><Text style={{color:'#979797',fontSize:13}}>{obj.CAMPAIGN_TITLE}</Text></Text>
+                         )}
+                        {renderIf(languageLocale == "en")(
+                            <Text style={SurveyFormStyle.contentsSize}><Text style={{color:'#979797',fontSize:13}}>{obj.CAMPAIGN_TITLE_EN}</Text></Text>
+                        )}
+                        {renderIf(languageLocale == "zh")(
+                            <Text style={SurveyFormStyle.contentsSize}><Text style={{color:'#979797',fontSize:13}}>{obj.CAMPAIGN_TITLE_CH}</Text></Text>
+                        )}
                     </View>
 
                     {renderIf(obj.CODE_TYPE == "IN")(
@@ -227,7 +238,15 @@ export default class pointHistory extends Component {
 
                     {renderIf(obj.CODE_TYPE == "IN")(
                     <View style={{flex:0.4,alignItems:'flex-end'}}>
+                        {renderIf(languageLocale == "ko")(
                         <Text style={{color:'#979797',fontSize:11}}>{obj.QUEST_NUM}차</Text>
+                        )}
+                        {renderIf(languageLocale == "en")(
+                            <Text style={{color:'#979797',fontSize:11}}>{obj.QUEST_NUM}round</Text>
+                        )}
+                        {renderIf(languageLocale == "zh")(
+                            <Text style={{color:'#979797',fontSize:11}}>{obj.QUEST_NUM}轮</Text>
+                        )}
                     </View>
                     )}
 
