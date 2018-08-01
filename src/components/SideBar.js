@@ -16,6 +16,9 @@ if (Platform.OS === "android") {
 }
 
 var languageLocale = langRegionLocale.substring(0, 2);
+if(languageLocale != "ko" && languageLocale != "en" && languageLocale != "zh") {
+    languageLocale = "en";
+}
 
 import en from '../lang/en';
 import zh from '../lang/zh';
