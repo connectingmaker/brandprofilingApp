@@ -151,14 +151,34 @@ export default class contentsView extends Component {
                 <View style={myPageFormStyle.contentsLayout2}>
                     <TouchableOpacity>
                         <View style={{flex: 1, flexDirection: 'row', paddingTop: 5, paddingBottom: 5}}>
+                            {renderIf(languageLocale == "ko") (
                             <Text style={myPageFormStyle.contentsSize}>{obj.SUBJECT}</Text>
+                            )}
+
+                            {renderIf(languageLocale == "en") (
+                                <Text style={myPageFormStyle.contentsSize}>{obj.SUBJECT_EN}</Text>
+                            )}
+
+                            {renderIf(languageLocale == "zh") (
+                                <Text style={myPageFormStyle.contentsSize}>{obj.SUBJECT_CN}</Text>
+                            )}
 
                         </View>
                         <View style={{flex: 1, flexDirection: 'row', height:1, backgroundColor:'#f1f1f1', marginTop: 10, marginBottom: 10}}>
                         </View>
 
                         <View style={{flex: 1, flexDirection: 'row', paddingTop: 5, paddingBottom: 5}}>
-                            <Text style={myPageFormStyle.contentsSize}>상세내용입력</Text>
+                            {renderIf(languageLocale == "ko") (
+                                <Text style={myPageFormStyle.contentsSize}>상세내용</Text>
+                            )}
+
+                            {renderIf(languageLocale == "en") (
+                                <Text style={myPageFormStyle.contentsSize}>영어</Text>
+                            )}
+
+                            {renderIf(languageLocale == "zh") (
+                                <Text style={myPageFormStyle.contentsSize}>중국어</Text>
+                            )}
 
                         </View>
                     </TouchableOpacity>
