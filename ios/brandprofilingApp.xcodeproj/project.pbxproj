@@ -24,7 +24,6 @@
 		140ED2AC1D01E1AD002B40FF /* libReact.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 146834041AC3E56700842450 /* libReact.a */; };
 		1417B74FC6F549998F3A9D45 /* Foundation.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0B717F176AB74A8B9200CD27 /* Foundation.ttf */; };
 		146834051AC3E58100842450 /* libReact.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 146834041AC3E56700842450 /* libReact.a */; };
-		22643BB02108566300B8B32B /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 22643B862108566200B8B32B /* GoogleService-Info.plist */; };
 		2273D998F8914E4FB0CD3A49 /* SimpleLineIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F7A5905EFF6044E29780DF7E /* SimpleLineIcons.ttf */; };
 		2AA694647F0D4A3781BFC7BB /* Entypo.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C6A1DE9100F14B47A885F59F /* Entypo.ttf */; };
 		2D02E4BC1E0B4A80006451C7 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.m */; };
@@ -55,6 +54,7 @@
 		9EF19EE9961A4F3F80C08884 /* MaterialIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 92A478ED99404904B59523E7 /* MaterialIcons.ttf */; };
 		A58E85B155994E68893F4DFC /* Zocial.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 96158B97E0F142F3A34ED5A2 /* Zocial.ttf */; };
 		ADBDB9381DFEBF1600ED6528 /* libRCTBlob.a in Frameworks */ = {isa = PBXBuildFile; fileRef = ADBDB9271DFEBF0700ED6528 /* libRCTBlob.a */; };
+		BD6EA730211ABD7800E5127A /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = BD6EA72F211ABD7800E5127A /* GoogleService-Info.plist */; };
 		BDBEF6BA1FC74EC80034ABAF /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BDBEF6B61FC74EC80034ABAF /* FBSDKLoginKit.framework */; };
 		BDBEF6BB1FC74EC80034ABAF /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BDBEF6B71FC74EC80034ABAF /* FBSDKCoreKit.framework */; };
 		BDBEF6BC1FC74EC80034ABAF /* FBSDKShareKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BDBEF6B81FC74EC80034ABAF /* FBSDKShareKit.framework */; };
@@ -390,7 +390,6 @@
 		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = brandprofilingApp/Info.plist; sourceTree = "<group>"; };
 		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = brandprofilingApp/main.m; sourceTree = "<group>"; };
 		146833FF1AC3E56700842450 /* React.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = React.xcodeproj; path = "../node_modules/react-native/React/React.xcodeproj"; sourceTree = "<group>"; };
-		22643B862108566200B8B32B /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		2CDB544A10084CAEA84C9E66 /* EvilIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = EvilIcons.ttf; path = "../node_modules/native-base/Fonts/EvilIcons.ttf"; sourceTree = "<group>"; };
 		2D02E47B1E0B4A5D006451C7 /* brandprofilingApp-tvOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "brandprofilingApp-tvOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2D02E4901E0B4A5D006451C7 /* brandprofilingApp-tvOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "brandprofilingApp-tvOSTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -411,6 +410,7 @@
 		96158B97E0F142F3A34ED5A2 /* Zocial.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Zocial.ttf; path = "../node_modules/native-base/Fonts/Zocial.ttf"; sourceTree = "<group>"; };
 		A28D557B62CA8872A13F6A8E /* Pods-brandprofilingApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-brandprofilingApp.debug.xcconfig"; path = "Pods/Target Support Files/Pods-brandprofilingApp/Pods-brandprofilingApp.debug.xcconfig"; sourceTree = "<group>"; };
 		ADBDB91F1DFEBF0600ED6528 /* RCTBlob.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTBlob.xcodeproj; path = "../node_modules/react-native/Libraries/Blob/RCTBlob.xcodeproj"; sourceTree = "<group>"; };
+		BD6EA72F211ABD7800E5127A /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		BDBE59621FCC3E5C00903572 /* brandprofilingApp.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; name = brandprofilingApp.entitlements; path = brandprofilingApp/brandprofilingApp.entitlements; sourceTree = "<group>"; };
 		BDBEF6B61FC74EC80034ABAF /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKLoginKit.framework; path = ../../../Documents/FacebookSDK/FBSDKLoginKit.framework; sourceTree = "<group>"; };
 		BDBEF6B71FC74EC80034ABAF /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKCoreKit.framework; path = ../../../Documents/FacebookSDK/FBSDKCoreKit.framework; sourceTree = "<group>"; };
@@ -577,7 +577,7 @@
 		13B07FAE1A68108700A75B9A /* brandprofilingApp */ = {
 			isa = PBXGroup;
 			children = (
-				22643B862108566200B8B32B /* GoogleService-Info.plist */,
+				BD6EA72F211ABD7800E5127A /* GoogleService-Info.plist */,
 				BDBE59621FCC3E5C00903572 /* brandprofilingApp.entitlements */,
 				008F07F21AC5B25A0029DE68 /* main.jsbundle */,
 				13B07FAF1A68108700A75B9A /* AppDelegate.h */,
@@ -1317,13 +1317,13 @@
 			files = (
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
 				13B07FBD1A68108700A75B9A /* LaunchScreen.xib in Resources */,
+				BD6EA730211ABD7800E5127A /* GoogleService-Info.plist in Resources */,
 				2AA694647F0D4A3781BFC7BB /* Entypo.ttf in Resources */,
 				D6B3B5B6FAA340009EEE5782 /* EvilIcons.ttf in Resources */,
 				86F8823D710C480AB13D0522 /* FontAwesome.ttf in Resources */,
 				1417B74FC6F549998F3A9D45 /* Foundation.ttf in Resources */,
 				769EA2579A3B4078A1D30BE2 /* Ionicons.ttf in Resources */,
 				9EF19EE9961A4F3F80C08884 /* MaterialIcons.ttf in Resources */,
-				22643BB02108566300B8B32B /* GoogleService-Info.plist in Resources */,
 				028498B633614D85887F5941 /* Octicons.ttf in Resources */,
 				9A0BE648775941E498DD1A4E /* Roboto_medium.ttf in Resources */,
 				70601E52A9C64E55ADF5FCA2 /* Roboto.ttf in Resources */,

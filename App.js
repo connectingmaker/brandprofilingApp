@@ -74,20 +74,24 @@ export default class App extends Component {
             }).then((responseJson) => {
             try {
                 var data = eval("(" + responseJson + ")");
+                console.log(data);
                 if(data == null) {
-                    this.setState({logged: false,  logout:true, intro: false});
+                    this.setState({logged: false,  logout:true, intro: data.intro});
                 } else {
+                    if(data.intro == null) {
+                        data.intro = false;
+                    }
                     if (data.SESS_UID != null) {
                         if(data.intro == true) {
-                            this.setState({logged: true, logout: false, uid: data.SESS_UID, intro: true});
+                            this.setState({logged: true, logout: false, uid: data.SESS_UID, intro: data.intro});
                         } else {
-                            this.setState({logged: true, logout: false, uid: data.SESS_UID, intro: false});
+                            this.setState({logged: true, logout: false, uid: data.SESS_UID, intro: data.intro});
                         }
                     } else {
                         if(data.intro == true) {
-                            this.setState({logged: false, logout: true, intro: true});
+                            this.setState({logged: false, logout: true, intro: data.intro});
                         } else {
-                            this.setState({logged: false, logout: true, intro: false});
+                            this.setState({logged: false, logout: true, intro: data.intro});
                         }
 
                     }

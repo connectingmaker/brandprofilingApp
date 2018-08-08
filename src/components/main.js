@@ -70,13 +70,16 @@ export default class Main extends Component {
     }
 
     componentDidMount() {
-        Actions.refresh({key: 'drawer', ref: this.refs.navigationDrawer});
+
+
+
+        //Actions.refresh({key: 'drawer', ref: this.refs.navigationDrawer});
 
         AsyncStorage.getItem(config.STORE_KEY).then((value) => {
             var json = eval("(" + value + ")");
             var uid = json.SESS_UID;
 
-
+            console.log(json.contentMain);
             //console.log(value);
 
             if(json.contentMain == true) {

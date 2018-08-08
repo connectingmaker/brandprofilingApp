@@ -1,6 +1,6 @@
 import React from 'react';
 import { Actions } from 'react-native-router-flux';
-import { StyleSheet,View,Text,Image,Dimensions, Platform, NativeModules} from 'react-native';
+import { StyleSheet,View,Text,Image,Dimensions, Platform, NativeModules, AsyncStorage} from 'react-native';
 import AppIntroSlider from 'react-native-app-intro-slider';
 
 import renderIf from 'render-if'
@@ -23,6 +23,7 @@ if(languageLocale != "ko" && languageLocale != "en" && languageLocale != "zh") {
 import en from '../lang/en';
 import zh from '../lang/zh';
 import ko from '../lang/ko';
+import config from "../config";
 
 I18n.fallbacks = true;
 I18n.locale = languageLocale;
@@ -112,10 +113,123 @@ const slides = [
 
 export default class Intro extends React.Component {
     _onDone = () => {
-        Actions.Login();
+
+        AsyncStorage.getItem(config.STORE_KEY)
+            .then((response) => {
+                return response;
+            }).then((responseJson) => {
+            try {
+                var data = eval("(" + responseJson + ")");
+                if(data == null) {
+                    var dataObject = {
+                        "SESS_UID": ""
+                        , "SESS_USEREMAIL": ""
+                        , "SESS_ALL_PUSH_YN": ""
+                        , "SESS_SURVEY_PUSH_YN": ""
+                        , "contentMain" : false
+                        , "intro" : true
+                    };
+
+                    AsyncStorage.setItem(config.STORE_KEY, JSON.stringify(dataObject));
+                    Actions.Login();
+                } else {
+                    if (data.SESS_UID != null) {
+                        var dataObject = {
+                            "SESS_UID": data.SESS_UID
+                            , "SESS_USEREMAIL": data.SESS_USEREMAIL
+                            , "SESS_ALL_PUSH_YN": data.SESS_ALL_PUSH_YN
+                            , "SESS_SURVEY_PUSH_YN": data.SESS_SURVEY_PUSH_YN
+                            , "contentMain" : true
+                            , "intro" : true
+                        };
+
+                        AsyncStorage.setItem(config.STORE_KEY, JSON.stringify(dataObject));
+                        Actions.Main();
+
+                    } else {
+                        var dataObject = {
+                            "SESS_UID": ""
+                            , "SESS_USEREMAIL": ""
+                            , "SESS_ALL_PUSH_YN": ""
+                            , "SESS_SURVEY_PUSH_YN": ""
+                            , "contentMain" : false
+                            , "intro" : true
+                        };
+
+                        AsyncStorage.setItem(config.STORE_KEY, JSON.stringify(dataObject));
+                        Actions.Login();
+                    }
+                }
+            } catch(err) {
+                //console.log(err);
+                //this.setState({loading: true, logged: false,  logout:true, intro: false});
+
+            }
+
+            this.setState({loading:true});
+
+
+        });
+
     }
     _onSkip = () =>{
-        Actions.Login();
+        AsyncStorage.getItem(config.STORE_KEY)
+            .then((response) => {
+                return response;
+            }).then((responseJson) => {
+            try {
+                var data = eval("(" + responseJson + ")");
+                if(data == null) {
+                    var dataObject = {
+                        "SESS_UID": ""
+                        , "SESS_USEREMAIL": ""
+                        , "SESS_ALL_PUSH_YN": ""
+                        , "SESS_SURVEY_PUSH_YN": ""
+                        , "contentMain" : false
+                        , "intro" : true
+                    };
+
+                    AsyncStorage.setItem(config.STORE_KEY, JSON.stringify(dataObject));
+                    Actions.Login();
+                } else {
+                    if (data.SESS_UID != null) {
+                        var dataObject = {
+                            "SESS_UID": data.SESS_UID
+                            , "SESS_USEREMAIL": data.SESS_USEREMAIL
+                            , "SESS_ALL_PUSH_YN": data.SESS_ALL_PUSH_YN
+                            , "SESS_SURVEY_PUSH_YN": data.SESS_SURVEY_PUSH_YN
+                            , "contentMain" : true
+                            , "intro" : true
+                        };
+
+                        AsyncStorage.setItem(config.STORE_KEY, JSON.stringify(dataObject));
+                        Actions.Main();
+
+                    } else {
+                        var dataObject = {
+                            "SESS_UID": ""
+                            , "SESS_USEREMAIL": ""
+                            , "SESS_ALL_PUSH_YN": ""
+                            , "SESS_SURVEY_PUSH_YN": ""
+                            , "contentMain" : false
+                            , "intro" : true
+                        };
+
+                        AsyncStorage.setItem(config.STORE_KEY, JSON.stringify(dataObject));
+                        Actions.Login();
+                    }
+                }
+            } catch(err) {
+                //console.log(err);
+                //this.setState({loading: true, logged: false,  logout:true, intro: false});
+
+            }
+
+            this.setState({loading:true});
+
+
+        });
+        //Actions.Login();
     }
     _renderItem = props => (
         <View style={[styles.mainContent, {

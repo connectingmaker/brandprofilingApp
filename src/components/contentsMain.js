@@ -43,6 +43,8 @@ export default class contentsMain extends Component {
             ,username:""
         };
 
+        console.log(this.props);
+
     }
 
     componentWillMount()
@@ -57,7 +59,9 @@ export default class contentsMain extends Component {
 
     }
 
-
+    contentViewChange() {
+        Main.change();
+    }
 
     componentWillUnmount() {
         this.mounted = false;
@@ -79,15 +83,18 @@ export default class contentsMain extends Component {
             var uid = json.SESS_UID;
 
 
+
             var dataObject = {
                 "SESS_UID": json.SESS_UID
                 , "SESS_USEREMAIL": json.SESS_USEREMAIL
                 , "SESS_ALL_PUSH_YN": json.SESS_ALL_PUSH_YN
                 , "SESS_SURVEY_PUSH_YN": json.SESS_SURVEY_PUSH_YN
                 , "contentMain" : true
+                , "intro": true
             };
 
-            AsyncStorage.setItem(config.STORE_KEY, JSON.stringify(dataObject));
+            contentViewChange();
+            // AsyncStorage.setItem(config.STORE_KEY, JSON.stringify(dataObject));
 
 
 
@@ -119,7 +126,7 @@ export default class contentsMain extends Component {
                         <Text style={{fontSize:12, color:'#8c8c8c', lineHeight:24, letterSpacing:-1}}>2. 브랜드의 상징가치, 개성 들 브랜딩에 사용되는 모든 이론과 방법론이 총 망라되어 있습니다.</Text>
                         <Text style={{fontSize:12, color:'#8c8c8c', lineHeight:24, letterSpacing:-1}}>3. 제품 개발을 위한 소비자 리서치를 쉽고 빠르게 할 수 있으며 창의적인 아이디어를 도출하도록 도와드립니다.</Text>
                     </View>
-                    <TouchableOpacity onPress={() => Actions.Main({type:"reset", refresh: true})}>
+                    <TouchableOpacity onPress={() => console.log(this)}>
                     <View style={{borderColor:'#e86635',borderWidth:2, marginLeft:40, marginRight:40, marginBottom:20, justifyContent:'center', alignItems:'center', paddingTop:10, paddingBottom:10}}>
                         <Text style={{color:'#e86635', fontSize:18, fontWeight:'bold'}}>설문조사하고 컨텐츠 보기</Text>
                     </View>

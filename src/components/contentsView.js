@@ -77,6 +77,7 @@ export default class contentsView extends Component {
             var json = eval("(" + value + ")");
             var uid = json.SESS_UID;
 
+
             var object = {
                 method: 'GET',
                 headers: {
@@ -89,6 +90,8 @@ export default class contentsView extends Component {
                 .then((response) => response.json())
                 .then((responseData) =>
                 {
+
+
                     console.log(responseData);
                     this.setState({loaded:true, username: responseData.USERNAME, email: responseData.USEREMAIL, sex: responseData.SEX, age: responseData.AGE +"세", brithday: responseData.BRITHDAY})
                 })
