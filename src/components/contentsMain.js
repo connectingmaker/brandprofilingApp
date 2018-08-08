@@ -115,20 +115,62 @@ export default class contentsMain extends Component {
                 <View style={myPageFormStyle.contentsLayout2}>
                     <Image source={require('../../assets/img/contents_main_img.png')} resizeMode="contain" style={{width:'100%', height:220, marginTop:10}} />
                     <View style={{justifyContent:'center', alignItems:'center'}}>
+                        {renderIf(languageLocale == "ko")(
                         <Text style={{textAlignVertical:'center',textAlign: "center", fontSize:18, fontWeight:'bold', color:'#8c8c8c', paddingTop:20, paddingBottom:20, lineHeight:24,letterSpacing:-1}}>브랜드 프로파일링은{"\n"}브랜드 컨셉과 생활용품 제품 개발을{"\n"}위한 특화 리서치 툴입니다.</Text>
+                        )}
+                        {renderIf(languageLocale == "en")(
+                            <Text style={{textAlignVertical:'center',textAlign: "center", fontSize:18, fontWeight:'bold', color:'#8c8c8c', paddingTop:20, paddingBottom:20, lineHeight:24,letterSpacing:-1}}>Brand Profiling is{"\n"}a specialized research tool for {"\n"}developing brand concepts and household products.</Text>
+                        )}
+                        {renderIf(languageLocale == "zh")(
+                            <Text style={{textAlignVertical:'center',textAlign: "center", fontSize:18, fontWeight:'bold', color:'#8c8c8c', paddingTop:20, paddingBottom:20, lineHeight:24,letterSpacing:-1}}>品牌Profiling{"\n"}是一款为品牌概念和生活用品的产品{"\n"}开发的专业研究调查工具。</Text>
+                        )}
                     </View>
 
                     <View style={{height:1, backgroundColor:'#a3a3a3', marginLeft:20, marginRight:20, marginBottom:20}}>
                     </View>
 
                     <View style={{paddingLeft:40, paddingRight:40, marginBottom:20}}>
-                        <Text style={{fontSize:12, color:'#8c8c8c', lineHeight:24, letterSpacing:-1}}>1. 브랜드의 포지셔닝을 진단하거나 전략을 도출하기 위해 사용합니다.</Text>
-                        <Text style={{fontSize:12, color:'#8c8c8c', lineHeight:24, letterSpacing:-1}}>2. 브랜드의 상징가치, 개성 들 브랜딩에 사용되는 모든 이론과 방법론이 총 망라되어 있습니다.</Text>
-                        <Text style={{fontSize:12, color:'#8c8c8c', lineHeight:24, letterSpacing:-1}}>3. 제품 개발을 위한 소비자 리서치를 쉽고 빠르게 할 수 있으며 창의적인 아이디어를 도출하도록 도와드립니다.</Text>
+                        {renderIf(languageLocale == "ko")(
+                            <Text style={{fontSize:12, color:'#8c8c8c', lineHeight:24, letterSpacing:-1}}>1. 브랜드의 포지셔닝을 진단하거나 전략을 도출하기 위해 사용합니다.</Text>
+                        )}
+                        {renderIf(languageLocale == "en")(
+                            <Text style={{fontSize:12, color:'#8c8c8c', lineHeight:24, letterSpacing:-1}}>1. It is used to diagnose brand positioning or to develop strategies.</Text>
+                        )}
+                        {renderIf(languageLocale == "zh")(
+                            <Text style={{fontSize:12, color:'#8c8c8c', lineHeight:24, letterSpacing:-1}}>1. 用于诊断品牌定位和导出品牌战略而使用.</Text>
+                        )}
+                        {renderIf(languageLocale == "ko")(
+                            <Text style={{fontSize:12, color:'#8c8c8c', lineHeight:24, letterSpacing:-1}}>2. 브랜드의 상징가치, 개성 들 브랜딩에 사용되는 모든 이론과 방법론이 총 망라되어 있습니다.</Text>
+                        )}
+                        {renderIf(languageLocale == "en")(
+                            <Text style={{fontSize:12, color:'#8c8c8c', lineHeight:24, letterSpacing:-1}}>2. It covers all theories and methodologies used in branding, including brand value, personality.</Text>
+                        )}
+                        {renderIf(languageLocale == "zh")(
+                            <Text style={{fontSize:12, color:'#8c8c8c', lineHeight:24, letterSpacing:-1}}>2. 包含了品牌建设的象征价值、个性等有关品牌的所有理论和方法论。</Text>
+                        )}
+                        {renderIf(languageLocale == "ko")(
+                            <Text style={{fontSize:12, color:'#8c8c8c', lineHeight:24, letterSpacing:-1}}>3. 제품 개발을 위한 소비자 리서치를 쉽고 빠르게 할 수 있으며 창의적인 아이디어를 도출하도록 도와드립니다.</Text>
+                        )}
+                        {renderIf(languageLocale == "en")(
+                            <Text style={{fontSize:12, color:'#8c8c8c', lineHeight:24, letterSpacing:-1}}>3. We can easily and quickly conduct consumer research for product development and help you to come up with creative ideas.</Text>
+                        )}
+                        {renderIf(languageLocale == "zh")(
+                            <Text style={{fontSize:12, color:'#8c8c8c', lineHeight:24, letterSpacing:-1}}>3. 开发产品时可简单快速地进行消费者调查，以及可以帮助您导出有创意的点子.</Text>
+                        )}
+
                     </View>
                     <TouchableOpacity onPress={() => console.log(this)}>
                     <View style={{borderColor:'#e86635',borderWidth:2, marginLeft:40, marginRight:40, marginBottom:20, justifyContent:'center', alignItems:'center', paddingTop:10, paddingBottom:10}}>
+                        {renderIf(languageLocale == "ko")(
                         <Text style={{color:'#e86635', fontSize:18, fontWeight:'bold'}}>설문조사하고 컨텐츠 보기</Text>
+                        )}
+                        {renderIf(languageLocale == "en")(
+                            <Text style={{color:'#e86635', fontSize:18, fontWeight:'bold'}}>Survey and view articles</Text>
+                        )}
+                        {renderIf(languageLocale == "zh")(
+                            <Text style={{color:'#e86635', fontSize:18, fontWeight:'bold'}}>参与问卷 查看内容</Text>
+                        )}
+
                     </View>
                     </TouchableOpacity>
 
