@@ -22,6 +22,8 @@ import en from '../lang/en';
 import zh from '../lang/zh';
 import ko from '../lang/ko';
 
+
+
 I18n.fallbacks = true;
 I18n.locale = languageLocale;
 I18n.translations = {

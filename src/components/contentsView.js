@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { StyleSheet, Image, View, TouchableOpacity, Text ,ScrollView, AsyncStorage,Alert, Platform, NativeModules} from 'react-native';
+import { StyleSheet, Image, View, TouchableOpacity, Text ,ScrollView, AsyncStorage,Alert, Platform, NativeModules, ListView} from 'react-native';
 import { Actions } from 'react-native-router-flux';
 import { Container, Header, Content, Footer, Item, Icon, Input, Button ,ActionSheet, Spinner} from 'native-base';
 import config from '../config'
@@ -15,6 +15,9 @@ if (Platform.OS === "android") {
 }
 
 var languageLocale = langRegionLocale.substring(0, 2);
+if(languageLocale != "ko" && languageLocale != "en" && languageLocale != "zh") {
+    languageLocale = "en";
+}
 
 import en from '../lang/en';
 import zh from '../lang/zh';
@@ -36,11 +39,10 @@ export default class contentsView extends Component {
         super(props);
         this.state = {
             loaded: false
-            ,email:""
-            ,sex:""
-            ,brithday:""
-            ,age:""
-            ,username:""
+            ,uid : ""
+            ,dataSource: new ListView.DataSource({
+                rowHasChanged: (row1, row2) => row1 !== row2,
+            })
         };
 
     }
@@ -53,7 +55,7 @@ export default class contentsView extends Component {
     componentDidMount(){
         this.mounted = true;
         //console.log(this.props);
-        // this.loadJSONData();
+        this.loadJSONData();
     }
 
 
@@ -73,35 +75,25 @@ export default class contentsView extends Component {
         /*
 
          */
-        AsyncStorage.getItem(config.STORE_KEY).then((value) => {
-            var json = eval("(" + value + ")");
-            var uid = json.SESS_UID;
-
-
-            var object = {
-                method: 'GET',
-                headers: {
-                    'Accept': 'application/json',
-                    'Content-Type': 'text/html'
-                }
+        var object = {
+            method: 'GET',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'text/html'
             }
+        }
 
-            fetch(config.SERVER_URL+"/api/memberSelect/"+uid, object)
-                .then((response) => response.json())
-                .then((responseData) =>
-                {
+        fetch(config.SERVER_URL+"/api/contents", object)
+            .then((response) => response.json())
+            .then((responseData) =>
+            {
+                console.log(responseData);
+                this.setState({loaded:true, dataSource:this.state.dataSource.cloneWithRows(responseData.list)});
 
-
-                    console.log(responseData);
-                    this.setState({loaded:true, username: responseData.USERNAME, email: responseData.USEREMAIL, sex: responseData.SEX, age: responseData.AGE +"세", brithday: responseData.BRITHDAY})
-                })
-                .catch((err) => {
-                    console.log(err);
-                });
-
-        }).then(res => {
-            this.setState({loaded:true, username: "", email: "", sex: "", age: "", brithday: ""})
-        });
+            })
+            .catch((err) => {
+                console.log(err);
+            });
 
 
     }
@@ -152,9 +144,35 @@ export default class contentsView extends Component {
         });
     }
 
+    contentsList(obj)
+    {
+        return (
+            <View style={{marginBottom:10}}>
+                <View style={myPageFormStyle.contentsLayout2}>
+                    <TouchableOpacity>
+                        <View style={{flex: 1, flexDirection: 'row', paddingTop: 5, paddingBottom: 5}}>
+                            <Text style={myPageFormStyle.contentsSize}>{obj.SUBJECT}</Text>
 
+                        </View>
+                        <View style={{flex: 1, flexDirection: 'row', height:1, backgroundColor:'#f1f1f1', marginTop: 10, marginBottom: 10}}>
+                        </View>
+
+                        <View style={{flex: 1, flexDirection: 'row', paddingTop: 5, paddingBottom: 5}}>
+                            <Text style={myPageFormStyle.contentsSize}>상세내용입력</Text>
+
+                        </View>
+                    </TouchableOpacity>
+                </View>
+
+
+
+
+            </View>
+        );
+    }
 
     render() {
+        /*
         return (
         <View style={{marginBottom:10}}>
             <View style={myPageFormStyle.contentsLayout2}>
@@ -165,8 +183,6 @@ export default class contentsView extends Component {
                         </View>
 
                         <View style={{flex: 0.3, alignItems: 'flex-end'}}>
-                            {/*<Image source={require('../../assets/img/down_arrow_img.png')}*/}
-                            {/*resizeMode={'contain'} style={{width: 15, height: 15}}/>*/}
                         </View>
                     </View>
                 </TouchableOpacity>
@@ -177,6 +193,20 @@ export default class contentsView extends Component {
 
         </View>
         );
+        */
+        if(this.state.loaded == true) {
+            return (
+                <ListView
+                    style={{marginBottom:10}}
+                    dataSource={this.state.dataSource}
+                    renderRow={(rowData) => this.contentsList(rowData) }
+                />
+            );
+        } else {
+            return (
+                <View><Spinner size="small" color="red" /></View>
+            );
+        }
 
     }
 }
