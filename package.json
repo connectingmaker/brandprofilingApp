@@ -7,6 +7,9 @@
     "test": "jest"
   },
   "dependencies": {
+    "moment": "^2.22.2",
+    "react-native-htmltext": "^0.1.2",
+    "react-native-htmlview": "^0.13.0",
     "react-native-webview": "^1.0.8",
     "render-if": "^0.1.1"
   },

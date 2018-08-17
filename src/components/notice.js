@@ -133,7 +133,7 @@ export default class Notice extends Component {
                 <Body style={{flex:1}}>
                     <Text style={{fontSize:16,color:'#fff'}}>공지사항</Text>
                 </Body>
-                <Right style={{flex:1}} style={{width:50, height:50, justifyContent:'center', alignItems:'center'}}>
+                <Right tyle={{flex:1, width:50, height:50, justifyContent:'center', alignItems:'center'}}>
                 </Right>
                 </Header>
 

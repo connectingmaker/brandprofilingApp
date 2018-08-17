@@ -20,6 +20,7 @@ import Pwchange from './src/components/pwchange';
 import SurveyJoin from './src/components/surveyJoin';
 import Panel from './src/components/panel'
 import FacebookAuth from './src/components/facebookAuth'
+import ContentsViewSub from './src/components/contentsViewSub';
 
 
 import config from './src/config';
@@ -281,6 +282,7 @@ export default class App extends Component {
                     <Scene key="Privacy" component={Privacy} title="개인정보취급방침" hideNavBar={true} uid={this.state.uid} direction="vertical" schema="modal" wrapRouter={true}/>
                     <Scene key="Pwchange" component={Pwchange} title="비밀번호변경" hideNavBar={true} uid={this.state.uid} direction="vertical" schema="modal" wrapRouter={true}/>
                     <Scene key="Panel" component={Panel} title="전문패널신청" hideNavBar={true} uid={this.state.uid} direction="vertical" schema="modal" wrapRouter={true}/>
+                    <Scene key="ContentsViewSub" component={ContentsViewSub} title="콘텐츠보기" hideNavBar={true} uid={this.state.uid} direction="vertical" schema="modal" wrapRouter={true}/>
                 </Modal>
             </Router>
         } else {

@@ -165,13 +165,20 @@ export default class contentsMain extends Component {
                     <TouchableOpacity onPress={() => console.log(this)}>
                     <View style={{borderColor:'#e86635',borderWidth:2, marginLeft:40, marginRight:40, marginBottom:20, justifyContent:'center', alignItems:'center', paddingTop:10, paddingBottom:10}}>
                         {renderIf(languageLocale == "ko")(
-                        <Text style={{color:'#e86635', fontSize:18, fontWeight:'bold'}}>설문조사하고 컨텐츠 보기</Text>
+                            <Button bordered full style={{borderColor:"#979797",backgroundColor:"#DA4211"}} onPress={() => Actions.Main({type:"reset", refresh: true})}>
+                                <Text style={{color:'#fff', fontSize:18}}>설문조사하고 컨텐츠 보기</Text>
+                            </Button>
                         )}
                         {renderIf(languageLocale == "en")(
-                            <Text style={{color:'#e86635', fontSize:18, fontWeight:'bold'}}>Survey and view articles</Text>
+                            <Button bordered full style={{borderColor:"#979797",backgroundColor:"#DA4211"}} onPress={() => Actions.Main({type:"reset", refresh: true})}>
+                                <Text style={{color:'#fff', fontSize:18}}>Survey and view articles</Text>
+                            </Button>
+
                         )}
                         {renderIf(languageLocale == "zh")(
-                            <Text style={{color:'#e86635', fontSize:18, fontWeight:'bold'}}>参与问卷 查看内容</Text>
+                            <Button bordered full style={{borderColor:"#979797",backgroundColor:"#DA4211"}} onPress={() => Actions.Main({type:"reset", refresh: true})}>
+                                <Text style={{color:'#fff', fontSize:18}}>参与问卷 查看内容</Text>
+                            </Button>
                         )}
 
                     </View>

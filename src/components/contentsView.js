@@ -71,10 +71,12 @@ export default class contentsView extends Component {
 
     }
 
-    loadJSONData() {
-        /*
+    _contentsViewSub(seq)
+    {
+        // Actions.contentsViewSub;
+    }
 
-         */
+    loadJSONData() {
         var object = {
             method: 'GET',
             headers: {
@@ -87,8 +89,18 @@ export default class contentsView extends Component {
             .then((response) => response.json())
             .then((responseData) =>
             {
-                console.log(responseData);
-                this.setState({loaded:true, dataSource:this.state.dataSource.cloneWithRows(responseData.list)});
+                if(this.mounted) {
+                    if (responseData.list.length == 0) {
+                        this.setState({loaded: true});
+                    } else {
+                        console.log(responseData);
+                        this.setState({
+                            loaded: true,
+                            dataSource: this.state.dataSource.cloneWithRows(responseData.list)
+                        });
+                    }
+                    this.mounted = false;
+                }
 
             })
             .catch((err) => {
@@ -98,94 +110,35 @@ export default class contentsView extends Component {
 
     }
 
-    memberDrop()
-    {
 
-        Alert.alert(
-            '회원탈퇴를 하시겠습니까?',
-            '회원탈퇴하시면 기존의 정보는 다시 복구할 수 없으니 신중하게 결정해주세요.',
-            [
-
-                {text: '최소', onPress: () => console.log('Cancel Pressed'), style: 'cancel'},
-                {text: '확인', onPress: () => this.memberDropSubmit()},
-            ],
-            { cancelable: false }
-        )
-
-
-    }
-
-    memberDropSubmit()
-    {
-        AsyncStorage.getItem(config.STORE_KEY).then((value) => {
-            var json = eval("(" + value + ")");
-            var uid = json.SESS_UID;
-
-            var object = {
-                method: 'GET',
-                headers: {
-                    'Accept': 'application/json',
-                    'Content-Type': 'text/html'
-                }
-            }
-
-            fetch(config.SERVER_URL+"/api/memberDrop/"+uid, object)
-                .then((response) => response.json())
-                .then((responseData) =>
-                {
-                    AsyncStorage.clear(() => Actions.root({type:"reset", refresh: true})); // to clear the token
-                })
-                .catch((err) => {
-                    console.log(err);
-                });
-
-        }).then(res => {
-            this.setState({loaded:true, username: "", email: "", sex: "", age: "", brithday: ""})
-        });
-    }
 
     contentsList(obj)
     {
         return (
             <View style={{marginBottom:10}}>
                 <View style={myPageFormStyle.contentsLayout2}>
-                    <TouchableOpacity>
-                        <View style={{flex: 1, flexDirection: 'row', paddingTop: 5, paddingBottom: 5}}>
-                            {renderIf(languageLocale == "ko") (
-                            <Text style={myPageFormStyle.contentsSize}>{obj.SUBJECT}</Text>
-                            )}
+                    <TouchableOpacity onPress={() => Actions.ContentsViewSub({seq: obj.SEQ})}>
+                    {/*<TouchableOpacity onPress={() => Actions.Survey({campaign_code: obj.CAMPAIGN_CODE, point: obj.POINT, quest_num: obj.QUEST_NUM, uid: obj.UID})}>*/}
+                        <View style={{flex:1}}>
+                            <View style={{flex: 0.8}}>
+                                {renderIf(languageLocale == "ko") (
+                                <Text style={myPageFormStyle.contentsSize}>{obj.SUBJECT}</Text>
+                                )}
 
-                            {renderIf(languageLocale == "en") (
-                                <Text style={myPageFormStyle.contentsSize}>{obj.SUBJECT_EN}</Text>
-                            )}
+                                {renderIf(languageLocale == "en") (
+                                    <Text style={myPageFormStyle.contentsSize}>{obj.SUBJECT_EN}</Text>
+                                )}
 
-                            {renderIf(languageLocale == "zh") (
-                                <Text style={myPageFormStyle.contentsSize}>{obj.SUBJECT_CN}</Text>
-                            )}
-
-                        </View>
-                        <View style={{flex: 1, flexDirection: 'row', height:1, backgroundColor:'#f1f1f1', marginTop: 10, marginBottom: 10}}>
-                        </View>
-
-                        <View style={{flex: 1, flexDirection: 'row', paddingTop: 5, paddingBottom: 5}}>
-                            {renderIf(languageLocale == "ko") (
-                                <Text style={myPageFormStyle.contentsSize}>상세내용</Text>
-                            )}
-
-                            {renderIf(languageLocale == "en") (
-                                <Text style={myPageFormStyle.contentsSize}>영어</Text>
-                            )}
-
-                            {renderIf(languageLocale == "zh") (
-                                <Text style={myPageFormStyle.contentsSize}>중국어</Text>
-                            )}
-
+                                {renderIf(languageLocale == "zh") (
+                                    <Text style={myPageFormStyle.contentsSize}>{obj.SUBJECT_CN}</Text>
+                                )}
+                            </View>
+                            <View style={{flex:0.2, alignItems: 'flex-end',paddingTop: 5, paddingBottom: 10}}>
+                                <Image source={require("../../assets/img/next_arrow_img.png")} resizeMode={'contain'}/>
+                            </View>
                         </View>
                     </TouchableOpacity>
                 </View>
-
-
-
 
             </View>
         );
