@@ -134,7 +134,8 @@ export default class contentsView extends Component {
                                 )}
                             </View>
                             <View style={{flex:0.2, alignItems: 'flex-end',paddingTop: 5, paddingBottom: 10}}>
-                                <Image source={require("../../assets/img/next_arrow_img.png")} resizeMode={'contain'}/>
+                                {/*<Image source={require("../../assets/img/next_arrow_img.png")} resizeMode={'contain'}/>*/}
+                                <Text>...</Text>
                             </View>
                         </View>
                     </TouchableOpacity>
