@@ -1,11 +1,35 @@
 import React, { Component } from 'react';
 import { Actions } from 'react-native-router-flux';
-import { View, Text, Image, StyleSheet, TouchableOpacity,AlertIOS,Alert,Platform,ListView} from 'react-native';
+import { View, Text, Image, StyleSheet, TouchableOpacity,AlertIOS,Alert,Platform,ListView,NativeModules} from 'react-native';
 import { Container, Header, Left,Body,Right, Content, Footer,Item, Icon, Input,Button } from 'native-base';
 
 import config from '../config';
 import renderIf from 'render-if'
 
+import I18n from 'react-native-i18n';
+var langRegionLocale = "en_US";
+if (Platform.OS === "android") {
+    langRegionLocale = NativeModules.I18nManager.localeIdentifier || "";
+} else if (Platform.OS === "ios") {
+    langRegionLocale = NativeModules.SettingsManager.settings.AppleLocale || "";
+}
+
+var languageLocale = langRegionLocale.substring(0, 2);
+if(languageLocale != "ko" && languageLocale != "en" && languageLocale != "zh") {
+    languageLocale = "en";
+}
+
+import en from '../lang/en';
+import zh from '../lang/zh';
+import ko from '../lang/ko';
+
+I18n.fallbacks = true;
+I18n.locale = languageLocale;
+I18n.translations = {
+    en,
+    zh,
+    ko
+};
 
 export default class Notice extends Component {
 
@@ -125,13 +149,28 @@ export default class Notice extends Component {
 
                 <Left style={{flex:1}}>
                     <TouchableOpacity onPress={Actions.pop} style={{width:50, height:50, justifyContent:'center', alignItems:'center'}}>
-                        <View>
-                            <Text style={{fontSize:12,color:'#fff'}}>나가기</Text>
-                        </View>
+                        {renderIf(languageLocale=="ko")(
+                            <Text style={{fontSize:12,color:'#fff'}} onPress={Actions.pop}>나가기</Text>
+                        )}
+                        {renderIf(languageLocale=="en")(
+                            <Text style={{fontSize:12,color:'#fff'}} onPress={Actions.pop}>Leave</Text>
+                        )}
+                        {renderIf(languageLocale=="zh")(
+                            <Text style={{fontSize:12,color:'#fff'}} onPress={Actions.pop}>退出</Text>
+                        )}
                     </TouchableOpacity>
                 </Left>
                 <Body style={{flex:1}}>
-                    <Text style={{fontSize:16,color:'#fff'}}>공지사항</Text>
+                    {renderIf(languageLocale=="ko")(
+                        <Text style={{fontSize:16,color:'#fff'}}>공지사항</Text>
+                    )}
+                    {renderIf(languageLocale=="en")(
+                        <Text style={{fontSize:16,color:'#fff'}}>NOTICE</Text>
+                    )}
+                    {renderIf(languageLocale=="zh")(
+                        <Text style={{fontSize:16,color:'#fff'}}>注意</Text>
+                    )}
+
                 </Body>
                 <Right tyle={{flex:1, width:50, height:50, justifyContent:'center', alignItems:'center'}}>
                 </Right>
