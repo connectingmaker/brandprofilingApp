@@ -178,6 +178,7 @@ export default class Intro extends React.Component {
                 return response;
             }).then((responseJson) => {
             try {
+
                 var data = eval("(" + responseJson + ")");
                 if(data == null) {
                     var dataObject = {
@@ -192,7 +193,8 @@ export default class Intro extends React.Component {
                     AsyncStorage.setItem(config.STORE_KEY, JSON.stringify(dataObject));
                     Actions.Login();
                 } else {
-                    if (data.SESS_UID != null) {
+
+                    if (data.SESS_UID != null && data.SESS_UID.trim() != "") {
                         var dataObject = {
                             "SESS_UID": data.SESS_UID
                             , "SESS_USEREMAIL": data.SESS_USEREMAIL
@@ -216,7 +218,7 @@ export default class Intro extends React.Component {
                         };
 
                         AsyncStorage.setItem(config.STORE_KEY, JSON.stringify(dataObject));
-                        Actions.Login();
+                        Actions.root();
                     }
                 }
             } catch(err) {

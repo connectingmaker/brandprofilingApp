@@ -220,7 +220,7 @@ export default class Privacy extends Component {
                                 <Text>•전화 : 02-541-7871</Text>
                             </Text>
                             <Text style={noticeFormStyle.contentsSize}>
-                                <Text>•이메일 : contact@perception.co.kr</Text>
+                                <Text>•이메일 : eastflowlim@perception.co.kr</Text>
                             </Text>
                             <Text style={noticeFormStyle.contentsSize}>
                                 <Text>이용자는 회사의 서비스를 이용하며 발생하는 모든 개인정보보호 관련 민원을 개인정보관리책임자 혹은 담당 부서로 신고하실 수 있습니다.

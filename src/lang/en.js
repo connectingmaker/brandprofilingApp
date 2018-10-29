@@ -74,6 +74,7 @@ export default {
     ,point_Refund_history : 'Point refund history'
     ,point_complate_history : 'Points accumulation history'
     ,point_in_text : 'Date to Earn'
+    ,point_refund_complate_text : '환급완료'
 
 
 

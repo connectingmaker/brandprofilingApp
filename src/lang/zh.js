@@ -74,6 +74,7 @@ export default {
     ,point_Refund_history : '积分兑换记录'
     ,point_complate_history : '积分记录'
     ,point_in_text : '积分日期'
+    ,point_refund_complate_text : '환급완료'
 
     ,mypage_app_text : '应用介绍'
     ,mypage_panel_text : '申请专业分析'

@@ -95,15 +95,15 @@ def enableProguardInReleaseBuilds = false
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 26
+    compileSdkVersion 27
     buildToolsVersion '27.0.3'
 
     defaultConfig {
         applicationId "com.brandprofilingapp"
         minSdkVersion 16
-        targetSdkVersion 22
-        versionCode 23
-        versionName "1.2.0.22"
+        targetSdkVersion 26
+        versionCode 29
+        versionName "1.2.0.28"
         ndk {
             abiFilters "armeabi-v7a", "x86"
         }
@@ -149,14 +149,17 @@ android {
 }
 
 dependencies {
-    compile project(':react-native-fbsdk')
-    compile project(':react-native-fcm')
-    compile fileTree(include: ['*.jar'], dir: 'libs')
+    implementation project(':react-native-vector-icons')
+    implementation project(':react-native-i18n')
+    implementation project(':react-native-exit-app')
+    implementation project(':react-native-fbsdk')
+    implementation project(':react-native-fcm')
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
     // From node_modules
-    compile 'com.android.support:appcompat-v7:26+'
+    implementation 'com.android.support:appcompat-v7:27+'
     // 변경
-    compile 'com.facebook.react:react-native:+'
-    compile 'com.android.support.constraint:constraint-layout:1.0.2'
+    implementation 'com.facebook.react:react-native:+'
+    implementation 'com.android.support.constraint:constraint-layout:1.0.2'
     /*
         compile('com.google.android.gms:play-services-gcm:11.0.4') {
             force = true;
@@ -166,7 +169,7 @@ dependencies {
             force = true;
         }
         */
-    compile 'com.google.firebase:firebase-core:11.0.4'
+    implementation 'com.google.firebase:firebase-core:16.0.4'
 }
 
 // Run this once to be able to run the application with BUCK
@@ -175,4 +178,5 @@ task copyDownloadableDepsToLibs(type: Copy) {
     from configurations.compile
     into 'libs'
 }
+
 apply plugin: 'com.google.gms.google-services'
