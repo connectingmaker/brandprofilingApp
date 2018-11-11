@@ -1,6 +1,6 @@
 export default {
     intro01_title:'Quickly understand the brand concept and positioning,\nand get branding related information'
-    ,intro01_text:'1. To get valuable information by using reward points\n2. To understand \'Brand Profiling\' concept and branding theories\n3. To use in personal dissertation and research(tool free support)'
+    ,intro01_text:"1. To get valuable information by using reward points\n2. To understand Brand Profiling concept and branding theories\n3. To use in personal dissertation and research(tool free support)"
 
     ,intro02_title:'Compare concepts across brands \nand check out our list of key brands'
     ,intro02_text:'1. To obtain major brand information by category\n2. To compare and analyze concepts between brands \n3. To discover unmet needs for new brand concepts'

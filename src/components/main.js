@@ -28,6 +28,8 @@ var languageLocale = langRegionLocale.substring(0, 2);
 import en from '../lang/en';
 import zh from '../lang/zh';
 import ko from '../lang/ko';
+import contentsView from "./contentsView";
+import contentsMain from "./contentsMain";
 
 I18n.fallbacks = true;
 I18n.locale = languageLocale;
@@ -83,12 +85,13 @@ export default class Main extends Component {
 
     render() {
 
-        var AppComponent = null;
         if (this.state.index == 0) {
             AppComponent = surveyList;
         } else if(this.state.index == 1) {
             AppComponent = mySurvey;
-        } else if(this.state.index == 3) {
+        } else if(this.state.index == 2) {
+            AppComponent = contentsView;
+        } else if(this.state.index == 3 || this.state.index == 5) {
             AppComponent = pointHistory;
         } else if(this.state.index == 4) {
             AppComponent = myPage;
@@ -169,6 +172,9 @@ export default class Main extends Component {
                                 <Button onPress={() => this.switchScreen(1) }>
                                     <Image source={require('../../assets/img/mySurvey_icon_off.png')} resizeMode={'contain'} style={{width:25,height:25}}/><Text style={{fontSize:12, paddingTop:5}}>{I18n.t('tab2')}</Text>
                                 </Button>
+                                <Button onPress={() => this.switchScreen(2) }>
+                                    <Image source={require('../../assets/img/contents_icon_off.png')} resizeMode={'contain'} style={{width:25,height:25}}/><Text style={{fontSize:12, paddingTop:5}}>{I18n.t('tab3')}</Text>
+                                </Button>
                                 <Button onPress={() => this.switchScreen(3) }>
                                     <Image source={require('../../assets/img/point_icon_off.png')} resizeMode={'contain'} style={{width:25,height:25}}/><Text style={{fontSize:12, paddingTop:5}}>{I18n.t('tab4')}</Text>
                                 </Button>
@@ -185,6 +191,29 @@ export default class Main extends Component {
                                 </Button>
                                 <Button onPress={() => this.switchScreen(1) }>
                                     <Image source={require('../../assets/img/mySurvey_icon_on.png')} resizeMode={'contain'} style={{width:25,height:25}}/><Text style={{color:"#DA4211", fontSize:12, paddingTop:5}}>{I18n.t('tab2')}</Text>
+                                </Button>
+                                <Button onPress={() => this.switchScreen(2) }>
+                                    <Image source={require('../../assets/img/contents_icon_off.png')} resizeMode={'contain'} style={{width:25,height:25}}/><Text style={{fontSize:12, paddingTop:5}}>{I18n.t('tab3')}</Text>
+                                </Button>
+                                <Button onPress={() => this.switchScreen(3) }>
+                                    <Image source={require('../../assets/img/point_icon_off.png')} resizeMode={'contain'} style={{width:25,height:25}}/><Text style={{fontSize:12, paddingTop:5}}>{I18n.t('tab4')}</Text>
+                                </Button>
+                                <Button onPress={() => this.switchScreen(4) }>
+                                    <Image source={require('../../assets/img/myPage_icon_off.png')} resizeMode={'contain'} style={{width:25,height:25}}/><Text style={{fontSize:12, paddingTop:5}}>{I18n.t('tab5')}</Text>
+                                </Button>
+
+                            </FooterTab>
+                        )}
+                        {renderIf(this.state.index == 2)(
+                            <FooterTab style={{backgroundColor:"#fff"}}>
+                                <Button onPress={() => this.switchScreen(0) }>
+                                    <Image source={require('../../assets/img/surveyList_icon_off.png')} resizeMode={'contain'} style={{width:25,height:25}}/><Text style={{fontSize:12, paddingTop:5}}>{I18n.t('tab1')}</Text>
+                                </Button>
+                                <Button onPress={() => this.switchScreen(1) }>
+                                    <Image source={require('../../assets/img/mySurvey_icon_off.png')} resizeMode={'contain'} style={{width:25,height:25}}/><Text style={{fontSize:12, paddingTop:5}}>{I18n.t('tab2')}</Text>
+                                </Button>
+                                <Button onPress={() => this.switchScreen(2) }>
+                                    <Image source={require('../../assets/img/contents_icon_on.png')} resizeMode={'contain'} style={{width:25,height:25}}/><Text style={{color:"#DA4211", fontSize:12, paddingTop:5}}>{I18n.t('tab3')}</Text>
                                 </Button>
                                 <Button onPress={() => this.switchScreen(3) }>
                                     <Image source={require('../../assets/img/point_icon_off.png')} resizeMode={'contain'} style={{width:25,height:25}}/><Text style={{fontSize:12, paddingTop:5}}>{I18n.t('tab4')}</Text>
@@ -203,6 +232,9 @@ export default class Main extends Component {
                                 <Button onPress={() => this.switchScreen(1) }>
                                     <Image source={require('../../assets/img/mySurvey_icon_off.png')} resizeMode={'contain'} style={{width:25,height:25}}/><Text style={{fontSize:12, paddingTop:5}}>{I18n.t('tab2')}</Text>
                                 </Button>
+                                <Button onPress={() => this.switchScreen(2) }>
+                                    <Image source={require('../../assets/img/contents_icon_off.png')} resizeMode={'contain'} style={{width:25,height:25}}/><Text style={{fontSize:12, paddingTop:5}}>{I18n.t('tab3')}</Text>
+                                </Button>
                                 <Button onPress={() => this.switchScreen(3) }>
                                     <Image source={require('../../assets/img/point_icon_on.png')} resizeMode={'contain'} style={{width:25,height:25}}/><Text style={{color:"#DA4211", fontSize:12, paddingTop:5}}>{I18n.t('tab4')}</Text>
                                 </Button>
@@ -220,11 +252,35 @@ export default class Main extends Component {
                                 <Button onPress={() => this.switchScreen(1) }>
                                     <Image source={require('../../assets/img/mySurvey_icon_off.png')} resizeMode={'contain'} style={{width:25,height:25}}/><Text style={{fontSize:12, paddingTop:5}}>{I18n.t('tab2')}</Text>
                                 </Button>
+                                <Button onPress={() => this.switchScreen(2) }>
+                                    <Image source={require('../../assets/img/contents_icon_off.png')} resizeMode={'contain'} style={{width:25,height:25}}/><Text style={{fontSize:12, paddingTop:5}}>{I18n.t('tab3')}</Text>
+                                </Button>
                                 <Button onPress={() => this.switchScreen(3) }>
                                     <Image source={require('../../assets/img/point_icon_off.png')} resizeMode={'contain'} style={{width:25,height:25}}/><Text style={{fontSize:12, paddingTop:5}}>{I18n.t('tab4')}</Text>
                                 </Button>
                                 <Button onPress={() => this.switchScreen(4) }>
                                     <Image source={require('../../assets/img/myPage_icon_on.png')} resizeMode={'contain'} style={{width:25,height:25}}/><Text  style={{color:"#DA4211", fontSize:12, paddingTop:5}}>{I18n.t('tab5')}</Text>
+                                </Button>
+
+                            </FooterTab>
+                        )}
+
+                        {renderIf(this.state.index == 5)(
+                            <FooterTab style={{backgroundColor:"#fff"}}>
+                                <Button onPress={() => this.switchScreen(0) }>
+                                    <Image source={require('../../assets/img/surveyList_icon_off.png')} resizeMode={'contain'} style={{width:25,height:25}}/><Text style={{fontSize:12, paddingTop:5}}>{I18n.t('tab1')}</Text>
+                                </Button>
+                                <Button onPress={() => this.switchScreen(1) }>
+                                    <Image source={require('../../assets/img/mySurvey_icon_off.png')} resizeMode={'contain'} style={{width:25,height:25}}/><Text style={{fontSize:12, paddingTop:5}}>{I18n.t('tab2')}</Text>
+                                </Button>
+                                <Button onPress={() => this.switchScreen(2) }>
+                                    <Image source={require('../../assets/img/contents_icon_off.png')} resizeMode={'contain'} style={{width:25,height:25}}/><Text style={{fontSize:12, paddingTop:5}}>{I18n.t('tab3')}</Text>
+                                </Button>
+                                <Button onPress={() => this.switchScreen(3) }>
+                                    <Image source={require('../../assets/img/point_icon_off.png')} resizeMode={'contain'} style={{width:25,height:25}}/><Text style={{fontSize:12, paddingTop:5}}>{I18n.t('tab4')}</Text>
+                                </Button>
+                                <Button onPress={() => this.switchScreen(4) }>
+                                    <Image source={require('../../assets/img/myPage_icon_off.png')} resizeMode={'contain'} style={{width:25,height:25}}/><Text  style={{fontSize:12, paddingTop:5}}>{I18n.t('tab5')}</Text>
                                 </Button>
 
                             </FooterTab>

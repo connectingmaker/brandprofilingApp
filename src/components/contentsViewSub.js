@@ -36,8 +36,9 @@ I18n.translations = {
 export default class ContentsViewSub extends Component {
 
 
-    constructor(){
-        super();
+    constructor(props){
+        super(props);
+        console.log(config.SERVER_URL + "/api/contentsView/" + this.props.seq+"?lang="+languageLocale);
         this.state = {
             loaded: false
             ,seq:""
@@ -50,50 +51,58 @@ export default class ContentsViewSub extends Component {
         }
 
     }
-    componentWillMount()
-    {
-
-    }
 
     componentDidMount(){
         this.mounted = true;
-        //console.log(this.props);
-        this.loadJSONData();
+
+        console.log(this.props.SEQ);
+        this.state.loaded = true;
+        // this.loadJSONData();
+
     }
 
     componentWillUnmount() {
         this.mounted = false;
-    }
-
-    loadJSONData() {
-
-
-            var object = {
-                method: 'POST',
-                headers: {
-                    'Accept': 'application/json',
-                    'Content-Type': 'application/json'
-                }
-                ,body:  JSON.stringify({
-                    'seq': this.props.seq
-                })
-            }
-
-            fetch(config.SERVER_URL+"/api/contentsView", object)
-                .then((response) => response.json())
-                .then((responseJson) =>{
-                    // console.log("contentView_OK3");
-                    // console.log(responseJson[0]);
-                    // console.log(responseJson[0].SUBJECT);
-
-                    this.setState({subject: responseJson[0].SUBJECT ,subject_en: responseJson[0].SUBJECT_EN ,subject_cn: responseJson[0].SUBJECT_CN,contents: responseJson[0].CONTENTS ,contents_en: responseJson[0].CONTENTS_EN ,contents_cn: responseJson[0].CONTENTS_CN});
-
-                })
-                .catch((err) => {
-                    console.log(err);
-                });
 
     }
+
+    // loadJSONData() {
+    //
+    //
+    //         var object = {
+    //             method: 'POST',
+    //             headers: {
+    //                 'Accept': 'application/json',
+    //                 'Content-Type': 'application/json'
+    //             }
+    //             ,body:  JSON.stringify({
+    //                 'seq': this.props.seq
+    //             })
+    //         }
+    //
+    //         console.log(object.body);
+    //
+    //
+    //         fetch(config.SERVER_URL+"/api/contentsView", object)
+    //             .then((response) => response.json())
+    //             .then((responseJson) =>{
+    //
+    //                 this.state.loaded = false;
+    //                 console.log("데이터 호출");
+    //                 console.log(responseJson);
+    //                 // console.log("contentView_OK3");
+    //                 // console.log(responseJson[0]);
+    //                 // console.log(responseJson[0].SUBJECT);
+    //
+    //                 this.setState({subject: responseJson.SUBJECT ,subject_en: responseJson.SUBJECT_EN ,subject_cn: responseJson.SUBJECT_CN,contents: responseJson.CONTENTS ,contents_en: responseJson.CONTENTS_EN ,contents_cn: responseJson.CONTENTS_CN});
+    //                 console.log(responseJson.CONTENTS);
+    //
+    //             })
+    //             .catch((err) => {
+    //                 console.log("오류발생");
+    //             });
+    //
+    // }
 
     render() {
 
@@ -125,41 +134,27 @@ export default class ContentsViewSub extends Component {
                     <View style={{flex:.2, justifyContent: 'center', alignItems: 'flex-end'}}>
                     </View>
                 </Header>
-                <Content style={{padding:10}}>
-                    <View style={{marginBottom:10}}>
-                        <View>
-                            <View style={SurveyFormStyle.contentsHead}>
-                                {renderIf(languageLocale == "ko") (
-                                    <Text style={SurveyFormStyle.contentsSize}>{this.state.subject}</Text>
-                                )}
+                <Content>
+                    {/*<View style={{marginBottom:10}}>*/}
+                        {/*<View>*/}
+                            {/*<View style={SurveyFormStyle.contentsHead}>*/}
+                                {/*{renderIf(languageLocale == "ko") (*/}
+                                    {/*<Text style={SurveyFormStyle.contentsSize}>{this.state.subject}</Text>*/}
+                                {/*)}*/}
 
-                                {renderIf(languageLocale == "en") (
-                                    <Text style={SurveyFormStyle.contentsSize}>{this.state.subject_en}</Text>
-                                )}
+                                {/*{renderIf(languageLocale == "en") (*/}
+                                    {/*<Text style={SurveyFormStyle.contentsSize}>{this.state.subject_en}</Text>*/}
+                                {/*)}*/}
 
-                                {renderIf(languageLocale == "zh") (
-                                    <Text style={SurveyFormStyle.contentsSize}>{this.state.subject_cn}</Text>
-                                )}
-                            </View>
-                        </View>
-                    </View>
-                    <View style={{marginTop:30,marginBottom:10}}>
-                        <View>
-                            <View style={{flex: 1,justifyContent: 'center',alignItems: 'center'}}>
-                                {renderIf(languageLocale == "ko") (
-                                    <HTMLView style={SurveyFormStyle.contentsSize} value={this.state.contents}></HTMLView>
-                                )}
-
-                                {renderIf(languageLocale == "en") (
-                                    <HTMLView style={SurveyFormStyle.contentsSize} value={this.state.contents_en}></HTMLView>
-                                )}
-
-                                {renderIf(languageLocale == "zh") (
-                                    <HTMLView style={SurveyFormStyle.contentsSize} value={this.state.contents_cn}></HTMLView>
-                                )}
-                            </View>
-                        </View>
-                    </View>
+                                {/*{renderIf(languageLocale == "zh") (*/}
+                                    {/*<Text style={SurveyFormStyle.contentsSize}>{this.state.subject_cn}</Text>*/}
+                                {/*)}*/}
+                            {/*</View>*/}
+                        {/*</View>*/}
+                    {/*</View>*/}
+                    <WebView
+                        javaScriptEnabled={true}
+                        source={{uri:config.SERVER_URL + "/api/contentsView/" + this.props.seq+"?lang="+languageLocale}} style={{height:700}}></WebView>
                 </Content>
             </Container>
         );
@@ -181,7 +176,7 @@ const SurveyFormStyle = StyleSheet.create({
         width: "100%",paddingTop:10,paddingBottom:10,paddingLeft:20,paddingRight:20,backgroundColor:"#fff",shadowColor: "rgba(0,0,0,23)",shadowOffset: { width: 0, height: 1 } ,shadowOpacity: 0.3
     }
     ,contentsHead:{
-        width: "100%" ,justifyContent: 'center', alignItems: 'center',fontSize:20 ,paddingTop:13,fontWeight: 'bold'
+        width: "100%" ,justifyContent: 'center', alignItems: 'center',fontSize:20 ,paddingTop:10, paddingBottom:10, fontWeight: 'bold', backgroundColor:'#f1f1f1'
     }
     ,contentsLayout2: {
         width: "100%" ,paddingTop:10 ,paddingBottom:10 ,paddingLeft:20 ,paddingRight:20 ,backgroundColor:"#f6f6f6" ,shadowColor: "rgba(0,0,0,23)" ,shadowOffset: { width: 0, height: 1 } ,shadowOpacity: 0.3

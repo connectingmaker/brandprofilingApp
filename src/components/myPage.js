@@ -68,7 +68,39 @@ export default class myPage extends Component {
 
     logout()
     {
-        AsyncStorage.clear(() => Actions.root({type:"reset", refresh: true})); // to clear the token
+
+        AsyncStorage.getItem(config.STORE_KEY)
+            .then((response) => {
+                return response;
+            }).then((responseJson) => {
+            try {
+                var data = eval("(" + responseJson + ")");
+                var dataObject = {
+                    "SESS_UID": ""
+                    , "SESS_USEREMAIL": ""
+                    , "SESS_ALL_PUSH_YN": ""
+                    , "SESS_SURVEY_PUSH_YN": ""
+                    , "contentMain" : false
+                    , "intro" : false
+                    , "logged" : false
+                    , "logout": true
+                };
+
+                AsyncStorage.setItem(config.STORE_KEY, JSON.stringify(dataObject));
+                Actions.Login({type:"reset", refresh: true});
+
+            } catch(err) {
+                //console.log(err);
+                //this.setState({loading: true, logged: false,  logout:true, intro: false});
+
+            }
+
+
+
+        });
+
+
+        // AsyncStorage.clear(() => Actions.Login({type:"reset", refresh: true})); // to clear the token
 
     }
 

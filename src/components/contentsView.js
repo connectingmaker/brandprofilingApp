@@ -115,14 +115,13 @@ export default class contentsView extends Component {
     contentsList(obj)
     {
         return (
-            <View style={{marginBottom:10}}>
-                <View style={myPageFormStyle.contentsLayout2}>
-                    <TouchableOpacity onPress={() => Actions.ContentsViewSub({seq: obj.SEQ})}>
-                    {/*<TouchableOpacity onPress={() => Actions.Survey({campaign_code: obj.CAMPAIGN_CODE, point: obj.POINT, quest_num: obj.QUEST_NUM, uid: obj.UID})}>*/}
-                        <View style={{flex:1}}>
-                            <View style={{flex: 0.8}}>
+            <View style={myPageFormStyle.contentsLayout}>
+                <View>
+                    <View style={{flex:1, flexDirection: 'row', paddingBottom:5}}>
+                        <TouchableOpacity  style={{flexDirection: 'row', width:"100%", height:"100%"}}  onPress={() => Actions.ContentsViewSub({seq: obj.SEQ})}>
+                            <View style={{flex:0.8,alignItems:'flex-start',justifyContent:'center'}}>
                                 {renderIf(languageLocale == "ko") (
-                                <Text style={myPageFormStyle.contentsSize}>{obj.SUBJECT}</Text>
+                                    <Text style={myPageFormStyle.contentsSize}>{obj.SUBJECT}</Text>
                                 )}
 
                                 {renderIf(languageLocale == "en") (
@@ -133,16 +132,23 @@ export default class contentsView extends Component {
                                     <Text style={myPageFormStyle.contentsSize}>{obj.SUBJECT_CN}</Text>
                                 )}
                             </View>
-                            <View style={{flex:0.2, alignItems: 'flex-end',paddingTop: 5, paddingBottom: 10}}>
-                                {/*<Image source={require("../../assets/img/next_arrow_img.png")} resizeMode={'contain'}/>*/}
-                                <Text>...</Text>
-                            </View>
-                        </View>
-                    </TouchableOpacity>
-                </View>
 
+                            <View style={{flex:0.2,alignItems:'flex-end'}}>
+                                {renderIf(this.state.seq == obj.SEQ)(
+                                    <Image source={require("../../assets/img/up_arrow_img.png")} resizeMode={'contain'} style={{width:15, height:15}} />
+                                )}
+
+                                {renderIf(this.state.seq != obj.SEQ)(
+                                    <Image source={require("../../assets/img/down_arrow_img.png")} resizeMode={'contain'} style={{width:15, height:15}} />
+                                )}
+                            </View>
+                        </TouchableOpacity>
+                    </View>
+                </View>
             </View>
         );
+
+
     }
 
     render() {
@@ -199,11 +205,10 @@ const myPageFormStyle = StyleSheet.create({
         ,paddingBottom:10
         ,paddingLeft:20
         ,paddingRight:20
-        ,marginBottom:10
         ,backgroundColor:"#fff"
         ,shadowColor: "rgba(0,0,0,23)"
         ,shadowOffset: { width: 0, height: 1 }
-        ,shadowOpacity: 0.3
+        ,shadowOpacity: 0.1
     }
     ,contentsLayout2: {
         width: "100%"

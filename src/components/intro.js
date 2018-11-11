@@ -1,6 +1,6 @@
 import React from 'react';
 import { Actions } from 'react-native-router-flux';
-import { StyleSheet,View,Text,Image,Dimensions, Platform, NativeModules, AsyncStorage} from 'react-native';
+import { StyleSheet,View,Text,Image,Dimensions, Platform, NativeModules, AsyncStorage, ScrollView} from 'react-native';
 import AppIntroSlider from 'react-native-app-intro-slider';
 
 import renderIf from 'render-if'
@@ -43,8 +43,8 @@ const styles = StyleSheet.create({
         backgroundColor:'white'
     },
     image:{
-        width:width/1.2,
-        height:height/2.5,
+        width:width/1.5,
+        height:height/3.0,
         justifyContent:'center',
         alignItems: 'center',
         marginBottom:16,
@@ -59,7 +59,7 @@ const styles = StyleSheet.create({
         letterSpacing:-1.2
     },
     title: {
-        fontSize: 18,
+        fontSize: 14,
         color: 'rgba(0, 0, 0, 0.8)',
         backgroundColor: 'transparent',
         textAlign: 'center',
@@ -133,7 +133,7 @@ export default class Intro extends React.Component {
                     AsyncStorage.setItem(config.STORE_KEY, JSON.stringify(dataObject));
                     Actions.Login();
                 } else {
-                    if (data.SESS_UID != null) {
+                    if (data.SESS_UID != null && data.SESS_UID != "") {
                         var dataObject = {
                             "SESS_UID": data.SESS_UID
                             , "SESS_USEREMAIL": data.SESS_USEREMAIL
@@ -170,6 +170,8 @@ export default class Intro extends React.Component {
 
 
         });
+
+
 
     }
     _onSkip = () =>{
@@ -218,7 +220,7 @@ export default class Intro extends React.Component {
                         };
 
                         AsyncStorage.setItem(config.STORE_KEY, JSON.stringify(dataObject));
-                        Actions.root();
+                        Actions.Login();
                     }
                 }
             } catch(err) {
@@ -235,23 +237,26 @@ export default class Intro extends React.Component {
     }
     _renderItem = props => (
         <View style={[styles.mainContent, {
-            paddingTop: props.topSpacer,
-            paddingBottom: props.bottomSpacer,
             width: props.width,
             height: props.height,
         }]}>
 
-            <View style={{justifyContent:'center',alignItems:'center'}}>
+            <View style={{justifyContent:'center',alignItems:'center', flex:1}}>
+            <View style={{flex:0.5, justifyContent:'center', alignItems:'center', paddingTop:10, paddingBottom:10}}>
                 <Image source={props.image} style={styles.image} resizeMode={'contain'}></Image>
+
+            </View>
+            <View style={{flex:0.5, width:'100%', paddingLeft:10, paddingRight:10}}>
                 <Text style={styles.title}>{props.title}</Text>
                 <Text style={styles.text}>{props.text}</Text>
+            </View>
             </View>
 
         </View>
     );
     _renderNextButton = () => {
         return (
-            <View style={{backgroundColor:'#e5551f', justifyContent:'center',alignItems:'center',paddingTop:20, paddingBottom:20, marginLeft:80, marginRight:80}}>
+            <View style={{backgroundColor:'#e5551f', justifyContent:'center',alignItems:'center',paddingTop:10, paddingBottom:10, marginLeft:80, marginRight:80}}>
 
                     {renderIf(languageLocale == "ko") (
                         <Text style={{color:'#fff', fontSize:18, fontWeight:'bold'}}> 다음</Text>
@@ -269,7 +274,7 @@ export default class Intro extends React.Component {
     }
     _renderDoneButton = () => {
         return (
-            <View style={{backgroundColor:'#e5551f', justifyContent:'center',alignItems:'center',paddingTop:20, paddingBottom:20, marginLeft:80, marginRight:80}}>
+            <View style={{backgroundColor:'#e5551f', justifyContent:'center',alignItems:'center',paddingTop:10, paddingBottom:10, marginLeft:80, marginRight:80}}>
 
                     {renderIf(languageLocale == "ko") (
                         <Text style={{color:'#fff', fontSize:18, fontWeight:'bold'}}>완료</Text>
@@ -286,7 +291,7 @@ export default class Intro extends React.Component {
     }
     _renderSkipButton = () =>{
         return (
-            <View style={{backgroundColor:'#fff', justifyContent:'center',alignItems:'center',paddingTop:30}}>
+            <View style={{backgroundColor:'#fff', justifyContent:'center',alignItems:'center',paddingTop:10}}>
 
                 {renderIf(languageLocale == "ko") (
                     <Text style={{color: '#e5551f',fontSize:10}}>건너뛰기</Text>
@@ -298,7 +303,7 @@ export default class Intro extends React.Component {
                     <Text style={{color: '#e5551f',fontSize:10}}>跳跃</Text>
                 )}
 
-                <Image source={require('../../assets/img/intro_logo.png')} resizeMode="contain" style={{width:100,marginBottom:30}}/>
+                <Image source={require('../../assets/img/intro_logo.png')} resizeMode="contain" style={{width:100}}/>
             </View>
         );
     }

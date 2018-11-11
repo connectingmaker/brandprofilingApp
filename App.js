@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import {Scene, Router, Modal, Actions} from 'react-native-router-flux';
 import { StyleSheet, Platform, AsyncStorage, View } from 'react-native';
 
+import Intro from './src/components/intro';
 import Login from './src/components/login';
 import LoginForm from './src/components/loginForm';
 import JoinForm from './src/components/joinForm';
@@ -19,6 +20,7 @@ import Pwchange from './src/components/pwchange';
 import SurveyJoin from './src/components/surveyJoin';
 import Panel from './src/components/panel'
 import FacebookAuth from './src/components/facebookAuth'
+import ContentsViewSub from './src/components/contentsViewSub';
 
 
 import config from './src/config';
@@ -47,6 +49,7 @@ export default class App extends Component {
             ,loading:false
             ,uid:""
             ,token:""
+            ,intro:true
         };
 
         console.log(Platform.OS);
@@ -74,17 +77,29 @@ export default class App extends Component {
                 var data = eval("(" + responseJson + ")");
                 console.log(data);
                 if(data == null) {
-                    this.setState({logged: false,  logout:true});
+                    this.setState({logged: false,  logout:true, intro: data.intro});
                 } else {
-                    if (data.SESS_UID != null) {
-                        this.setState({logged: true, logout: false, uid:data.SESS_UID});
+                    if(data.intro == null) {
+                        data.intro = false;
+                    }
+                    if (data.SESS_UID != null && data.SESS_UID != "") {
+                        if(data.intro == true) {
+                            this.setState({logged: true, logout: false, uid: data.SESS_UID, intro: data.intro});
+                        } else {
+                            this.setState({logged: true, logout: false, uid: data.SESS_UID, intro: data.intro});
+                        }
                     } else {
-                        this.setState({logged: false, logout: true});
+                        if(data.intro == true) {
+                            this.setState({logged: false, logout: true, intro: data.intro});
+                        } else {
+                            this.setState({logged: false, logout: true, intro: data.intro});
+                        }
+
                     }
                 }
             } catch(err) {
                 console.log(err);
-                this.setState({loading: true, logged: false,  logout:true});
+                this.setState({loading: true, logged: false,  logout:true, intro: false});
 
             }
 
@@ -213,31 +228,40 @@ export default class App extends Component {
         this.notificationUnsubscribe();
     }
 
+    introRander() {
 
+
+    }
 
     render() {
+
 
         if(this.state.loading == true) {
             return <Router>
                 <Modal>
 
-                    <Scene key="root" navigationBarStyle={navStyle.navBar} titleStyle={navStyle.navTitle}
-                           barButtonTextStyle={navStyle.barButtonTextStyle} hideNavBar={true}>
+                    <Scene key="Intro" component={Intro} initial={this.state.intro} hideNavBar={true}/>
+                    <Scene key="Login" component={Login} initial={this.state.logout} hideNavBar={true}/>
+                    <Scene key="LoginForm" component={LoginForm} title="이메일로 로그인" hideNavBar={true}/>
 
-                        <Scene key="Login" component={Login} initial={this.state.logout} hideNavBar={true}/>
-                        <Scene key="LoginForm" component={LoginForm} title="이메일로 로그인" hideNavBar={true}/>
+                    {/*<Scene key="root" navigationBarStyle={navStyle.navBar} titleStyle={navStyle.navTitle}*/}
+                           {/*barButtonTextStyle={navStyle.barButtonTextStyle} hideNavBar={true}>*/}
+
+                        {/**/}
+                        {/*<Scene key="LoginForm" component={LoginForm} title="이메일로 로그인" hideNavBar={true}/>*/}
+
+                    {/*</Scene>*/}
+
+                    {/*<Scene key="rootLogin" navigationBarStyle={navStyle.navBar} titleStyle={navStyle.navTitle}*/}
+                           {/*barButtonTextStyle={navStyle.barButtonTextStyle} hideNavBar={true}>*/}
+                        {/*<Scene key="Login_logOut" component={Login} hideNavBar={true}/>*/}
+
+                    {/*</Scene>*/}
+
+                    <Scene key="Main" component={Main} initial={this.state.logged} title="사전조사" hideNavBar={true} />
 
 
-                    </Scene>
 
-                    <Scene key="rootLogin" navigationBarStyle={navStyle.navBar} titleStyle={navStyle.navTitle}
-                           barButtonTextStyle={navStyle.barButtonTextStyle}>
-
-                        <Scene key="Login_logOut" component={Login} hideNavBar={true}/>
-
-                    </Scene>
-
-                    <Scene key="Main" component={Main} initial={this.state.logged} uid={this.state.uid} title="사전조사" hideNavBar={true} />
                     <Scene key="JoinForm" component={JoinForm} title="회원가입" hideNavBar={true} direction="vertical" uid={this.state.uid} schema="modal" wrapRouter={true}/>
                     <Scene key="FacebookAuth" component={FacebookAuth} title="핸드폰인증" hideNavBar={true} direction="vertical" uid={this.state.uid} schema="modal" wrapRouter={true}/>
                     <Scene key="Account" component={Account} title="계정/비번찾기" hideNavBar={true} direction="vertical" uid={this.state.uid} schema="modal" wrapRouter={true}/>
@@ -251,6 +275,7 @@ export default class App extends Component {
                     <Scene key="Privacy" component={Privacy} title="개인정보취급방침" hideNavBar={true} uid={this.state.uid} direction="vertical" schema="modal" wrapRouter={true}/>
                     <Scene key="Pwchange" component={Pwchange} title="비밀번호변경" hideNavBar={true} uid={this.state.uid} direction="vertical" schema="modal" wrapRouter={true}/>
                     <Scene key="Panel" component={Panel} title="전문패널신청" hideNavBar={true} uid={this.state.uid} direction="vertical" schema="modal" wrapRouter={true}/>
+                    <Scene key="ContentsViewSub" component={ContentsViewSub} title="콘텐츠보기" hideNavBar={true} uid={this.state.uid} direction="vertical" schema="modal" wrapRouter={true}/>
                 </Modal>
             </Router>
         } else {
