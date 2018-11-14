@@ -395,7 +395,6 @@ export default class Account extends Component {
                                     )}
 
                                 </View>
-
                             </View>
                             <View style={{paddingLeft:20,paddingRight:20,paddingTop:20,paddingBottom:10}}>
                                 <Item regular style={{backgroundColor:"#ffffff"}}>

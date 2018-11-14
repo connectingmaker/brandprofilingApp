@@ -110,37 +110,58 @@ export default class contentsView extends Component {
 
     }
 
-
+    backgroundImgReName(img) {
+        console.log(config.SERVER_URL + "/uploads/" + img);
+        return config.SERVER_URL + "/uploads/" + img;
+    }
 
     contentsList(obj)
     {
         return (
             <View style={myPageFormStyle.contentsLayout}>
-                <View>
+                <View style={{paddingLeft:15,paddingRight:15}}>
                     <View style={{flex:1, flexDirection: 'row', paddingBottom:5}}>
                         <TouchableOpacity  style={{flexDirection: 'row', width:"100%", height:"100%"}}  onPress={() => Actions.ContentsViewSub({seq: obj.SEQ})}>
                             <View style={{flex:0.8,alignItems:'flex-start',justifyContent:'center'}}>
                                 {renderIf(languageLocale == "ko") (
-                                    <Text style={myPageFormStyle.contentsSize}>{obj.SUBJECT}</Text>
+                                    <View>
+                                        <Text style={myPageFormStyle.TitleSize}>{obj.SUBJECT}</Text>
+
+                                        <Text style={myPageFormStyle.contentsSize}>{obj.MAIN_CONTENTS}</Text>
+                                    </View>
+
                                 )}
 
+
                                 {renderIf(languageLocale == "en") (
-                                    <Text style={myPageFormStyle.contentsSize}>{obj.SUBJECT_EN}</Text>
+
+                                    <View>
+                                        <Text style={myPageFormStyle.TitleSize}>{obj.SUBJECT_EN}</Text>
+
+                                        <Text style={myPageFormStyle.contentsSize}>{obj.MAIN_CONTENTS_EN}</Text>
+                                    </View>
                                 )}
 
                                 {renderIf(languageLocale == "zh") (
-                                    <Text style={myPageFormStyle.contentsSize}>{obj.SUBJECT_CN}</Text>
+                                    <View>
+                                        <Text style={myPageFormStyle.TitleSize}>{obj.SUBJECT_CN}</Text>
+
+                                        <Text style={myPageFormStyle.contentsSize}>{obj.MAIN_CONTENTS_CN}</Text>
+                                    </View>
                                 )}
                             </View>
 
                             <View style={{flex:0.2,alignItems:'flex-end'}}>
-                                {renderIf(this.state.seq == obj.SEQ)(
-                                    <Image source={require("../../assets/img/up_arrow_img.png")} resizeMode={'contain'} style={{width:15, height:15}} />
-                                )}
+                                <View>
+                                    <Image source={{uri:this.backgroundImgReName(obj.FILEIMG)}} style={{width:100, height:100,resizeMode:'contain'}}/>
+                                </View>
+                                {/*{renderIf(this.state.seq == obj.SEQ)(*/}
+                                    {/*<Image source={require("../../assets/img/up_arrow_img.png")} resizeMode={'contain'} style={{width:15, height:15}} />*/}
+                                {/*)}*/}
 
-                                {renderIf(this.state.seq != obj.SEQ)(
-                                    <Image source={require("../../assets/img/down_arrow_img.png")} resizeMode={'contain'} style={{width:15, height:15}} />
-                                )}
+                                {/*{renderIf(this.state.seq != obj.SEQ)(*/}
+                                    {/*<Image source={require("../../assets/img/down_arrow_img.png")} resizeMode={'contain'} style={{width:15, height:15}} />*/}
+                                {/*)}*/}
                             </View>
                         </TouchableOpacity>
                     </View>
@@ -203,12 +224,14 @@ const myPageFormStyle = StyleSheet.create({
         width: "100%"
         ,paddingTop:10
         ,paddingBottom:10
-        ,paddingLeft:20
-        ,paddingRight:20
+        // ,paddingLeft:20
+        // ,paddingRight:20
         ,backgroundColor:"#fff"
         ,shadowColor: "rgba(0,0,0,23)"
         ,shadowOffset: { width: 0, height: 1 }
         ,shadowOpacity: 0.1
+        ,borderBottomWidth:1
+        ,borderBottomColor:'#f1f1f1'
     }
     ,contentsLayout2: {
         width: "100%"
@@ -246,6 +269,9 @@ const myPageFormStyle = StyleSheet.create({
         ,shadowColor: "rgba(0,0,0,23)"
         ,shadowOffset: { width: 0, height: 1 }
         ,shadowOpacity: 0.3
+    }
+    ,TitleSize: {
+        fontSize:20
     }
     ,contentsSize: {
         fontSize:13
