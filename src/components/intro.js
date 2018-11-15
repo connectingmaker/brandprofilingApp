@@ -242,16 +242,14 @@ export default class Intro extends React.Component {
         }]}>
 
             <View style={{justifyContent:'center',alignItems:'center', flex:1}}>
-            <View style={{flex:0.5, justifyContent:'center', alignItems:'center', paddingTop:10, paddingBottom:10}}>
-                <Image source={props.image} style={styles.image} resizeMode={'contain'}></Image>
-
+                <View style={{flex:0.45, justifyContent:'center', alignItems:'center', paddingTop:20, paddingBottom:10}}>
+                    <Image source={props.image} style={styles.image} resizeMode={'contain'}></Image>
+                </View>
+                <View style={{flex:0.55, width:'100%', paddingLeft:10, paddingRight:10}}>
+                    <Text style={styles.title}>{props.title}</Text>
+                    <Text style={styles.text}>{props.text}</Text>
+                </View>
             </View>
-            <View style={{flex:0.5, width:'100%', paddingLeft:10, paddingRight:10}}>
-                <Text style={styles.title}>{props.title}</Text>
-                <Text style={styles.text}>{props.text}</Text>
-            </View>
-            </View>
-
         </View>
     );
     _renderNextButton = () => {
@@ -262,7 +260,7 @@ export default class Intro extends React.Component {
                         <Text style={{color:'#fff', fontSize:18, fontWeight:'bold'}}> 다음</Text>
                     )}
                     {renderIf(languageLocale == "en") (
-                        <Text style={{color:'#fff', fontSize:18, fontWeight:'bold'}}> next</Text>
+                        <Text style={{color:'#fff', fontSize:18, fontWeight:'bold'}}> NEXT</Text>
                     )}
                     {renderIf(languageLocale == "zh") (
                         <Text style={{color:'#fff', fontSize:18, fontWeight:'bold'}}>下一页</Text>
@@ -280,11 +278,13 @@ export default class Intro extends React.Component {
                         <Text style={{color:'#fff', fontSize:18, fontWeight:'bold'}}>완료</Text>
                     )}
                     {renderIf(languageLocale == "en") (
-                        <Text style={{color:'#fff', fontSize:18, fontWeight:'bold'}}> Complete</Text>
+                        <Text style={{color:'#fff', fontSize:18, fontWeight:'bold'}}> COMPLETE</Text>
                     )}
                     {renderIf(languageLocale == "zh") (
                         <Text style={{color:'#fff', fontSize:18, fontWeight:'bold'}}> 已完成</Text>
                     )}
+
+
 
             </View>
         );
@@ -317,7 +317,7 @@ export default class Intro extends React.Component {
                 bottomButton={true}
                 renderNextButton={this._renderNextButton}
                 renderDoneButton={this._renderDoneButton}
-                showSkipButton={true}
+                showSkipButton={false}
                 renderSkipButton = {this._renderSkipButton}
                 nextLabel = '다음'
                 skipLabel = '건너뛰기'

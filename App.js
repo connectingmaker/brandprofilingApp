@@ -75,13 +75,14 @@ export default class App extends Component {
             }).then((responseJson) => {
             try {
                 var data = eval("(" + responseJson + ")");
-                console.log(data);
                 if(data == null) {
-                    this.setState({logged: false,  logout:true, intro: data.intro});
+                    console.log("OK");
+                    this.setState({logged: false,  logout:false, intro: true});
                 } else {
                     if(data.intro == null) {
-                        data.intro = false;
+                        data.intro = true;
                     }
+
                     if (data.SESS_UID != null && data.SESS_UID != "") {
                         if(data.intro == true) {
                             this.setState({logged: true, logout: false, uid: data.SESS_UID, intro: data.intro});
@@ -97,6 +98,7 @@ export default class App extends Component {
 
                     }
                 }
+                console.log(this.state.logged + "///" + this.state.intro);
             } catch(err) {
                 console.log(err);
                 this.setState({loading: true, logged: false,  logout:true, intro: false});

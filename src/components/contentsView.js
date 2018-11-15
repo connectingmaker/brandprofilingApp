@@ -122,7 +122,7 @@ export default class contentsView extends Component {
                 <View style={{paddingLeft:15,paddingRight:15}}>
                     <View style={{flex:1, flexDirection: 'row', paddingBottom:5}}>
                         <TouchableOpacity  style={{flexDirection: 'row', width:"100%", height:"100%"}}  onPress={() => Actions.ContentsViewSub({seq: obj.SEQ})}>
-                            <View style={{flex:0.8,alignItems:'flex-start',justifyContent:'center'}}>
+                            <View style={{flex:0.6,alignItems:'flex-start',justifyContent:'center'}}>
                                 {renderIf(languageLocale == "ko") (
                                     <View>
                                         <Text style={myPageFormStyle.TitleSize}>{obj.SUBJECT}</Text>
@@ -136,7 +136,7 @@ export default class contentsView extends Component {
                                 {renderIf(languageLocale == "en") (
 
                                     <View>
-                                        <Text style={myPageFormStyle.TitleSize}>{obj.SUBJECT_EN}</Text>
+                                        <Text style={myPageFormStyle.TitleSize} numberOfLines={1}>{obj.SUBJECT_EN}</Text>
 
                                         <Text style={myPageFormStyle.contentsSize}>{obj.MAIN_CONTENTS_EN}</Text>
                                     </View>
@@ -151,7 +151,7 @@ export default class contentsView extends Component {
                                 )}
                             </View>
 
-                            <View style={{flex:0.2,alignItems:'flex-end'}}>
+                            <View style={{flex:0.4,alignItems:'flex-end'}}>
                                 <View>
                                     <Image source={{uri:this.backgroundImgReName(obj.FILEIMG)}} style={{width:100, height:100,resizeMode:'contain'}}/>
                                 </View>
@@ -271,10 +271,13 @@ const myPageFormStyle = StyleSheet.create({
         ,shadowOpacity: 0.3
     }
     ,TitleSize: {
-        fontSize:20
+        fontSize:14
+        ,color:'#DA4211'
+        ,fontWeight:'bold'
     }
     ,contentsSize: {
-        fontSize:13
+        fontSize:11
+        ,marginTop:5
     }
     ,boldFont: {
         color:"#DA4211"
