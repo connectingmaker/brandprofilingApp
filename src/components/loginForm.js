@@ -136,6 +136,7 @@ export default class LoginForm extends Component {
                                     , "SESS_SURVEY_PUSH_YN": data[0].SURVEY_PUSH_YN
                                 };
 
+
                                 this.setState({loginBool: true}, () => {
                                     AsyncStorage.setItem(config.STORE_KEY, JSON.stringify(dataObject));
 

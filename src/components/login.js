@@ -187,7 +187,6 @@ export default class Login extends Component {
                                                     , "SESS_SURVEY_PUSH_YN": data[0].SURVEY_PUSH_YN
                                                 };
 
-                                                console.log(dataObject);
 
                                                 AsyncStorage.setItem(config.STORE_KEY, JSON.stringify(dataObject), () => {
                                                     Actions.Main();

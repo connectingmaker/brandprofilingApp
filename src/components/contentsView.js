@@ -3,6 +3,7 @@ import { StyleSheet, Image, View, TouchableOpacity, Text ,ScrollView, AsyncStora
 import { Actions } from 'react-native-router-flux';
 import { Container, Header, Content, Footer, Item, Icon, Input, Button ,ActionSheet, Spinner} from 'native-base';
 import config from '../config'
+import AutoHeightImage from 'react-native-auto-height-image';
 
 
 
@@ -68,7 +69,14 @@ export default class contentsView extends Component {
     logout()
     {
         AsyncStorage.clear(() => Actions.root({type:"reset", refresh: true})); // to clear the token
+    }
 
+    returnText(text) {
+        if(text.length > 60) {
+            return text.substring(0, 60) + "...";
+        } else {
+            return text;
+        }
     }
 
     _contentsViewSub(seq)
@@ -127,7 +135,7 @@ export default class contentsView extends Component {
                                     <View>
                                         <Text style={myPageFormStyle.TitleSize}>{obj.SUBJECT}</Text>
 
-                                        <Text style={myPageFormStyle.contentsSize}>{obj.MAIN_CONTENTS}</Text>
+                                        <Text style={myPageFormStyle.contentsSize}>{this.returnText(obj.MAIN_CONTENTS)}</Text>
                                     </View>
 
                                 )}
@@ -152,8 +160,8 @@ export default class contentsView extends Component {
                             </View>
 
                             <View style={{flex:0.4,alignItems:'flex-end'}}>
-                                <View>
-                                    <Image source={{uri:this.backgroundImgReName(obj.FILEIMG)}} style={{width:100, height:100,resizeMode:'contain'}}/>
+                                <View style={{justifyContent:'flex-start'}}>
+                                    <AutoHeightImage source={{uri:this.backgroundImgReName(obj.FILEIMG)}} width={100}/>
                                 </View>
                                 {/*{renderIf(this.state.seq == obj.SEQ)(*/}
                                     {/*<Image source={require("../../assets/img/up_arrow_img.png")} resizeMode={'contain'} style={{width:15, height:15}} />*/}
@@ -271,12 +279,12 @@ const myPageFormStyle = StyleSheet.create({
         ,shadowOpacity: 0.3
     }
     ,TitleSize: {
-        fontSize:14
+        fontSize:15
         ,color:'#DA4211'
         ,fontWeight:'bold'
     }
     ,contentsSize: {
-        fontSize:11
+        fontSize:13
         ,marginTop:5
     }
     ,boldFont: {
@@ -302,7 +310,7 @@ const myPageFormStyle = StyleSheet.create({
         ,paddingBottom:5
     }
     ,input: {
-        fontSize:12
+        fontSize:15
         ,paddingTop:13
         ,paddingLeft:11
         ,paddingBottom:12
