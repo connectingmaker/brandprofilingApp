@@ -139,6 +139,7 @@ export default class Main extends Component {
                                 <Image source={require('../../assets/img/header_img_mysurvey.png')} resizeMode={'contain'} style={{width:140, height:30}}/>
                             </View>
                         )}
+
                         {renderIf(this.state.index == 2)(
                             <View style={{alignItems: 'center',justifyContent:'center'}}>
                                 <Image source={require('../../assets/img/header_img_content.png')} resizeMode={'contain'} style={{width:140, height:30}}/>
