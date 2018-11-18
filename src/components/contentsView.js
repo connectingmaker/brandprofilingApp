@@ -71,9 +71,17 @@ export default class contentsView extends Component {
         AsyncStorage.clear(() => Actions.root({type:"reset", refresh: true})); // to clear the token
     }
 
+    returnTitle(text) {
+        if(text.length > 52) {
+            return text.substring(0, 52) + "...";
+        } else {
+            return text;
+        }
+    }
+
     returnText(text) {
-        if(text.length > 60) {
-            return text.substring(0, 60) + "...";
+        if(text.length > 40) {
+            return text.substring(0, 40) + "...";
         } else {
             return text;
         }
@@ -133,7 +141,7 @@ export default class contentsView extends Component {
                             <View style={{flex:0.6,alignItems:'flex-start',justifyContent:'center'}}>
                                 {renderIf(languageLocale == "ko") (
                                     <View>
-                                        <Text style={myPageFormStyle.TitleSize}>{obj.SUBJECT}</Text>
+                                        <Text style={myPageFormStyle.TitleSize}>{this.returnTitle(obj.SUBJECT)}</Text>
 
                                         <Text style={myPageFormStyle.contentsSize}>{this.returnText(obj.MAIN_CONTENTS)}</Text>
                                     </View>
@@ -144,7 +152,7 @@ export default class contentsView extends Component {
                                 {renderIf(languageLocale == "en") (
 
                                     <View>
-                                        <Text style={myPageFormStyle.TitleSize} numberOfLines={1}>{obj.SUBJECT_EN}</Text>
+                                        <Text style={myPageFormStyle.TitleSize} numberOfLines={1}>{this.returnTitle(obj.SUBJECT_EN)}</Text>
 
                                         <Text style={myPageFormStyle.contentsSize}>{obj.MAIN_CONTENTS_EN}</Text>
                                     </View>
@@ -152,7 +160,7 @@ export default class contentsView extends Component {
 
                                 {renderIf(languageLocale == "zh") (
                                     <View>
-                                        <Text style={myPageFormStyle.TitleSize}>{obj.SUBJECT_CN}</Text>
+                                        <Text style={myPageFormStyle.TitleSize}>{this.returnTitle(obj.SUBJECT_CN)}</Text>
 
                                         <Text style={myPageFormStyle.contentsSize}>{obj.MAIN_CONTENTS_CN}</Text>
                                     </View>
@@ -161,7 +169,7 @@ export default class contentsView extends Component {
 
                             <View style={{flex:0.4,alignItems:'flex-end'}}>
                                 <View style={{justifyContent:'flex-start'}}>
-                                    <AutoHeightImage source={{uri:this.backgroundImgReName(obj.FILEIMG)}} width={100}/>
+                                    <AutoHeightImage source={{uri:this.backgroundImgReName(obj.FILEIMG)}} width={100} height={100}/>
                                 </View>
                                 {/*{renderIf(this.state.seq == obj.SEQ)(*/}
                                     {/*<Image source={require("../../assets/img/up_arrow_img.png")} resizeMode={'contain'} style={{width:15, height:15}} />*/}
@@ -322,5 +330,5 @@ const myPageFormStyle = StyleSheet.create({
         ,borderColor:"#979797"
         ,color:"#000"
     }
-})
+});
 
