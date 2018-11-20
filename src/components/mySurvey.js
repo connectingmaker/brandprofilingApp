@@ -249,8 +249,9 @@ export default class mySurvey extends Component {
                 <View style={SurveyFormStyle.lingBg}></View>
                 <View style={{flex:1, flexDirection: 'row', paddingTop:5, paddingBottom:5}}>
                     <View style={{flex:0.80, justifyContent:'center'}}>
-
+                        {renderIf(obj.CAMPAIGN_STARTDATE !="1970-01-01" && obj.CAMPAIGN_ENDDATE !="1970-01-01")(
                         <Text style={{fontSize:12}}>{obj.CAMPAIGN_STARTDATE} ~ {obj.CAMPAIGN_STARTDATE}</Text>
+                        )}
                     </View>
                     <View style={{flex:0.20}}>
                         {renderIf(languageLocale == "ko")(

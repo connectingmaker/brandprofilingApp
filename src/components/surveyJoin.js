@@ -65,9 +65,19 @@ export default class SurveyJoin extends Component {
                             {text: '확인', onPress: () => Actions.pop({ refresh: {stepView: 2}})},
                         ],
                         {cancelable: false}
-                    )
+                    );
 
 
+                    break;
+                case "SC":
+                    Alert.alert(
+                        '',
+                        '죄송합니다. 이 설문에 맞는 대상이 아닙니다.\n다른 설문에 참여해주세요.',
+                        [
+                            {text: '확인', onPress: () => Actions.Main({ type:"reset", refresh: true })},
+                        ],
+                        {cancelable: false}
+                    );
                     break;
                 default:
                     Alert.alert(

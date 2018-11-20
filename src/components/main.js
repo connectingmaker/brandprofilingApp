@@ -136,23 +136,23 @@ export default class Main extends Component {
                         )}
                         {renderIf(this.state.index == 1)(
                             <View style={{alignItems: 'center',justifyContent:'center'}}>
-                                <Image source={require('../../assets/img/header_img_mysurvey.png')} resizeMode={'contain'} style={{width:140, height:30}}/>
+                                <Text style={MainFormStyle.titleFont}>나의 설문</Text>
                             </View>
                         )}
 
                         {renderIf(this.state.index == 2)(
                             <View style={{alignItems: 'center',justifyContent:'center'}}>
-                                <Image source={require('../../assets/img/header_img_content.png')} resizeMode={'contain'} style={{width:140, height:30}}/>
+                                <Text style={MainFormStyle.titleFont}>컨텐츠 보기</Text>
                             </View>
                         )}
                         {renderIf(this.state.index == 3)(
                             <View style={{alignItems: 'center',justifyContent:'center'}}>
-                                <Image source={require('../../assets/img/header_img_point.png')} resizeMode={'contain'} style={{width:140, height:30}}/>
+                                <Text style={MainFormStyle.titleFont}>포인트 내역</Text>
                             </View>
                         )}
                         {renderIf(this.state.index == 4)(
                             <View style={{alignItems: 'center',justifyContent:'center'}}>
-                                <Image source={require('../../assets/img/header_img_mypage.png')} resizeMode={'contain'} style={{width:140, height:30}}/>
+                                <Text style={MainFormStyle.titleFont}>마이페이지</Text>
                             </View>
                         )}
                         </Body>
@@ -351,6 +351,11 @@ const MainFormStyle = StyleSheet.create({
         ,marginTop:10
         ,marginBottom:10
 
+    }
+    ,titleFont: {
+        fontSize: 16
+        ,color:'#222222'
+        ,fontWeight:'bold'
     }
 
 })
