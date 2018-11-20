@@ -1,11 +1,13 @@
 import React, { Component } from 'react';
 import { Actions } from 'react-native-router-flux';
 import { View, Text, Image, StyleSheet, TouchableOpacity,Alert,Platform,NativeModules,AsyncStorage,WebView} from 'react-native';
-import { Container, Header, Left, Body, Right, Content, Footer,Item, Icon, Input,Button,Spinner } from 'native-base';
+import { Container, Header, Left, Body, Right, Content, Footer,Item, Icon, Input,Button } from 'native-base';
 import renderIf from 'render-if'
 import config from '../config'
 
 import HTMLView from 'react-native-htmlview';
+import Spinner from 'react-native-loading-spinner-overlay';
+
 
 import I18n from 'react-native-i18n';
 var langRegionLocale = "en_US";
@@ -48,6 +50,7 @@ export default class ContentsViewSub extends Component {
             ,contents:""
             ,contents_en:""
             ,contents_cn:""
+            ,visible:true
         }
 
     }
@@ -64,6 +67,16 @@ export default class ContentsViewSub extends Component {
     componentWillUnmount() {
         this.mounted = false;
 
+    }
+
+    showSpinner() {
+        console.log('Show Spinner');
+        this.setState({ visible: true });
+    }
+
+    hideSpinner() {
+        console.log('Hide Spinner');
+        this.setState({ visible: false });
     }
 
     // loadJSONData() {
@@ -152,9 +165,17 @@ export default class ContentsViewSub extends Component {
                             {/*</View>*/}
                         {/*</View>*/}
                     {/*</View>*/}
+
+                    <Spinner
+                        visible={this.state.visible}
+                        textContent={'Loading...'}
+                        textStyle={{ color: '#FFF' }}
+                    />
+
                     <WebView
                         javaScriptEnabled={true}
-                        source={{uri:config.SERVER_URL + "/api/contentsView/" + this.props.seq+"?lang="+languageLocale}} style={{height:700}}></WebView>
+                        source={{uri:config.SERVER_URL + "/api/contentsView/" + this.props.seq+"?lang="+languageLocale}} style={{height:700}} onLoadStart={() => (this.showSpinner())}
+                        onLoad={() => (this.hideSpinner())}></WebView>
                 </Content>
             </Container>
         );
