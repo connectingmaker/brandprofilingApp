@@ -28,6 +28,7 @@
     "react-native-git-upgrade": "^0.2.7",
     "react-native-htmlview": "^0.13.0",
     "react-native-i18n": "^2.0.15",
+    "react-native-loading-spinner-overlay": "^1.0.1",
     "react-native-material-dropdown": "^0.11.1",
     "react-native-radio-button": "^2.0.1",
     "react-native-router-flux": "^4.0.5",

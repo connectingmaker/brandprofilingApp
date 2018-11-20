@@ -55,7 +55,7 @@ export default class ContentsViewSub extends Component {
     componentDidMount(){
         this.mounted = true;
 
-        console.log(this.props.SEQ);
+        console.log(this.props.seq);
         this.state.loaded = true;
         // this.loadJSONData();
 

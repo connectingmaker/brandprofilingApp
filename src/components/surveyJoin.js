@@ -7,6 +7,10 @@ import config from '../../src/config';
 import renderIf from 'render-if'
 import I18n from 'react-native-i18n';
 
+import Spinner from 'react-native-loading-spinner-overlay';
+
+
+
 var langRegionLocale = "en_US";
 if (Platform.OS === "android") {
     langRegionLocale = NativeModules.I18nManager.localeIdentifier || "";
@@ -44,13 +48,26 @@ I18n.translations = {
 export default class SurveyJoin extends Component {
     constructor(props){
         super(props);
-
+        this.state = { visible: true };
     }
 
     complateSurvey()
     {
         Actions.pop({ refresh: {stepView: 1}})
     }
+
+
+    showSpinner() {
+        console.log('Show Spinner');
+        this.setState({ visible: true });
+    }
+
+    hideSpinner() {
+        console.log('Hide Spinner');
+        this.setState({ visible: false });
+    }
+
+
 
 
     respondToOnMessage = e =>{
@@ -150,7 +167,14 @@ export default class SurveyJoin extends Component {
                     </View>
                 </Header>
 
-                <WebView style={noticeFormStyle.contentsLayout} source={{uri: config.SERVER_URL+'/survey/start?campaign_code='+this.props.campaign_code+'&lang='+weblang+'&quest_num='+this.props.quest_num+'&uid='+this.props.uid}} onMessage={this.respondToOnMessage}>
+                <Spinner
+                    visible={this.state.visible}
+                    textContent={'Loading...'}
+                    textStyle={{ color: '#FFF' }}
+                />
+
+                <WebView style={noticeFormStyle.contentsLayout} source={{uri: config.SERVER_URL+'/survey/start?campaign_code='+this.props.campaign_code+'&lang='+weblang+'&quest_num='+this.props.quest_num+'&uid='+this.props.uid}} onMessage={this.respondToOnMessage} onLoadStart={() => (this.showSpinner())}
+                         onLoad={() => (this.hideSpinner())}>
 
                 </WebView>
 
