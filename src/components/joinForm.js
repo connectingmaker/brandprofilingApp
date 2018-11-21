@@ -362,7 +362,7 @@ export default class JoinForm extends Component {
                                     )}
 
                                     {renderIf(languageLocale == "zh") (
-                                        <Text style={JoinFormStyle.contentsSize}><Text style={JoinFormStyle.boldFont}>Brand Profiling</Text> is a specialized tool for brand positioning and aims to analyze the brand image through research.</Text>
+                                        <Text style={JoinFormStyle.contentsSize}><Text style={JoinFormStyle.boldFont}>Brand Profiling</Text> 是品牌定位专用工具，通过研究分析品牌形象为目的。</Text>
                                     )}
 
 
