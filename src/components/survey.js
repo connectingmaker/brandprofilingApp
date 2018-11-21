@@ -56,7 +56,8 @@ export default class Survey extends Component {
         AsyncStorage.getItem(config.STORE_KEY).then((value) => {
             var json = eval("("+value+")");
             var lang = json.lang;
-            this.state.languageLocale = lang;
+            this.setState({languageLocale :lang});
+
             I18n.locale = lang;
             I18n.fallbacks = true;
 
@@ -87,13 +88,13 @@ export default class Survey extends Component {
                     <Left style={{flex:1}}>
                         <TouchableOpacity onPress={() => Actions.Main({type:"reset", refresh: true})} style={{width:50, height:50, justifyContent:'center', alignItems:'center'}}>
                             <View>
-                                {renderIf(languageLocale=="ko")(
+                                {renderIf(this.state.languageLocale=="ko")(
                                     <Text style={{fontSize:12,color:'#fff'}}>나가기</Text>
                                 )}
-                                {renderIf(languageLocale=="en")(
+                                {renderIf(this.state.languageLocale=="en")(
                                     <Text style={{fontSize:12,color:'#fff'}}>Leave</Text>
                                 )}
-                                {renderIf(languageLocale=="zh")(
+                                {renderIf(this.state.languageLocale=="zh")(
                                     <Text style={{fontSize:12,color:'#fff'}}>退出</Text>
                                 )}
                             </View>
@@ -101,13 +102,13 @@ export default class Survey extends Component {
                     </Left>
                     <Body style={{flex:1}}>
                     <View style={{alignItems: 'center',justifyContent:'center'}}>
-                        {renderIf(languageLocale=="ko")(
+                        {renderIf(this.state.languageLocale=="ko")(
                             <Text style={{fontSize:16,color:'#fff'}}>설문하기</Text>
                         )}
-                        {renderIf(languageLocale=="en")(
+                        {renderIf(this.state.languageLocale=="en")(
                             <Text style={{fontSize:16,color:'#fff'}}>Survey</Text>
                         )}
-                        {renderIf(languageLocale=="zh")(
+                        {renderIf(this.state.languageLocale=="zh")(
                             <Text style={{fontSize:16,color:'#fff'}}>调查</Text>
                         )}
                     </View>
@@ -138,15 +139,15 @@ export default class Survey extends Component {
                                     <Text style={SurveyFormStyle.contentsSize}>{I18n.t("survey_text2")}</Text>
                                 </View>
                                 <View>
-                                    {renderIf(languageLocale == "ko") (
+                                    {renderIf(this.state.languageLocale == "ko") (
                                         <Text style={SurveyFormStyle.contentsSize}>완료하신 경우에는 <Text style={SurveyFormStyle.boldFont}>{this.props.point}P</Text>를 드립니다.</Text>
                                     )}
 
-                                    {renderIf(languageLocale == "en") (
+                                    {renderIf(this.state.languageLocale == "zh") (
                                         <Text style={SurveyFormStyle.contentsSize}>完成问卷，可获<Text style={SurveyFormStyle.boldFont}>{this.props.point}P</Text>积分。</Text>
                                     )}
 
-                                    {renderIf(languageLocale == "zh") (
+                                    {renderIf(this.state.languageLocale == "en") (
                                         <Text style={SurveyFormStyle.contentsSize}>If you are finished, we will give <Text style={SurveyFormStyle.boldFont}>{this.props.point}P</Text></Text>
                                     )}
 
@@ -179,15 +180,15 @@ export default class Survey extends Component {
                             </View>
                             <View style={preSurveyFormStyle.lingBg}></View>
                             <View>
-                                {renderIf(languageLocale == "ko") (
+                                {renderIf(this.state.languageLocale == "ko") (
                                     <Text style={preSurveyFormStyle.contentsSize}><Text style={preSurveyFormStyle.boldFont}>{this.props.point}P</Text>를 회원님의 적립함에 넣어드렸어요! 소중한 참여에 다시 한번 감사드립니다.</Text>
                                 )}
 
-                                {renderIf(languageLocale == "en") (
+                                {renderIf(this.state.languageLocale == "en") (
                                     <Text style={preSurveyFormStyle.contentsSize}>With all of our gratitude, we have put <Text style={preSurveyFormStyle.boldFont}>{this.props.point}P</Text> into your membership! Thank you once again for your valuable participation.</Text>
                                 )}
 
-                                {renderIf(languageLocale == "zh") (
+                                {renderIf(this.state.languageLocale == "zh") (
                                     <Text style={SurveyFormStyle.contentsSize}>作为答谢，<Text style={preSurveyFormStyle.boldFont}>{this.props.point}P</Text>积分已放入会员积分包！再次感谢您的参与</Text>
                                 )}
 
