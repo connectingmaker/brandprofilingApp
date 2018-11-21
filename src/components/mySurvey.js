@@ -117,38 +117,38 @@ export default class mySurvey extends Component {
                             <Image source={require('../../assets/img/main_icon_logo_off.png')} resizeMode={'contain'} style={{width:20,height:20}}/>
                         </View>
                         <View style={{flex:0.4,alignItems:'flex-start',justifyContent:'center'}}>
-                            {renderIf(languageLocale == "ko") (
+                            {renderIf(this.state.languageLocale == "ko") (
                             <Text style={SurveyFormStyle.boldFont}>완료</Text>
                             )}
-                            {renderIf(languageLocale == "en") (
+                            {renderIf(this.state.languageLocale == "en") (
                                 <Text style={SurveyFormStyle.boldFont}>Complete</Text>
                             )}
-                            {renderIf(languageLocale == "zh") (
+                            {renderIf(this.state.languageLocale == "zh") (
                                 <Text style={SurveyFormStyle.boldFont}>已完成</Text>
                             )}
                         </View>
                         <View style={{flex:0.5, alignItems:'flex-end'}}>
-                            {renderIf(languageLocale == "ko") (
+                            {renderIf(this.state.languageLocale == "ko") (
                                 <Text style={{fontSize:11, alignItems:'flex-end'}}>{obj.CATEGORY_NAME_KO}</Text>
                             )}
-                            {renderIf(languageLocale == "en") (
+                            {renderIf(this.state.languageLocale == "en") (
                                 <Text style={{fontSize:11, alignItems:'flex-end'}}>{obj.CATEGORY_NAME_EN}</Text>
                             )}
-                            {renderIf(languageLocale == "zh") (
+                            {renderIf(this.state.languageLocale == "zh") (
                                 <Text style={{fontSize:11, alignItems:'flex-end'}}>{obj.CATEGORY_NAME_CN}</Text>
                             )}
                         </View>
                     </View>
                     <View>
-                        {renderIf(languageLocale == "ko") (
+                        {renderIf(this.state.languageLocale == "ko") (
                         <Text style={SurveyFormStyle.title}>{obj.CAMPAIGN_TITLE}</Text>
                         )}
 
-                        {renderIf(languageLocale == "en") (
+                        {renderIf(this.state.languageLocale == "en") (
                             <Text style={SurveyFormStyle.title}>{obj.CAMPAIGN_TITLE_EN}</Text>
                         )}
 
-                        {renderIf(languageLocale == "zh") (
+                        {renderIf(this.state.languageLocale == "zh") (
                             <Text style={SurveyFormStyle.title}>{obj.CAMPAIGN_TITLE_CN}</Text>
                         )}
                     </View>
@@ -156,15 +156,15 @@ export default class mySurvey extends Component {
                     </View>
 
                     <View>
-                        {renderIf(languageLocale == "ko") (
+                        {renderIf(this.state.languageLocale == "ko") (
                         <Text>{obj.CAMPAIGN_DESC}</Text>
                         )}
 
-                        {renderIf(languageLocale == "en") (
+                        {renderIf(this.state.languageLocale == "en") (
                             <Text>{obj.CAMPAIGN_DESC_EN}</Text>
                         )}
 
-                        {renderIf(languageLocale == "zh") (
+                        {renderIf(this.state.languageLocale == "zh") (
                             <Text>{obj.CAMPAIGN_DESC_CN}</Text>
                         )}
                     </View>
@@ -173,14 +173,14 @@ export default class mySurvey extends Component {
 
                 <View style={{flexDirection: 'row', width:"100%", paddingTop:10}}>
                     <View style={{backgroundColor: '#f6f6f6', flex: 0.3,padding:5,borderWidth:1,justifyContent:'center',borderColor:"#d0d0d0",borderBottomColor:"#f6f6f6",borderRightColor:"#f6f6f6"}} >
-                        {renderIf(languageLocale == "ko") (
+                        {renderIf(this.state.languageLocale == "ko") (
                         <Text style={{color:'#919191',fontSize:12, textAlign:"center"}}>포인트적립</Text>
                         )}
-                        {renderIf(languageLocale == "en") (
+                        {renderIf(this.state.languageLocale == "en") (
                             <Text style={{color:'#919191',fontSize:12, textAlign:"center"}}>Earn points</Text>
                         )}
 
-                        {renderIf(languageLocale == "zh") (
+                        {renderIf(this.state.languageLocale == "zh") (
                             <Text style={{color:'#919191',fontSize:12, textAlign:"center"}}>可获积分</Text>
                         )}
                     </View>
@@ -192,28 +192,28 @@ export default class mySurvey extends Component {
 
                 <View style={{flexDirection: 'row', width:"100%"}}>
                     <View style={{backgroundColor: '#f6f6f6', flex: 0.3,padding:5,borderWidth:1,justifyContent:'center',borderColor:"#d0d0d0",borderBottomColor:"#f6f6f6",borderRightColor:"#f6f6f6"}} >
-                        {renderIf(languageLocale == "ko") (
+                        {renderIf(this.state.languageLocale == "ko") (
                         <Text style={{color:'#919191',fontSize:12, textAlign:"center"}}>응답시간</Text>
                         )}
 
-                        {renderIf(languageLocale == "en") (
+                        {renderIf(this.state.languageLocale == "en") (
                             <Text style={{color:'#919191',fontSize:12, textAlign:"center"}}>Response time</Text>
                         )}
 
-                        {renderIf(languageLocale == "zh") (
+                        {renderIf(this.state.languageLocale == "zh") (
                             <Text style={{color:'#919191',fontSize:12, textAlign:"center"}}>所需时间</Text>
                         )}
                     </View>
                     <View style={{borderColor: '#d0d0d0', flex: 0.7,padding:5,borderWidth:1,borderColor:"#d0d0d0",borderBottomColor:"#f6f6f6"}}>
-                        {renderIf(languageLocale == "ko") (
+                        {renderIf(this.state.languageLocale == "ko") (
                         <Text style={{color:'#919191',fontSize:13}}>{obj.SURVEY_TIME}분</Text>
                         )}
 
-                        {renderIf(languageLocale == "en") (
+                        {renderIf(this.state.languageLocale == "en") (
                             <Text style={{color:'#919191',fontSize:13}}>{obj.SURVEY_TIME}min</Text>
                         )}
 
-                        {renderIf(languageLocale == "zh") (
+                        {renderIf(this.state.languageLocale == "zh") (
                             <Text style={{color:'#919191',fontSize:13}}>{obj.SURVEY_TIME}分钟</Text>
                         )}
                     </View>
@@ -221,28 +221,28 @@ export default class mySurvey extends Component {
                 </View>
                 <View style={{flexDirection: 'row', width:"100%"}}>
                     <View style={{backgroundColor: '#f6f6f6', flex: 0.3,padding:5,borderWidth:1,justifyContent:'center',borderColor:"#d0d0d0",borderBottomColor:"#d0d0d0",borderRightColor:"#f6f6f6"}} >
-                        {renderIf(languageLocale == "ko") (
+                        {renderIf(this.state.languageLocale == "ko") (
                         <Text style={{color:'#919191',fontSize:12, textAlign:"center"}}>모집인원</Text>
                         )}
 
-                        {renderIf(languageLocale == "en") (
+                        {renderIf(this.state.languageLocale == "en") (
                             <Text style={{color:'#919191',fontSize:12, textAlign:"center"}}>Recruitment number</Text>
                         )}
 
-                        {renderIf(languageLocale == "zh") (
+                        {renderIf(this.state.languageLocale == "zh") (
                             <Text style={{color:'#919191',fontSize:12, textAlign:"center"}}>招募人数</Text>
                         )}
                     </View>
                     <View style={{borderColor: '#d0d0d0', flex: 0.7,padding:5,borderWidth:1,borderColor:"#d0d0d0",borderBottomColor:"#d0d0d0"}}>
-                        {renderIf(languageLocale == "ko") (
+                        {renderIf(this.state.languageLocale == "ko") (
                         <Text style={{color:'#919191',fontSize:12}}>{obj.JOIN_CNT}명 ({obj.TOTAL_CNT}명 참여)</Text>
                         )}
 
-                        {renderIf(languageLocale == "en") (
+                        {renderIf(this.state.languageLocale == "en") (
                             <Text style={{color:'#919191',fontSize:10}}>{obj.JOIN_CNT} people ({obj.TOTAL_CNT} people participated)</Text>
                         )}
 
-                        {renderIf(languageLocale == "zh") (
+                        {renderIf(this.state.languageLocale == "zh") (
                             <Text style={{color:'#919191',fontSize:12}}>{obj.JOIN_CNT} 名  ({obj.TOTAL_CNT} 名 参与)</Text>
                         )}
                     </View>
@@ -260,13 +260,13 @@ export default class mySurvey extends Component {
                         )}
                     </View>
                     <View style={{flex:0.20}}>
-                        {renderIf(languageLocale == "ko")(
+                        {renderIf(this.state.languageLocale == "ko")(
                             <Text style={SurveyFormStyle.boldFont2}>{obj.POINT}P 획득</Text>
                         )}
-                        {renderIf(languageLocale == "en")(
+                        {renderIf(this.state.languageLocale == "en")(
                             <Text style={SurveyFormStyle.boldFont2}>{obj.POINT}P <Text style={{fontSize:10}}>acquisition</Text></Text>
                         )}
-                        {renderIf(languageLocale == "zh")(
+                        {renderIf(this.state.languageLocale == "zh")(
                             <Text style={SurveyFormStyle.boldFont2}>获得 {obj.POINT}P 积分</Text>
                         )}
 
