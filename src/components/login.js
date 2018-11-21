@@ -48,8 +48,12 @@ export default class Login extends Component {
         //AsyncStorage.clear();
     }
 
-    componentDidMount(){
+    componentWillMount(){
 
+        this.loadJSONData();
+    }
+
+    componentDidMount() {
         this.loadJSONData();
     }
 

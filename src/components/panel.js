@@ -44,6 +44,7 @@ export default class BP extends Component {
             ,q2: ""
             ,q3: ""
             ,q4: ""
+            ,uid : ""
             ,languageLocale : "ko"
         }
 
@@ -63,62 +64,10 @@ export default class BP extends Component {
             var json = eval("(" + value + ")");
             var uid = json.SESS_UID;
             var lang = json.lang;
-            this.setState({languageLocale :lang});
+            this.setState({languageLocale :lang, uid  : uid});
             I18n.locale = lang;
             I18n.fallbacks = true;
-            var object = {
-                method: 'POST',
-                headers: {
-                    'Accept': 'application/json',
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({
-                    'uid' : uid
-                    , 'q1': this.state.q1
-                    , 'q2': this.state.q2
-                    , 'q3': this.state.q3
-                    , 'q4': this.state.q4
 
-                })
-            };
-
-            fetch(config.SERVER_URL + '/api/panelInsert', object)
-                .then((response) => response.json())
-                .then((responseJson) => {
-                    switch(responseJson.ERR_CODE) {
-                        case "000":
-                            Alert.alert(
-                                '',
-                                '정상적으로 신청되었습니다',
-                                [
-                                    {text: '확인', onPress: () => Actions.pop()},
-                                ],
-                                { cancelable: false }
-                            )
-                            break;
-                        default:
-                            Alert.alert(
-                                '',
-                                '오류가 발생되었습니다',
-                                [
-                                    {text: '확인', onPress: () => Actions.pop()},
-                                ],
-                                { cancelable: false }
-                            )
-                            break;
-                    }
-                })
-                .catch((error) => {
-                    Alert.alert(
-                        'Error',
-                        'Network Error',
-                        [
-                            {text: '확인', onPress: () => console.log('OK Pressed')},
-                        ],
-                        {cancelable: false}
-                    )
-                    return;
-                });
         }).then(res => {
 
         });
@@ -176,7 +125,59 @@ export default class BP extends Component {
             return;
         }
 
+        var object = {
+            method: 'POST',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                'uid' : uid
+                , 'q1': this.state.q1
+                , 'q2': this.state.q2
+                , 'q3': this.state.q3
+                , 'q4': this.state.q4
 
+            })
+        };
+
+        fetch(config.SERVER_URL + '/api/panelInsert', object)
+            .then((response) => response.json())
+            .then((responseJson) => {
+                switch(responseJson.ERR_CODE) {
+                    case "000":
+                        Alert.alert(
+                            '',
+                            '정상적으로 신청되었습니다',
+                            [
+                                {text: '확인', onPress: () => Actions.pop()},
+                            ],
+                            { cancelable: false }
+                        )
+                        break;
+                    default:
+                        Alert.alert(
+                            '',
+                            '오류가 발생되었습니다',
+                            [
+                                {text: '확인', onPress: () => Actions.pop()},
+                            ],
+                            { cancelable: false }
+                        )
+                        break;
+                }
+            })
+            .catch((error) => {
+                Alert.alert(
+                    'Error',
+                    'Network Error',
+                    [
+                        {text: '확인', onPress: () => console.log('OK Pressed')},
+                    ],
+                    {cancelable: false}
+                )
+                return;
+            });
 
 
     }

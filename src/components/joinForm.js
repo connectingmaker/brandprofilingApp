@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text, Image, StyleSheet, TextInput, TouchableOpacity, Alert, Platform, NativeModules } from 'react-native';
+import { View, Text, Image, StyleSheet, TextInput, TouchableOpacity, Alert, Platform, NativeModules, AsyncStorage } from 'react-native';
 import { Actions } from 'react-native-router-flux';
 import { Container, Header, Left, Body, Right, Content, Footer,  Item, Icon, Input, Button } from 'native-base';
 
@@ -131,6 +131,7 @@ export default class JoinForm extends Component {
 
     phoneAuth()
     {
+        /*
         var regExp = /^01([0|1|6|7|8|9]?)-?([0-9]{3,4})-?([0-9]{4})$/;
         if(this.state.phoneText == "") {
             Alert.alert(
@@ -207,6 +208,8 @@ export default class JoinForm extends Component {
                     console.error(error);
                 });
         }
+        */
+        this.stepNext(5);
     }
 
     phoneAuthCheck()
@@ -377,15 +380,15 @@ export default class JoinForm extends Component {
                             <View style={JoinFormStyle.contentsLayout}>
                                 <View style={{paddingTop:10}}>
 
-                                    {renderIf(languageLocale == "ko") (
+                                    {renderIf(this.state.languageLocale == "ko") (
                                         <Text style={JoinFormStyle.contentsSize}><Text style={JoinFormStyle.boldFont}>Brand Profiling</Text>은 브랜드 포지셔닝에 특화된 툴로써, 리서치를 통해 <Text style={JoinFormStyle.boldFont}>브랜드 이미지에 대하여 분석함을 목표</Text>로 하고 있습니다.</Text>
                                     )}
 
-                                    {renderIf(languageLocale == "en") (
+                                    {renderIf(this.state.languageLocale == "en") (
                                         <Text style={JoinFormStyle.contentsSize}><Text style={JoinFormStyle.boldFont}>Brand Profiling</Text> is a specialized tool for brand positioning and aims to analyze the brand image through research.</Text>
                                     )}
 
-                                    {renderIf(languageLocale == "zh") (
+                                    {renderIf(this.state.languageLocale == "zh") (
                                         <Text style={JoinFormStyle.contentsSize}><Text style={JoinFormStyle.boldFont}>Brand Profiling</Text> 是品牌定位专用工具，通过研究分析品牌形象为目的。</Text>
                                     )}
 
@@ -397,15 +400,15 @@ export default class JoinForm extends Component {
                                 </View>
 
                                 <View>
-                                    {renderIf(languageLocale == "ko") (
+                                    {renderIf(this.state.languageLocale == "ko") (
                                         <Text style={JoinFormStyle.contentsSize}>회원가입을 통해<Text style={JoinFormStyle.boldFont}>설문</Text>에 <Text style={JoinFormStyle.boldFont}>참여</Text>하여 <Text style={JoinFormStyle.boldFont}>포인트</Text>를 <Text style={JoinFormStyle.boldFont}>보상</Text>받으실 수 있습니다. 포인트 정책에 따라 포인트를 <Text style={JoinFormStyle.boldFont}>현금으로 환급</Text>받으실 수 있습니다. 많은 이용 부탁드립니다.</Text>
                                     )}
 
-                                    {renderIf(languageLocale == "en") (
+                                    {renderIf(this.state.languageLocale == "en") (
                                         <Text style={JoinFormStyle.contentsSize}>You can earn points by participating in surveys through membership. Points can be refunded in cash according to the policy. Thank you very much.</Text>
                                     )}
 
-                                    {renderIf(languageLocale == "ch") (
+                                    {renderIf(this.state.languageLocale == "ch") (
                                         <Text style={JoinFormStyle.contentsSize}>注册会员，参与问卷，可获得相应积分。根据积分政策可兑换现金。欢迎使用。</Text>
                                     )}
                                 </View>
@@ -480,13 +483,13 @@ export default class JoinForm extends Component {
                         <View>
                             <View style={JoinFormStyle.contentsLayout}>
                                 <View>
-                                    {renderIf(languageLocale == "ko") (
+                                    {renderIf(this.state.languageLocale == "ko") (
                                     <Text style={JoinFormStyle.contentsSize}><Text style={JoinFormStyle.boldFont}>계정</Text>으로 사용될 이메일 주소를 입력해주세요.</Text>
                                     )}
-                                    {renderIf(languageLocale == "en") (
+                                    {renderIf(this.state.languageLocale == "en") (
                                         <Text style={JoinFormStyle.contentsSize}>Please enter an email address to be used as an account.</Text>
                                     )}
-                                    {renderIf(languageLocale == "zh") (
+                                    {renderIf(this.state.languageLocale == "zh") (
                                         <Text style={JoinFormStyle.contentsSize}>请输入邮箱地址，用于登录账号。</Text>
                                     )}
                                 </View>
@@ -507,19 +510,19 @@ export default class JoinForm extends Component {
                     {renderIf(this.state.stepView == 3)(
                         <View>
                             <View style={JoinFormStyle.contentsLayout}>
-                                {renderIf(languageLocale == "ko") (
+                                {renderIf(this.state.languageLocale == "ko") (
                                 <View>
                                     <Text style={JoinFormStyle.contentsSize}>계정을 찾거나 포인트를 환급 받을 떄 사용될 <Text style={JoinFormStyle.boldFont}>본인 핸드폰 번호를</Text>를 입력해주세요.</Text>
                                 </View>
                                 )}
 
-                                {renderIf(languageLocale == "en") (
+                                {renderIf(this.state.languageLocale == "en") (
                                     <View>
                                         <Text style={JoinFormStyle.contentsSize}>{I18n.t('joinForm_step3_title')}</Text>
                                     </View>
                                 )}
 
-                                {renderIf(languageLocale == "zh") (
+                                {renderIf(this.state.languageLocale == "zh") (
                                     <View>
                                         <Text style={JoinFormStyle.contentsSize}>{I18n.t('joinForm_step3_title')}</Text>
                                     </View>
@@ -541,15 +544,15 @@ export default class JoinForm extends Component {
                             <View style={JoinFormStyle.contentsLayout}>
 
                                 <View>
-                                    {renderIf(languageLocale == "ko") (
+                                    {renderIf(this.state.languageLocale == "ko") (
                                     <Text style={JoinFormStyle.contentsSize}><Text style={JoinFormStyle.boldFont}>{this.state.phoneText}</Text>으로 인증번호가 전송되었습니다. 아래 입력 칸에 인증번호를 입력해주세요.</Text>
                                     )}
 
-                                    {renderIf(languageLocale == "en") (
+                                    {renderIf(this.state.languageLocale == "en") (
                                         <Text style={JoinFormStyle.contentsSize}><Text style={JoinFormStyle.boldFont}>{this.state.phoneText}</Text>으로 인증번호가 전송되었습니다. 아래 입력 칸에 인증번호를 입력해주세요.</Text>
                                     )}
 
-                                    {renderIf(languageLocale == "zh") (
+                                    {renderIf(this.state.languageLocale == "zh") (
                                         <Text style={JoinFormStyle.contentsSize}><Text style={JoinFormStyle.boldFont}>{this.state.phoneText}</Text>으로 인증번호가 전송되었습니다. 아래 입력 칸에 인증번호를 입력해주세요.</Text>
                                     )}
                                 </View>
@@ -572,17 +575,17 @@ export default class JoinForm extends Component {
                         <View>
                             <View style={JoinFormStyle.contentsLayout}>
                                 <View>
-                                    {renderIf(languageLocale == "ko") (
+                                    {renderIf(this.state.languageLocale == "ko") (
                                         <Text style={JoinFormStyle.contentsSize}><Text style={JoinFormStyle.boldFont}>사용하실 비밀번호</Text>를 입력해주세요. <Text style={JoinFormStyle.boldFont}>영문</Text>과 <Text style={JoinFormStyle.boldFont}>숫자 </Text>
                                             그리고 사용 가능한 <Text style={JoinFormStyle.boldFont}>특수문자</Text>를 사용하여 <Text style={JoinFormStyle.boldFont}>6-16자리</Text>의 조합을 사용하실 수 있습니다. 비밀번호 설정을 완료하면 회원가입이 완료가 됩니다.
                                         </Text>
                                     )}
 
-                                    {renderIf(languageLocale == "en") (
+                                    {renderIf(this.state.languageLocale == "en") (
                                         <Text style={JoinFormStyle.contentsSize}>Please enter your password. You can use a combination of 6 to 16 digits using alphanumeric characters and special characters that you can use. Once you have set up your password, your membership will be completed.</Text>
                                     )}
 
-                                    {renderIf(languageLocale == "zh") (
+                                    {renderIf(this.state.languageLocale == "zh") (
                                         <Text style={JoinFormStyle.contentsSize}>Please enter your password. You can use a combination of 6 to 16 digits using alphanumeric characters and special characters that you can use. Once you have set up your password, your membership will be completed.</Text>
                                     )}
 
