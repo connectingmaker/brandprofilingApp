@@ -120,7 +120,7 @@ export default class Survey extends Component {
                                     )}
 
                                     {renderIf(languageLocale == "en") (
-                                        <Text style={SurveyFormStyle.contentsSize}>If you are finished, we will give <Text style={SurveyFormStyle.boldFont}>{this.props.point}P</Text></Text>
+                                        <Text style={SurveyFormStyle.contentsSize}>完成问卷，可获<Text style={SurveyFormStyle.boldFont}>{this.props.point}P</Text>积分。</Text>
                                     )}
 
                                     {renderIf(languageLocale == "zh") (
@@ -165,7 +165,7 @@ export default class Survey extends Component {
                                 )}
 
                                 {renderIf(languageLocale == "zh") (
-                                    <Text style={SurveyFormStyle.contentsSize}>With all of our gratitude, we have put <Text style={preSurveyFormStyle.boldFont}>{this.props.point}P</Text> into your membership! Thank you once again for your valuable participation.</Text>
+                                    <Text style={SurveyFormStyle.contentsSize}>作为答谢，<Text style={preSurveyFormStyle.boldFont}>{this.props.point}P</Text>积分已放入会员积分包！再次感谢您的参与</Text>
                                 )}
 
 

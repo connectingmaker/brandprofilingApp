@@ -136,23 +136,23 @@ export default class Main extends Component {
                         )}
                         {renderIf(this.state.index == 1)(
                             <View style={{alignItems: 'center',justifyContent:'center'}}>
-                                <Text style={MainFormStyle.titleFont}>나의 설문</Text>
+                                <Text style={MainFormStyle.titleFont}>{I18n.t('tab2')}</Text>
                             </View>
                         )}
 
                         {renderIf(this.state.index == 2)(
                             <View style={{alignItems: 'center',justifyContent:'center'}}>
-                                <Text style={MainFormStyle.titleFont}>컨텐츠 보기</Text>
+                                <Text style={MainFormStyle.titleFont}>{I18n.t('tab3')}</Text>
                             </View>
                         )}
                         {renderIf(this.state.index == 3)(
                             <View style={{alignItems: 'center',justifyContent:'center'}}>
-                                <Text style={MainFormStyle.titleFont}>포인트 내역</Text>
+                                <Text style={MainFormStyle.titleFont}>{I18n.t('tab4')}</Text>
                             </View>
                         )}
                         {renderIf(this.state.index == 4)(
                             <View style={{alignItems: 'center',justifyContent:'center'}}>
-                                <Text style={MainFormStyle.titleFont}>마이페이지</Text>
+                                <Text style={MainFormStyle.titleFont}>{I18n.t('tab5')}</Text>
                             </View>
                         )}
                         </Body>

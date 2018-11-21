@@ -222,7 +222,7 @@ export default class surveyList extends Component {
                         )}
 
                         {renderIf(languageLocale == "en") (
-                            <Text style={{color:'#919191',fontSize:13}}>{obj.SURVEY_TIME}Time</Text>
+                            <Text style={{color:'#919191',fontSize:13}}>{obj.SURVEY_TIME}min</Text>
                         )}
 
                         {renderIf(languageLocale == "zh") (

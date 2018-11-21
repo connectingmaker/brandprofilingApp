@@ -204,7 +204,7 @@ export default class mySurvey extends Component {
                         )}
 
                         {renderIf(languageLocale == "en") (
-                            <Text style={{color:'#919191',fontSize:13}}>{obj.SURVEY_TIME}Time</Text>
+                            <Text style={{color:'#919191',fontSize:13}}>{obj.SURVEY_TIME}min</Text>
                         )}
 
                         {renderIf(languageLocale == "zh") (
@@ -233,7 +233,7 @@ export default class mySurvey extends Component {
                         )}
 
                         {renderIf(languageLocale == "en") (
-                            <Text style={{color:'#919191',fontSize:12}}>{obj.JOIN_CNT} people ({obj.TOTAL_CNT} people participated)</Text>
+                            <Text style={{color:'#919191',fontSize:10}}>{obj.JOIN_CNT} people ({obj.TOTAL_CNT} people participated)</Text>
                         )}
 
                         {renderIf(languageLocale == "zh") (
@@ -258,7 +258,7 @@ export default class mySurvey extends Component {
                             <Text style={SurveyFormStyle.boldFont2}>{obj.POINT}P 획득</Text>
                         )}
                         {renderIf(languageLocale == "en")(
-                            <Text style={SurveyFormStyle.boldFont2}>{obj.POINT}P acquisition</Text>
+                            <Text style={SurveyFormStyle.boldFont2}>{obj.POINT}P <Text style={{fontSize:10}}>acquisition</Text></Text>
                         )}
                         {renderIf(languageLocale == "zh")(
                             <Text style={SurveyFormStyle.boldFont2}>获得 {obj.POINT}P 积分</Text>
