@@ -40,7 +40,6 @@ export default class ContentsViewSub extends Component {
 
     constructor(props){
         super(props);
-        console.log(config.SERVER_URL + "/api/contentsView/" + this.props.seq+"?lang="+languageLocale);
         this.state = {
             loaded: false
             ,seq:""
@@ -141,24 +140,24 @@ export default class ContentsViewSub extends Component {
             <Container>
                 <Header style={SurveyFormStyle.headerLayout2}>
                     <View style={{flex:.2, justifyContent: 'center', alignItems: 'flex-start'}}>
-                        {renderIf(languageLocale=="ko")(
+                        {renderIf(this.state.languageLocale=="ko")(
                             <Text style={{fontSize:12,color:'#fff'}} onPress={Actions.pop}>나가기</Text>
                         )}
-                        {renderIf(languageLocale=="en")(
+                        {renderIf(this.state.languageLocale=="en")(
                             <Text style={{fontSize:12,color:'#fff'}} onPress={Actions.pop}>Leave</Text>
                         )}
-                        {renderIf(languageLocale=="zh")(
+                        {renderIf(this.state.languageLocale=="zh")(
                             <Text style={{fontSize:12,color:'#fff'}} onPress={Actions.pop}>退出</Text>
                         )}
                     </View>
                     <View style={{flex:.6, justifyContent: 'center', alignItems: 'center'}}>
-                        {renderIf(languageLocale == "ko")(
-                            <Text style={{fontSize:16,color:'#fff'}}>콘텐츠보기</Text>
+                        {renderIf(this.state.languageLocale == "ko")(
+                            <Text style={{fontSize:16,color:'#fff'}}>컨텐츠보기</Text>
                         )}
-                        {renderIf(languageLocale == "en")(
+                        {renderIf(this.state.languageLocale == "en")(
                             <Text style={{fontSize:16,color:'#fff'}}>contents</Text>
                         )}
-                        {renderIf(languageLocale == "zh")(
+                        {renderIf(this.state.languageLocale == "zh")(
                             <Text style={{fontSize:16,color:'#fff'}}>内容</Text>
                         )}
                     </View>
@@ -192,7 +191,7 @@ export default class ContentsViewSub extends Component {
 
                     <WebView
                         javaScriptEnabled={true}
-                        source={{uri:config.SERVER_URL + "/api/contentsView/" + this.props.seq+"?lang="+languageLocale}} style={{height:700}} onLoadStart={() => (this.showSpinner())}
+                        source={{uri:config.SERVER_URL + "/api/contentsView/" + this.props.seq+"?lang="+this.props.lang}} style={{height:700}} onLoadStart={() => (this.showSpinner())}
                         onLoad={() => (this.hideSpinner())}></WebView>
                 </Content>
             </Container>

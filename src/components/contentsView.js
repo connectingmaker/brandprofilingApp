@@ -73,16 +73,16 @@ export default class contentsView extends Component {
     }
 
     returnTitle(text) {
-        if(text.length > 52) {
-            return text.substring(0, 52) + "...";
+        if(text.length > 100) {
+            return text.substring(0, 100) + "...";
         } else {
             return text;
         }
     }
 
     returnText(text) {
-        if(text.length > 40) {
-            return text.substring(0, 40) + "...";
+        if(text.length > 100) {
+            return text.substring(0, 100) + "...";
         } else {
             return text;
         }
@@ -149,13 +149,13 @@ export default class contentsView extends Component {
             <View style={myPageFormStyle.contentsLayout}>
                 <View style={{paddingLeft:15,paddingRight:15}}>
                     <View style={{flex:1, flexDirection: 'row', paddingBottom:5}}>
-                        <TouchableOpacity  style={{flexDirection: 'row', width:"100%", height:"100%"}}  onPress={() => Actions.ContentsViewSub({seq: obj.SEQ})}>
+                        <TouchableOpacity  style={{flexDirection: 'row', width:"100%", height:"100%"}}  onPress={() => Actions.ContentsViewSub({seq: obj.SEQ, lang: this.state.languageLocale})}>
                             <View style={{flex:0.6,alignItems:'flex-start',justifyContent:'center'}}>
                                 {renderIf(this.state.languageLocale  == "ko") (
                                     <View>
-                                        <Text style={myPageFormStyle.TitleSize}>{this.returnTitle(obj.SUBJECT)}</Text>
+                                        <Text style={myPageFormStyle.TitleSize} numberOfLines={3}>{this.returnTitle(obj.SUBJECT)}</Text>
 
-                                        <Text style={myPageFormStyle.contentsSize}>{this.returnText(obj.MAIN_CONTENTS)}</Text>
+                                        <Text style={myPageFormStyle.contentsSize} numberOfLines={2}>{this.returnText(obj.MAIN_CONTENTS)}</Text>
                                     </View>
 
                                 )}
@@ -164,17 +164,17 @@ export default class contentsView extends Component {
                                 {renderIf(this.state.languageLocale  == "en") (
 
                                     <View>
-                                        <Text style={myPageFormStyle.TitleSize} numberOfLines={1}>{this.returnTitle(obj.SUBJECT_EN)}</Text>
+                                        <Text style={myPageFormStyle.TitleSize} numberOfLines={3}>{this.returnTitle(obj.SUBJECT_EN)}</Text>
 
-                                        <Text style={myPageFormStyle.contentsSize}>{obj.MAIN_CONTENTS_EN}</Text>
+                                        <Text style={myPageFormStyle.contentsSize} numberOfLines={2}>{obj.MAIN_CONTENTS_EN}</Text>
                                     </View>
                                 )}
 
                                 {renderIf(this.state.languageLocale  == "zh") (
                                     <View>
-                                        <Text style={myPageFormStyle.TitleSize}>{this.returnTitle(obj.SUBJECT_CN)}</Text>
+                                        <Text style={myPageFormStyle.TitleSize} numberOfLines={3}>{this.returnTitle(obj.SUBJECT_CN)}</Text>
 
-                                        <Text style={myPageFormStyle.contentsSize}>{obj.MAIN_CONTENTS_CN}</Text>
+                                        <Text style={myPageFormStyle.contentsSize} numberOfLines={2}>{obj.MAIN_CONTENTS_CN}</Text>
                                     </View>
                                 )}
                             </View>
