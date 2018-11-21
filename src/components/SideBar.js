@@ -169,42 +169,109 @@ export default class SideBar extends React.Component {
 
     _languageChange(lang) {
         if(lang == "ko") {
-            Alert.alert(
-                'Alert Title',
-                'My Alert Msg',
-                [
-                    {text: 'Cancel', onPress: () => console.log('Cancel Pressed'), style: 'cancel'},
-                    {text: 'OK', onPress: () => this._languageChangeSave(lang)},
-                ],
-                { cancelable: false }
-            )
+            if( this.setState.languageLocale == "en"){
+                Alert.alert(
+                    '',
+                    'Change to Korean',
+                    [
+                        {text: 'Cancel', onPress: () => console.log('Cancel Pressed'), style: 'cancel'},
+                        {text: 'OK', onPress: () => this._languageChangeSave(lang)},
+                    ],
+                    { cancelable: false }
+                )
+            }else if(this.setState.languageLocale == "zh"){
+                Alert.alert(
+                    '',
+                    '換到韓語',
+                    [
+                        {text: 'Cancel', onPress: () => console.log('Cancel Pressed'), style: 'cancel'},
+                        {text: 'OK', onPress: () => this._languageChangeSave(lang)},
+                    ],
+                    { cancelable: false }
+                )
+            }else{
+                Alert.alert(
+                    '',
+                    '한국어로 변경',
+                    [
+                        {text: 'Cancel', onPress: () => console.log('Cancel Pressed'), style: 'cancel'},
+                        {text: 'OK', onPress: () => this._languageChangeSave(lang)},
+                    ],
+                    { cancelable: false }
+                )
+            }
+
         }
 
 
         if(lang == "en") {
-            Alert.alert(
-                'Alert Title',
-                'My Alert Msg',
-                [
-                    {text: 'Cancel', onPress: () => console.log('Cancel Pressed'), style: 'cancel'},
-                    {text: 'OK', onPress: () => this._languageChangeSave(lang)},
-                ],
-                { cancelable: false }
-            )
+            if( this.setState.languageLocale == "ko"){
+                Alert.alert(
+                    '',
+                    '영어로 변경',
+                    [
+                        {text: 'Cancel', onPress: () => console.log('Cancel Pressed'), style: 'cancel'},
+                        {text: 'OK', onPress: () => this._languageChangeSave(lang)},
+                    ],
+                    { cancelable: false }
+                )
+            }else if(this.setState.languageLocale == "zh"){
+                Alert.alert(
+                    '',
+                    '改為英語',
+                    [
+                        {text: 'Cancel', onPress: () => console.log('Cancel Pressed'), style: 'cancel'},
+                        {text: 'OK', onPress: () => this._languageChangeSave(lang)},
+                    ],
+                    { cancelable: false }
+                )
+            }else{
+                Alert.alert(
+                    '',
+                    'Change to English',
+                    [
+                        {text: 'Cancel', onPress: () => console.log('Cancel Pressed'), style: 'cancel'},
+                        {text: 'OK', onPress: () => this._languageChangeSave(lang)},
+                    ],
+                    { cancelable: false }
+                )
+            }
         }
 
 
 
         if(lang == "zh") {
-            Alert.alert(
-                'Alert Title',
-                'My Alert Msg',
-                [
-                    {text: 'Cancel', onPress: () => console.log('Cancel Pressed'), style: 'cancel'},
-                    {text: 'OK', onPress: () => this._languageChangeSave(lang)},
-                ],
-                { cancelable: false }
-            )
+            if( this.setState.languageLocale == "ko"){
+                Alert.alert(
+                    '',
+                    '중어로 변경',
+                    [
+                        {text: 'Cancel', onPress: () => console.log('Cancel Pressed'), style: 'cancel'},
+                        {text: 'OK', onPress: () => this._languageChangeSave(lang)},
+                    ],
+                    { cancelable: false }
+                )
+            }else if(this.setState.languageLocale == "en"){
+                Alert.alert(
+                    '',
+                    'Changed to chinese',
+                    [
+                        {text: 'Cancel', onPress: () => console.log('Cancel Pressed'), style: 'cancel'},
+                        {text: 'OK', onPress: () => this._languageChangeSave(lang)},
+                    ],
+                    { cancelable: false }
+                )
+            }else{
+                Alert.alert(
+                    '',
+                    '改為中文',
+                    [
+                        {text: 'Cancel', onPress: () => console.log('Cancel Pressed'), style: 'cancel'},
+                        {text: 'OK', onPress: () => this._languageChangeSave(lang)},
+                    ],
+                    { cancelable: false }
+                )
+            }
         }
 
 

@@ -88,9 +88,9 @@ export default {
     ,mypage_agree_text : 'Terms of Use'
     ,mypage_private_text: 'Privacy Policy'
 
-    ,account_header_title : '회원가입'
-    ,account_header_exit : '나가기'
-    ,account_alert_phone : '핸드폰번호를 입력해주세요.'
+    ,account_header_title : 'Sign Up'
+    ,account_header_exit : 'Leave'
+    ,account_alert_phone : 'Please enter your mobile phone number.'
 
     ,side_title : 'Application settings'
     ,all_push_text : 'Full alarm'
