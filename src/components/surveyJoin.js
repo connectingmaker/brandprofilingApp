@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Actions } from 'react-native-router-flux';
 import { View, Text, Image, StyleSheet, TouchableOpacity,AlertIOS,Alert,Platform,WebView,AsyncStorage,NativeModules} from 'react-native';
-import { Container, Header, Body, Content, Footer,Item, Icon, Input,Button } from 'native-base';
+import {Container, Header, Body, Content, Footer, Item, Icon, Input, Button, Left, Right} from 'native-base';
 import config from '../../src/config';
 
 import renderIf from 'render-if'
@@ -24,6 +24,7 @@ var weblang = "";
 import en from '../lang/en';
 import zh from '../lang/zh';
 import ko from '../lang/ko';
+import {RadioButtonInput} from "react-native-simple-radio-button";
 
 if(languageLocale != "ko" && languageLocale != "en" && languageLocale != "zh") {
     languageLocale = "en";
@@ -67,7 +68,7 @@ export default class SurveyJoin extends Component {
         this.setState({ visible: false });
     }
 
-    componentDidMount(){
+    componentWillMount(){
         AsyncStorage.getItem(config.STORE_KEY).then((value) => {
             var json = eval("("+value+")");
             var lang = json.lang;
@@ -148,34 +149,40 @@ export default class SurveyJoin extends Component {
             <Container>
 
                 <Header style={noticeFormStyle.headerLayout}>
-                    <TouchableOpacity onPress={() => Actions.pop()} style={{flex:.2, alignItems: 'flex-start'}}>
-                    <View style={{flex:.2, justifyContent: 'center', alignItems: 'flex-start'}}>
-                        {renderIf(languageLocale=="ko")(
+                    <Left style={{flex:1}}>
+                    <TouchableOpacity onPress={() => Actions.pop()} style={{width:50, height:50, justifyContent:'center', alignItems:'center'}}>
+                    <View style={{justifyContent: 'center', alignItems: 'flex-start'}}>
+                        {renderIf(this.props.lang=="ko")(
                             <Text style={{fontSize:12,color:'#fff'}}>나가기</Text>
                         )}
-                        {renderIf(languageLocale=="en")(
+                        {renderIf(this.props.lang=="en")(
                             <Text style={{fontSize:12,color:'#fff'}}>Leave</Text>
                         )}
-                        {renderIf(languageLocale=="zh")(
+                        {renderIf(this.props.lang=="zh")(
                             <Text style={{fontSize:12,color:'#fff'}}>退出</Text>
                         )}
 
                     </View>
                     </TouchableOpacity>
-                    <View style={{flex:.6, justifyContent: 'center', alignItems: 'center'}}>
-                        {renderIf(languageLocale=="ko")(
+                    </Left>
+                    <Body>
+                    <View style={{flex:1, justifyContent: 'center', alignItems: 'center'}}>
+                        {renderIf(this.props.lang=="ko")(
                             <Text style={{fontSize:16,color:'#fff'}}>설문참여</Text>
                         )}
-                        {renderIf(languageLocale=="en")(
+                        {renderIf(this.props.lang=="en")(
                             <Text style={{fontSize:16,color:'#fff'}}>Survey participation</Text>
                         )}
-                        {renderIf(languageLocale=="zh")(
+                        {renderIf(this.props.lang=="zh")(
                             <Text style={{fontSize:16,color:'#fff'}}>调查参与</Text>
                         )}
 
                     </View>
-                    <View style={{flex:.2, justifyContent: 'center', alignItems: 'flex-end'}}>
+                    </Body>
+                    <Right>
+                    <View style={{flex:1, justifyContent: 'center', alignItems: 'flex-end'}}>
                     </View>
+                    </Right>
                 </Header>
 
                 <Spinner
@@ -184,7 +191,10 @@ export default class SurveyJoin extends Component {
                     textStyle={{ color: '#FFF' }}
                 />
 
-                <WebView style={noticeFormStyle.contentsLayout} source={{uri: config.SERVER_URL+'/survey/start?campaign_code='+this.props.campaign_code+'&lang='+this.state.languageLocale+'&quest_num='+this.props.quest_num+'&uid='+this.props.uid}} onMessage={this.respondToOnMessage} onLoadStart={() => (this.showSpinner())}
+                <WebView style={noticeFormStyle.contentsLayout}
+                         javaScriptEnabled = {true}
+                         domStorageEnabled = {true}
+                         source={{uri: config.SERVER_URL+'/survey/start?campaign_code='+this.props.campaign_code+'&lang='+this.props.lang+'&quest_num='+this.props.quest_num+'&uid='+this.props.uid}} onMessage={this.respondToOnMessage} onLoadStart={() => (this.showSpinner())}
                          onLoad={() => (this.hideSpinner())}>
 
                 </WebView>

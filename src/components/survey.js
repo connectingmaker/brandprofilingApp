@@ -159,7 +159,7 @@ export default class Survey extends Component {
                                 <View style={SurveyFormStyle.lingBg}></View>
 
 
-                                <Button bordered full style={{borderColor:"#979797", backgroundColor:"#DA4211", justifyContent: 'center', paddingLeft:10}} onPress={()=>Actions.SurveyJoin({campaign_code:this.props.campaign_code, quest_num:this.props.quest_num, uid:this.props.uid})}>
+                                <Button bordered full style={{borderColor:"#979797", backgroundColor:"#DA4211", justifyContent: 'center', paddingLeft:10}} onPress={()=>Actions.SurveyJoin({campaign_code:this.props.campaign_code, quest_num:this.props.quest_num, uid:this.props.uid, lang:this.state.languageLocale})}>
                                     <Text style={{marginLeft:10, color:"#ffffff"}}>{I18n.t("survey_text5")}</Text>
                                 </Button>
 
