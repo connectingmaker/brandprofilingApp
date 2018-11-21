@@ -2,10 +2,62 @@ import React, { Component } from 'react';
 import { Actions } from 'react-native-router-flux';
 import { View, Text, Image, StyleSheet, TouchableOpacity,AlertIOS,Alert,Platform } from 'react-native';
 import { Container, Header, Body, Content, Footer,Item, Icon, Input,Button } from 'native-base';
+import renderIf from 'render-if';
+import I18n from 'react-native-i18n';
+var langRegionLocale = "en_US";
+if (Platform.OS === "android") {
+    langRegionLocale = NativeModules.I18nManager.localeIdentifier || "";
+} else if (Platform.OS === "ios") {
+    langRegionLocale = NativeModules.SettingsManager.settings.AppleLocale || "";
+}
 
+var languageLocale = langRegionLocale.substring(0, 2);
+
+import en from '../lang/en';
+import zh from '../lang/zh';
+import ko from '../lang/ko';
+
+if(languageLocale != "ko" && languageLocale != "en" && languageLocale != "zh") {
+    languageLocale = "en";
+}
+
+I18n.fallbacks = true;
+I18n.locale = languageLocale;
+I18n.translations = {
+    en,
+    zh,
+    ko
+};
 
 export default class Privacy extends Component {
+    constructor(){
+        super();
+        this.state ={
+            languageLocale : "ko"
+        }
+    }
 
+
+    componentDidMount(){
+
+        this.loadJSONData();
+    }
+
+    loadJSONData() {
+
+
+        AsyncStorage.getItem(config.STORE_KEY).then((value) => {
+            var json = eval("("+value+")");
+            var lang = json.lang;
+            this.state.languageLocale = lang;
+            I18n.locale = lang;
+            I18n.fallbacks = true;
+
+        }).then(res => {
+
+        });
+
+    }
 
     render() {
 

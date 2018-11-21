@@ -38,6 +38,7 @@ export default class mySurvey extends Component {
         super(props);
         this.state = {
             loaded: false
+            ,languageLocale : "ko"
             ,dataSource: new ListView.DataSource({
                 rowHasChanged: (row1, row2) => row1 !== row2,
             })
@@ -77,6 +78,11 @@ export default class mySurvey extends Component {
         AsyncStorage.getItem(config.STORE_KEY).then((value) => {
             var json = eval("("+value+")");
             var uid = json.SESS_UID;
+            var lang = json.lang;
+            this.state.languageLocale = lang;
+            I18n.locale = lang;
+            I18n.fallbacks = true;
+
             fetch(config.SERVER_URL+"/api/mycampaignList/"+uid, object)
                 .then((response) => response.json())
                 .then((responseData) =>

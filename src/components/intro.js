@@ -112,6 +112,33 @@ const slides = [
 
 
 export default class Intro extends React.Component {
+
+    constructor(){
+        super();
+        this.state ={
+            languageLocale : "ko"
+        }
+    }
+    componentDidMount(){
+
+        this.loadJSONData();
+    }
+
+    loadJSONData() {
+
+
+        AsyncStorage.getItem(config.STORE_KEY).then((value) => {
+            var json = eval("("+value+")");
+            var lang = json.lang;
+            this.state.languageLocale = lang;
+            I18n.locale = lang;
+            I18n.fallbacks = true;
+
+        }).then(res => {
+
+        });
+
+    }
     _onDone = () => {
 
         AsyncStorage.getItem(config.STORE_KEY)

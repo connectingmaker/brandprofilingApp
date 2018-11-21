@@ -41,6 +41,7 @@ export default class pointHistory extends Component {
         this.state = {
             loaded: false
             ,myPoint:0
+            ,languageLocale : "ko"
             ,dataSource: new ListView.DataSource({
                 rowHasChanged: (row1, row2) => row1 !== row2,
             })
@@ -93,6 +94,10 @@ export default class pointHistory extends Component {
         AsyncStorage.getItem(config.STORE_KEY).then((value) => {
             var json = eval("(" + value + ")");
             var uid = json.SESS_UID;
+            var lang = json.lang;
+            this.state.languageLocale = lang;
+            I18n.locale = lang;
+            I18n.fallbacks = true;
 
             fetch(config.SERVER_URL+"/api/pointHistory/"+uid, object)
                 .then((response) => response.json())

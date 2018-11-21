@@ -44,6 +44,7 @@ export default class myPage extends Component {
             ,brithday:""
             ,age:""
             ,username:""
+            ,languageLocale : "ko"
         };
 
     }
@@ -111,6 +112,11 @@ export default class myPage extends Component {
         AsyncStorage.getItem(config.STORE_KEY).then((value) => {
             var json = eval("(" + value + ")");
             var uid = json.SESS_UID;
+            var lang = json.lang;
+            this.state.languageLocale = lang;
+            I18n.locale = lang;
+            I18n.fallbacks = true;
+
 
             var object = {
                 method: 'GET',
