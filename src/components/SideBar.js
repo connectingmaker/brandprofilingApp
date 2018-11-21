@@ -195,7 +195,7 @@ export default class SideBar extends React.Component {
 
 
 
-        if(lang == "cn") {
+        if(lang == "zh") {
             Alert.alert(
                 'Alert Title',
                 'My Alert Msg',
@@ -310,7 +310,7 @@ export default class SideBar extends React.Component {
                     )}
 
                     {renderIf(this.state.languageLocale == "ko")(
-                        <TouchableOpacity onPress={() => this._languageChange('cn')}>
+                        <TouchableOpacity onPress={() => this._languageChange('zh')}>
                         <Image source={require('../../assets/img/cn_btn_off.png')} resizeMode={'contain'} style={{width:70}} />
                         </TouchableOpacity>
                     )}
@@ -327,25 +327,25 @@ export default class SideBar extends React.Component {
                     )}
 
                     {renderIf(this.state.languageLocale == "en")(
-                        <TouchableOpacity onPress={() => this._languageChange('cn')}>
+                        <TouchableOpacity onPress={() => this._languageChange('zh')}>
                         <Image source={require('../../assets/img/cn_btn_off.png')} resizeMode={'contain'} style={{width:70}} />
                         </TouchableOpacity>
                     )}
 
 
-                    {renderIf(this.state.languageLocale == "cn")(
+                    {renderIf(this.state.languageLocale == "zh")(
                         <TouchableOpacity onPress={() => this._languageChange('ko')}>
                         <Image source={require('../../assets/img/kr_btn_off.png')} resizeMode={'contain'} style={{width:70}} />
                         </TouchableOpacity>
                     )}
 
-                    {renderIf(this.state.languageLocale == "cn")(
+                    {renderIf(this.state.languageLocale == "zh")(
                         <TouchableOpacity onPress={() => this._languageChange('en')}>
                         <Image source={require('../../assets/img/en_btn_off.png')} resizeMode={'contain'} style={{width:70}} />
                         </TouchableOpacity>
                     )}
 
-                    {renderIf(this.state.languageLocale == "cn")(
+                    {renderIf(this.state.languageLocale == "zh")(
                         <Image source={require('../../assets/img/cn_btn_on.png')} resizeMode={'contain'} style={{width:70}} />
                     )}
                 </Footer>
