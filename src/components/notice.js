@@ -38,6 +38,7 @@ export default class Notice extends Component {
         this.state = {
             loaded: false
             ,seq:""
+            ,languageLocale : "ko"
             ,dataSource: new ListView.DataSource({
                 rowHasChanged: (row1, row2) => row1 !== row2,
             })
@@ -75,7 +76,12 @@ export default class Notice extends Component {
                 'Content-Type': 'text/html'
             }
         }
-
+        AsyncStorage.getItem(config.STORE_KEY).then((value) => {
+            var json = eval("("+value+")");
+            var lang = json.lang;
+            this.state.languageLocale = lang;
+            I18n.locale = lang;
+            I18n.fallbacks = true;
 
             fetch(config.SERVER_URL+"/api/notice", object)
                 .then((response) => response.json())
@@ -97,6 +103,13 @@ export default class Notice extends Component {
                 .catch((err) => {
                     console.log(err);
                 });
+
+        }).then(res => {
+
+        });
+
+
+
 
 
     }

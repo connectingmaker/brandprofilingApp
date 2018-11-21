@@ -48,6 +48,7 @@ export default class Account extends Component {
             ,newPw:""
             ,re_newPw:""
             ,authcode:""
+            ,languageLocale : "ko"
         }
     }
 /*
@@ -61,6 +62,28 @@ export default class Account extends Component {
         this.stepNext(3);
     }
     */
+
+    componentDidMount(){
+
+        this.loadJSONData();
+    }
+
+    loadJSONData() {
+
+
+        AsyncStorage.getItem(config.STORE_KEY).then((value) => {
+            var json = eval("("+value+")");
+            var lang = json.lang;
+            this.state.languageLocale = lang;
+            I18n.locale = lang;
+            I18n.fallbacks = true;
+
+        }).then(res => {
+
+        });
+
+    }
+
 
     /**** 핸드폰번호 확인 *******/
     phoneCheck() {

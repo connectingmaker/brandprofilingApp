@@ -48,6 +48,27 @@ export default class Main extends Component {
 
     }
 
+    componentDidMount(){
+
+        this.loadJSONData();
+    }
+
+    loadJSONData() {
+
+
+        AsyncStorage.getItem(config.STORE_KEY).then((value) => {
+            var json = eval("("+value+")");
+            var lang = json.lang;
+            this.state.languageLocale = lang;
+            I18n.locale = lang;
+            I18n.fallbacks = true;
+
+        }).then(res => {
+
+        });
+
+    }
+
 
     switchScreen(index) {
         this.setState({index: index})

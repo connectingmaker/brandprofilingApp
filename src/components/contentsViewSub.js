@@ -51,6 +51,7 @@ export default class ContentsViewSub extends Component {
             ,contents_en:""
             ,contents_cn:""
             ,visible:true
+            ,languageLocale : "ko"
         }
 
     }
@@ -60,7 +61,7 @@ export default class ContentsViewSub extends Component {
 
         console.log(this.props.seq);
         this.state.loaded = true;
-        // this.loadJSONData();
+        this.loadJSONData();
 
     }
 
@@ -78,6 +79,23 @@ export default class ContentsViewSub extends Component {
         console.log('Hide Spinner');
         this.setState({ visible: false });
     }
+
+    loadJSONData() {
+
+
+        AsyncStorage.getItem(config.STORE_KEY).then((value) => {
+            var json = eval("("+value+")");
+            var lang = json.lang;
+            this.state.languageLocale = lang;
+            I18n.locale = lang;
+            I18n.fallbacks = true;
+
+        }).then(res => {
+
+        });
+
+    }
+
 
     // loadJSONData() {
     //

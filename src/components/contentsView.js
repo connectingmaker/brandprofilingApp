@@ -41,6 +41,7 @@ export default class contentsView extends Component {
         this.state = {
             loaded: false
             ,uid : ""
+            ,languageLocale : "ko"
             ,dataSource: new ListView.DataSource({
                 rowHasChanged: (row1, row2) => row1 !== row2,
             })
@@ -101,27 +102,38 @@ export default class contentsView extends Component {
             }
         }
 
-        fetch(config.SERVER_URL+"/api/contents", object)
-            .then((response) => response.json())
-            .then((responseData) =>
-            {
-                if(this.mounted) {
-                    if (responseData.list.length == 0) {
-                        this.setState({loaded: true});
-                    } else {
-                        console.log(responseData);
-                        this.setState({
-                            loaded: true,
-                            dataSource: this.state.dataSource.cloneWithRows(responseData.list)
-                        });
-                    }
-                    this.mounted = false;
-                }
+        AsyncStorage.getItem(config.STORE_KEY).then((value) => {
+            var json = eval("("+value+")");
+            var uid = json.SESS_UID;
+            var lang = json.lang;
+            this.state.languageLocale = lang;
+            I18n.locale = lang;
+            I18n.fallbacks = true;
 
-            })
-            .catch((err) => {
-                console.log(err);
-            });
+                fetch(config.SERVER_URL+"/api/contents", object)
+                    .then((response) => response.json())
+                    .then((responseData) =>
+                    {
+                        if(this.mounted) {
+                            if (responseData.list.length == 0) {
+                                this.setState({loaded: true});
+                            } else {
+                                console.log(responseData);
+                                this.setState({
+                                    loaded: true,
+                                    dataSource: this.state.dataSource.cloneWithRows(responseData.list)
+                                });
+                            }
+                            this.mounted = false;
+                        }
+
+                    })
+                    .catch((err) => {
+                        console.log(err);
+                    });
+        }).then(res => {
+
+        });
 
 
     }
