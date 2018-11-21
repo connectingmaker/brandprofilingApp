@@ -31,6 +31,7 @@
     "react-native-loading-spinner-overlay": "^1.0.1",
     "react-native-material-dropdown": "^0.11.1",
     "react-native-radio-button": "^2.0.1",
+    "react-native-restart": "0.0.7",
     "react-native-router-flux": "^4.0.5",
     "react-native-selectbox": "^0.1.2",
     "react-native-selectme": "^1.2.3",

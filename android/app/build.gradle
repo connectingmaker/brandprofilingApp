@@ -95,13 +95,13 @@ def enableProguardInReleaseBuilds = false
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 27
-    buildToolsVersion '27.0.3'
+    compileSdkVersion 28
+    buildToolsVersion '28.0.3'
 
     defaultConfig {
         applicationId "com.brandprofilingapp"
         minSdkVersion 16
-        targetSdkVersion 26
+        targetSdkVersion 28
         versionCode 39
         versionName "1.2.0.39"
         ndk {
@@ -149,6 +149,8 @@ android {
 }
 
 dependencies {
+    compile project(':react-native-restart')
+
     implementation project(':react-native-vector-icons')
     implementation project(':react-native-i18n')
     implementation project(':react-native-exit-app')
@@ -156,7 +158,8 @@ dependencies {
     implementation project(':react-native-fcm')
     implementation fileTree(include: ['*.jar'], dir: 'libs')
     // From node_modules
-    implementation 'com.android.support:appcompat-v7:27+'
+    implementation 'com.android.support:appcompat-v7:28.0.0-alpha1'
+//    implementation 'com.android.support:appcompat-v7:26+'
     // 변경
     implementation 'com.facebook.react:react-native:+'
     implementation 'com.android.support.constraint:constraint-layout:1.0.2'

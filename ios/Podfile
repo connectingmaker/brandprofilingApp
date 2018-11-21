@@ -21,7 +21,8 @@ target 'brandprofilingApp' do
     #pod 'react-native-fbsdk', :path => '../node_modules/react-native-fbsdk'
 
     #pod 'react-native-fcm', :path => '../node_modules/react-native-fcm'
-    # Pods for testing
+    #pod 'RCTRestart', :path => '../node_modules/react-native-restart/ios' 
+   # Pods for testing
   end
 
 end

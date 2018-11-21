@@ -4,7 +4,7 @@ import { View, Text, Image, StyleSheet, TouchableOpacity,AppRegistry,StatusBar,A
 import { Container, Header, Body, Content, List, ListItem,Footer,Item, Icon, Input,Button } from 'native-base';
 import Switch from 'react-native-switch-pro'
 import config from '../config';
-
+import RNRestart from 'react-native-restart';
 const routes = ["home", "business", "tech", "profile"];
 
 import I18n from 'react-native-i18n';
@@ -120,7 +120,7 @@ export default class SideBar extends React.Component {
             I18n.locale = lang;
             I18n.fallbacks = true;
 
-            AsyncStorage.setItem(config.STORE_KEY, JSON.stringify(dataObject), () => Actions.refresh({reset:true}));
+            AsyncStorage.setItem(config.STORE_KEY, JSON.stringify(dataObject), () => Actions.Login());
 
 
         }).then(res => {
@@ -230,7 +230,7 @@ export default class SideBar extends React.Component {
                 , "lang" : lang
             };
 
-            AsyncStorage.setItem(config.STORE_KEY, JSON.stringify(dataObject), () => console.log("언어변환"));
+            AsyncStorage.setItem(config.STORE_KEY, JSON.stringify(dataObject), () => RNRestart.Restart());
 
 
         }).then(res => {
