@@ -274,17 +274,17 @@ export default class myPage extends Component {
                         <View style={myPageFormStyle.lingBg}></View>
                         <View style={{paddingTop: 5, paddingBottom: 5}}>
 
-                            {renderIf(languageLocale == "ko") (
+                            {renderIf(this.state.languageLocale == "ko") (
                                 <Text style={myPageFormStyle.contentsSize}>회원탈퇴 시 계정 정보가 삭제 되고 포인트가 소멸됩니다. 회원탈퇴로 소멸된 포인트와
                                     삭제된 계정정보는 <Text style={myPageFormStyle.boldFont}>다시 복구할 수 없으니 신중하게 결정</Text>해주시길
                                     바랍니다.</Text>
                             )}
 
-                            {renderIf(languageLocale == "en") (
+                            {renderIf(this.state.languageLocale == "en") (
                                 <Text style={myPageFormStyle.contentsSize}>When you leave a member, your account information will be deleted and your points will expire. We will not be able to recover the lost points and deleted account information due to membership withdrawal, so please make a careful decision.</Text>
                             )}
 
-                            {renderIf(languageLocale == "zh") (
+                            {renderIf(this.state.languageLocale == "zh") (
                                 <Text style={myPageFormStyle.contentsSize}>When you leave a member, your account information will be deleted and your points will expire. We will not be able to recover the lost points and deleted account information due to membership withdrawal, so please make a careful decision.</Text>
                             )}
 

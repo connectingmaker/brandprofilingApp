@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Actions } from 'react-native-router-flux';
-import { View, Text, Image, StyleSheet, TouchableOpacity,AlertIOS,Alert,Platform,ListView,NativeModules} from 'react-native';
+import { View, Text, Image, StyleSheet, TouchableOpacity,AlertIOS,Alert,Platform,ListView,NativeModules,AsyncStorage} from 'react-native';
 import { Container, Header, Left,Body,Right, Content, Footer,Item, Icon, Input,Button } from 'native-base';
 
 import config from '../config';
