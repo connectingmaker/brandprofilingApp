@@ -48,9 +48,6 @@ export default class surveyList extends Component {
             })
         };
 
-
-
-
     }
 
 

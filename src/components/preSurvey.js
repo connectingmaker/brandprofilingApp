@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Actions } from 'react-native-router-flux';
-import { View, Text, Image, StyleSheet, TouchableOpacity,Alert } from 'react-native';
+import { View, Text, Image, StyleSheet, TouchableOpacity,Alert, Platform, NativeModules } from 'react-native';
 import { Container, Header, Body, Content, Footer,Item, Icon, Input,Button } from 'native-base';
 import renderIf from 'render-if';
 
