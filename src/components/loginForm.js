@@ -60,6 +60,9 @@ export default class LoginForm extends Component {
         AsyncStorage.getItem(config.STORE_KEY).then((value) => {
             var json = eval("("+value+")");
             var lang = json.lang;
+            if(lang == undefined || lang == "") {
+                lang = "ko";
+            }
             this.setState({languageLocale :lang});
             I18n.locale = lang;
             I18n.fallbacks = true;
@@ -157,6 +160,8 @@ export default class LoginForm extends Component {
                                     , "SESS_USEREMAIL": data[0].USEREMAIL
                                     , "SESS_ALL_PUSH_YN": data[0].ALL_PUSH_YN
                                     , "SESS_SURVEY_PUSH_YN": data[0].SURVEY_PUSH_YN
+                                    , "lang" : this.state.languageLocale
+                                    , "intro" : true
                                 };
 
 

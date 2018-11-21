@@ -54,6 +54,7 @@ export default class surveyList extends Component {
     componentWillMount()
     {
 
+
     }
 
     componentDidMount(){
@@ -102,6 +103,8 @@ export default class surveyList extends Component {
             this.setState({languageLocale : lang});
             I18n.locale = lang;
             I18n.fallbacks = true;
+
+            console.log("언어 => " + lang);
 
             fetch(config.SERVER_URL+"/api/campaignList/"+uid, object)
                 .then((response) => response.json())

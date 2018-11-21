@@ -76,6 +76,7 @@ export default class myPage extends Component {
             }).then((responseJson) => {
             try {
                 var data = eval("(" + responseJson + ")");
+                console.log(data);
                 var dataObject = {
                     "SESS_UID": ""
                     , "SESS_USEREMAIL": ""
@@ -85,10 +86,11 @@ export default class myPage extends Component {
                     , "intro" : false
                     , "logged" : false
                     , "logout": true
+                    , lang : data.lang
                 };
 
-                AsyncStorage.setItem(config.STORE_KEY, JSON.stringify(dataObject));
-                Actions.Login({type:"reset", refresh: true});
+                AsyncStorage.setItem(config.STORE_KEY, JSON.stringify(dataObject), () => Actions.Login({type:"reset", refresh: true}));
+                //;
 
             } catch(err) {
                 //console.log(err);

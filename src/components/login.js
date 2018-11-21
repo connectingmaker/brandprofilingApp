@@ -59,9 +59,18 @@ export default class Login extends Component {
         AsyncStorage.getItem(config.STORE_KEY).then((value) => {
             var json = eval("("+value+")");
             var lang = json.lang;
+            if(lang == undefined || lang == "") {
+                lang = "ko";
+            }
+
+            console.log(lang);
+
             this.setState({languageLocale :lang});
+
             I18n.locale = lang;
             I18n.fallbacks = true;
+
+            console.log(I18n);
 
         }).then(res => {
 
@@ -151,9 +160,10 @@ export default class Login extends Component {
                                                                 ,"SESS_USEREMAIL" : data[0].USEREMAIL
                                                                 , "SESS_ALL_PUSH_YN": data[0].ALL_PUSH_YN
                                                                 , "SESS_SURVEY_PUSH_YN": data[0].SURVEY_PUSH_YN
+                                                                , "lang" : this.state.languageLocale
+                                                                , "intro" : true
                                                             };
 
-                                                            console.log(dataObject);
 
                                                             AsyncStorage.setItem(config.STORE_KEY, JSON.stringify(dataObject), () => {
                                                                 Actions.Main();
@@ -207,6 +217,9 @@ export default class Login extends Component {
                                                     ,"SESS_USEREMAIL" : data[0].USEREMAIL
                                                     , "SESS_ALL_PUSH_YN": data[0].ALL_PUSH_YN
                                                     , "SESS_SURVEY_PUSH_YN": data[0].SURVEY_PUSH_YN
+                                                    , "lang" : this.state.languageLocale
+                                                    , "intro" : true
+
                                                 };
 
 
@@ -274,26 +287,26 @@ export default class Login extends Component {
                     </View>
                     <View style={{flex:.3, alignItems:'center', justifyContent:'center', alignSelf: 'stretch', paddingBottom: 20}}>
                         <TouchableOpacity onPress={Actions.LoginForm} style={{alignSelf: 'stretch', alignItems:'center', justifyContent:'center'}}>
-                            {renderIf(languageLocale == "ko") (
+                            {renderIf(this.state.languageLocale == "ko") (
                             <Image source={require('../../assets/img/login_emailBtn.png')} resizeMode={'contain'} style={LoginStyle.btn} />
                             )}
-                            {renderIf(languageLocale == "en") (
+                            {renderIf(this.state.languageLocale == "en") (
                                 <Image source={require('../../assets/img/login_emailBtn_en.png')} resizeMode={'contain'} style={LoginStyle.btn} />
                             )}
-                            {renderIf(languageLocale == "zh") (
+                            {renderIf(this.state.languageLocale == "zh") (
                                 <Image source={require('../../assets/img/login_emailBtn_zh.png')} resizeMode={'contain'} style={LoginStyle.btn} />
                             )}
 
                         </TouchableOpacity>
 
                         <TouchableOpacity onPress={() => this._fbAuth()} style={{alignSelf: 'stretch', alignItems:'center', justifyContent:'center'}}>
-                            {renderIf(languageLocale == "ko") (
+                            {renderIf(this.state.languageLocale == "ko") (
                             <Image source={require('../../assets/img/login_facebookBtn.png')} resizeMode={'contain'} style={LoginStyle.btn} />
                             )}
-                            {renderIf(languageLocale == "en") (
+                            {renderIf(this.state.languageLocale == "en") (
                                 <Image source={require('../../assets/img/login_facebookBtn_en.png')} resizeMode={'contain'} style={LoginStyle.btn} />
                             )}
-                            {renderIf(languageLocale == "zh") (
+                            {renderIf(this.state.languageLocale == "zh") (
                                 <Image source={require('../../assets/img/login_facebookBtn_zh.png')} resizeMode={'contain'} style={LoginStyle.btn} />
                             )}
                         </TouchableOpacity>
