@@ -42,6 +42,7 @@ export default class surveyList extends Component {
         this.state = {
             loaded: false
             ,uid : ""
+            ,languageLocale : "ko"
             ,dataSource: new ListView.DataSource({
                 rowHasChanged: (row1, row2) => row1 !== row2,
             })
@@ -100,6 +101,11 @@ export default class surveyList extends Component {
         AsyncStorage.getItem(config.STORE_KEY).then((value) => {
             var json = eval("("+value+")");
             var uid = json.SESS_UID;
+            var lang = json.lang;
+            this.state.languageLocale = lang;
+            I18n.locale = lang;
+            I18n.fallbacks = true;
+
             fetch(config.SERVER_URL+"/api/campaignList/"+uid, object)
                 .then((response) => response.json())
                 .then((responseData) =>
@@ -111,6 +117,10 @@ export default class surveyList extends Component {
                             this.setState({loaded:true, dataSource:this.state.dataSource.cloneWithRows(responseData)});
                         }
                         this.mounted = false;
+
+
+
+
                     }
                 })
                 .catch((err) => {
@@ -139,28 +149,28 @@ export default class surveyList extends Component {
                             <Text style={SurveyFormStyle.boldFont}>{obj.POINT}P</Text>
                         </View>
                         <View style={{flex:0.2, alignItems:'flex-end'}}>
-                            {renderIf(languageLocale == "ko") (
+                            {renderIf(this.state.languageLocale == "ko") (
                             <Text style={{fontSize:11, alignItems:'flex-end'}}>{obj.CATEGORY_NAME_KO}</Text>
                             )}
-                            {renderIf(languageLocale == "en") (
+                            {renderIf(this.state.languageLocale == "en") (
                                 <Text style={{fontSize:11, alignItems:'flex-end'}}>{obj.CATEGORY_NAME_EN}</Text>
                             )}
-                            {renderIf(languageLocale == "zh") (
+                            {renderIf(this.state.languageLocale == "zh") (
                                 <Text style={{fontSize:11, alignItems:'flex-end'}}>{obj.CATEGORY_NAME_CN}</Text>
                             )}
 
                         </View>
                     </View>
                     <View>
-                        {renderIf(languageLocale == "ko") (
+                        {renderIf(this.state.languageLocale == "ko") (
                             <Text style={SurveyFormStyle.title}>{obj.CAMPAIGN_TITLE}</Text>
                         )}
 
-                        {renderIf(languageLocale == "en") (
+                        {renderIf(this.state.languageLocale == "en") (
                             <Text style={SurveyFormStyle.title}>{obj.CAMPAIGN_TITLE_EN}</Text>
                         )}
 
-                        {renderIf(languageLocale == "zh") (
+                        {renderIf(this.state.languageLocale == "zh") (
                             <Text style={SurveyFormStyle.title}>{obj.CAMPAIGN_TITLE_CN}</Text>
                         )}
                     </View>
@@ -168,15 +178,15 @@ export default class surveyList extends Component {
                     </View>
 
                     <View>
-                        {renderIf(languageLocale == "ko") (
+                        {renderIf(this.state.languageLocale == "ko") (
                             <Text>{obj.CAMPAIGN_DESC}</Text>
                         )}
 
-                        {renderIf(languageLocale == "en") (
+                        {renderIf(this.state.languageLocale == "en") (
                             <Text>{obj.CAMPAIGN_DESC_EN}</Text>
                         )}
 
-                        {renderIf(languageLocale == "zh") (
+                        {renderIf(this.state.languageLocale == "zh") (
                             <Text>{obj.CAMPAIGN_DESC_CN}</Text>
                         )}
                     </View>
@@ -185,14 +195,14 @@ export default class surveyList extends Component {
 
                 <View style={{flexDirection: 'row', width:"100%", paddingTop:10}}>
                     <View style={{backgroundColor: '#f6f6f6', flex: 0.3,padding:5,borderWidth:1,justifyContent:'center',borderColor:"#d0d0d0",borderBottomColor:"#f6f6f6",borderRightColor:"#f6f6f6"}} >
-                        {renderIf(languageLocale == "ko") (
+                        {renderIf(this.state.languageLocale == "ko") (
                             <Text style={{color:'#919191',fontSize:12, textAlign:"center"}}>포인트적립</Text>
                         )}
-                        {renderIf(languageLocale == "en") (
+                        {renderIf(this.state.languageLocale == "en") (
                             <Text style={{color:'#919191',fontSize:12, textAlign:"center"}}>Earn points</Text>
                         )}
 
-                        {renderIf(languageLocale == "zh") (
+                        {renderIf(this.state.languageLocale == "zh") (
                             <Text style={{color:'#919191',fontSize:12, textAlign:"center"}}>可获积分</Text>
                         )}
                     </View>
@@ -204,28 +214,28 @@ export default class surveyList extends Component {
 
                 <View style={{flexDirection: 'row', width:"100%"}}>
                     <View style={{backgroundColor: '#f6f6f6', flex: 0.3,padding:5,borderWidth:1,justifyContent:'center',borderColor:"#d0d0d0",borderBottomColor:"#f6f6f6",borderRightColor:"#f6f6f6"}} >
-                        {renderIf(languageLocale == "ko") (
+                        {renderIf(this.state.languageLocale == "ko") (
                             <Text style={{color:'#919191',fontSize:12, textAlign:"center"}}>응답시간</Text>
                         )}
 
-                        {renderIf(languageLocale == "en") (
+                        {renderIf(this.state.languageLocale == "en") (
                             <Text style={{color:'#919191',fontSize:12, textAlign:"center"}}>Response time</Text>
                         )}
 
-                        {renderIf(languageLocale == "zh") (
+                        {renderIf(this.state.languageLocale == "zh") (
                             <Text style={{color:'#919191',fontSize:12, textAlign:"center"}}>所需时间</Text>
                         )}
                     </View>
                     <View style={{borderColor: '#d0d0d0', flex: 0.7,padding:5,borderWidth:1,borderColor:"#d0d0d0",borderBottomColor:"#f6f6f6"}}>
-                        {renderIf(languageLocale == "ko") (
+                        {renderIf(this.state.languageLocale == "ko") (
                             <Text style={{color:'#919191',fontSize:13}}>{obj.SURVEY_TIME}분</Text>
                         )}
 
-                        {renderIf(languageLocale == "en") (
-                            <Text style={{color:'#919191',fontSize:13}}>{obj.SURVEY_TIME}min</Text>
+                        {renderIf(this.state.languageLocale == "en") (
+                            <Text style={{color:'#919191',fontSize:13}}>{obj.SURVEY_TIME}Time</Text>
                         )}
 
-                        {renderIf(languageLocale == "zh") (
+                        {renderIf(this.state.languageLocale == "zh") (
                             <Text style={{color:'#919191',fontSize:13}}>{obj.SURVEY_TIME}分钟</Text>
                         )}
                     </View>

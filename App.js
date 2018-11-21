@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import {Scene, Router, Modal, Actions} from 'react-native-router-flux';
-import { StyleSheet, Platform, AsyncStorage, View } from 'react-native';
+import {StyleSheet, Platform, AsyncStorage, View, NativeModules} from 'react-native';
 
 import Intro from './src/components/intro';
 import Login from './src/components/login';
@@ -28,8 +28,30 @@ import config from './src/config';
 import animations from './src/module/animations';
 
 import FCM, {FCMEvent, RemoteNotificationResult, WillPresentNotificationResult, NotificationType} from "react-native-fcm";
+import I18n from 'react-native-i18n';
+var langRegionLocale = "en_US";
+if (Platform.OS === "android") {
+    langRegionLocale = NativeModules.I18nManager.localeIdentifier || "";
+} else if (Platform.OS === "ios") {
+    langRegionLocale = NativeModules.SettingsManager.settings.AppleLocale || "";
+}
+var languageLocale = langRegionLocale.substring(0, 2);
 
+if(languageLocale != "ko" && languageLocale != "en" && languageLocale != "zh") {
+    languageLocale = "en";
+}
 
+import en from './src/lang/en';
+import zh from './src/lang/zh';
+import ko from './src/lang/ko';
+
+I18n.fallbacks = true;
+I18n.locale = languageLocale;
+I18n.translations = {
+    en,
+    zh,
+    ko
+};
 
 
 export default class App extends Component {
@@ -76,8 +98,19 @@ export default class App extends Component {
             try {
                 var data = eval("(" + responseJson + ")");
                 if(data == null) {
-                    console.log("OK");
                     this.setState({logged: false,  logout:false, intro: true});
+
+                    var dataObject = {
+                        "SESS_UID": ""
+                        , "SESS_USEREMAIL": ""
+                        , "intro": true
+                        , "lang": languageLocale
+                    };
+
+
+                    AsyncStorage.setItem(config.STORE_KEY, JSON.stringify(dataObject), () => {
+
+                    });
                 } else {
                     if(data.intro == null) {
                         data.intro = true;
@@ -97,11 +130,38 @@ export default class App extends Component {
                         }
 
                     }
+
+
+                    if(data.lang == undefined || data.lang == "") {
+
+                        var dataObject = {
+                            "SESS_UID": data.SESS_UID
+                            , "SESS_USEREMAIL": data.SESS_USEREMAIL
+                            , "intro": data.intro
+                            , "lang": languageLocale
+                        };
+
+
+                        AsyncStorage.setItem(config.STORE_KEY, JSON.stringify(dataObject), () => {
+
+                        });
+                    }
                 }
-                console.log(this.state.logged + "///" + this.state.intro);
             } catch(err) {
-                console.log(err);
+
                 this.setState({loading: true, logged: false,  logout:true, intro: false});
+
+                var dataObject = {
+                    "SESS_UID": ""
+                    , "SESS_USEREMAIL": ""
+                    , "intro": false
+                    , "lang": languageLocale
+                };
+
+
+                AsyncStorage.setItem(config.STORE_KEY, JSON.stringify(dataObject), () => {
+
+                });
 
             }
 

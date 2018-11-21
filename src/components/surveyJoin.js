@@ -48,7 +48,7 @@ I18n.translations = {
 export default class SurveyJoin extends Component {
     constructor(props){
         super(props);
-        this.state = { visible: true };
+        this.state = { visible: true, languageLocale: "ko" };
     }
 
     complateSurvey()
@@ -67,7 +67,18 @@ export default class SurveyJoin extends Component {
         this.setState({ visible: false });
     }
 
+    componentDidMount(){
+        AsyncStorage.getItem(config.STORE_KEY).then((value) => {
+            var json = eval("("+value+")");
+            var lang = json.lang;
+            this.state.languageLocale = lang;
+            I18n.locale = lang;
+            I18n.fallbacks = true;
 
+        }).then(res => {
+
+        });
+    }
 
 
     respondToOnMessage = e =>{

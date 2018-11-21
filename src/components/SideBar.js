@@ -1,6 +1,6 @@
 import React from "react";
 import { Actions } from 'react-native-router-flux';
-import { View, Text, Image, StyleSheet, TouchableOpacity,AppRegistry,StatusBar,AsyncStorage, Platform, NativeModules } from 'react-native';
+import { View, Text, Image, StyleSheet, TouchableOpacity,AppRegistry,StatusBar,AsyncStorage, Platform, NativeModules, Alert } from 'react-native';
 import { Container, Header, Body, Content, List, ListItem,Footer,Item, Icon, Input,Button } from 'native-base';
 import Switch from 'react-native-switch-pro'
 import config from '../config';
@@ -45,6 +45,7 @@ export default class SideBar extends React.Component {
         this.state ={
             allpush:true
             ,surveypush:true
+            ,languageLocale : "ko"
         }
 
 
@@ -73,7 +74,20 @@ export default class SideBar extends React.Component {
     }
 
     loadJSONData() {
+        AsyncStorage.getItem(config.STORE_KEY).then((value) => {
+            var json = eval("("+value+")");
+            var langType = json.lang;
 
+            if(langType == null || langType == "") {
+                langType = "ko";
+            }
+
+            this.setState({languageLocale:langType});
+
+
+        }).then(res => {
+
+        });
 
 
     }
@@ -98,9 +112,15 @@ export default class SideBar extends React.Component {
                 ,"SESS_USEREMAIL" : json.SESS_USEREMAIL
                 , "SESS_ALL_PUSH_YN": this.state.allpush
                 , "SESS_SURVEY_PUSH_YN": this.state.surveypush
+                , "intro" : json.intro
+                , "lang" : json.lang
             };
 
-            AsyncStorage.setItem(config.STORE_KEY, JSON.stringify(dataObject));
+            this.state.languageLocale = lang;
+            I18n.locale = lang;
+            I18n.fallbacks = true;
+
+            AsyncStorage.setItem(config.STORE_KEY, JSON.stringify(dataObject), () => Actions.refresh({reset:true}));
 
 
         }).then(res => {
@@ -133,9 +153,84 @@ export default class SideBar extends React.Component {
                 ,"SESS_USEREMAIL" : json.SESS_USEREMAIL
                 , "SESS_ALL_PUSH_YN": this.state.allpush
                 , "SESS_SURVEY_PUSH_YN": this.state.surveypush
+                , "intro" : json.intro
+                , "lang" : json.lang
+
             };
 
             AsyncStorage.setItem(config.STORE_KEY, JSON.stringify(dataObject));
+
+
+        }).then(res => {
+
+        });
+
+    }
+
+    _languageChange(lang) {
+        if(lang == "ko") {
+            Alert.alert(
+                'Alert Title',
+                'My Alert Msg',
+                [
+                    {text: 'Cancel', onPress: () => console.log('Cancel Pressed'), style: 'cancel'},
+                    {text: 'OK', onPress: () => this._languageChangeSave(lang)},
+                ],
+                { cancelable: false }
+            )
+        }
+
+
+        if(lang == "en") {
+            Alert.alert(
+                'Alert Title',
+                'My Alert Msg',
+                [
+                    {text: 'Cancel', onPress: () => console.log('Cancel Pressed'), style: 'cancel'},
+                    {text: 'OK', onPress: () => this._languageChangeSave(lang)},
+                ],
+                { cancelable: false }
+            )
+        }
+
+
+
+        if(lang == "cn") {
+            Alert.alert(
+                'Alert Title',
+                'My Alert Msg',
+                [
+                    {text: 'Cancel', onPress: () => console.log('Cancel Pressed'), style: 'cancel'},
+                    {text: 'OK', onPress: () => this._languageChangeSave(lang)},
+                ],
+                { cancelable: false }
+            )
+        }
+
+
+    }
+
+    _languageChangeSave(lang) {
+        AsyncStorage.getItem(config.STORE_KEY).then((value) => {
+            var json = eval("("+value+")");
+            var all_push_yn = json.SESS_ALL_PUSH_YN;
+
+            var survey_push_yn = json.SESS_SURVEY_PUSH_YN;
+
+
+
+
+
+            var dataObject = {
+                "SESS_UID" : json.SESS_UID
+                ,"SESS_USEREMAIL" : json.SESS_USEREMAIL
+                , "SESS_ALL_PUSH_YN": json.SESS_ALL_PUSH_YN
+                , "SESS_SURVEY_PUSH_YN": json.SESS_SURVEY_PUSH_YN
+                , "intro" : json.intro
+                , "lang" : lang
+            };
+
+            AsyncStorage.setItem(config.STORE_KEY, JSON.stringify(dataObject), () => console.log("언어변환"));
 
 
         }).then(res => {
@@ -197,9 +292,63 @@ export default class SideBar extends React.Component {
                         <View style={sideBarFormStyle.lingBg}></View>
 
 
+
+
+
                     </View>
 
                 </Content>
+                <Footer style={{backgroundColor:"#fff", border:0}}>
+                    {renderIf(this.state.languageLocale == "ko")(
+                        <Image source={require('../../assets/img/kr_btn_on.png')} resizeMode={'contain'} style={{width:70}} />
+                    )}
+
+                    {renderIf(this.state.languageLocale == "ko")(
+                        <TouchableOpacity onPress={() => this._languageChange('en')}>
+                        <Image source={require('../../assets/img/en_btn_off.png')} resizeMode={'contain'} style={{width:70}} />
+                        </TouchableOpacity>
+                    )}
+
+                    {renderIf(this.state.languageLocale == "ko")(
+                        <TouchableOpacity onPress={() => this._languageChange('cn')}>
+                        <Image source={require('../../assets/img/cn_btn_off.png')} resizeMode={'contain'} style={{width:70}} />
+                        </TouchableOpacity>
+                    )}
+
+
+                    {renderIf(this.state.languageLocale == "en")(
+                        <TouchableOpacity onPress={() => this._languageChange('ko')}>
+                        <Image source={require('../../assets/img/kr_btn_off.png')} resizeMode={'contain'} style={{width:70}} />
+                        </TouchableOpacity>
+                    )}
+
+                    {renderIf(this.state.languageLocale == "en")(
+                        <Image source={require('../../assets/img/en_btn_on.png')} resizeMode={'contain'} style={{width:70}} />
+                    )}
+
+                    {renderIf(this.state.languageLocale == "en")(
+                        <TouchableOpacity onPress={() => this._languageChange('cn')}>
+                        <Image source={require('../../assets/img/cn_btn_off.png')} resizeMode={'contain'} style={{width:70}} />
+                        </TouchableOpacity>
+                    )}
+
+
+                    {renderIf(this.state.languageLocale == "cn")(
+                        <TouchableOpacity onPress={() => this._languageChange('ko')}>
+                        <Image source={require('../../assets/img/kr_btn_off.png')} resizeMode={'contain'} style={{width:70}} />
+                        </TouchableOpacity>
+                    )}
+
+                    {renderIf(this.state.languageLocale == "cn")(
+                        <TouchableOpacity onPress={() => this._languageChange('en')}>
+                        <Image source={require('../../assets/img/en_btn_off.png')} resizeMode={'contain'} style={{width:70}} />
+                        </TouchableOpacity>
+                    )}
+
+                    {renderIf(this.state.languageLocale == "cn")(
+                        <Image source={require('../../assets/img/cn_btn_on.png')} resizeMode={'contain'} style={{width:70}} />
+                    )}
+                </Footer>
 
             </Container>
         );

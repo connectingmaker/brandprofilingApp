@@ -42,7 +42,7 @@ I18n.translations = {
 export default class Main extends Component {
     constructor(props) {
         super(props)
-        this.state = {index: 0, allpush_yn: false, surveypush_yn: false} // default screen index
+        this.state = {index: 0, allpush_yn: false, surveypush_yn: false, languageLocale: "ko"} // default screen index
         this.lastBackButtonPress = null;
 
 
@@ -55,6 +55,27 @@ export default class Main extends Component {
 
     componentWillMount()
     {
+        AsyncStorage.getItem(config.STORE_KEY)
+            .then((response) => {
+                return response;
+            }).then((responseJson) => {
+            try {
+                var data = eval("(" + responseJson + ")");
+                console.log(data);
+
+                languageLocale = data.lang;
+                I18n.locale = languageLocale;
+                I18n.fallbacks = languageLocale;
+
+                this.setState({languageLocale:languageLocale});
+            } catch(err) {
+
+
+
+            }
+
+
+        });
 
     }
 
