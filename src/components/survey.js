@@ -165,7 +165,7 @@ export default class Survey extends Component {
                                 )}
 
                                 {renderIf(languageLocale == "zh") (
-                                    <Text style={SurveyFormStyle.contentsSize}>With all of our gratitude, we have put <Text style={preSurveyFormStyle.boldFont}>{this.props.point}P</Text> into your membership! Thank you once again for your valuable participation.</Text>
+                                    <Text style={SurveyFormStyle.contentsSize}>作为答谢，<Text style={preSurveyFormStyle.boldFont}>{this.props.point}P</Text>积分已放入会员积分包！再次感谢您的参与</Text>
                                 )}
 
 
