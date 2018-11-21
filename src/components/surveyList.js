@@ -142,10 +142,10 @@ export default class surveyList extends Component {
                         <View style={{flex:0.1}}>
                             <Image source={require('../../assets/img/main_icon_logo_on.png')} resizeMode={'contain'} style={{width:20,height:20}}/>
                         </View>
-                        <View style={{flex:0.7,alignItems:'flex-start',justifyContent:'center'}}>
+                        <View style={{flex:0.4,alignItems:'flex-start',justifyContent:'center'}}>
                             <Text style={SurveyFormStyle.boldFont}>{obj.POINT}P</Text>
                         </View>
-                        <View style={{flex:0.2, alignItems:'flex-end'}}>
+                        <View style={{flex:0.5, alignItems:'flex-end'}}>
                             {renderIf(this.state.languageLocale == "ko") (
                             <Text style={{fontSize:11, alignItems:'flex-end'}}>{obj.CATEGORY_NAME_KO}</Text>
                             )}
@@ -240,43 +240,43 @@ export default class surveyList extends Component {
                 </View>
                 <View style={{flexDirection: 'row', width:"100%"}}>
                     <View style={{backgroundColor: '#f6f6f6', flex: 0.3,padding:5,borderWidth:1,justifyContent:'center',borderColor:"#d0d0d0",borderBottomColor:"#d0d0d0",borderRightColor:"#f6f6f6"}} >
-                        {renderIf(languageLocale == "ko") (
+                        {renderIf(this.state.languageLocale == "ko") (
                             <Text style={{color:'#919191',fontSize:12, textAlign:"center"}}>모집인원</Text>
                         )}
 
-                        {renderIf(languageLocale == "en") (
+                        {renderIf(this.state.languageLocale == "en") (
                             <Text style={{color:'#919191',fontSize:12, textAlign:"center"}}>Recruitment number</Text>
                         )}
 
-                        {renderIf(languageLocale == "zh") (
+                        {renderIf(this.state.languageLocale == "zh") (
                             <Text style={{color:'#919191',fontSize:12, textAlign:"center"}}>招募人数</Text>
                         )}
                     </View>
                     <View style={{borderColor: '#d0d0d0', flex: 0.7,padding:5,borderWidth:1,borderColor:"#d0d0d0",borderBottomColor:"#d0d0d0"}}>
 
 
-                        {renderIf(languageLocale == "ko" && obj.JOIN_CNT == 0) (
+                        {renderIf(this.state.languageLocale == "ko" && obj.JOIN_CNT == 0) (
                             <Text style={{color:'#919191',fontSize:12}}>무제한 ({obj.TOTAL_CNT}명 참여)</Text>
                             )}
 
-                        {renderIf(languageLocale == "en" && obj.JOIN_CNT == 0) (
+                        {renderIf(this.state.languageLocale == "en" && obj.JOIN_CNT == 0) (
                             <Text style={{color:'#919191',fontSize:12}}>{obj.TOTAL_CNT} people participated</Text>
                             )}
 
-                        {renderIf(languageLocale == "zh" && obj.JOIN_CNT == 0) (
+                        {renderIf(this.state.languageLocale == "zh" && obj.JOIN_CNT == 0) (
                             <Text style={{color:'#919191',fontSize:12}}>{obj.TOTAL_CNT} 名 参与</Text>
                             )}
 
 
-                        {renderIf(languageLocale == "ko" && obj.JOIN_CNT != 0) (
+                        {renderIf(this.state.languageLocale == "ko" && obj.JOIN_CNT != 0) (
                             <Text style={{color:'#919191',fontSize:12}}>{obj.JOIN_CNT}명 ({obj.TOTAL_CNT}명 참여)</Text>
                         )}
 
-                        {renderIf(languageLocale == "en" && obj.JOIN_CNT != 0) (
+                        {renderIf(this.state.languageLocale == "en" && obj.JOIN_CNT != 0) (
                             <Text style={{color:'#919191',fontSize:12}}>{obj.JOIN_CNT} people ({obj.TOTAL_CNT} people participated)</Text>
                             )}
 
-                        {renderIf(languageLocale == "zh" && obj.JOIN_CNT != 0) (
+                        {renderIf(this.state.languageLocale == "zh" && obj.JOIN_CNT != 0) (
                             <Text style={{color:'#919191',fontSize:12}}>{obj.JOIN_CNT} 名  ({obj.TOTAL_CNT} 名 参与)</Text>
                             )}
 
@@ -296,13 +296,13 @@ export default class surveyList extends Component {
                     </View>
                     <View style={{flex:0.30}}>
                         <Button bordered full style={{borderColor:"#979797", backgroundColor:"#DA4211", justifyContent: 'center', height:40}} onPress={() => Actions.Survey({campaign_code: obj.CAMPAIGN_CODE, point: obj.POINT, quest_num: obj.QUEST_NUM, uid: obj.UID})}>
-                            {renderIf(languageLocale =="ko")(
+                            {renderIf(this.state.languageLocale =="ko")(
                                 <Text style={{color:"#ffffff"}}>참여하기</Text>
                             )}
-                            {renderIf(languageLocale =="en")(
+                            {renderIf(this.state.languageLocale =="en")(
                                 <Text style={{color:"#ffffff"}}>Join</Text>
                             )}
-                            {renderIf(languageLocale =="zh")(
+                            {renderIf(this.state.languageLocale =="zh")(
                                 <Text style={{color:"#ffffff"}}>参与</Text>
                             )}
 

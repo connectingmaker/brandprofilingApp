@@ -184,7 +184,7 @@ export default class SurveyJoin extends Component {
                     textStyle={{ color: '#FFF' }}
                 />
 
-                <WebView style={noticeFormStyle.contentsLayout} source={{uri: config.SERVER_URL+'/survey/start?campaign_code='+this.props.campaign_code+'&lang='+weblang+'&quest_num='+this.props.quest_num+'&uid='+this.props.uid}} onMessage={this.respondToOnMessage} onLoadStart={() => (this.showSpinner())}
+                <WebView style={noticeFormStyle.contentsLayout} source={{uri: config.SERVER_URL+'/survey/start?campaign_code='+this.props.campaign_code+'&lang='+this.state.languageLocale+'&quest_num='+this.props.quest_num+'&uid='+this.props.uid}} onMessage={this.respondToOnMessage} onLoadStart={() => (this.showSpinner())}
                          onLoad={() => (this.hideSpinner())}>
 
                 </WebView>

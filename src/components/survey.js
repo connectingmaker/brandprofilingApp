@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import { Actions } from 'react-native-router-flux';
-import { View, Text, Image, StyleSheet, TouchableOpacity,Alert,Platform,NativeModules } from 'react-native';
+import { View, Text, Image, StyleSheet, TouchableOpacity,Alert,Platform,NativeModules,AsyncStorage } from 'react-native';
 import { Container, Header, Left, Body, Right, Content, Footer,Item, Icon, Input,Button } from 'native-base';
 import renderIf from 'render-if'
 
-
+import config from '../../src/config';
 import I18n from 'react-native-i18n';
 var langRegionLocale = "en_US";
 if (Platform.OS === "android") {
