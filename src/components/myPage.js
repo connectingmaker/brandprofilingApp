@@ -285,7 +285,7 @@ export default class myPage extends Component {
                             )}
 
                             {renderIf(this.state.languageLocale == "zh") (
-                                <Text style={myPageFormStyle.contentsSize}>When you leave a member, your account information will be deleted and your points will expire. We will not be able to recover the lost points and deleted account information due to membership withdrawal, so please make a careful decision.</Text>
+                                <Text style={myPageFormStyle.contentsSize}>注销会员时将会删除所有账号信息，同事积分也会被消除。因注销丢失的积分和账号信息无法重新修复，敬请慎重决定。</Text>
                             )}
 
                         </View>
