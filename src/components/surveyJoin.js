@@ -150,26 +150,26 @@ export default class SurveyJoin extends Component {
                 <Header style={noticeFormStyle.headerLayout}>
                     <TouchableOpacity onPress={() => Actions.pop()} style={{flex:.2, alignItems: 'flex-start'}}>
                     <View style={{flex:.2, justifyContent: 'center', alignItems: 'flex-start'}}>
-                        {renderIf(languageLocale=="ko")(
+                        {renderIf(this.state.languageLocale=="ko")(
                             <Text style={{fontSize:12,color:'#fff'}}>나가기</Text>
                         )}
-                        {renderIf(languageLocale=="en")(
+                        {renderIf(this.state.languageLocale=="en")(
                             <Text style={{fontSize:12,color:'#fff'}}>Leave</Text>
                         )}
-                        {renderIf(languageLocale=="zh")(
+                        {renderIf(this.state.languageLocale=="zh")(
                             <Text style={{fontSize:12,color:'#fff'}}>退出</Text>
                         )}
 
                     </View>
                     </TouchableOpacity>
                     <View style={{flex:.6, justifyContent: 'center', alignItems: 'center'}}>
-                        {renderIf(languageLocale=="ko")(
+                        {renderIf(this.state.languageLocale=="ko")(
                             <Text style={{fontSize:16,color:'#fff'}}>설문참여</Text>
                         )}
-                        {renderIf(languageLocale=="en")(
+                        {renderIf(this.state.languageLocale=="en")(
                             <Text style={{fontSize:16,color:'#fff'}}>Survey participation</Text>
                         )}
-                        {renderIf(languageLocale=="zh")(
+                        {renderIf(this.state.languageLocale=="zh")(
                             <Text style={{fontSize:16,color:'#fff'}}>调查参与</Text>
                         )}
 
