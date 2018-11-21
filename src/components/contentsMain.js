@@ -86,7 +86,8 @@ export default class contentsMain extends Component {
         AsyncStorage.getItem(config.STORE_KEY).then((value) => {
             var json = eval("(" + value + ")");
             var uid = json.SESS_UID;
-            this.state.languageLocale = lang;
+            var lang = json.lang;
+            this.setState({languageLocale :lang});
             I18n.locale = lang;
             I18n.fallbacks = true;
 

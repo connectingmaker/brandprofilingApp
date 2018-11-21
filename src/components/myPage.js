@@ -113,7 +113,7 @@ export default class myPage extends Component {
             var json = eval("(" + value + ")");
             var uid = json.SESS_UID;
             var lang = json.lang;
-            this.state.languageLocale = lang;
+            this.setState({languageLocale :lang});
             I18n.locale = lang;
             I18n.fallbacks = true;
 

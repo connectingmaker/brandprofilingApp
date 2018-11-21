@@ -106,7 +106,7 @@ export default class contentsView extends Component {
             var json = eval("("+value+")");
             var uid = json.SESS_UID;
             var lang = json.lang;
-            this.state.languageLocale = lang;
+            this.setState({languageLocale :lang});
             I18n.locale = lang;
             I18n.fallbacks = true;
 
@@ -151,7 +151,7 @@ export default class contentsView extends Component {
                     <View style={{flex:1, flexDirection: 'row', paddingBottom:5}}>
                         <TouchableOpacity  style={{flexDirection: 'row', width:"100%", height:"100%"}}  onPress={() => Actions.ContentsViewSub({seq: obj.SEQ})}>
                             <View style={{flex:0.6,alignItems:'flex-start',justifyContent:'center'}}>
-                                {renderIf(languageLocale == "ko") (
+                                {renderIf(this.state.languageLocale  == "ko") (
                                     <View>
                                         <Text style={myPageFormStyle.TitleSize}>{this.returnTitle(obj.SUBJECT)}</Text>
 
@@ -161,7 +161,7 @@ export default class contentsView extends Component {
                                 )}
 
 
-                                {renderIf(languageLocale == "en") (
+                                {renderIf(this.state.languageLocale  == "en") (
 
                                     <View>
                                         <Text style={myPageFormStyle.TitleSize} numberOfLines={1}>{this.returnTitle(obj.SUBJECT_EN)}</Text>
@@ -170,7 +170,7 @@ export default class contentsView extends Component {
                                     </View>
                                 )}
 
-                                {renderIf(languageLocale == "zh") (
+                                {renderIf(this.state.languageLocale  == "zh") (
                                     <View>
                                         <Text style={myPageFormStyle.TitleSize}>{this.returnTitle(obj.SUBJECT_CN)}</Text>
 

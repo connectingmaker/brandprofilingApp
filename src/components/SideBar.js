@@ -115,8 +115,8 @@ export default class SideBar extends React.Component {
                 , "intro" : json.intro
                 , "lang" : json.lang
             };
-
-            this.state.languageLocale = lang;
+            var lang = json.lang;
+            this.setState({languageLocale :lang});
             I18n.locale = lang;
             I18n.fallbacks = true;
 
