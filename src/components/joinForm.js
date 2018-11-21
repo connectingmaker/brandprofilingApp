@@ -382,7 +382,7 @@ export default class JoinForm extends Component {
                                     )}
 
                                     {renderIf(languageLocale == "ch") (
-                                        <Text style={JoinFormStyle.contentsSize}>You can earn points by participating in surveys through membership. Points can be refunded in cash according to the policy. Thank you very much.</Text>
+                                        <Text style={JoinFormStyle.contentsSize}>注册会员，参与问卷，可获得相应积分。根据积分政策可兑换现金。欢迎使用。</Text>
                                     )}
                                 </View>
 
@@ -463,7 +463,7 @@ export default class JoinForm extends Component {
                                         <Text style={JoinFormStyle.contentsSize}>Please enter an email address to be used as an account.</Text>
                                     )}
                                     {renderIf(languageLocale == "zh") (
-                                        <Text style={JoinFormStyle.contentsSize}>Please enter an email address to be used as an account.</Text>
+                                        <Text style={JoinFormStyle.contentsSize}>请输入邮箱地址，用于登录账号。</Text>
                                     )}
                                 </View>
 
