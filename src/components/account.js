@@ -405,16 +405,16 @@ export default class Account extends Component {
                         <View>
                             <View style={AccountFormStyle.contentsLayout}>
                                 <View>
-                                    {renderIf(languageLocale == "ko") (
+                                    {renderIf(this.state.languageLocale == "ko") (
                                         <Text style={AccountFormStyle.contentsSize}><Text style={AccountFormStyle.boldFont}>비밀번호</Text>를 찾기 위해 가입시 인증하신 <Text style={AccountFormStyle.boldFont}>이메일 주소</Text> 와 <Text style={AccountFormStyle.boldFont}>핸드폰 번호</Text>를 입력해주세요.</Text>
                                     )}
 
-                                    {renderIf(languageLocale == "en") (
+                                    {renderIf(this.state.languageLocale == "en") (
                                         <Text style={AccountFormStyle.contentsSize}>To find your password, please enter your email address and mobile phone number that you signed up with when you signed up.</Text>
                                     )}
 
-                                    {renderIf(languageLocale == "zh") (
-                                        <Text style={AccountFormStyle.contentsSize}>To find your password, please enter your email address and mobile phone number that you signed up with when you signed up.</Text>
+                                    {renderIf(this.state.languageLocale == "zh") (
+                                        <Text style={AccountFormStyle.contentsSize}>为找回密码，请输入注册账号时使用的邮箱地址和手机号</Text>
                                     )}
 
                                 </View>
@@ -437,16 +437,16 @@ export default class Account extends Component {
                         <View>
                             <View style={AccountFormStyle.contentsLayout}>
                                 <View>
-                                    {renderIf(languageLocale == "ko") (
+                                    {renderIf(this.state.languageLocale == "ko") (
                                         <Text style={AccountFormStyle.contentsSize}>가입하신 이메일 주소는 <Text style={AccountFormStyle.boldFont}>{this.state.returnEmail}</Text>입니다.</Text>
                                     )}
 
-                                    {renderIf(languageLocale == "en") (
+                                    {renderIf(this.state.languageLocale == "en") (
                                         <Text style={AccountFormStyle.contentsSize}>Your email address is <Text style={AccountFormStyle.boldFont}>{this.state.returnEmail}</Text></Text>
                                     )}
 
-                                    {renderIf(languageLocale == "zh") (
-                                        <Text style={AccountFormStyle.contentsSize}>Your email address is  <Text style={AccountFormStyle.boldFont}>{this.state.returnEmail}</Text></Text>
+                                    {renderIf(this.state.languageLocale == "zh") (
+                                        <Text style={AccountFormStyle.contentsSize}>注册邮箱地址为  <Text style={AccountFormStyle.boldFont}>{this.state.returnEmail}</Text></Text>
                                     )}
 
                                 </View>
@@ -465,16 +465,16 @@ export default class Account extends Component {
                         <View>
                             <View style={AccountFormStyle.contentsLayout}>
                                 <View>
-                                    {renderIf(languageLocale == "ko") (
+                                    {renderIf(this.state.languageLocale == "ko") (
                                         <Text style={AccountFormStyle.contentsSize}>SMS가 발송되었습니다. 비밀번호를 변경하기 위해  <Text style={AccountFormStyle.boldFont}>인증번호</Text>를 입력해주세요</Text>
                                     )}
 
-                                    {renderIf(languageLocale == "en") (
+                                    {renderIf(this.state.languageLocale == "en") (
                                         <Text style={AccountFormStyle.contentsSize}>An email has been sent. Please enter your verification number to change your password, or change your password via the email link.</Text>
                                     )}
 
-                                    {renderIf(languageLocale == "zh") (
-                                        <Text style={AccountFormStyle.contentsSize}>An email has been sent. Please enter your verification number to change your password, or change your password via the email link.</Text>
+                                    {renderIf(this.state.languageLocale == "zh") (
+                                        <Text style={AccountFormStyle.contentsSize}>验证码已发送到手机号。请在下面输入框输入验证码</Text>
                                     )}
 
                                 </View>
