@@ -369,24 +369,24 @@ export default class Payment extends Component {
                 {renderIf(this.state.stepView == 1)(
                     <Header style={paymentFormStyle.headerLayout2}>
                         <View style={{flex:.2, justifyContent: 'center', alignItems: 'flex-start'}}>
-                            {renderIf(languageLocale=="ko")(
+                            {renderIf(this.state.languageLocale=="ko")(
                                 <Text style={{fontSize:12,color:'#fff'}} onPress={Actions.pop}>나가기</Text>
                             )}
-                            {renderIf(languageLocale=="en")(
+                            {renderIf(this.state.languageLocale=="en")(
                                 <Text style={{fontSize:12,color:'#fff'}} onPress={Actions.pop}>Leave</Text>
                             )}
-                            {renderIf(languageLocale=="zh")(
+                            {renderIf(this.state.languageLocale=="zh")(
                                 <Text style={{fontSize:12,color:'#fff'}} onPress={Actions.pop}>退出</Text>
                             )}
                         </View>
                         <View style={{flex:.6, justifyContent: 'center', alignItems: 'center'}}>
-                            {renderIf(languageLocale == "ko")(
+                            {renderIf(this.state.languageLocale == "ko")(
                             <Text style={{fontSize:16,color:'#fff'}}>환급신청</Text>
                             )}
-                            {renderIf(languageLocale == "en")(
+                            {renderIf(this.state.languageLocale == "en")(
                                 <Text style={{fontSize:16,color:'#fff'}}>Refund</Text>
                             )}
-                            {renderIf(languageLocale == "zh")(
+                            {renderIf(this.state.languageLocale == "zh")(
                                 <Text style={{fontSize:16,color:'#fff'}}>申请兑换</Text>
                             )}
                         </View>
@@ -419,7 +419,7 @@ export default class Payment extends Component {
                     </Header>
                 )}
                 <Content style={{padding:10}}>
-                    {renderIf(this.state.stepView == 1 && languageLocale != "ko" )(
+                    {renderIf(this.state.stepView == 1 && this.state.languageLocale != "ko" )(
                         <View style={paymentFormStyle.contentsLayout}>
                             <View>
                                 <View style={{padding:10,alignItems:'center'}}>
@@ -431,7 +431,7 @@ export default class Payment extends Component {
                             </View>
                         </View>
                     )}
-                    {renderIf(this.state.stepView == 1 && languageLocale == "ko" )(
+                    {renderIf(this.state.stepView == 1 && this.state.languageLocale == "ko" )(
 
                     <View>
                         <View style={paymentFormStyle.contentsLayout}>
@@ -440,10 +440,10 @@ export default class Payment extends Component {
                                     <Image source={require('../../assets/img/point_icon_off.png')} resizeMode={'contain'} style={{width:30,height:30}}/>
                                 </View>
                                 <View style={{alignItems:'center'}}>
-                                    {renderIf(languageLocale == "ko")(
+                                    {renderIf(this.state.languageLocale == "ko")(
                                     <Text style={{fontSize:12}}>환급신청을 통해 포인트를 통장으로 입금받으실 수 있습니다.</Text>
                                     )}
-                                    {renderIf(languageLocale != "ko")(
+                                    {renderIf(this.state.languageLocale != "ko")(
                                         <Text style={{fontSize:12}}>Only available in Korea.</Text>
                                     )}
                                 </View>
@@ -453,12 +453,12 @@ export default class Payment extends Component {
                             <View style={{flex:1, flexDirection: 'row', paddingTop:10, paddingBottom:5}}>
 
                                 <View style={{flex:0.4,alignItems:'flex-start',justifyContent:'center'}}>
-                                    {renderIf(languageLocale == "ko")(
+                                    {renderIf(this.state.languageLocale == "ko")(
                                     <Text style={{color:'#4D4D4D',fontSize:15,fontWeight: 'bold'}}>포인트 환급 비율</Text>
                                     )}
                                 </View>
                                 <View style={{flex:0.6,alignItems:'flex-end'}}>
-                                    {renderIf(languageLocale == "ko")(
+                                    {renderIf(this.state.languageLocale == "ko")(
                                     <Text style={paymentFormStyle.boldFont}>1P 당 1원</Text>
                                     )}
                                 </View>
@@ -467,12 +467,12 @@ export default class Payment extends Component {
 
                             <View style={{flex:1, flexDirection: 'row', paddingTop:10, paddingBottom:5}}>
                                 <View style={{flex:0.4,alignItems:'flex-start',justifyContent:'center'}}>
-                                    {renderIf(languageLocale == "ko")(
+                                    {renderIf(this.state.languageLocale == "ko")(
                                     <Text style={{color:'#4D4D4D',fontSize:15,fontWeight: 'bold'}}>최소 환급 포인트</Text>
                                     )}
                                 </View>
                                 <View style={{flex:0.6,alignItems:'flex-end'}}>
-                                    {renderIf(languageLocale == "ko")(
+                                    {renderIf(this.state.languageLocale == "ko")(
                                     <Text style={paymentFormStyle.boldFont}>5,000P</Text>
                                     )}
                                 </View>
@@ -481,12 +481,12 @@ export default class Payment extends Component {
 
                             <View style={{flex:1, flexDirection: 'row', paddingTop:10, paddingBottom:5}}>
                                 <View style={{flex:0.4,alignItems:'flex-start',justifyContent:'center'}}>
-                                    {renderIf(languageLocale == "ko")(
+                                    {renderIf(this.state.languageLocale == "ko")(
                                     <Text style={{color:'#4D4D4D',fontSize:15,fontWeight: 'bold'}}>환급방법</Text>
                                     )}
                                 </View>
                                 <View style={{flex:0.6,alignItems:'flex-end'}}>
-                                    {renderIf(languageLocale == "ko")(
+                                    {renderIf(this.state.languageLocale == "ko")(
                                     <Text style={paymentFormStyle.boldFont}>본인 명의 통장으로 입금</Text>
                                     )}
                                 </View>
@@ -495,12 +495,12 @@ export default class Payment extends Component {
 
                             <View style={{flex:1, flexDirection: 'row', paddingTop:10, paddingBottom:5}}>
                                 <View style={{flex:0.4,alignItems:'flex-start',justifyContent:'center'}}>
-                                    {renderIf(languageLocale == "ko")(
+                                    {renderIf(this.state.languageLocale == "ko")(
                                     <Text style={{color:'#4D4D4D',fontSize:15,fontWeight: 'bold'}}>환급시기</Text>
                                     )}
                                 </View>
                                 <View style={{flex:0.6,alignItems:'flex-end'}}>
-                                    {renderIf(languageLocale == "ko")(
+                                    {renderIf(this.state.languageLocale == "ko")(
                                     )}
                                 </View>
                             </View>
@@ -508,18 +508,18 @@ export default class Payment extends Component {
                         </View>
                         <View style={paymentFormStyle.contentsLayout2}>
                             <View>
-                                {renderIf(languageLocale == "ko")(
+                                {renderIf(this.state.languageLocale == "ko")(
                                 <Text style={{color:'#4D4D4D',fontSize:15,fontWeight: 'bold'}}>포인트 환급 신청시 주의사항</Text>
                                 )}
                             </View>
                             <View style={paymentFormStyle.lingBg}></View>
                             <View style={{paddingBottom:5}}>
-                                {renderIf(languageLocale == "ko")(
+                                {renderIf(this.state.languageLocale == "ko")(
                                 <Text style={paymentFormStyle.contentsSize}>포인트 환급 신청 후에는 신청 내역을 변경하거나 취소할 수 없습니다. <Text style={paymentFormStyle.boldFont}>잘못된 계좌 번호</Text> 또는 <Text style={paymentFormStyle.boldFont}>타인의 계좌번호</Text>를 입력할 경우, 포인트 <Text style={paymentFormStyle.boldFont}>환급 신청이 취소</Text>가 되고, 환급 신청이 취소된 포인트는 <Text style={paymentFormStyle.boldFont}>다시 적립</Text>됩니다.</Text>
                                 )}
                                 </View>
                             <Button bordered full style={{borderColor:"#979797", backgroundColor:"#DA4211", justifyContent: 'center', paddingLeft:10}} onPress={()=>this.check()}>
-                                {renderIf(languageLocale == "ko")(
+                                {renderIf(this.state.languageLocale == "ko")(
                                 <Text style={{marginLeft:10, color:"#ffffff"}}>네, 확인했습니다.</Text>
                                 )}
                             </Button>

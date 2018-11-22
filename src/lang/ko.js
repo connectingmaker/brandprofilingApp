@@ -18,7 +18,7 @@ export default {
     ,intro_complete_lavel:'완료'
     ,intro_skip_lavel:'건너뛰기'
 
-    ,login_title: '브랜드 포지셔닝 진단 및 브랜드 개발'
+    ,login_title: '브랜드 포지셔닝 진단과 전략 도출 및 제품 개선'
     ,alert_confirm : '확인'
     ,tab1 : '설문조사'
     ,tab2 : '완료설문'
@@ -117,7 +117,6 @@ export default {
     ,account_filed_auth_code : '인증번호 입력'
     ,account_filed_passwd1 : '새로운 비밀번호 입력'
     ,account_filed_passwd2 : '다시 입력'
-    ,account_alert_phone : '핸드폰번호를 입력해주세요'
     ,account_alert_email : '이메일 계정을 입력해주세요.'
     ,account_alert_auth : '인증번호를 입력해주세요.'
     ,account_alert_passwd : '영문이나 숫자  그리고 특수문자를 사용하여 6~16자리의 새로운 비밀번호를 입력해주세요. 사용가능한 특수문자는 !@#$%^&*입니다.'

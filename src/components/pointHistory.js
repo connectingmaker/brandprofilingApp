@@ -72,7 +72,7 @@ export default class pointHistory extends Component {
 
     componentWillReceiveProps(nextProps)
     {
-        console.log("데이터 로드");
+        // console.log("데이터 로드");
         this.mounted = true;
         this.setState({loaded:false,bankstats:true, historystats:true});
         this.loadJSONData();

@@ -147,6 +147,13 @@ export default class Intro extends React.Component {
             }).then((responseJson) => {
             try {
                 var data = eval("(" + responseJson + ")");
+                var lang = data.lang;
+
+                if(lang == undefined || lang == "") {
+                    lang = languageLocale;
+                }
+
+
                 if(data == null) {
                     var dataObject = {
                         "SESS_UID": ""
@@ -155,6 +162,7 @@ export default class Intro extends React.Component {
                         , "SESS_SURVEY_PUSH_YN": ""
                         , "contentMain" : false
                         , "intro" : true
+                        , "lang" : lang
                     };
 
                     AsyncStorage.setItem(config.STORE_KEY, JSON.stringify(dataObject));
@@ -168,6 +176,7 @@ export default class Intro extends React.Component {
                             , "SESS_SURVEY_PUSH_YN": data.SESS_SURVEY_PUSH_YN
                             , "contentMain" : true
                             , "intro" : true
+                            , "lang" : lang
                         };
 
                         AsyncStorage.setItem(config.STORE_KEY, JSON.stringify(dataObject));
@@ -181,6 +190,7 @@ export default class Intro extends React.Component {
                             , "SESS_SURVEY_PUSH_YN": ""
                             , "contentMain" : false
                             , "intro" : true
+                            , "lang" : lang
                         };
 
                         AsyncStorage.setItem(config.STORE_KEY, JSON.stringify(dataObject));
@@ -209,6 +219,14 @@ export default class Intro extends React.Component {
             try {
 
                 var data = eval("(" + responseJson + ")");
+                var lang = data.lang;
+
+                if(lang == undefined || lang == "") {
+                    lang = languageLocale;
+                }
+
+
+
                 if(data == null) {
                     var dataObject = {
                         "SESS_UID": ""
@@ -217,6 +235,7 @@ export default class Intro extends React.Component {
                         , "SESS_SURVEY_PUSH_YN": ""
                         , "contentMain" : false
                         , "intro" : true
+                        , "lang" : lang
                     };
 
                     AsyncStorage.setItem(config.STORE_KEY, JSON.stringify(dataObject));
@@ -231,6 +250,8 @@ export default class Intro extends React.Component {
                             , "SESS_SURVEY_PUSH_YN": data.SESS_SURVEY_PUSH_YN
                             , "contentMain" : true
                             , "intro" : true
+                            , "lang" : lang
+
                         };
 
                         AsyncStorage.setItem(config.STORE_KEY, JSON.stringify(dataObject));
@@ -244,6 +265,7 @@ export default class Intro extends React.Component {
                             , "SESS_SURVEY_PUSH_YN": ""
                             , "contentMain" : false
                             , "intro" : true
+                            , "lang" : lang
                         };
 
                         AsyncStorage.setItem(config.STORE_KEY, JSON.stringify(dataObject));

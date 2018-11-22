@@ -116,7 +116,6 @@ export default {
     ,account_filed_auth_code : '验证码'
     ,account_filed_passwd1 : '输入新密码'
     ,account_filed_passwd2 : '再次输入新密码'
-    ,account_alert_phone : '请输入手机号。'
     ,account_alert_email : '请输入账号邮箱地址。'
     ,account_alert_auth : '请输入验证码。'
     ,account_alert_passwd : '组合英文，数字，特殊符号!@#$%^&，设置长度为6-16个字符的密码。'

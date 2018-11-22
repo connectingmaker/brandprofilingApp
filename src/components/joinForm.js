@@ -328,8 +328,14 @@ export default class JoinForm extends Component {
         this.setState({stepView: value});
     }
 
-    componentDidMount(){
 
+
+    componentWillMount(){
+
+        this.loadJSONData();
+    }
+
+    componentDidMount() {
         this.loadJSONData();
     }
 
@@ -340,6 +346,8 @@ export default class JoinForm extends Component {
             var json = eval("("+value+")");
             var lang = json.lang;
             this.setState({languageLocale :lang});
+
+            console.log(lang);
             I18n.locale = lang;
             I18n.fallbacks = true;
 

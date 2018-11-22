@@ -184,7 +184,7 @@ export default class mySurvey extends Component {
                             <Text style={{color:'#919191',fontSize:12, textAlign:"center"}}>可获积分</Text>
                         )}
                     </View>
-                    <View style={{borderColor: '#d0d0d0', flex: 0.7,justifyContent:'center',padding:5,borderWidth:1,borderColor:"#d0d0d0",borderBottomColor:"#f6f6f6"}}>
+                    <View style={{borderColor: '#d0d0d0', flex: 0.7,justifyContent:'center',padding:5,borderWidth:1,borderBottomColor:"#f6f6f6"}}>
                         <Text>{obj.POINT}P</Text>
                     </View>
 
@@ -204,7 +204,7 @@ export default class mySurvey extends Component {
                             <Text style={{color:'#919191',fontSize:12, textAlign:"center"}}>所需时间</Text>
                         )}
                     </View>
-                    <View style={{borderColor: '#d0d0d0', flex: 0.7,padding:5,borderWidth:1,borderColor:"#d0d0d0",borderBottomColor:"#f6f6f6"}}>
+                    <View style={{borderColor: '#d0d0d0', flex: 0.7,padding:5,borderWidth:1,borderBottomColor:"#f6f6f6"}}>
                         {renderIf(this.state.languageLocale == "ko") (
                         <Text style={{color:'#919191',fontSize:13}}>{obj.SURVEY_TIME}분</Text>
                         )}
@@ -233,7 +233,7 @@ export default class mySurvey extends Component {
                             <Text style={{color:'#919191',fontSize:12, textAlign:"center"}}>招募人数</Text>
                         )}
                     </View>
-                    <View style={{borderColor: '#d0d0d0', flex: 0.7,padding:5,borderWidth:1,borderColor:"#d0d0d0",borderBottomColor:"#d0d0d0"}}>
+                    <View style={{borderColor: '#d0d0d0', flex: 0.7,padding:5,borderWidth:1,borderBottomColor:"#d0d0d0"}}>
                         {renderIf(this.state.languageLocale == "ko") (
                         <Text style={{color:'#919191',fontSize:12}}>{obj.JOIN_CNT}명 ({obj.TOTAL_CNT}명 참여)</Text>
                         )}
