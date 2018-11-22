@@ -3,9 +3,11 @@
 
 pod 'Firebase/Core'
 pod 'Firebase/Messaging'
+pod 'FBSDKCoreKit'  
 pod 'FBSDKLoginKit'
-  pod 'FBSDKShareKit'
-
+pod 'FBSDKShareKit'
+pod 'FBSDKPlacesKit'
+pod 'FBSDKMessengerShareKit'
 
 #pod 'RNI18n', :path => '../node_modules/react-native-i18n'
 
