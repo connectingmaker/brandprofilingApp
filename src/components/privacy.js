@@ -1,11 +1,10 @@
 import React, { Component } from 'react';
 import { Actions } from 'react-native-router-flux';
 import { View, Text, Image, StyleSheet, TouchableOpacity,AlertIOS,Alert,Platform,NativeModules,AsyncStorage } from 'react-native';
-import { Container, Header, Body, Content, Footer,Item, Icon, Input,Button } from 'native-base';
+import {Container, Header, Body, Content, Footer, Item, Icon, Input, Button, Left, Right} from 'native-base';
 import renderIf from 'render-if';
 import I18n from 'react-native-i18n';
 import config from '../../src/config';
-
 
 var langRegionLocale = "en_US";
 if (Platform.OS === "android") {
@@ -773,18 +772,24 @@ export default class Privacy extends Component {
             <Container>
 
                 <Header style={noticeFormStyle.headerLayout}>
-                    <View style={{flex:.1, justifyContent: 'center', alignItems: 'center'}}>
-                        {renderIf(this.state.languageLocale=="ko")(
-                            <Text style={{fontSize:12,color:'#fff'}}>나가기</Text>
-                        )}
-                        {renderIf(this.state.languageLocale=="en")(
-                            <Text style={{fontSize:12,color:'#fff'}}>Leave</Text>
-                        )}
-                        {renderIf(this.state.languageLocale=="zh")(
-                            <Text style={{fontSize:12,color:'#fff'}}>退出</Text>
-                        )}
-                    </View>
-                    <View style={{flex:.8, justifyContent: 'center', alignItems: 'center'}}>
+                    <Left style={{flex:1}}>
+                    <TouchableOpacity onPress={() => Actions.pop()} style={{width:50, height:50, justifyContent:'center', alignItems:'center'}}>
+                        <View style={{flex:1,justifyContent: 'center', alignItems: 'flex-start'}}>
+                            {renderIf(this.state.languageLocale=="ko")(
+                                <Text style={{fontSize:12,color:'#fff'}}>나가기</Text>
+                            )}
+                            {renderIf(this.state.languageLocale=="en")(
+                                <Text style={{fontSize:12,color:'#fff'}}>Leave</Text>
+                            )}
+                            {renderIf(this.state.languageLocale=="zh")(
+                                <Text style={{fontSize:12,color:'#fff'}}>退出</Text>
+                            )}
+
+                        </View>
+                    </TouchableOpacity>
+                    </Left>
+                    <Body>
+                    <View style={{flex:1, justifyContent: 'center', alignItems: 'center'}}>
 
                         {renderIf(this.state.languageLocale=="ko")(
                             <Text style={{fontSize:16,color:'#fff'}}>개인정보취급방침</Text>
@@ -796,11 +801,14 @@ export default class Privacy extends Component {
                             <Text style={{fontSize:16,color:'#fff'}}>服务隐私政策</Text>
                         )}
                     </View>
-                    <View style={{flex:.1, justifyContent: 'center', alignItems: 'center'}}>
+                    </Body>
+                    <Right>
+                    <View style={{flex:1, justifyContent: 'center', alignItems: 'center'}}>
                     </View>
+                    </Right>
                 </Header>
 
-                {langContents()}
+                {this.langContents()}
 
 
             </Container>

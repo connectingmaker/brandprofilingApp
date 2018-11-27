@@ -150,7 +150,7 @@ export default class SurveyJoin extends Component {
 
                 <WebView style={noticeFormStyle.contentsLayout}
                      javaScriptEnabled={true}
-                     source={{uri: config.SERVER_URL+'/survey/surveyResult?campaign_code='+this.props.campaign_code}}
+                     source={{uri: config.SERVER_URL+'/survey/surveyResult?campaign_code='+this.props.campaign_code+"&lang="+this.props.lang}}
                      onMessage={this.respondToOnMessage}
                      onLoadStart={() => (this.showSpinner())}
                      onLoad={() => (this.hideSpinner())}>

@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import { Actions } from 'react-native-router-flux';
 import { View, Text, Image, StyleSheet, TouchableOpacity,AlertIOS,Alert,Platform,NativeModules,AsyncStorage } from 'react-native';
-import { Container, Header, Body, Content, Footer,Item, Icon, Input,Button } from 'native-base';
+import {Container, Header, Body, Content, Footer, Item, Icon, Input, Button, Left, Right} from 'native-base';
 import I18n from 'react-native-i18n';
 import config from '../../src/config';
-
+import renderIf from 'render-if'
 
 var langRegionLocale = "en_US";
 if (Platform.OS === "android") {
@@ -766,34 +766,43 @@ export default class Terms extends Component {
             <Container>
 
                 <Header style={TermsFormStyle.headerLayout}>
-                    <View style={{flex:.1, justifyContent: 'center', alignItems: 'center'}}>
+                    <Left style={{flex:1}}>
+                    <TouchableOpacity onPress={() => Actions.pop()} style={{width:50, height:50, justifyContent:'center', alignItems:'center'}}>
+                        <View style={{flex:1, justifyContent: 'center', alignItems: 'flex-start'}}>
+                            {renderIf(this.state.languageLocale=="ko")(
+                                <Text style={{fontSize:12,color:'#fff', justifyContent: 'center', alignItems: 'flex-start'}}>나가기</Text>
+                            )}
+                            {renderIf(this.state.languageLocale=="en")(
+                                <Text style={{fontSize:12,color:'#fff', justifyContent: 'center', alignItems: 'flex-start'}}>Leave</Text>
+                            )}
+                            {renderIf(this.state.languageLocale=="zh")(
+                                <Text style={{fontSize:12,color:'#fff', justifyContent: 'center', alignItems: 'flex-start'}}>退出</Text>
+                            )}
+
+                        </View>
+                    </TouchableOpacity>
+                    </Left>
+                    <Body>
+                    <View style={{flex:1, justifyContent: 'center', alignItems: 'center'}}>
                         {renderIf(this.state.languageLocale=="ko")(
-                            <Text style={{fontSize:12,color:'#fff'}}>나가기</Text>
+                            <Text style={{fontSize:16,color:'#fff', justifyContent: 'center', alignItems: 'center'}}>이용약관</Text>
                         )}
                         {renderIf(this.state.languageLocale=="en")(
-                            <Text style={{fontSize:12,color:'#fff'}}>Leave</Text>
+                            <Text style={{fontSize:16,color:'#fff', justifyContent: 'center', alignItems: 'center'}}>Terms of use</Text>
                         )}
                         {renderIf(this.state.languageLocale=="zh")(
-                            <Text style={{fontSize:12,color:'#fff'}}>退出</Text>
+                            <Text style={{fontSize:16,color:'#fff', justifyContent: 'center', alignItems: 'center'}}>使用条款</Text>
                         )}
                     </View>
-                    <View style={{flex:.8, justifyContent: 'center', alignItems: 'center'}}>
-                        {renderIf(this.state.languageLocale=="ko")(
-                            <Text style={{fontSize:16,color:'#fff'}}>이용약관</Text>
-                        )}
-                        {renderIf(this.state.languageLocale=="en")(
-                            <Text style={{fontSize:16,color:'#fff'}}>Terms of use</Text>
-                        )}
-                        {renderIf(this.state.languageLocale=="zh")(
-                            <Text style={{fontSize:16,color:'#fff'}}>使用条款</Text>
-                        )}
+                    </Body>
+                    <Right>
+                    <View style={{flex:1, justifyContent: 'center', alignItems: 'center'}}>
                     </View>
-                    <View style={{flex:.1, justifyContent: 'center', alignItems: 'center'}}>
-                    </View>
+                    </Right>
                 </Header>
 
 
-                {langContents()}
+                {this.langContents()}
 
 
             </Container>

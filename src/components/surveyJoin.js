@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Actions } from 'react-native-router-flux';
-import { View, Text, Image, StyleSheet, TouchableOpacity,AlertIOS,Alert,Platform,WebView,AsyncStorage,NativeModules} from 'react-native';
+import { View, Text, Image, StyleSheet, TouchableOpacity,AlertIOS,Alert,Platform,WebView,AsyncStorage,NativeModules,DeviceEventEmitter, Dimensions,Keyboard} from 'react-native';
 import {Container, Header, Body, Content, Footer, Item, Icon, Input, Button, Left, Right} from 'native-base';
 import config from '../../src/config';
 
@@ -79,6 +79,16 @@ export default class SurveyJoin extends Component {
         }).then(res => {
 
         });
+
+        Keyboard.addListener('keyboardDidShow', (e) => this.keyboardWillShow(e));
+        Keyboard.addListener('keyboardDidHide', (e) => this.keyboardWillHide(e));
+    }
+
+    keyboardWillShow = (event) => {
+        console.log('Keyboard is show');
+    }
+    keyboardWillHide = (event) => {
+        console.log('Keyboard hide');
     }
 
 
@@ -142,6 +152,11 @@ export default class SurveyJoin extends Component {
         //console.log(data.ERR_CODE);
     };
 
+
+
+
+
+
     render() {
 
         return (
@@ -168,13 +183,13 @@ export default class SurveyJoin extends Component {
                     <Body>
                     <View style={{flex:1, justifyContent: 'center', alignItems: 'center'}}>
                         {renderIf(this.props.lang=="ko")(
-                            <Text style={{fontSize:16,color:'#fff'}}>설문참여</Text>
+                            <Text style={{fontSize:16,color:'#fff', justifyContent: 'center', alignItems: 'center'}}>설문참여</Text>
                         )}
                         {renderIf(this.props.lang=="en")(
-                            <Text style={{fontSize:16,color:'#fff'}}>Survey participation</Text>
+                            <Text style={{fontSize:16,color:'#fff', justifyContent: 'center', alignItems: 'center'}}>Participation</Text>
                         )}
                         {renderIf(this.props.lang=="zh")(
-                            <Text style={{fontSize:16,color:'#fff'}}>调查参与</Text>
+                            <Text style={{fontSize:16,color:'#fff', justifyContent: 'center', alignItems: 'center'}}>调查参与</Text>
                         )}
 
                     </View>
@@ -191,11 +206,15 @@ export default class SurveyJoin extends Component {
                     textStyle={{ color: '#FFF' }}
                 />
 
+
                 <WebView style={noticeFormStyle.contentsLayout}
                          javaScriptEnabled = {true}
                          domStorageEnabled = {true}
                          source={{uri: config.SERVER_URL+'/survey/start?campaign_code='+this.props.campaign_code+'&lang='+this.props.lang+'&quest_num='+this.props.quest_num+'&uid='+this.props.uid}} onMessage={this.respondToOnMessage} onLoadStart={() => (this.showSpinner())}
-                         onLoad={() => (this.hideSpinner())}>
+                         onLoad={() => (this.hideSpinner())}
+                         scalesPageToFit={false}
+                         scrollEnabled={true}
+                >
 
                 </WebView>
 
