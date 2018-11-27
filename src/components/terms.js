@@ -61,40 +61,9 @@ export default class Terms extends Component {
 
     }
 
-
-    render() {
-
-        return (
-
-            <Container>
-
-                <Header style={TermsFormStyle.headerLayout}>
-                    <View style={{flex:.1, justifyContent: 'center', alignItems: 'center'}}>
-                        {renderIf(this.state.languageLocale=="ko")(
-                            <Text style={{fontSize:12,color:'#fff'}}>나가기</Text>
-                        )}
-                        {renderIf(this.state.languageLocale=="en")(
-                            <Text style={{fontSize:12,color:'#fff'}}>Leave</Text>
-                        )}
-                        {renderIf(this.state.languageLocale=="zh")(
-                            <Text style={{fontSize:12,color:'#fff'}}>退出</Text>
-                        )}
-                    </View>
-                    <View style={{flex:.8, justifyContent: 'center', alignItems: 'center'}}>
-                        {renderIf(this.state.languageLocale=="ko")(
-                            <Text style={{fontSize:16,color:'#fff'}}>이용약관</Text>
-                        )}
-                        {renderIf(this.state.languageLocale=="en")(
-                            <Text style={{fontSize:16,color:'#fff'}}>Terms of use</Text>
-                        )}
-                        {renderIf(this.state.languageLocale=="zh")(
-                            <Text style={{fontSize:16,color:'#fff'}}>使用条款</Text>
-                        )}
-                    </View>
-                    <View style={{flex:.1, justifyContent: 'center', alignItems: 'center'}}>
-                    </View>
-                </Header>
-
+    langContents() {
+        if(this.state.languageLocale == "ko") {
+            return (
                 <Content style={{padding:10}}>
                     <View style={TermsFormStyle.contentsLayout}>
                         <View style={{paddingTop:5, paddingBottom:5}}>
@@ -107,7 +76,7 @@ export default class Terms extends Component {
                             </Text>
                             <Text style={TermsFormStyle.contentsSize}>
                                 <Text>본 약관은 (주)퍼셉션(이하 "회사"라 한다)과 회원 가입자(이하 ‘회원’이라고 하며, 본 약관에 동의하고 회원등록을 완료한 이용자)간의 서비스(이하 ‘서비스’라고 하며, 오프라인 및 접속 가능한 각종 유무선 단말기를 통한 온라인을 포함, 회사가 제공하는 모든 ‘서비스’를 의미) 이용과 관련하여 회사와 회원 간의 권리, 의무 및 책임사항을 규정함을 목적으로 합니다.</Text>
-                            </Text>
+                           </Text>
                             <Text style={TermsFormStyle.contentsSize2}>
                                 <Text>제2조 효력의 발생 및 변경</Text>
                             </Text>
@@ -201,24 +170,24 @@ export default class Terms extends Component {
 
                             <Text style={TermsFormStyle.contentsSize}>
                                 <Text>(1) 공공질서 및 사회적 통념에 반하는 행위</Text>
-                                    <Text>(2) 사회적 공익을 저해할 목적을 갖고 서비스이용을 계획 또는 실행하는 행위</Text>
-                                    <Text>(3) 법률, 조례, 기타 법규를 위반하는 행위</Text>
-                                    <Text>(4) 협박, 중상, 외설, 추문, 선동적인 소재를 게재하는 행위</Text>
-                                    <Text>(5) 다른 회원 또는 제3자의 명예를 훼손하거나 불이익을 주는 행위</Text>
-                                    <Text>(6) 조사업무를 방해하는 행위</Text>
-                                    <Text>(7) 광고메일 또는 컴퓨터바이러스를 발송하는 행위</Text>
-                                    <Text> (8) 타인의 명예를 손상시키거나 불이익을 주는 행위</Text>
-                                    <Text>(9) 같은 사람이 중복으로 가입하거나 다른 실명으로 이중 가입을 하는 행위</Text>
-                                    <Text>(10) 조사내용, 로그, 상표, 기타 본 서비스와 관련한 정보를 제3자에게 개시, 누설하는 행위</Text>
-                                    <Text>(11) 계정, 비밀번호를 도용하는 행위</Text>
-                                    <Text>(12) 조사에 3회 이상 불성실하게 응답한 행위</Text>
-                                    <Text> (13) 회원 계정을 매매 또는 대여하는 행위</Text>
-                                    <Text>(14) 포인트를 매매하는 행위</Text>
-                                    <Text>(15) 저작권 보호자료를 게재하는 행위</Text>
-                                    <Text>(16) 개인정보에 기재된 우편, 전자메일, 전화 등 모든 연락방법을 이용해도 연락을 취할 수 없는 경우</Text>
-                                    <Text>(17) 기타 관련 법령이나 회사가 정한 이용조건에 위배되는 행위</Text>
-                                    <Text>(18) 위의 각호 이외에 회사가 해당 회원의 이용을 시급히 제한할 필요가 있다고 판단한 경우</Text>
-                                    <Text>회사가 전항에 기재된 조치를 취함으로써 해당 회원이 본 서비스를 이용하지 못하여 이로 인해 손해가 발생하더라도 회사는 책임을 지지 않습니다.</Text>
+                                <Text>(2) 사회적 공익을 저해할 목적을 갖고 서비스이용을 계획 또는 실행하는 행위</Text>
+                                <Text>(3) 법률, 조례, 기타 법규를 위반하는 행위</Text>
+                                <Text>(4) 협박, 중상, 외설, 추문, 선동적인 소재를 게재하는 행위</Text>
+                                <Text>(5) 다른 회원 또는 제3자의 명예를 훼손하거나 불이익을 주는 행위</Text>
+                                <Text>(6) 조사업무를 방해하는 행위</Text>
+                                <Text>(7) 광고메일 또는 컴퓨터바이러스를 발송하는 행위</Text>
+                                <Text> (8) 타인의 명예를 손상시키거나 불이익을 주는 행위</Text>
+                                <Text>(9) 같은 사람이 중복으로 가입하거나 다른 실명으로 이중 가입을 하는 행위</Text>
+                                <Text>(10) 조사내용, 로그, 상표, 기타 본 서비스와 관련한 정보를 제3자에게 개시, 누설하는 행위</Text>
+                                <Text>(11) 계정, 비밀번호를 도용하는 행위</Text>
+                                <Text>(12) 조사에 3회 이상 불성실하게 응답한 행위</Text>
+                                <Text> (13) 회원 계정을 매매 또는 대여하는 행위</Text>
+                                <Text>(14) 포인트를 매매하는 행위</Text>
+                                <Text>(15) 저작권 보호자료를 게재하는 행위</Text>
+                                <Text>(16) 개인정보에 기재된 우편, 전자메일, 전화 등 모든 연락방법을 이용해도 연락을 취할 수 없는 경우</Text>
+                                <Text>(17) 기타 관련 법령이나 회사가 정한 이용조건에 위배되는 행위</Text>
+                                <Text>(18) 위의 각호 이외에 회사가 해당 회원의 이용을 시급히 제한할 필요가 있다고 판단한 경우</Text>
+                                <Text>회사가 전항에 기재된 조치를 취함으로써 해당 회원이 본 서비스를 이용하지 못하여 이로 인해 손해가 발생하더라도 회사는 책임을 지지 않습니다.</Text>
                             </Text>
                             <Text style={TermsFormStyle.contentsSize2}>
                                 <Text>제10조 회원의 권리 및 책임</Text>
@@ -324,6 +293,507 @@ export default class Terms extends Component {
                     </View>
 
                 </Content>
+            );
+        }
+
+        if(this.state.languageLocale == "zh") {
+            return (
+                <Content style={{padding:10}}>
+                    <View style={TermsFormStyle.contentsLayout}>
+                        <View style={{paddingTop:5, paddingBottom:5}}>
+                            <Text style={TermsFormStyle.title}><Text style={TermsFormStyle.boldFont}>Brand Profiling</Text> 使用条款</Text>
+
+                            <Text style={TermsFormStyle.subtitle}>第1章一般规定</Text>
+
+                            <Text style={TermsFormStyle.contentsSize2}>
+                                <Text>第1条目的</Text>
+                            </Text>
+                            <Text style={TermsFormStyle.contentsSize}>
+                                <Text>本协议旨在定义Perception及其成员在使用服务方面的权利，义务和责任。 会员是加入此应用程序并同意使用条款的人。</Text>
+                            </Text>
+                            <Text style={TermsFormStyle.contentsSize2}>
+                                <Text>第二条效力的产生和变化</Text>
+                            </Text>
+                            <Text style={TermsFormStyle.contentsSize}>
+                                <Text>（1）条款和条件在通过网络向会员披露后生效。</Text>
+                                <Text>（2）公司可以在不违反相关法律法规的前提下修改本条款和条件，如“条款管理法”，“信息促进法”，“通信网络利用法”和“信息保护法”。</Text>
+                                <Text>（3）当公司修改本条款时，公司应在相当长的一段时间内通知适用的修改日期和原因。</Text>
+                                <Text>（4）会员有权拒绝更改的条款。 会员可在通知变更协议后7天内表示有意拒绝变更。 如果会员拒绝，公司可以在预先通知会员7天后终止与会员的合同。 如果该成员继续使用该服务而未表达其拒绝的意图，则他/她同意更改的条款。</Text>
+                            </Text>
+                            <Text style={TermsFormStyle.contentsSize2}>
+                                <Text>第3条外部条款和条件</Text>
+                            </Text>
+                            <Text style={TermsFormStyle.contentsSize}>
+                                <Text>本条款和条件中未规定的事项应受相关法律法规的管辖。</Text>
+                            </Text>
+
+
+                            <Text style={TermsFormStyle.subtitle}>第2章成员资格和服务使用</Text>
+                            <Text style={TermsFormStyle.contentsSize2}>
+                                <Text>第四条会员合同的设立</Text>
+                            </Text>
+                            <Text style={TermsFormStyle.contentsSize}>
+                                <Text>（1）使用合同应在订户条款和条件的同意下并经公司同意使用订户时确定。</Text>
+                                <Text>（2）本公司认为申请人在申请人提交合同时已接受本协议的条款，公司可在合同适用的必要程序后批准申请。 但是，如果申请人属于以下任何一项，公司可能不接受会员申请。</Text>
+                                <Text>①如果它不是真名或使用某人的名字</Text>
+                                <Text>②如果您填写申请表的内容为虚假申请会员资格</Text>
+                                <Text>③如果所列信息未被他人使用或确认</Text>
+                                <Text>④如果14岁以下的儿童未能获得法定代表人的同意</Text>
+                                <Text>⑤如果没有与服务相关的设施的空间，或者存在技术或业务问题</Text>
+                                <Text>⑥如果根据第4章第9条终止合同的会员再次申请会员资格</Text>
+                                <Text>（3）个人位置信息服务必须是可以使用位置信息的通信终端设备的所有者。</Text>
+                                <Text>（4）公司同意前款规定的成员合同。</Text>
+
+                            </Text>
+
+                            <Text style={TermsFormStyle.contentsSize2}>
+                                <Text>第5条服务使用和变更</Text>
+                            </Text>
+                            <Text style={TermsFormStyle.contentsSize}>
+                                <Text>（1）通常，该服务每天24小时运营，除非公司的业务或技术存在特殊障碍。</Text>
+                                <Text>（2）此服务适用于14岁及以上的人士。 如果您未满14岁，您只能在父母或其他法律代表的同意下使用此服务。</Text>
+                                <Text>（3）如有充分理由，公司可以更改为其运营和技术需求提供的全部或部分服务。 如果服务的内容，使用或使用时间有任何变化，则可以提前或之后宣布改变的原因，要改变的服务的内容和服务日期。</Text>
+                                <Text>（4）被发现不适合某些服务的会员可能被限制参加调查。</Text>
+                                <Text>（5）公司提供的任何部分或全部服务可根据公司的政策和运营要求进行修改，暂停或修改，除非相关部门有特殊规定，否则不得对会员进行赔偿。法律。</Text>
+                            </Text>
+
+
+                            <Text style={TermsFormStyle.contentsSize2}>
+                                <Text>第6条知识产权</Text>
+                            </Text>
+                            <Text style={TermsFormStyle.contentsSize}>
+                                <Text>通过调查获得的所有信息的知识产权属于Perception和委托的客户，如果您使用以下，您可以终止使用合同并在法律上处于劣势。</Text>
+                                <Text>（1）如果未经公司许可而对调查内容保存或复制调查屏幕</Text>
+                                <Text>（2）如果将与调查有关的内容汇总并披露给第三方并提供相关材料</Text>
+                                <Text>※防止不正当竞争和商业秘密保护法（缩写：不正当竞争预防法）</Text>
+                                <Text>获取或使用商业秘密或者向第三方披露以获取不公平利润或损害商业秘密所有人的人，应处以不超过5年的监禁或不超过50的罚款。 百万韩元。 但是，在罚款的情况下，如果相当于违法所得财产收益金额的10倍以上的金额超过5000万韩元，则应处以2倍以上10倍以上的罚款金额。 财产（第18（2）条）</Text>
+                            </Text>
+
+                            <Text style={TermsFormStyle.subtitle}>第三章义务和权利</Text>
+                            <Text style={TermsFormStyle.contentsSize2}>
+                                <Text>第7条公司的义务</Text>
+                            </Text>
+                            <Text style={TermsFormStyle.contentsSize}>
+                                <Text>（1）公司应继续按照本协议的规定提供服务。</Text>
+                                <Text>（2）公司可以通过在会员注册的电子传输媒体发送请求参与调查的电子邮件，文本等。</Text>
+                                <Text>（3）公司未经其同意不向他人披露或分发会员的个人信息，并努力予以保护。 与保护会员个人信息有关的其他事项应受信息网络法和公司制定的“隐私政策”的约束。</Text>
+                            </Text>
+                            <Text style={TermsFormStyle.contentsSize2}>
+                                <Text>第8条会员义务</Text>
+                            </Text>
+                            <Text style={TermsFormStyle.contentsSize}>
+                                <Text>（1）会员对用户ID和密码负全部行政责任。 对于会员因第三方（包括家庭成员）使用或更改会员帐户，用户名和密码而导致的任何损害，本公司概不负责，无论会员的意图或过失如何。</Text>
+                            <Text>（2）会员必须立即通知公司公司注册内容的任何变更。</Text>
+                            <Text>（3）会员必须以诚实的态度准确回应公司的调查，不得以虚假事实回应调查项目。</Text>
+                            <Text>（4）会员应向第三方提供或披露公司进行的调查的详细信息（如客户公司名称，调查类型，调查内容，调查技术，调查结果，博客，咖啡馆等）。</Text>
+                            <Text>（5）会员必须遵守这些条款和条件的规定。</Text>
+                        </Text>
+                        <Text style={TermsFormStyle.contentsSize2}>
+                            <Text>第4章使用，终止和终止服务的限制</Text>
+                        </Text>
+
+                        <Text style={TermsFormStyle.contentsSize2}>
+                            <Text>第9条使用服务和终止合同的限制</Text>
+                        </Text>
+                        <Text style={TermsFormStyle.contentsSize}>
+                            <Text>使用此服务，会员禁止从事以下任何活动。 如果出现以下任何情况，用户可以终止服务合同或终止服务，恕不另行通知或通知。                                </Text>
+                        </Text>
+
+
+                        <Text style={TermsFormStyle.contentsSize}>
+                            <Text>（1）违反公共秩序和社会奇迹</Text>
+                            <Text>（2）为破坏社会公共利益而计划或实施服务的使用</Text>
+                            <Text>（3）违反法律，法令或其他法律的行为</Text>
+                            <Text>（4）采取恐吓，诽谤，淫秽，丑闻，煽动性材料</Text>
+                            <Text>（5）诽谤或不利于其他成员或第三方。</Text>
+                            <Text>（6）干扰调查服务</Text>
+                            <Text>（7）发送广告邮件或计算机病毒</Text>
+                            <Text>（8）损害或损害他人的荣誉</Text>
+                            <Text>（9）同一人以副本或双重成员加入另一名称</Text>
+                            <Text>（10）向第三方发布或披露与此服务相关的调查，徽标，商标或其他信息的内容。</Text>
+                            <Text>（11）窃取账号和密码</Text>
+                            <Text>（12）以不忠实的方式对调查作出三次以上回应的行为</Text>
+                            <Text>（13）购买或借出会员账户</Text>
+                            <Text>（14）出售积分的行为</Text>
+                            <Text>（15）发布受版权保护的材料</Text>
+                            <Text>（16）即使公司使用邮件，电子邮件，电话等所有通信方式，也未能联系会员。</Text>
+                            <Text>（17）任何违反公司规定的其他适用法律或使用条件的行为。</Text>
+                            <Text>（18）如果公司确定除上述各项外，有必要限制会员的使用，公司应采取前款规定的措施。 对于因会员未能使用本服务而造成的任何损害，本公司概不负责。</Text>
+                        </Text>
+                        <Text style={TermsFormStyle.contentsSize2}>
+                            <Text>第10条成员的权利和责任</Text>
+                        </Text>
+                        <Text style={TermsFormStyle.contentsSize}>
+                            <Text>（1）会员可随时撤销对本条款的同意，并按照第11条规定的程序终止会员协议。</Text>
+                            <Text>（2）会员可以随时要求访问其个人信息，并可能要求更正其个人信息中的任何错误。</Text>
+                        </Text>
+                        <Text style={TermsFormStyle.contentsSize2}>
+                            <Text>第11条终止</Text>
+                        </Text>
+                        <Text style={TermsFormStyle.contentsSize}>
+                            <Text>会员取消会员合同时，会员本人必须通过公司规定的提款程序申请终止。 公司应当依照法律法规进行处理。 此外，公司可能会根据服务运营原则限制重新进入一段时间。
+
+                            </Text>
+                        </Text>
+                        <Text style={TermsFormStyle.contentsSize2}>
+                            <Text>第12条暂停服务</Text>
+                        </Text>
+                        <Text style={TermsFormStyle.contentsSize}>
+                            <Text>如果原因属于下列原因，公司可以在不事先通知会员的情况下暂停服务。 在这种情况下，公司对因服务中断而导致的会员或第三方损失不承担任何责任。</Text>
+                        </Text>
+                        <Text style={TermsFormStyle.contentsSize}>
+                            <Text>（1）对本服务系统进行定期或紧急维修，检查，维修或修改。</Text>
+                            <Text>（2）因火灾，停电等原因未能提供此项服务。</Text>
+                            <Text>（3）如果由于地震，火山爆发，洪水，海啸等自然灾害而无法提供服务。</Text>
+                            <Text>（4）如因战争，骚乱，骚乱，动乱，劳资纠纷等原因无法提供服务。</Text>
+                            <Text>（5）公司被要求暂时停止服务的任何其他运营或技术决策。</Text>
+                        </Text>
+
+                        <Text style={TermsFormStyle.subtitle}> 第五章点</Text>
+                        <Text style={TermsFormStyle.contentsSize2}>
+                            <Text>第13条点</Text>
+                        </Text>
+                        <Text style={TermsFormStyle.contentsSize}>
+                            <Text>（1）如果会员参加调查或其他规定的活动，会员将获得积分。 积分的累积时间，收入的方法，积分的数量和金额由公司自行决定。</Text>
+                            <Text>（2）公司公布会员自己的积分储备历史。</Text>
+                            <Text>（3）当积分超过10,000韩元时，会员可以申请自动转账到他/她的银行存折10,000韩元。</Text>
+                            <Text>（4）在下列情况下，公司不会支付准备金。</Text>
+                            <Text>①当发现姓名信息是他人或虚假时</Text>
+                            <Text>②当别人申请储备金时</Text>
+                            <Text>③如果不是会员姓名的帐号，或者不是注册为个人信息的电子邮件或手机号码</Text>
+                            <Text>④如果会员的信息不清楚</Text>
+                            <Text>⑤如果缺少个人信息处理政策要求的个人信息</Text>
+                            <Text>⑥如果在付款之日不保留会员身份</Text>
+                            <Text>⑦在韩国境外使用本服务时</Text>
+                            <Text>（5）公司应承担会员所赚取的积分以及转帐费用。</Text>
+                        </Text>
+                        <Text style={TermsFormStyle.contentsSize2}>
+                            <Text>第14条终止雇佣关系</Text>
+                        </Text>
+                        <Text style={TermsFormStyle.contentsSize}>
+                            <Text>（1）如果用户提供虚假，欺诈或过时的信息，公司可以取消或没收由公司酌情决定累积或拥有的积分。</Text>
+                            <Text>（2）如果会员已获得积分并且活动时间超过6个月（即，如果用户未参与调查，则登录该网站，或者如果该电子邮件未连续到达超过3个 时间），积分将到期。</Text>
+                            <Text>（3）会员赚取的积分将在失去会员资格的同时到期，不会重新入账。</Text>
+                            <Text>（4）截至调查参与日期，会员积分储备有效期为3年。</Text>
+                            <Text>（5）当服务终止时，获得的积分也将同时到期。 但是，公司可以建立一个期限，在此期间，会员可以获得积分以获得补偿。</Text>
+                        </Text>
+
+                        <Text style={TermsFormStyle.subtitle}>第六章其他</Text>
+                        <Text style={TermsFormStyle.contentsSize2}>
+                            <Text>第15条责任限制</Text>
+                        </Text>
+                        <Text style={TermsFormStyle.contentsSize}>
+                            <Text>（1）使用此服务，包括使用内容，由会员自行负责。</Text>
+                            <Text>（2）服务和所有内容均在维护和可用性范围内提供。 我们不保证其内容和级别。</Text>
+                            <Text>（3）对于与使用服务有关的隐私政策所提供内容不符的损害，公司不承担任何责任。</Text>
+                            <Text>（4）公司不对通过本服务的成员之间交换的任何信息以及为响应此类信息而采取的任何行动负责。</Text>
+                            <Text>（5）除非本公司故意或重大过失，否则公司没有义务赔偿使用本服务的会员所造成的任何损害。</Text>
+                            <Text>（6）关于点服务关联网站公司不保证也不对相关网站的稳定性，准确性，合法性，目的适用性承担责任。</Text>
+                            <Text>（7）如果由于公司删除了会员注册或发布的信息而停止，暂停或终止本服务，公司不对任何损害承担责任。</Text>
+                            <Text>（8）公司可随时设定，更改或终止公司设定的积分，积分类型，积分数和积分数。</Text>
+                            <Text>（9）公司对交换保留的丢失或被盗积分不承担责任。</Text>
+                            <Text>（10）如果您不能使用兑换储备金的积分，您不能将与储备金相对应的积分退还给会员的积分余额或将其更改为其他储备金。 公司不负责未使用储备的补偿。</Text>
+                            <Text>（11）除公司业务外，公司对交付或汇款等延误，丢失，被盗，损坏或破损等事故概不负责。 在这种情况下，公司不得为会员的积分余额重新发行，退款或补偿积分。</Text>
+                            <Text>（12）因公司缺乏注册信息而导致公司交付延迟或错误的情况除外，公司存在过错的原因除外。 对于会员的任何不利条件，公司不承担任何责任。</Text>
+                        </Text>
+                        <Text style={TermsFormStyle.contentsSize2}>
+                            <Text>第16条知识产权的归属</Text>
+                        </Text>
+                        <Text style={TermsFormStyle.contentsSize}>
+                            <Text>公司假定如果会员提供用户内容，会员已向本公司及其关联公司提供以非独占，非排他性，永久性，不可撤销和完全从属许可权使用版权的权利。 从属许可证是指在世界任何媒体上使用，复制，修改，更改，发布，翻译或创建用户内容的衍生作品，或传输或发布用户内容，而无需成员的个人批准和成员的补偿。</Text>
+                        </Text>
+
+                        <Text style={TermsFormStyle.contentsSize2}>
+                            <Text>第17条主管法院</Text>
+                        </Text>
+                        <Text style={TermsFormStyle.contentsSize}>
+                            <Text>与本协议有关的诉讼的有管辖权的法院应是对Perception所在地具有管辖权的法院。</Text>
+                        </Text>
+
+                        <Text style={TermsFormStyle.contentsSize2}>
+                            <Text>附录</Text>
+                        </Text>
+                        <Text style={TermsFormStyle.contentsSize}>
+                            <Text><Text style={TermsFormStyle.boldFont}>这些条款将于2017年12月26日生效。</Text></Text>
+                        </Text>
+
+
+                    </View>
+                </View>
+
+            </Content>
+
+            );
+        }
+        if(this.state.languageLocale == "en"){
+           return(
+            <Content style={{padding:10}}>
+            <View style={TermsFormStyle.contentsLayout}>
+            <View style={{paddingTop:5, paddingBottom:5}}>
+            <Text style={TermsFormStyle.title}><Text style={TermsFormStyle.boldFont}>Brand Profiling</Text> Terms of use</Text>
+
+            <Text style={TermsFormStyle.subtitle}> Chapter 1  General Provisions</Text>
+
+            <Text style={TermsFormStyle.contentsSize2}>
+            <Text>Article 1  Purpose</Text>
+            </Text>
+            <Text style={TermsFormStyle.contentsSize}>
+            <Text>This agreement is intended to define the rights, obligations and responsibilities of Perception(Hereinafter referred to as "Company") and its members regarding the use of the services. Members are the ones who join this app and agree to the Terms of use.</Text>
+            </Text>
+            <Text style={TermsFormStyle.contentsSize2}>
+            <Text>Article 2 Generation and change of effect</Text>
+            </Text>
+            <Text style={TermsFormStyle.contentsSize}>
+            <Text>(1) Terms of use shall be effective upon disclosure to members through online.</Text>
+            <Text>(2) The Company may revise these Terms of use to the extent that it does not violate the relevant laws and regulations, such as the Act on Regulation of Terms, Promotion of Information and Communication Network Utilization and Information Protection.</Text>
+            <Text>(3) When the Company revises the Terms, the Company shall notify the applicable date and reason for the revision for a considerable period of time.</Text>
+            <Text>(4) Members have the right to refuse the changed terms. The member may express his intention to refuse the change within 7 days after notification of the changed agreement. If the member refuses, the company may terminate the contract with the member after preliminary notice to the member by setting a period of 7 days. If the member continues to use the service without expressing his intention to refuse, he or she agrees to the changed terms.</Text>
+            </Text>
+            <Text style={TermsFormStyle.contentsSize2}>
+            <Text>Article 3 Outside Terms of use</Text>
+            </Text>
+            <Text style={TermsFormStyle.contentsSize}>
+            <Text>The matters not specified in these Terms of use shall be governed by the relevant laws and regulations.</Text>
+            </Text>
+
+
+            <Text style={TermsFormStyle.subtitle}> Chapter 2 Membership and Service Usage</Text>
+            <Text style={TermsFormStyle.contentsSize2}>
+            <Text>Article 4 Establishment of Membership Contract</Text>
+            </Text>
+            <Text style={TermsFormStyle.contentsSize}>
+            <Text>(1) The contract of use shall be established with the consent of the subscriber's Terms of Use and with the consent of the company to use the subscriber.</Text>
+            <Text>(2) The Company considers that the applicant has accepted the terms of this Agreement at the time the applicant submits the contract, and the Company may approve the application after the necessary procedures for the application of the contract. However, if the applicant falls under any of the following subparagraphs, the Company may not accept the application for membership.</Text>
+            <Text> ① If it is not a real name or uses someone's name</Text>
+            <Text> ② If you apply for membership by filling in the contents of the application form as false</Text>
+            <Text>③ If the information listed is not used or confirmed by others</Text>
+            <Text> ④ If a child under 14 years of age can not obtain the consent of the legal representative</Text>
+            <Text> ⑤ If there is no room for service-related facilities, or if there is a technical or business problem</Text>
+            <Text> ⑥ If the member who has terminated the contract by Chapter 4 Article 9, applies for membership again</Text>
+            <Text>(3) The personal location information service must be the owner of the communication terminal device that can use the location information.</Text>
+            <Text>(4) A member contract is established when the company agrees to the preceding paragraph.</Text>
+
+            </Text>
+
+            <Text style={TermsFormStyle.contentsSize2}>
+            <Text>Article 5 Service Use and Change</Text>
+            </Text>
+            <Text style={TermsFormStyle.contentsSize}>
+            <Text>(1) As a rule, this service operates 24 hours a day, unless there is a special obstacle in business or technology of the company.</Text>
+            <Text>(2) This service is available for persons aged 14 and over. If you are under the age of 14, you may only use this service with the consent of your parents or other legal representative.</Text>
+            <Text>(3) The Company may change all or some of the services provided for its operational and technological needs, if there are good reasons. If there is any change in the content, usage, or usage time of the service, the reason for the change, the content of the service to be changed, and the date of service may be announced in advance or after.</Text>
+            <Text>(4) Members who are found not to be suitable for some services may be restricted from participating in the survey.</Text>
+            <Text>(5) Any part or all of the services provided by the Company may be amended, suspended or modified in accordance with the policy and operation requirements of the Company, and no compensation shall be made to the members unless there are special regulations in the relevant laws.</Text>
+            </Text>
+
+
+            <Text style={TermsFormStyle.contentsSize2}>
+            <Text>Article 6 Intellectual Property Rights</Text>
+            </Text>
+            <Text style={TermsFormStyle.contentsSize}>
+            <Text>The intellectual property rights of all the information acquired through the investigation are in Perception and the clients who commission, and if you use the following, you may terminate the use contract and get a legal disadvantage.</Text>
+            <Text> (1) In case the survey screen is saved or copied without permission of the company in relation to the contents of investigation</Text>
+            <Text> (2) If the contents related to the investigation are summarized and disclosed to a third party and provided with related materials</Text>
+            <Text>※ Act on Prevention of Unfair Competition and Protection of Trade Secret (abbreviation: Unfair Competition Prevention Act)</Text>
+            <Text> A person who obtains or uses the trade secret or discloses it to a third party for the purpose of obtaining unfair profits or damages the owner of the trade secret shall be liable to imprisonment for not more than 5 years or a fine of not more than 50 million won. However, in the case of a fine, if the amount equivalent to 10 times the amount of the property gain due to the violation is more than 50 million won, it shall be fined more than 2 times and 10 times the amount of the benefit of the property (Article 18 (2))</Text>
+            </Text>
+
+            <Text style={TermsFormStyle.subtitle}> Chapter 3 Obligations and Rights</Text>
+            <Text style={TermsFormStyle.contentsSize2}>
+            <Text>Article 7 Obligations of the Company</Text>
+            </Text>
+            <Text style={TermsFormStyle.contentsSize}>
+            <Text>(1) The Company shall continue to provide services in accordance with the provisions of this Agreement.</Text>
+            <Text>(2) The Company may transmit e-mails, texts, etc. requesting to participate in the survey through the electronic transmission medium registered with the member.</Text>
+            <Text>(3) The Company does not disclose or distribute the personal information of members to others without their consent and strives to protect them. Other matters related to the protection of members' personal information shall be governed by the Information Network Law and the "Privacy Policy" set by the Company.</Text>
+            </Text>
+            <Text style={TermsFormStyle.contentsSize2}>
+            <Text>Article 8 Membership Obligations</Text>
+            </Text>
+            <Text style={TermsFormStyle.contentsSize}>
+            <Text>(1) Members have all administrative responsibility for user ID and password. The Company shall not be liable for any damages incurred by the member by using or changing the member account, user name and password by a third party (including a family member) regardless of the member's intention or fault.</Text>
+            <Text>(2) The member must notify the company immediately of any change in the registered contents of the company. </Text>
+            <Text>(3) The member must respond accurately to the survey conducted by the company in a sincere manner and shall not respond to the survey items based on false facts. </Text>
+            <Text>(4) A member shall provide or disclose to the third party the details of the survey conducted by the company (eg, customer company name, type of survey, investigation contents, survey technique, survey results, Blogs, cafes, etc. </Text>
+            <Text>(5) Members are required to comply with the provisions of these Terms of Use. </Text>
+            </Text>
+            <Text style={TermsFormStyle.contentsSize2}>
+            <Text>Chapter 4 Restrictions on use, termination and an end of services </Text>
+            </Text>
+
+            <Text style={TermsFormStyle.contentsSize2}>
+            <Text>Article 9 Restrictions on Use of Services and Termination of Contracts </Text>
+            </Text>
+            <Text style={TermsFormStyle.contentsSize}>
+            <Text>By using this service, members are prohibited from doing any of the following activities. In the event of any of the following, the user may terminate the service contract or terminate the service without notice or notice.</Text>
+            </Text>
+
+
+            <Text style={TermsFormStyle.contentsSize}>
+            <Text>(1) Act against public order and social wonders </Text>
+            <Text>(2) to plan or implement the use of the service for the purpose of undermining social public interest </Text>
+            <Text>(3) Acts that violate laws, ordinances or other laws </Text>
+            <Text>(4) Acting on intimidation, slander, obscenity, scandal, inflammatory material </Text>
+            <Text>(5) To defame or disadvantage other members or third parties. </Text>
+            <Text>(6) Interfering with the investigation service </Text>
+            <Text>(7) Sending advertising mail or computer viruses </Text>
+            <Text>(8) To impair or disadvantage others' honor </Text>
+            <Text>(9) The same person joins as a duplicate or a dual member with another name </Text>
+            <Text>(10) Launching or disclosing the contents of investigation, logo, trademark, or other information related to this service to a third party</Text>
+            <Text>(11) Stealing accounts and passwords </Text>
+            <Text>(12) Acts that responded to the investigation more than three times in an unfaithful manner </Text>
+            <Text>(13) Buying or lending a member account</Text>
+            <Text>(14) Act to sell points </Text>
+            <Text>(15) Posting copyrighted material </Text>
+            <Text>(16) Failure to contact a member even if the Company uses all methods of communication such as postal mail, e-mail, telephone, etc. </Text>
+            <Text>(17) Any act that violates other applicable laws or conditions of use set by the company</Text>
+            <Text>(18) If the company determines that it is necessary to limit the use of members in addition to the above, the company shall take the measures prescribed in the preceding paragraph. The company is not responsible for any damage caused by the member's failure to use the service. </Text>
+            </Text>
+            <Text style={TermsFormStyle.contentsSize2}>
+            <Text>Article 10 Rights and Responsibilities of Members </Text>
+            </Text>
+            <Text style={TermsFormStyle.contentsSize}>
+            <Text>(1) Members may at any time withdraw their consent to the Terms and terminate the Membership Agreement in accordance with the procedures set forth in Article 11. </Text>
+            <Text>(2) Members may request access to their personal information at any time, and may ask to correct any errors in their personal information. </Text>
+            </Text>
+            <Text style={TermsFormStyle.contentsSize2}>
+            <Text>Article 11 Termination </Text>
+            </Text>
+            <Text style={TermsFormStyle.contentsSize}>
+            <Text>When a member cancels a membership contract, the member himself / herself must apply for termination through the withdrawal procedure stipulated by the company. The Company shall deal with it in accordance with the laws and regulations. In addition, the Company may restrict re-entry for a certain period of time in accordance with the service operating principles.
+            </Text>
+            </Text>
+            <Text style={TermsFormStyle.contentsSize2}>
+            <Text>Article 12 Temporary suspension of services </Text>
+            </Text>
+            <Text style={TermsFormStyle.contentsSize}>
+            <Text>The Company may temporarily suspend the Service without prior notice to the Member if the reason falls under the reasons listed below. In this case, the Company shall have no liability whatsoever for damages incurred by members or third parties resulting from the interruption of the Service. </Text>
+            </Text>
+            <Text style={TermsFormStyle.contentsSize}>
+            <Text>(1) Regular or emergency repair, inspection, repair, or modification of this Service System</Text>
+            <Text>(2) Failure to provide this service due to fire, power outage, etc. </Text>
+            <Text>(3) If the service becomes unavailable due to natural disasters such as earthquakes, eruptions, floods, tsunamis, etc. </Text>
+            <Text>(4) If the service cannot be provided due to war, disturbance, riot, turmoil, labor dispute, etc. </Text>
+            <Text>(5) Any other operational or technological decision that the Company is required to temporarily suspend the Service </Text>
+            </Text>
+
+            <Text style={TermsFormStyle.subtitle}>Chapter 5 Points </Text>
+            <Text style={TermsFormStyle.contentsSize2}>
+            <Text>Article 13 Points </Text>
+            </Text>
+            <Text style={TermsFormStyle.contentsSize}>
+            <Text>(1) In the event that a member participates in an investigation or other prescribed activities, the member will earn points for this. The period of accumulation of points, the method of earning, the number of credits, and the amount of money are separately determined at the discretion of the company. </Text>
+            <Text>(2) The company announces the member's own point reserve history. </Text>
+            <Text>(3) When the point reserve is over KRW 10,000, the member can apply for automatic transfer to his / her bankbook in KRW 10,000. </Text>
+            <Text>(4) The Company will not pay the reserve in the following cases. </Text>
+            <Text>① When the name information is found to be other person or false</Text>
+            <Text>② When someone else applied for a reserve </Text>
+            <Text>③ If it is not an account of the member's name, or is not an email or mobile phone number registered as personal information </Text>
+            <Text>④ If the member's information is unclear </Text>
+            <Text>⑤ If the personal information required by the personal information processing policy is missing </Text>
+            <Text>⑥ If membership status is not maintained on the date of payment </Text>
+            <Text>⑦ When using this service outside of Korea</Text>
+            <Text>(5) The company shall bear the tax that arises from the points earned by the member, and the fee for the account transfer.</Text>
+            </Text>
+            <Text style={TermsFormStyle.contentsSize2}>
+            <Text>Article 14 Termination of Points</Text>
+            </Text>
+            <Text style={TermsFormStyle.contentsSize}>
+            <Text>(1) In the event that a user provides false, fraudulent or outdated information, the Company may cancel or confiscate points accumulated or owned at the discretion of the Company.</Text>
+            <Text>(2) If a member has earned points and is not active for more than 6 months (ie, if the user does not participate in the survey, log in to the site, or if the e-mail does not arrive consecutively more than 3 times), the points will expire.</Text>
+            <Text>(3) Points earned by a member will expire at the same time as loss of membership and will not be re-credited.</Text>
+            <Text>(4) The membership point reserve is valid for 3 years as of the survey participation date.</Text>
+            <Text>(5) When the service is terminated, the acquired points will also expire at the same time. However, the Company may establish a period during which the points earned by members can be exchanged for compensation.</Text>
+            </Text>
+
+            <Text style={TermsFormStyle.subtitle}> Chapter 6 Other</Text>
+            <Text style={TermsFormStyle.contentsSize2}>
+            <Text>Article 15 Limitation of Liability</Text>
+            </Text>
+            <Text style={TermsFormStyle.contentsSize}>
+            <Text>(1) The use of this service, including the use of the content, is the sole responsibility of the member.</Text>
+            <Text>(2) Services and all content are provided within the scope of maintenance and availability. We do not guarantee its content and level.</Text>
+            <Text>(3) The Company shall not be liable for damages that do not correspond to the contents provided by the Privacy Policy in connection with the use of the Service.</Text>
+            <Text>(4) The Company shall not be responsible for any information exchanged between members through the Service and any actions taken in response to such information.</Text>
+            <Text>(5) The Company shall have no obligation to compensate for any damages incurred by members using this service, except in case of intentional or gross negligence of the Company.</Text>
+            <Text>(6) About the point service affiliation site the Company does not guarantee nor assume responsibility for stability, accuracy, legality, suitability of purpose for the site concerned.</Text>
+            <Text>(7) If this service is stopped, suspended or terminated due to the fact that the Company deletes the information registered or postered by the member, the Company shall not be liable for any damages caused.</Text>
+            <Text>(8) The Company may set, change or terminate the points set by the Company, the types of points, the number of points and the number of points at any time.</Text>
+            <Text>(9) The Company shall not be held responsible for lost or stolen points exchanged for the reserve.</Text>
+            <Text>(10) If you cannot use the point exchanged for the reserve, you cannot refund the points corresponding to the reserve to the point balance of the member or change it to another reserve. The company is not responsible for compensation for unused reserves.</Text>
+            <Text>(11) The Company shall not be held responsible for accidents such as delays, loss, theft, damage or breakage during delivery or remittance of the reserve, except for the cause of the company. In this case, the Company shall not reissue, refund or reimburse points for the member's point balance.</Text>
+            <Text>(12) In case of delay or mistake in delivery of the company due to lack of registration information of the member, etc., except for the reason of the company's fault. And the Company shall not be held responsible for any disadvantage to the Member.</Text>
+            </Text>
+            <Text style={TermsFormStyle.contentsSize2}>
+            <Text>Article 16. Attribution of Intellectual Property Right</Text>
+            </Text>
+            <Text style={TermsFormStyle.contentsSize}>
+            <Text>The company assumes that if a member provides user content, the member has provided the company and its affiliates with the right to use the copyright in a non-exclusive, non-exclusive, permanent, irrevocable and fully sublicensed license. A sublicense is a derivative work that is used, copied, modified, altered, published, translated, or created in any media in the world, or transmitted or published as user content, without the individual approval of the member and the compensation of the member.</Text>
+            </Text>
+
+            <Text style={TermsFormStyle.contentsSize2}>
+            <Text>Article 17 Competent Court</Text>
+            </Text>
+            <Text style={TermsFormStyle.contentsSize}>
+            <Text>The court of competent jurisdiction of the lawsuits related to this agreement shall be the court which has jurisdiction over the place of Perception.                                </Text>
+            </Text>
+
+            <Text style={TermsFormStyle.contentsSize2}>
+            <Text>Addendum</Text>
+            </Text>
+            <Text style={TermsFormStyle.contentsSize}>
+            <Text>These Terms<Text style={TermsFormStyle.boldFont}> will be effective December 26, 2017.</Text>
+            </Text>
+            </Text>
+
+
+            </View>
+            </View>
+
+            </Content>
+
+            );
+        }
+
+    }
+
+
+    render() {
+
+
+        return (
+
+            <Container>
+
+                <Header style={TermsFormStyle.headerLayout}>
+                    <View style={{flex:.1, justifyContent: 'center', alignItems: 'center'}}>
+                        {renderIf(this.state.languageLocale=="ko")(
+                            <Text style={{fontSize:12,color:'#fff'}}>나가기</Text>
+                        )}
+                        {renderIf(this.state.languageLocale=="en")(
+                            <Text style={{fontSize:12,color:'#fff'}}>Leave</Text>
+                        )}
+                        {renderIf(this.state.languageLocale=="zh")(
+                            <Text style={{fontSize:12,color:'#fff'}}>退出</Text>
+                        )}
+                    </View>
+                    <View style={{flex:.8, justifyContent: 'center', alignItems: 'center'}}>
+                        {renderIf(this.state.languageLocale=="ko")(
+                            <Text style={{fontSize:16,color:'#fff'}}>이용약관</Text>
+                        )}
+                        {renderIf(this.state.languageLocale=="en")(
+                            <Text style={{fontSize:16,color:'#fff'}}>Terms of use</Text>
+                        )}
+                        {renderIf(this.state.languageLocale=="zh")(
+                            <Text style={{fontSize:16,color:'#fff'}}>使用条款</Text>
+                        )}
+                    </View>
+                    <View style={{flex:.1, justifyContent: 'center', alignItems: 'center'}}>
+                    </View>
+                </Header>
+
+
+                {langContents()}
 
 
             </Container>
