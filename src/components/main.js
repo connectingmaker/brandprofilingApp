@@ -170,7 +170,7 @@ export default class Main extends Component {
                                 </View>
                             </TouchableOpacity>
                         </Left>
-                        <Body style={{flex:1}}>
+                        <Body style={{flex:1,justifyContent:'center',alignItems: 'center'}}>
                         {renderIf(this.state.index == 0)(
                             <View style={{alignItems: 'center',justifyContent:'center'}}>
                                 <Image source={require('../../assets/img/header_icon_logo.png')} resizeMode={'contain'} style={{width:140, height:30}}/>

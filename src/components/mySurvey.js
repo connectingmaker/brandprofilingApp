@@ -109,6 +109,37 @@ export default class mySurvey extends Component {
 
     renderSurveyView(obj)
     {
+
+        const renderResultView = (obj) => {
+
+            if(obj.CATEGORY_NAME_EN == "IMAGE SURVEY") {
+                var resultText = "";
+                if(this.state.languageLocale == "ko") {
+                    resultText = "결과보기";
+                } else if(this.state.languageLocale == "en") {
+                    resultText = "View results";
+                } else {
+                    resultText = "查看結果";
+                }
+                return (
+                    <View>
+                        <View style={SurveyFormStyle.lingBg}></View>
+
+                        <View style={{flex:1, flexDirection: 'row', paddingTop:5, paddingBottom:5}}>
+                            <Button bordered full style={{borderColor:"#979797", backgroundColor:"#DA4211", justifyContent: 'center', height:40, width:'100%'}} onPress={() => Actions.SurveyResult({campaign_code: obj.CAMPAIGN_CODE, lang:this.state.languageLocale})}>
+                                <Text style={{color:"#ffffff"}}>결과보기</Text>
+                            </Button>
+                        </View>
+                    </View>
+                );
+            } else {
+                return (
+                    <View></View>
+                );
+            }
+        }
+
+
         return (
             <View style={SurveyFormStyle.contentsLayout}>
                 <View>
@@ -272,6 +303,8 @@ export default class mySurvey extends Component {
 
                     </View>
                 </View>
+
+                {renderResultView(obj)}
             </View>
         );
     }

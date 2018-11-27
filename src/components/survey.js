@@ -100,7 +100,7 @@ export default class Survey extends Component {
                             </View>
                         </TouchableOpacity>
                     </Left>
-                    <Body style={{flex:1}}>
+                    <Body style={{flex:1,alignItems: 'center',justifyContent:'center'}}>
                     <View style={{alignItems: 'center',justifyContent:'center'}}>
                         {renderIf(this.state.languageLocale=="ko")(
                             <Text style={{fontSize:16,color:'#fff'}}>설문하기</Text>
