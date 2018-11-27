@@ -122,8 +122,8 @@ export default class SurveyJoin extends Component {
                             </View>
                         </TouchableOpacity>
                     </Left>
-                    <Body>
-                    <View style={{flex:1, justifyContent: 'center', alignItems: 'center'}}>
+                    <Body style={{flex:1, justifyContent: 'center', alignItems: 'center'}}>
+                    <View>
                         {renderIf(this.props.lang=="ko")(
                             <Text style={{fontSize:16,color:'#fff'}}>결과보기</Text>
                         )}
@@ -150,7 +150,7 @@ export default class SurveyJoin extends Component {
 
                 <WebView style={noticeFormStyle.contentsLayout}
                      javaScriptEnabled={true}
-                     source={{uri: config.SERVER_URL+'/survey/surveyResult?clsampaign_code='+this.props.campaign_code+"&lang="+this.state.languageLocale}}
+                     source={{uri: config.SERVER_URL+'/survey/surveyResult?campaign_code='+this.props.campaign_code}}
                      onMessage={this.respondToOnMessage}
                      onLoadStart={() => (this.showSpinner())}
                      onLoad={() => (this.hideSpinner())}>
