@@ -70,10 +70,27 @@ export default class Privacy extends Component {
 
                 <Header style={noticeFormStyle.headerLayout}>
                     <View style={{flex:.1, justifyContent: 'center', alignItems: 'center'}}>
-                        <Text style={{fontSize:12,color:'#fff'}} onPress={Actions.pop}>나가기</Text>
+                        {renderIf(this.state.languageLocale=="ko")(
+                            <Text style={{fontSize:12,color:'#fff'}}>나가기</Text>
+                        )}
+                        {renderIf(this.state.languageLocale=="en")(
+                            <Text style={{fontSize:12,color:'#fff'}}>Leave</Text>
+                        )}
+                        {renderIf(this.state.languageLocale=="zh")(
+                            <Text style={{fontSize:12,color:'#fff'}}>退出</Text>
+                        )}
                     </View>
                     <View style={{flex:.8, justifyContent: 'center', alignItems: 'center'}}>
-                        <Text style={{fontSize:16,color:'#fff'}}>개인정보취급방침</Text>
+
+                        {renderIf(this.state.languageLocale=="ko")(
+                            <Text style={{fontSize:16,color:'#fff'}}>개인정보취급방침</Text>
+                        )}
+                        {renderIf(this.state.languageLocale=="en")(
+                            <Text style={{fontSize:16,color:'#fff'}}>Privacy Policy</Text>
+                        )}
+                        {renderIf(this.state.languageLocale=="zh")(
+                            <Text style={{fontSize:16,color:'#fff'}}>服务隐私政策</Text>
+                        )}
                     </View>
                     <View style={{flex:.1, justifyContent: 'center', alignItems: 'center'}}>
                     </View>

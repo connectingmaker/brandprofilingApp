@@ -70,10 +70,26 @@ export default class Terms extends Component {
 
                 <Header style={TermsFormStyle.headerLayout}>
                     <View style={{flex:.1, justifyContent: 'center', alignItems: 'center'}}>
-                        <Text style={{fontSize:12,color:'#fff'}} onPress={Actions.pop}>나가기</Text>
+                        {renderIf(this.state.languageLocale=="ko")(
+                            <Text style={{fontSize:12,color:'#fff'}}>나가기</Text>
+                        )}
+                        {renderIf(this.state.languageLocale=="en")(
+                            <Text style={{fontSize:12,color:'#fff'}}>Leave</Text>
+                        )}
+                        {renderIf(this.state.languageLocale=="zh")(
+                            <Text style={{fontSize:12,color:'#fff'}}>退出</Text>
+                        )}
                     </View>
                     <View style={{flex:.8, justifyContent: 'center', alignItems: 'center'}}>
-                        <Text style={{fontSize:16,color:'#fff'}}>이용약관</Text>
+                        {renderIf(this.state.languageLocale=="ko")(
+                            <Text style={{fontSize:16,color:'#fff'}}>이용약관</Text>
+                        )}
+                        {renderIf(this.state.languageLocale=="en")(
+                            <Text style={{fontSize:16,color:'#fff'}}>Terms of use</Text>
+                        )}
+                        {renderIf(this.state.languageLocale=="zh")(
+                            <Text style={{fontSize:16,color:'#fff'}}>使用条款</Text>
+                        )}
                     </View>
                     <View style={{flex:.1, justifyContent: 'center', alignItems: 'center'}}>
                     </View>
