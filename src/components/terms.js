@@ -76,7 +76,7 @@ export default class Terms extends Component {
                             </Text>
                             <Text style={TermsFormStyle.contentsSize}>
                                 <Text>본 약관은 (주)퍼셉션(이하 "회사"라 한다)과 회원 가입자(이하 ‘회원’이라고 하며, 본 약관에 동의하고 회원등록을 완료한 이용자)간의 서비스(이하 ‘서비스’라고 하며, 오프라인 및 접속 가능한 각종 유무선 단말기를 통한 온라인을 포함, 회사가 제공하는 모든 ‘서비스’를 의미) 이용과 관련하여 회사와 회원 간의 권리, 의무 및 책임사항을 규정함을 목적으로 합니다.</Text>
-                           </Text>
+                            </Text>
                             <Text style={TermsFormStyle.contentsSize2}>
                                 <Text>제2조 효력의 발생 및 변경</Text>
                             </Text>
@@ -234,6 +234,7 @@ export default class Terms extends Component {
                                 <Text> ④ 회원의 정보가 불명확한 경우</Text>
                                 <Text>⑤ 개인정보처리방침에서 명시하고 있는 개인정보 필수항목이 누락된 경우</Text>
                                 <Text> ⑥ 지급일 기준 회원 자격이 유지되지 않은 경우</Text>
+                                <Text> ⑦ 한국 외 다른 지역에서 서비스를 이용하는 경우</Text>
                                 <Text>(5) 회원이 획득한 포인트에서 발생하는 세금, 계좌이체에 소요되는 수수료는 회사가 부담합니다.</Text>
                             </Text>
                             <Text style={TermsFormStyle.contentsSize2}>
@@ -293,6 +294,7 @@ export default class Terms extends Component {
                     </View>
 
                 </Content>
+
             );
         }
 

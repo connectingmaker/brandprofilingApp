@@ -264,7 +264,7 @@ export default class Privacy extends Component {
                             </Text>
                             <Text style={noticeFormStyle.contentsSize}>
                                 <Text>이용자는 회사의 서비스를 이용하며 발생하는 모든 개인정보보호 관련 민원을 개인정보관리책임자 혹은 담당 부서로 신고하실 수 있습니다.
-                                    기타 개인정보침해에 대한 신고나 상담이 필요하신 경우에는 아래 기관에 문의하시기 바랍니다. </Text>
+                                    기타 개인정보침해에 대한 신고나 상담이 필요하신 경우에는 아래 기관에 문의하시기 바랍니다. *한국의 경우만 해당합니다. </Text>
                             </Text>
                             <Text style={noticeFormStyle.contentsSize}>
                                 <Text>1. 개인정보침해신고센터- http://privacy.kisa.or.kr (국번 없이 118)</Text>
@@ -293,6 +293,7 @@ export default class Privacy extends Component {
                     </View>
 
                 </Content>
+
             );
         }
 
