@@ -121,7 +121,16 @@ export default class Notice extends Component {
                 <View style={{flex:1, flexDirection: 'row', paddingTop:10, paddingBottom:5}}>
                     <TouchableOpacity style={{flexDirection: 'row', width:"100%", height:"100%"}} onPress={() => this._noticeView(obj.SEQ)}>
                         <View style={{flex:0.8,alignItems:'flex-start',justifyContent:'center'}}>
-                            <Text style={{color:'#4D4D4D',fontSize:15,fontWeight: 'bold'}}>{obj.SUBJECT}</Text>
+                            {renderIf(this.state.languageLocale=="ko")(
+                                <Text style={{color:'#4D4D4D',fontSize:15,fontWeight: 'bold'}}>{obj.SUBJECT}</Text>
+                            )}
+                            {renderIf(this.state.languageLocale=="en")(
+                                <Text style={{color:'#4D4D4D',fontSize:15,fontWeight: 'bold'}}>{obj.SUBJECT_EN}</Text>
+                            )}
+                            {renderIf(this.state.languageLocale=="zh")(
+                                <Text style={{color:'#4D4D4D',fontSize:15,fontWeight: 'bold'}}>{obj.SUBJECT_CN}</Text>
+                            )}
+
                         </View>
 
                         <View style={{flex:0.2,alignItems:'flex-end'}}>
@@ -141,7 +150,16 @@ export default class Notice extends Component {
 
                 {renderIf(this.state.seq == obj.SEQ)(
                 <View style={{paddingTop:20,paddingBottom:20}}>
-                    <Text style={{fontSize:13, color:"rgb(79,79,79)"}}>{obj.CONTENTS}</Text>
+                    {renderIf(this.state.languageLocale=="ko")(
+                        <Text style={{fontSize:13, color:"rgb(79,79,79)"}}>{obj.CONTENTS}</Text>
+                    )}
+                    {renderIf(this.state.languageLocale=="en")(
+                        <Text style={{fontSize:13, color:"rgb(79,79,79)"}}>{obj.CONTENTS_EN}</Text>
+                    )}
+                    {renderIf(this.state.languageLocale=="zh")(
+                        <Text style={{fontSize:13, color:"rgb(79,79,79)"}}>{obj.CONTENTS_CN}</Text>
+                    )}
+
                 </View>
                 )}
             </View>
@@ -162,25 +180,25 @@ export default class Notice extends Component {
 
                 <Left style={{flex:1}}>
                     <TouchableOpacity onPress={Actions.pop} style={{width:50, height:50, justifyContent:'center', alignItems:'center'}}>
-                        {renderIf(languageLocale=="ko")(
+                        {renderIf(this.state.languageLocale=="ko")(
                             <Text style={{fontSize:12,color:'#fff'}} onPress={Actions.pop}>나가기</Text>
                         )}
-                        {renderIf(languageLocale=="en")(
+                        {renderIf(this.state.languageLocale=="en")(
                             <Text style={{fontSize:12,color:'#fff'}} onPress={Actions.pop}>Leave</Text>
                         )}
-                        {renderIf(languageLocale=="zh")(
+                        {renderIf(this.state.languageLocale=="zh")(
                             <Text style={{fontSize:12,color:'#fff'}} onPress={Actions.pop}>退出</Text>
                         )}
                     </TouchableOpacity>
                 </Left>
                 <Body style={{flex:1}}>
-                    {renderIf(languageLocale=="ko")(
+                    {renderIf(this.state.languageLocale=="ko")(
                         <Text style={{fontSize:16,color:'#fff'}}>공지사항</Text>
                     )}
-                    {renderIf(languageLocale=="en")(
+                    {renderIf(this.state.languageLocale=="en")(
                         <Text style={{fontSize:16,color:'#fff'}}>NOTICE</Text>
                     )}
-                    {renderIf(languageLocale=="zh")(
+                    {renderIf(this.state.languageLocale=="zh")(
                         <Text style={{fontSize:16,color:'#fff'}}>注意</Text>
                     )}
 
