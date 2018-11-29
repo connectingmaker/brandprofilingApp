@@ -127,6 +127,8 @@ export default class Main extends Component {
 
     render() {
 
+        var AppComponent;
+
         if (this.state.index == 0) {
             AppComponent = surveyList;
         } else if(this.state.index == 1) {

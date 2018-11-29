@@ -1,9 +1,20 @@
 import React, { Component } from 'react';
 import { Actions } from 'react-native-router-flux';
-import { View, Text, Image, StyleSheet, TouchableOpacity,Alert,Platform,NativeModules,AsyncStorage } from 'react-native';
-import { Container, Header, Body, Content, Footer,Item, Icon, Input,Button } from 'native-base';
+import {
+    View,
+    Text,
+    Image,
+    StyleSheet,
+    TouchableOpacity,
+    Alert,
+    Platform,
+    NativeModules,
+    AsyncStorage,
+    TextInput
+} from 'react-native';
+import {Container, Header, Body, Content, Footer, Item, Icon, Input, Button, Left, Right} from 'native-base';
 import renderIf from 'render-if'
-import config from '../config';
+import config from '../../src/config';
 
 import I18n from 'react-native-i18n';
 
@@ -109,9 +120,9 @@ export default class Pwchange extends Component {
                             this.setState({emailText:"", phoneNumber:""})
                             Alert.alert(
                                 '',
-                                '정보가 일치하지 않습니다.',
+                                I18n.t("login_form_alert_idpw_check"),
                                 [
-                                    {text: '확인'},
+                                    {text: I18n.t("alert_confirm")},
                                 ],
                                 { cancelable: false }
                             )
@@ -126,9 +137,9 @@ export default class Pwchange extends Component {
             this.setState({emailText:""})
             Alert.alert(
                 '',
-                '이메일형식이 올바르지 않습니다.',
+                I18n.t("joinForm_step2_alert_email2"),
                 [
-                    {text: '확인'},
+                    {text: I18n.t("alert_confirm")},
                 ],
                 { cancelable: false }
             )
@@ -149,9 +160,9 @@ export default class Pwchange extends Component {
         if(!passwordRules.test(this.state.newPw)){
             Alert.alert(
                 '',
-                '영문과 숫자 그리고 특수문자 !@#$%^& 조합으로 6~16자리를 사용해야 합니다.',
+                I18n.t("account_alert_passwd"),
                 [
-                    {text: '확인', onPress: () => console.log('OK Pressed')},
+                    {Text: I18n.t("alert_confirm"), onPress: () => console.log('OK Pressed')},
                 ],
                 { cancelable: false }
             );
@@ -160,9 +171,9 @@ export default class Pwchange extends Component {
             if(this.state.newPw != this.state.re_newPw) {
                 Alert.alert(
                     '',
-                    '패스워드를 확인해주세요.',
+                    I18n.t("login_form_alert_pw"),
                     [
-                        {text: '확인', onPress: () => console.log('OK Pressed')},
+                        {Text: I18n.t("alert_confirm"), onPress: () => console.log('OK Pressed')},
                     ],
                     { cancelable: false }
                 );
@@ -191,9 +202,9 @@ export default class Pwchange extends Component {
                         default:
                             Alert.alert(
                                 'Error',
-                                '오류가 발생되었습니다.',
+                                I18n.t("joinForm_step4_alert_error"),
                                 [
-                                    {text: '확인', onPress: () => console.log('OK Pressed')},
+                                    {Text: I18n.t("alert_confirm"), onPress: () => console.log('OK Pressed')},
                                 ],
                                 { cancelable: false }
                             );
@@ -218,21 +229,9 @@ export default class Pwchange extends Component {
         console.log(value);
     }
 
-
-    render() {
-        return (
-            <Container>
-                <Header style={PwFormStyle.headerLayout}>
-                    <View style={{flex:.1, justifyContent: 'center', alignItems: 'center'}}>
-                        <Text style={{fontSize:12}} onPress={Actions.pop}>나가기</Text>
-                    </View>
-                    <View style={{flex:.8, justifyContent: 'center', alignItems: 'center'}}>
-                        <Text style={{fontSize:16}}>비밀번호 변경</Text>
-                    </View>
-                    <View style={{flex:.1, justifyContent: 'center', alignItems: 'center'}}>
-
-                    </View>
-                </Header>
+    langContents() {
+        if(this.state.languageLocale == "ko") {
+            return (
                 <Content style={{padding:10}}>
 
                     {renderIf(this.state.stepView == 1)(
@@ -246,13 +245,13 @@ export default class Pwchange extends Component {
                             <View style={{paddingLeft:20,paddingRight:20,paddingTop:20,paddingBottom:10}}>
                                 <Item regular style={{backgroundColor:"#ffffff"}}>
                                     <Image source={require('../../assets/img/join_icon_email.png')} resizeMode={'contain'} style={{width:16, height:13, marginLeft:10,justifyContent:'center'}} />
-                                    <Input placeholder='이메일 계정 입력' style={PwFormStyle.input} value={this.state.emailText} onChangeText={(text) => this.setState({emailText: text})} keyboardType="email-address"/>
+                                    <Input placeholder='이메일 계정 입력' style={PwFormStyle.Input} value={this.state.emailText} onChangeText={(Text) => this.setState({emailText: Text})} keyboardType="email-address"/>
                                 </Item>
                             </View>
                             <View style={{paddingLeft:20,paddingRight:20}}>
                                 <Item regular style={{backgroundColor:"#ffffff"}}>
                                     <Image source={require('../../assets/img/join_icon_phone.png')} resizeMode={'contain'} style={{width:16, height:13, marginTop:5, marginLeft:10}} />
-                                    <Input placeholder='핸드폰번호 입력' style={PwFormStyle.input} value={this.state.phoneNumber} onChangeText={(text) => this.setState({phoneNumber: text})} keyboardType="numeric"/>
+                                    <Input placeholder='핸드폰번호 입력' style={PwFormStyle.Input} value={this.state.phoneNumber} onChangeText={(Text) => this.setState({phoneNumber: Text})} keyboardType="numeric"/>
                                 </Item>
                             </View>
                         </View>
@@ -270,7 +269,7 @@ export default class Pwchange extends Component {
                             <View style={{padding:20}}>
                                 <Item regular style={{backgroundColor:"#ffffff"}}>
                                     <Image source={require('../../assets/img/join_icon_check.png')} resizeMode={'contain'} style={{width:16, height:13, marginLeft:10,justifyContent:'center'}} />
-                                    <Input placeholder='인증번호 입력' style={PwFormStyle.input} value={this.state.checkNumber} onChangeText={(text) => this.setState({checkNumber: text})} keyboardType="numeric"/>
+                                    <Input placeholder='인증번호 입력' style={PwFormStyle.Input} value={this.state.checkNumber} onChangeText={(Text) => this.setState({checkNumber: Text})} keyboardType="numeric"/>
                                 </Item>
                             </View>
                         </View>
@@ -286,13 +285,13 @@ export default class Pwchange extends Component {
                             <View style={{paddingLeft:20,paddingRight:20,paddingTop:20,paddingBottom:10}}>
                                 <Item regular style={{backgroundColor:"#ffffff"}}>
                                     <Image source={require('../../assets/img/join_icon_pw.png')} resizeMode={'contain'} style={{width:16, height:13, marginTop:5, marginLeft:10}} />
-                                    <Input placeholder='새로운 비밀번호 입력' style={PwFormStyle.input} value={this.state.newPw} onChangeText={(text) => this.setState({newPw: text})} keyboardType="default" secureTextEntry={true}/>
+                                    <Input placeholder='새로운 비밀번호 입력' style={PwFormStyle.Input} value={this.state.newPw} onChangeText={(Text) => this.setState({newPw: Text})} keyboardType="default" secureTextEntry={true}/>
                                 </Item>
                             </View>
                             <View style={{paddingLeft:20,paddingRight:20}}>
                                 <Item regular style={{backgroundColor:"#ffffff"}}>
                                     <Image source={require('../../assets/img/join_icon_pw.png')} resizeMode={'contain'} style={{width:16, height:13, marginTop:5, marginLeft:10}} />
-                                    <Input placeholder='다시 입력' style={PwFormStyle.input} value={this.state.re_newPw} onChangeText={(text) => this.setState({re_newPw: text})} keyboardType="default" secureTextEntry={true}/>
+                                    <Input placeholder='다시 입력' style={PwFormStyle.Input} value={this.state.re_newPw} onChangeText={(Text) => this.setState({re_newPw: Text})} keyboardType="default" secureTextEntry={true}/>
                                 </Item>
                             </View>
 
@@ -311,13 +310,234 @@ export default class Pwchange extends Component {
                         </View>
                     )}
                 </Content>
+
+            );
+        }
+
+        if(this.state.languageLocale == "zh") {
+
+            return (
+
+                <Content style={{padding:10}}>
+
+                    {renderIf(this.state.stepView == 1)(
+                        <View>
+                            <View style={PwFormStyle.contentsLayout}>
+                                <View>
+                                    <Text style={PwFormStyle.contentsSize}>要更改密码，请输入您在注册时验证的电子邮件地址和手机号码</Text>
+                                </View>
+
+                            </View>
+                            <View style={{paddingLeft:20,paddingRight:20,paddingTop:20,paddingBottom:10}}>
+                                <Item regular style={{backgroundColor:"#ffffff"}}>
+                                    <Image source={require('../../assets/img/join_icon_email.png')} resizeMode={'contain'} style={{width:16, height:13, marginLeft:10,justifyContent:'center'}} />
+                                    <Input placeholder='邮箱' style={PwFormStyle.Input} value={this.state.emailText} onChangeText={(Text) => this.setState({emailText: Text})} keyboardType="email-address"/>
+                                </Item>
+                            </View>
+                            <View style={{paddingLeft:20,paddingRight:20}}>
+                                <Item regular style={{backgroundColor:"#ffffff"}}>
+                                    <Image source={require('../../assets/img/join_icon_phone.png')} resizeMode={'contain'} style={{width:16, height:13, marginTop:5, marginLeft:10}} />
+                                    <Input placeholder='手机号' style={PwFormStyle.Input} value={this.state.phoneNumber} onChangeText={(Text) => this.setState({phoneNumber: Text})} keyboardType="numeric"/>
+                                </Item>
+                            </View>
+                        </View>
+                    )}
+
+                    {renderIf(this.state.stepView == 2)(
+                        <View>
+                            <View style={PwFormStyle.contentsLayout}>
+                                <View>
+                                    <Text style={PwFormStyle.contentsSize}>已发送电子邮件。 要更改密码，请输入验证码或通过电子邮件链接更改密码。</Text>
+                                </View>
+
+                            </View>
+
+                            <View style={{padding:20}}>
+                                <Item regular style={{backgroundColor:"#ffffff"}}>
+                                    <Image source={require('../../assets/img/join_icon_check.png')} resizeMode={'contain'} style={{width:16, height:13, marginLeft:10,justifyContent:'center'}} />
+                                    <Input placeholder='请输入验证码' style={PwFormStyle.Input} value={this.state.checkNumber} onChangeText={(Text) => this.setState({checkNumber: Text})} keyboardType="numeric"/>
+                                </Item>
+                            </View>
+                        </View>
+                    )}
+                    {renderIf(this.state.stepView == 3)(
+                        <View>
+                            <View style={PwFormStyle.contentsLayout}>
+                                <View>
+                                    <Text style={PwFormStyle.contentsSize}>组合英文或数字，特殊符号，设置长度为6-16个字符的新密码。可使用特殊符号为!@#$%^&。</Text>
+                                </View>
+
+                            </View>
+                            <View style={{paddingLeft:20,paddingRight:20,paddingTop:20,paddingBottom:10}}>
+                                <Item regular style={{backgroundColor:"#ffffff"}}>
+                                    <Image source={require('../../assets/img/join_icon_pw.png')} resizeMode={'contain'} style={{width:16, height:13, marginTop:5, marginLeft:10}} />
+                                    <Input placeholder='更改密码 ' style={PwFormStyle.Input} value={this.state.newPw} onChangeText={(Text) => this.setState({newPw: Text})} keyboardType="default" secureTextEntry={true}/>
+                                </Item>
+                            </View>
+                            <View style={{paddingLeft:20,paddingRight:20}}>
+                                <Item regular style={{backgroundColor:"#ffffff"}}>
+                                    <Image source={require('../../assets/img/join_icon_pw.png')} resizeMode={'contain'} style={{width:16, height:13, marginTop:5, marginLeft:10}} />
+                                    <Input placeholder='再次输入新密码 ' style={PwFormStyle.Input} value={this.state.re_newPw} onChangeText={(Text) => this.setState({re_newPw: Text})} keyboardType="default" secureTextEntry={true}/>
+                                </Item>
+                            </View>
+
+
+                        </View>
+                    )}
+                    {renderIf(this.state.stepView == 4)(
+                        <View>
+                            <View style={PwFormStyle.contentsLayout}>
+                                <View>
+                                    <Text style={PwFormStyle.contentsSize}>密码修改成功.</Text>
+                                </View>
+
+                            </View>
+
+                        </View>
+                    )}
+                </Content>
+
+
+
+            );
+        }
+        if(this.state.languageLocale == "en"){
+            return(
+
+
+                <Content style={{padding:10}}>
+
+                    {renderIf(this.state.stepView == 1)(
+                        <View>
+                            <View style={PwFormStyle.contentsLayout}>
+                                <View>
+                                    <Text style={PwFormStyle.contentsSize}><Text style={PwFormStyle.boldFont}>비밀번호</Text>를 변경하기 위해 가입시 인증하신 <Text style={PwFormStyle.boldFont}>이메일 주소</Text> 와 <Text style={PwFormStyle.boldFont}>핸드폰 번호</Text>를 입력해주세요.</Text>
+                                </View>
+
+                            </View>
+                            <View style={{paddingLeft:20,paddingRight:20,paddingTop:20,paddingBottom:10}}>
+                                <Item regular style={{backgroundColor:"#ffffff"}}>
+                                    <Image source={require('../../assets/img/join_icon_email.png')} resizeMode={'contain'} style={{width:16, height:13, marginLeft:10,justifyContent:'center'}} />
+                                    <Input placeholder='이메일 계정 입력' style={PwFormStyle.Input} value={this.state.emailText} onChangeText={(Text) => this.setState({emailText: Text})} keyboardType="email-address"/>
+                                </Item>
+                            </View>
+                            <View style={{paddingLeft:20,paddingRight:20}}>
+                                <Item regular style={{backgroundColor:"#ffffff"}}>
+                                    <Image source={require('../../assets/img/join_icon_phone.png')} resizeMode={'contain'} style={{width:16, height:13, marginTop:5, marginLeft:10}} />
+                                    <Input placeholder='핸드폰번호 입력' style={PwFormStyle.Input} value={this.state.phoneNumber} onChangeText={(Text) => this.setState({phoneNumber: Text})} keyboardType="numeric"/>
+                                </Item>
+                            </View>
+                        </View>
+                    )}
+
+                    {renderIf(this.state.stepView == 2)(
+                        <View>
+                            <View style={PwFormStyle.contentsLayout}>
+                                <View>
+                                    <Text style={PwFormStyle.contentsSize}>이메일이 발송되었습니다. 비밀번호를 변경하기 위해  <Text style={PwFormStyle.boldFont}>인증번호</Text>를 입력하여 변경하거나 이메일 링크를 통해 비밀번호를 변경해주세요.</Text>
+                                </View>
+
+                            </View>
+
+                            <View style={{padding:20}}>
+                                <Item regular style={{backgroundColor:"#ffffff"}}>
+                                    <Image source={require('../../assets/img/join_icon_check.png')} resizeMode={'contain'} style={{width:16, height:13, marginLeft:10,justifyContent:'center'}} />
+                                    <Input placeholder='인증번호 입력' style={PwFormStyle.Input} value={this.state.checkNumber} onChangeText={(Text) => this.setState({checkNumber: Text})} keyboardType="numeric"/>
+                                </Item>
+                            </View>
+                        </View>
+                    )}
+                    {renderIf(this.state.stepView == 3)(
+                        <View>
+                            <View style={PwFormStyle.contentsLayout}>
+                                <View>
+                                    <Text style={PwFormStyle.contentsSize}><Text style={PwFormStyle.boldFont}>영문</Text>이나 <Text style={PwFormStyle.boldFont}>숫자</Text> 그리고 <Text style={PwFormStyle.boldFont}>특수문자</Text>를 사용하여 <Text style={PwFormStyle.boldFont}>6~16자리</Text>의 <Text style={PwFormStyle.boldFont}>새로운 비밀번호</Text>를 입력해주세요. 사용가능한 특수문자는 <Text style={PwFormStyle.boldFont}>!@#$%^&*</Text> 입니다</Text>
+                                </View>
+
+                            </View>
+                            <View style={{paddingLeft:20,paddingRight:20,paddingTop:20,paddingBottom:10}}>
+                                <Item regular style={{backgroundColor:"#ffffff"}}>
+                                    <Image source={require('../../assets/img/join_icon_pw.png')} resizeMode={'contain'} style={{width:16, height:13, marginTop:5, marginLeft:10}} />
+                                    <Input placeholder='새로운 비밀번호 입력' style={PwFormStyle.Input} value={this.state.newPw} onChangeText={(Text) => this.setState({newPw: Text})} keyboardType="default" secureTextEntry={true}/>
+                                </Item>
+                            </View>
+                            <View style={{paddingLeft:20,paddingRight:20}}>
+                                <Item regular style={{backgroundColor:"#ffffff"}}>
+                                    <Image source={require('../../assets/img/join_icon_pw.png')} resizeMode={'contain'} style={{width:16, height:13, marginTop:5, marginLeft:10}} />
+                                    <Input placeholder='다시 입력' style={PwFormStyle.Input} value={this.state.re_newPw} onChangeText={(Text) => this.setState({re_newPw: Text})} keyboardType="default" secureTextEntry={true}/>
+                                </Item>
+                            </View>
+
+
+                        </View>
+                    )}
+                    {renderIf(this.state.stepView == 4)(
+                        <View>
+                            <View style={PwFormStyle.contentsLayout}>
+                                <View>
+                                    <Text style={PwFormStyle.contentsSize}>비밀번호 변경이 완료되었습니다.</Text>
+                                </View>
+
+                            </View>
+
+                        </View>
+                    )}
+                </Content>
+
+
+            );
+        }
+
+    }
+
+    render() {
+        return (
+            <Container>
+                <Header style={PwFormStyle.headerLayout}>
+                    <Left style={{flex:1}}>
+                        <TouchableOpacity onPress={Actions.pop} style={{width:50, height:50, justifyContent:'center', alignItems:'center'}}>
+                            {renderIf(this.state.languageLocale=="ko")(
+                                <Text style={{fontSize:12}} onPress={Actions.pop}>나가기</Text>
+                            )}
+                            {renderIf(this.state.languageLocale=="en")(
+                                <Text style={{fontSize:12}} onPress={Actions.pop}>Leave</Text>
+                            )}
+                            {renderIf(this.state.languageLocale=="zh")(
+                                <Text style={{fontSize:12}} onPress={Actions.pop}>退出</Text>
+                            )}
+                        </TouchableOpacity>
+                    </Left>
+                    <Body style={{flex:1}}>
+                        {renderIf(this.state.languageLocale=="ko")(
+                            <Text style={{fontSize:16}}>비밀번호 변경</Text>
+                        )}
+                        {renderIf(this.state.languageLocale=="en")(
+                            <Text style={{fontSize:16}}>Change Password</Text>
+                        )}
+                        {renderIf(this.state.languageLocale=="zh")(
+                            <Text style={{fontSize:16}}>更改密碼</Text>
+                        )}
+
+                    </Body>
+                    <Right tyle={{flex:1, width:50, height:50, justifyContent:'center', alignItems:'center'}}>
+                    </Right>
+                </Header>
+                {this.langContents()}
                 <Footer style={{backgroundColor:"#222222", width:"100%", height:44, justifyContent: 'center', alignItems: 'center'}}>
 
 
                     {renderIf(this.state.stepView == 1)(
                         <TouchableOpacity style={{width:"100%", height:"100%", justifyContent: 'center', alignItems: 'center'}} onPress={()=>this.pwCheck()} >
                             <View>
-                                <Text style={{color:"#ffffff" }}>비밀번호 변경</Text>
+                                {renderIf(this.state.languageLocale=="ko")(
+                                    <Text style={{fontSize:16,color:'#fff'}}>비밀번호 변경</Text>
+                                )}
+                                {renderIf(this.state.languageLocale=="en")(
+                                    <Text style={{fontSize:16,color:'#fff'}}>Change Password</Text>
+                                )}
+                                {renderIf(this.state.languageLocale=="zh")(
+                                    <Text style={{fontSize:16,color:'#fff'}}>更改密碼</Text>
+                                )}
                             </View>
                         </TouchableOpacity>
                     )}
@@ -325,14 +545,33 @@ export default class Pwchange extends Component {
                     {renderIf(this.state.stepView == 2)(
                         <TouchableOpacity style={{width:"100%", height:"100%", justifyContent: 'center', alignItems: 'center'}} onPress={()=>this.numberCheck()}>
                             <View>
-                                <Text style={{color:"#ffffff" }}>인증번호 입력</Text>
+
+                                {renderIf(this.state.languageLocale=="ko")(
+                                    <Text style={{color:"#ffffff" }}>인증번호 입력</Text>
+                                )}
+                                {renderIf(this.state.languageLocale=="en")(
+                                    <Text style={{color:"#ffffff" }}>Verification number</Text>
+                                )}
+                                {renderIf(this.state.languageLocale=="zh")(
+                                    <Text style={{color:"#ffffff" }}>验证码 </Text>
+                                )}
+
                             </View>
                         </TouchableOpacity>
                     )}
                     {renderIf(this.state.stepView == 3)(
                         <TouchableOpacity style={{width:"100%", height:"100%", justifyContent: 'center', alignItems: 'center'}} onPress={()=>this.newPwCheck()}>
                             <View>
-                                <Text style={{color:"#ffffff" }}>변경 확인</Text>
+
+                                {renderIf(this.state.languageLocale=="ko")(
+                                    <Text style={{fontSize:16,color:'#fff'}}>변경 확인</Text>
+                                )}
+                                {renderIf(this.state.languageLocale=="en")(
+                                    <Text style={{fontSize:16,color:'#fff'}}>Confirm</Text>
+                                )}
+                                {renderIf(this.state.languageLocale=="zh")(
+                                    <Text style={{fontSize:16,color:'#fff'}}>确认 </Text>
+                                )}
                             </View>
                         </TouchableOpacity>
                     )}
@@ -371,7 +610,7 @@ const PwFormStyle = StyleSheet.create({
         color:"#DA4211"
         ,fontWeight: 'bold'
     }
-    ,input: {
+    ,Input: {
         fontSize:12
         ,paddingTop:13
         ,paddingLeft:11

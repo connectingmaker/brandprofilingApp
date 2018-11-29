@@ -126,4 +126,9 @@ export default {
     ,account_auth_btn : '인증번호 입력'
     ,account_passwd_btn : '비밀번호 변경'
     ,account_exit : '나가기'
+
+    ,survey_end:'설문이 완료되었습니다'
+    ,surevy_scout:'죄송합니다. 이 설문에 맞는 대상이 아닙니다.\n다른 설문에 참여해주세요.'
+    ,survey_join:'참여이력이 존재합니다.'
+
 }

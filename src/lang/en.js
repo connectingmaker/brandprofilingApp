@@ -117,7 +117,6 @@ export default {
     ,account_filed_auth_code : 'Verification number'
     ,account_filed_passwd1 : 'Enter new password'
     ,account_filed_passwd2 : 'Re-enter'
-    ,account_alert_phone : 'Please enter your mobile phone number.'
     ,account_alert_email : 'Please enter your email account.'
     ,account_alert_auth : 'Please enter your verification number.'
     ,account_alert_passwd : 'Please enter a new password of 6 to 16 digits using alphanumeric characters and special characters. The special characters available are !@#$% ^&*.'
@@ -127,4 +126,8 @@ export default {
     ,account_auth_btn : 'Certification number input'
     ,account_passwd_btn : 'Change Password'
     ,account_exit : 'Leave'
+
+    ,survey_end:'Survey completed'
+    ,surevy_scout:'Sorry. This question is not a valid target.\n Please participate in other surveys.'
+    ,survey_join:'There is a history of participation.'
 }

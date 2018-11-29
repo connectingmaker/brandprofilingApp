@@ -125,4 +125,8 @@ export default {
     ,account_auth_btn : '输入验证码'
     ,account_passwd_btn : '修改密码'
     ,account_exit : '退出'
+
+    ,survey_end:'調查完成'
+    ,surevy_scout:'抱歉。這個問題不是一個有效的目標。\n請參加其他調查。'
+    ,survey_join:'有參與的歷史。'
 }

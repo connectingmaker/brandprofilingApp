@@ -127,14 +127,14 @@ export default class mySurvey extends Component {
 
                         <View style={{flex:1, flexDirection: 'row', paddingTop:5, paddingBottom:5}}>
                             <Button bordered full style={{borderColor:"#979797", backgroundColor:"#DA4211", justifyContent: 'center', height:40, width:'100%'}} onPress={() => Actions.SurveyResult({campaign_code: obj.CAMPAIGN_CODE, lang:this.state.languageLocale})}>
-                                <Text style={{color:"#ffffff"}}>결과보기</Text>
+                                <Text style={{color:"#ffffff"}}>{resultText}</Text>
                             </Button>
                         </View>
                     </View>
                 );
             } else {
                 return (
-                    <View></View>
+                    <View><Text>1111</Text></View>
                 );
             }
         }

@@ -99,9 +99,9 @@ export default class SurveyJoin extends Component {
                 case "000":
                     Alert.alert(
                         '',
-                        '설문이 완료되었습니다.',
+                        I18n.t("survey_end"),
                         [
-                            {text: '확인', onPress: () => Actions.pop({ refresh: {stepView: 2}})},
+                            {text: I18n.t("alert_confirm"), onPress: () => Actions.pop({ refresh: {stepView: 2}})},
                         ],
                         {cancelable: false}
                     );
@@ -111,9 +111,9 @@ export default class SurveyJoin extends Component {
                 case "SC":
                     Alert.alert(
                         '',
-                        '죄송합니다. 이 설문에 맞는 대상이 아닙니다.\n다른 설문에 참여해주세요.',
+                        I18n.t("survey_scout"),
                         [
-                            {text: '확인', onPress: () => Actions.Main({ type:"reset", refresh: true })},
+                            {text: I18n.t("alert_confirm"), onPress: () => Actions.Main({ type:"reset", refresh: true })},
                         ],
                         {cancelable: false}
                     );
@@ -121,9 +121,9 @@ export default class SurveyJoin extends Component {
                 default:
                     Alert.alert(
                         '',
-                        '참여이력이 존재합니다.',
+                        I18n.t("survey_join"),
                         [
-                            {text: '확인', onPress: () => Actions.pop({ refresh: {stepView: 2}})},
+                            {text: I18n.t("alert_confirm"), onPress: () => Actions.pop({ refresh: {stepView: 2}})},
                         ],
                         {cancelable: false}
                     )
@@ -134,9 +134,9 @@ export default class SurveyJoin extends Component {
                 case "999":
                     Alert.alert(
                         '',
-                        '참여이력이 존재합니다.',
+                        I18n.t("survey_join"),
                         [
-                            {text: '확인', onPress: () => Actions.pop({ refresh: {stepView: 2}})},
+                            {text: I18n.t("alert_confirm"), onPress: () => Actions.pop({ refresh: {stepView: 2}})},
                         ],
                         {cancelable: false}
                     )
@@ -180,7 +180,7 @@ export default class SurveyJoin extends Component {
                     </View>
                     </TouchableOpacity>
                     </Left>
-                    <Body>
+                    <Body style={{flex:1, justifyContent: 'center', alignItems: 'center'}}>
                     <View style={{flex:1, justifyContent: 'center', alignItems: 'center'}}>
                         {renderIf(this.props.lang=="ko")(
                             <Text style={{fontSize:16,color:'#fff', justifyContent: 'center', alignItems: 'center'}}>설문참여</Text>
