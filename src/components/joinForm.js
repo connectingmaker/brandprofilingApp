@@ -557,11 +557,12 @@ export default class JoinForm extends Component {
                                     )}
 
                                     {renderIf(this.state.languageLocale == "en") (
-                                        <Text style={JoinFormStyle.contentsSize}><Text style={JoinFormStyle.boldFont}>{this.state.phoneText}</Text>으로 인증번호가 전송되었습니다. 아래 입력 칸에 인증번호를 입력해주세요.</Text>
+                                        <Text style={JoinFormStyle.contentsSize}>
+                                            Your verification number has been sent to<Text style={JoinFormStyle.boldFont}>{this.state.phoneText}</Text>. Please enter your certification number in the box below.</Text>
                                     )}
 
                                     {renderIf(this.state.languageLocale == "zh") (
-                                        <Text style={JoinFormStyle.contentsSize}><Text style={JoinFormStyle.boldFont}>{this.state.phoneText}</Text>으로 인증번호가 전송되었습니다. 아래 입력 칸에 인증번호를 입력해주세요.</Text>
+                                        <Text style={JoinFormStyle.contentsSize}>您的验证码已发送至<Text style={JoinFormStyle.boldFont}>{this.state.phoneText}</Text>。请在下面的框中输入您的认证编号。</Text>
                                     )}
                                 </View>
 
@@ -594,7 +595,7 @@ export default class JoinForm extends Component {
                                     )}
 
                                     {renderIf(this.state.languageLocale == "zh") (
-                                        <Text style={JoinFormStyle.contentsSize}>Please enter your password. You can use a combination of 6 to 16 digits using alphanumeric characters and special characters that you can use. Once you have set up your password, your membership will be completed.</Text>
+                                        <Text style={JoinFormStyle.contentsSize}>组合英文，数字，特殊符号!@#$%^&，设置长度为6-16个字符的密码.</Text>
                                     )}
 
                                 </View>
