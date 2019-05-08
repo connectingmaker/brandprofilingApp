@@ -389,7 +389,7 @@ export default class JoinForm extends Component {
                                 <View style={{paddingTop:10}}>
 
                                     {renderIf(this.state.languageLocale == "ko") (
-                                        <Text style={JoinFormStyle.contentsSize}><Text style={JoinFormStyle.boldFont}>Brand Profiling</Text>은 브랜드 포지셔닝에 특화된 툴로써, 리서치를 통해 <Text style={JoinFormStyle.boldFont}>브랜드 이미지에 대하여 분석함을 목표</Text>로 하고 있습니다.</Text>
+                                        <Text style={JoinFormStyle.contentsSize}><Text style={JoinFormStyle.boldFont}>Brand Profiling</Text>은 브랜드 컨셉과 제품개발을 위한 특화 리서치 툴입니다. 리서치를 통해 <Text style={JoinFormStyle.boldFont}>브랜드 이미지에 대하여 분석함을 목표</Text>로 하고 있습니다.</Text>
                                     )}
 
                                     {renderIf(this.state.languageLocale == "en") (

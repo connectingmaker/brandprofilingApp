@@ -58,7 +58,7 @@ export default {
     ,joinForm_step3_alert_phone2 : '핸드폰번호를 정확히 입력해주세요'
     ,joinForm_step3_alert_phone3 : '하루발송량을 초과되었습니다'
     ,joinForm_step3_alert_phone4 : '등록된 회원입니다'
-    ,joinForm_step3_auth_title : '핸드폰으로 인증번호가 전송되었습니다. 아래 입력 칸에 인증번호를 입력해주세요.'
+    ,joinForm_step3_auth_title : '인증번호가 전송되었습니다. 아래 입력 칸에 인증번호를 입력해주세요.'
     ,joinForm_step3_filed_auth : '인증번호 입력'
     ,joinForm_step3_alert_auth : '인증번호가 일치하지 않습니다.'
 

@@ -466,7 +466,7 @@ export default class Account extends Component {
                             <View style={AccountFormStyle.contentsLayout}>
                                 <View>
                                     {renderIf(this.state.languageLocale == "ko") (
-                                        <Text style={AccountFormStyle.contentsSize}>SMS가 발송되었습니다. 비밀번호를 변경하기 위해  <Text style={AccountFormStyle.boldFont}>인증번호</Text>를 입력해주세요</Text>
+                                        <Text style={AccountFormStyle.contentsSize}>이메일로 인증번호가 발송되었습니다. 비밀번호를 변경하기 위해  <Text style={AccountFormStyle.boldFont}>인증번호</Text>를 입력해주세요. 간혹 발송된 메일이 스팸으로 처리될 수 있으니 메일이 오지 않았다면 스팸메일을 확인해 주세요.</Text>
                                     )}
 
                                     {renderIf(this.state.languageLocale == "en") (
